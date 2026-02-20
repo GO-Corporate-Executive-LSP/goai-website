@@ -3,8 +3,33 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
   <title>GÖ.AI — Autonomous Travel Orchestration</title>
-  <meta name="description" content="GÖ.AI coordinates itineraries, ground transport, and real-time risk intelligence into a single automated flow."/>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Autonomous travel orchestration with embedded security intelligence. Built for decision-makers.">
+  <link rel="canonical" href="https://goaihq.com">
+
+  <!-- Social (Open Graph) -->
+  <meta property="og:title" content="GÖ.AI — Autonomous Travel Orchestration">
+  <meta property="og:description" content="Infrastructure for intelligent mobility and security-aware travel automation.">
+  <meta property="og:image" content="https://goaihq.com/og-image.jpg">
+  <meta property="og:url" content="https://goaihq.com">
+  <meta property="og:type" content="website">
+
+  <!-- Social (Twitter/X) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GÖ.AI — Autonomous Travel Orchestration">
+  <meta name="twitter:description" content="Security-informed automated mobility infrastructure.">
+  <meta name="twitter:image" content="https://goaihq.com/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <!-- Mobile theme -->
+  <meta name="theme-color" content="#0B0D12">
+
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,8 +50,10 @@
       --max:1120px;
       --r:22px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -37,41 +64,57 @@
         linear-gradient(180deg,var(--bg),var(--bg2));
       letter-spacing:-0.2px;
     }
+
     a{color:var(--blue);text-decoration:none}
     a:hover{text-decoration:underline}
+
     .wrap{max-width:var(--max);margin:0 auto;padding:28px}
+
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
       padding:18px 0 10px;
     }
+
     .brand{
-      display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px
+      display:flex;align-items:center;gap:10px;
+      font-weight:700;letter-spacing:.2px
     }
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--gold);box-shadow:0 0 24px rgba(212,175,55,.45)}
+
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--gold);
+      box-shadow:0 0 24px rgba(212,175,55,.45)
+    }
+
     .nav{display:flex;gap:18px;flex-wrap:wrap}
     .nav a{color:var(--muted);font-weight:500}
     .nav a:hover{color:var(--text);text-decoration:none}
+
     .pill{
       display:inline-flex;align-items:center;gap:10px;
       padding:8px 12px;border:1px solid var(--border);
       border-radius:999px;background:rgba(255,255,255,.03);
       color:var(--muted);font-size:13px
     }
+
     .hero{
       padding:72px 0 34px;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
+
     h1{
       margin:18px 0 14px;
       font-size:56px;line-height:1.02;
       letter-spacing:-1.2px;
     }
+
     .sub{
       max-width:760px;
       font-size:18px;line-height:1.7;color:var(--muted);
       margin:0 0 22px;
     }
+
     .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
       padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
@@ -79,23 +122,53 @@
       transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
       user-select:none
     }
+
     .btn-primary{
       background:linear-gradient(135deg,var(--gold),var(--gold2));
       color:#0a0b0e;border:none;
       box-shadow:0 12px 28px rgba(212,175,55,.18);
     }
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 34px rgba(212,175,55,.22);text-decoration:none}
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 34px rgba(212,175,55,.22);
+      text-decoration:none
+    }
+
     .btn-ghost{
       background:rgba(255,255,255,.03);
       color:var(--text);
     }
-    .btn-ghost:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);text-decoration:none}
+
+    .btn-ghost:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.06);
+      text-decoration:none
+    }
+
     .meta{margin-top:18px;color:var(--muted2);font-size:13px}
+
     .section{padding:72px 0}
-    .kicker{color:var(--muted2);text-transform:uppercase;letter-spacing:.18em;font-size:12px;margin-bottom:12px}
+
+    .kicker{
+      color:var(--muted2);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:12px;
+      margin-bottom:12px
+    }
+
     h2{margin:0 0 10px;font-size:30px;letter-spacing:-.6px}
+
     .p{max-width:820px;color:var(--muted);line-height:1.75}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:26px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+      margin-top:26px
+    }
+
     .card{
       grid-column:span 4;
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,.02));
@@ -104,13 +177,30 @@
       padding:18px;
       transition:transform .15s ease, background .15s ease, border-color .15s ease;
     }
-    .card:hover{transform:translateY(-2px);background:linear-gradient(180deg,var(--card2),rgba(255,255,255,.03));border-color:rgba(255,255,255,.16)}
-    .card .n{color:rgba(255,255,255,.40);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+    .card:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(180deg,var(--card2),rgba(255,255,255,.03));
+      border-color:rgba(255,255,255,.16)
+    }
+
+    .card .n{
+      color:rgba(255,255,255,.40);
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase
+    }
+
     .card h3{margin:10px 0 8px;font-size:18px}
     .card p{margin:0;color:var(--muted);line-height:1.65}
+
     .split{
-      display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:26px
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+      margin-top:26px
     }
+
     .panel{
       grid-column:span 6;
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,.02));
@@ -118,13 +208,28 @@
       border-radius:var(--r);
       padding:18px;
     }
+
     .panel h3{margin:0 0 6px;font-size:18px}
     .panel p{margin:0;color:var(--muted);line-height:1.65}
+
     .foot{
       border-top:1px solid rgba(255,255,255,.08);
       padding:22px 0 30px;
-      color:var(--muted2);font-size:13px
+      color:var(--muted2);
+      font-size:13px
     }
+
+    /* Subtle scroll motion */
+    .fade-in{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .fade-in.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
     @media (max-width: 920px){
       h1{font-size:44px}
       .card{grid-column:span 12}
@@ -149,7 +254,9 @@
 
     <section class="hero">
       <div class="pill">Launching pilot cohorts • 2026</div>
+
       <h1>Autonomous travel orchestration. Built for decision-makers.</h1>
+
       <p class="sub">
         GÖ.AI coordinates itineraries, ground transport, and real-time risk intelligence into a single automated flow.
         No friction. No guesswork. No fragmented systems.
@@ -163,7 +270,7 @@
       <div class="meta">Charlotte launch market • Enterprise-forward • Human-in-loop escalation</div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
       <div class="kicker">Platform</div>
       <h2>Infrastructure for intelligent mobility.</h2>
       <p class="p">
@@ -190,7 +297,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
       <div class="kicker">Systems</div>
       <h2>Two systems. One controlled state machine.</h2>
 
@@ -206,7 +313,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
       <div class="kicker">Who it’s for</div>
       <h2>Designed for operators.</h2>
       <div class="grid">
@@ -225,7 +332,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-in">
       <div class="kicker">Trust</div>
       <h2>Built for environments where failure is not an option.</h2>
       <p class="p">
@@ -242,6 +349,18 @@
     </div>
   </div>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <!-- Motion + small utilities -->
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
