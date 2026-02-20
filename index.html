@@ -4,23 +4,23 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-  <title>GÖ.AI — Business Travel, Automated</title>
+  <title>GÖ.AI — Business Travel on Autopilot</title>
 
   <!-- Primary SEO -->
-  <meta name="description" content="Business travel that runs itself—rides, flights, stays, and calm safety context in one modern flow.">
+  <meta name="description" content="Business travel, on autopilot. Trips, rides, stays, and calm travel context in one clean flow.">
   <link rel="canonical" href="https://goaihq.com">
 
   <!-- Social (Open Graph) -->
-  <meta property="og:title" content="GÖ.AI — Business Travel, Automated">
-  <meta property="og:description" content="Plan less. Move faster. GÖ.AI coordinates your trip end-to-end with calm, security-aware context.">
+  <meta property="og:title" content="GÖ.AI — Business Travel on Autopilot">
+  <meta property="og:description" content="Trips, rides, stays, and calm travel context — in one clean flow.">
   <meta property="og:image" content="https://goaihq.com/assets/og-image.jpg">
   <meta property="og:url" content="https://goaihq.com">
   <meta property="og:type" content="website">
 
   <!-- Social (Twitter/X) -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GÖ.AI — Business Travel, Automated">
-  <meta name="twitter:description" content="A modern travel companion for business travelers—automation + calm risk context.">
+  <meta name="twitter:title" content="GÖ.AI — Business Travel on Autopilot">
+  <meta name="twitter:description" content="Trips, rides, stays, and calm travel context — in one clean flow.">
   <meta name="twitter:image" content="https://goaihq.com/assets/og-image.jpg">
 
   <!-- Favicon -->
@@ -71,6 +71,13 @@
 
     .wrap{max-width:var(--max);margin:0 auto;padding:28px}
 
+    /* Smooth page transition */
+    .page-fade{
+      opacity:1;
+      transition:opacity 380ms ease;
+    }
+    .page-fade.out{opacity:0}
+
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
       padding:18px 0 10px;
@@ -78,10 +85,7 @@
       transform:translateY(-10px);
       animation:enterTop 900ms cubic-bezier(.2,.8,.2,1) forwards;
     }
-
-    @keyframes enterTop{
-      to{opacity:1;transform:translateY(0)}
-    }
+    @keyframes enterTop{to{opacity:1;transform:translateY(0)}}
 
     .brand{
       display:flex;align-items:center;gap:10px;
@@ -104,11 +108,16 @@
       color:var(--muted);font-size:13px
     }
 
-    /* HERO */
+    /* HERO (SIDE-BY-SIDE) */
     .hero{
       padding:72px 0 34px;
       border-bottom:1px solid rgba(255,255,255,.08);
       position:relative;
+
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:48px;
+      align-items:center;
     }
 
     .hero::before{
@@ -123,9 +132,10 @@
       pointer-events:none;
       opacity:.9;
       transform:translateZ(0);
+      z-index:0;
     }
 
-    .hero-inner{position:relative}
+    .hero-inner{position:relative; z-index:1}
 
     h1{
       margin:18px 0 14px;
@@ -152,9 +162,7 @@
       animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 320ms forwards;
     }
 
-    @keyframes enter{
-      to{opacity:1;transform:translateY(0)}
-    }
+    @keyframes enter{to{opacity:1;transform:translateY(0)}}
 
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
@@ -195,21 +203,23 @@
       animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 420ms forwards;
     }
 
-    /* HERO MEDIA: visible on page */
+    /* HERO MEDIA (RIGHT SIDE) */
     .hero-media{
-      margin-top:28px;
+      position:relative;
       border-radius:22px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.02);
       box-shadow:0 18px 55px rgba(0,0,0,.55);
-      position:relative;
       transform:translateZ(0);
       opacity:0;
       transform:translateY(14px);
       animation:enter 1200ms cubic-bezier(.2,.8,.2,1) 520ms forwards;
+      z-index:1;
+      will-change:transform;
     }
 
+    /* glow tracking */
     .hero-media::after{
       content:"";
       position:absolute;
@@ -217,7 +227,7 @@
       background:
         radial-gradient(420px 240px at var(--mx, 50%) var(--my, 50%), rgba(212,175,55,.12), transparent 60%),
         radial-gradient(520px 300px at calc(var(--mx, 50%) + 15%) calc(var(--my, 50%) - 10%), rgba(154,215,255,.10), transparent 60%);
-      opacity:.0;
+      opacity:0;
       transition:opacity .25s ease;
       pointer-events:none;
       mix-blend-mode:screen;
@@ -229,14 +239,10 @@
       width:100%;
       display:block;
       transform:translateZ(0);
-      opacity:.96;
     }
 
-    /* Zoox-ish quiet motion: float + sheen */
-    .float{
-      animation:floaty 7.5s ease-in-out infinite;
-      will-change:transform;
-    }
+    /* “Zoox-ish” quiet motion: slow float + gentle sheen */
+    .float{animation:floaty 7.5s ease-in-out infinite}
     @keyframes floaty{
       0%,100%{transform:translateY(0)}
       50%{transform:translateY(-10px)}
@@ -258,69 +264,6 @@
       100%{transform:translateX(120%)}
     }
 
-    /* Floating risk dial (lightweight, decorative + on-brand) */
-    .risk-dial{
-      position:absolute;
-      right:18px;
-      bottom:18px;
-      width:140px;
-      height:140px;
-      border-radius:999px;
-      background:rgba(8,10,14,.55);
-      border:1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      box-shadow:0 18px 48px rgba(0,0,0,.45);
-      overflow:hidden;
-      transform:translateZ(0);
-      animation:dialFloat 6.2s ease-in-out infinite;
-    }
-    @keyframes dialFloat{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
-    .risk-dial .label{
-      position:absolute;
-      inset:auto 0 16px 0;
-      text-align:center;
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.62);
-    }
-    .risk-dial .num{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      font-size:34px;
-      letter-spacing:-.6px;
-    }
-    .risk-dial svg{
-      position:absolute;
-      inset:10px;
-      width:calc(100% - 20px);
-      height:calc(100% - 20px);
-      transform:rotate(-90deg);
-      opacity:.95;
-    }
-    .risk-dial .track{stroke:rgba(255,255,255,.12)}
-    .risk-dial .progress{
-      stroke-linecap:round;
-      stroke-dasharray: 282.6; /* 2πr with r≈45 */
-      stroke-dashoffset: 70;   /* ~75% filled */
-      animation:dash 2.4s cubic-bezier(.2,.8,.2,1) 900ms both, pulse 3.2s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(242,193,78,.15));
-    }
-    @keyframes dash{
-      from{stroke-dashoffset: 282.6}
-      to{stroke-dashoffset: 70}
-    }
-    @keyframes pulse{
-      0%,100%{opacity:.9}
-      50%{opacity:1}
-    }
-
     /* Sections */
     .section{padding:72px 0}
 
@@ -333,6 +276,7 @@
     }
 
     h2{margin:0 0 10px;font-size:30px;letter-spacing:-.6px}
+
     .p{max-width:820px;color:var(--muted);line-height:1.75}
 
     .grid{
@@ -354,6 +298,7 @@
       transform:translateZ(0);
     }
 
+    /* parallax-ish hover glow */
     .card::after{
       content:"";
       position:absolute;
@@ -429,7 +374,7 @@
       font-size:13px
     }
 
-    /* Zoox-like scroll reveal */
+    /* Zoox-like scroll reveal: slower, softer */
     .fade-in{
       opacity:0;
       transform:translateY(22px);
@@ -446,22 +391,16 @@
       filter:blur(0);
     }
 
-    /* Smooth page transition */
-    .page-fade{
-      opacity:1;
-      transition:opacity 380ms ease;
-    }
-    .page-fade.out{
-      opacity:0;
-    }
-
     @media (max-width: 920px){
       h1{font-size:44px}
       .card{grid-column:span 12}
       .panel{grid-column:span 12}
-      .hero{padding:54px 0 26px}
+      .hero{
+        padding:54px 0 26px;
+        grid-template-columns:1fr;
+      }
       .section{padding:54px 0}
-      .risk-dial{right:14px;bottom:14px;width:128px;height:128px}
+      .hero-media{margin-top:26px}
     }
   </style>
 </head>
@@ -485,7 +424,7 @@
         <h1>Business travel, on autopilot.</h1>
 
         <p class="sub">
-          GÖ.AI keeps your work trips smooth—rides, flights, stays, and calm travel context in one clean flow.
+          GÖ.AI keeps your work trips smooth—next flights, rides, stays, and calm travel context in one clean flow.
           Less tapping. Fewer surprises. More time for the meeting.
         </p>
 
@@ -495,29 +434,12 @@
         </div>
 
         <div class="meta">Charlotte pilot • Built for frequent business travelers • Human backup when it matters</div>
+      </div>
 
-        <!-- HERO MEDIA (repo path) -->
-        <div class="hero-media float" id="heroMedia" aria-hidden="false">
-          <span class="sheen"></span>
-          <img src="/assets/og-image.jpg" alt="GÖ.AI — business travel preview (ETAS + SENTINEL)" />
-
-          <!-- Floating Risk Dial -->
-          <div class="risk-dial" aria-label="Travel context dial">
-            <div class="num">72</div>
-            <div class="label">trip context</div>
-            <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
-              <defs>
-                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#9ad7ff"/>
-                  <stop offset="0.55" stop-color="#f2c14e"/>
-                  <stop offset="1" stop-color="#ff5a5a"/>
-                </linearGradient>
-              </defs>
-              <circle class="track" cx="60" cy="60" r="45" fill="none" stroke-width="10"/>
-              <circle class="progress" cx="60" cy="60" r="45" fill="none" stroke="url(#ringGrad)" stroke-width="10"/>
-            </svg>
-          </div>
-        </div>
+      <!-- HERO MEDIA (visible, right side) -->
+      <div class="hero-media float" id="heroMedia" aria-hidden="true">
+        <span class="sheen"></span>
+        <img src="./assets/og-image.jpg" alt="GÖ.AI — business travel preview" />
       </div>
     </section>
 
@@ -538,7 +460,7 @@
         <div class="card">
           <div class="n">02 — Book</div>
           <h3>Lock in rides + stays.</h3>
-          <p>Coordinate ground transport and trip details in one place—no copy/paste spiral.</p>
+          <p>Keep ground transport and trip details in one place—no copy/paste spiral.</p>
         </div>
         <div class="card">
           <div class="n">03 — Stay smooth</div>
@@ -569,25 +491,25 @@
       <h2>Made for people who travel for work.</h2>
       <div class="grid">
         <div class="card">
-          <h3>Consultants & client teams</h3>
-          <p>Back-to-back meetings need predictable movement and fewer last-minute surprises.</p>
+          <h3>Consultants + client teams</h3>
+          <p>Back-to-back meetings need predictable timing and clean handoffs.</p>
         </div>
         <div class="card">
-          <h3>Founders & operators</h3>
-          <p>Run lean and move fast—your travel shouldn’t become a second job.</p>
+          <h3>Founders + builders</h3>
+          <p>Move fast—keep the trip simple and let the system handle the details.</p>
         </div>
         <div class="card">
-          <h3>Sales & frequent flyers</h3>
-          <p>When you’re traveling every week, reliability beats “one more booking app.”</p>
+          <h3>Sales + frequent flyers</h3>
+          <p>When you’re traveling every week, fewer friction points = more energy.</p>
         </div>
       </div>
     </section>
 
     <section class="section fade-in">
       <div class="kicker">Trust</div>
-      <h2>Designed to be calm, reliable, and easy to adopt.</h2>
+      <h2>Reliable when the schedule is tight.</h2>
       <p class="p">
-        A controlled rollout • Clear trip timeline • Human backup when automation hits the edge
+        Timeline-first design • Human backup when needed • Clear alerts • Built for modern business travel
       </p>
       <div class="cta" style="margin-top:22px">
         <a class="btn btn-primary" href="/contact.html">Join the pilot</a>
@@ -613,7 +535,7 @@
     }, { threshold: 0.14 });
     elements.forEach(el => observer.observe(el));
 
-    // Glow tracking (cards/panels/hero)
+    // Glow tracking (cards, panels, hero image)
     function attachGlowTracking(el){
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
@@ -625,14 +547,14 @@
     }
     document.querySelectorAll('.card, .panel, .hero-media').forEach(attachGlowTracking);
 
-    // Tilt for hero media (Zoox-ish)
+    // Subtle tilt on hero media (Zoox-ish)
     const hero = document.getElementById('heroMedia');
     if (hero) {
-      const damp = 14; // lower = calmer
+      const damp = 14;
       hero.addEventListener('mousemove', (e) => {
         const r = hero.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
+        const cx = r.left + r.width/2;
+        const cy = r.top + r.height/2;
         const dx = (e.clientX - cx) / r.width;
         const dy = (e.clientY - cy) / r.height;
         hero.style.transform = `translateY(-8px) rotateX(${(-dy * damp)}deg) rotateY(${(dx * damp)}deg)`;
@@ -643,7 +565,7 @@
       });
     }
 
-    // Smooth page transition (fade out before internal navigation)
+    // Smooth page transition fade-out before navigation
     document.querySelectorAll('a[href]').forEach(a => {
       const href = a.getAttribute('href');
       if (!href) return;
