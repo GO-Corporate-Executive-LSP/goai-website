@@ -4,23 +4,23 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
-  <title>GÖ.AI — About</title>
+  <title>About — GÖ.AI</title>
 
   <!-- Primary SEO -->
-  <meta name="description" content="Operational clarity through automation — built for modern business travel.">
+  <meta name="description" content="GÖ.AI is building business travel automation with calm context—so your trips run smoother, with fewer surprises.">
   <link rel="canonical" href="https://goaihq.com/about.html">
 
   <!-- Social (Open Graph) -->
-  <meta property="og:title" content="GÖ.AI — About">
-  <meta property="og:description" content="Operational clarity through automation. Built for modern business travel.">
+  <meta property="og:title" content="About — GÖ.AI">
+  <meta property="og:description" content="Built for modern business travel. One place to run your trip.">
   <meta property="og:image" content="https://goaihq.com/assets/og-image.jpg">
   <meta property="og:url" content="https://goaihq.com/about.html">
   <meta property="og:type" content="website">
 
   <!-- Social (Twitter/X) -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GÖ.AI — About">
-  <meta name="twitter:description" content="Operational clarity through automation.">
+  <meta name="twitter:title" content="About — GÖ.AI">
+  <meta name="twitter:description" content="Business travel, on autopilot.">
   <meta name="twitter:image" content="https://goaihq.com/assets/og-image.jpg">
 
   <!-- Favicon -->
@@ -70,6 +70,8 @@
     a:hover{text-decoration:underline}
 
     .wrap{max-width:var(--max);margin:0 auto;padding:28px}
+    .page-fade{opacity:1;transition:opacity 380ms ease}
+    .page-fade.out{opacity:0}
 
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
@@ -79,162 +81,181 @@
       animation:enterTop 900ms cubic-bezier(.2,.8,.2,1) forwards;
     }
 
-    @keyframes enterTop{ to{opacity:1;transform:translateY(0)} }
-
-    .brand{
-      display:flex;align-items:center;gap:10px;
-      font-weight:700;letter-spacing:.2px
+    @keyframes enterTop{
+      to{opacity:1;transform:translateY(0)}
     }
 
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
     .dot{
       width:10px;height:10px;border-radius:999px;background:var(--gold);
       box-shadow:0 0 24px rgba(212,175,55,.45)
     }
-
-    .nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+    .nav{display:flex;gap:18px;flex-wrap:wrap}
     .nav a{color:var(--muted);font-weight:500}
     .nav a:hover{color:var(--text);text-decoration:none}
 
-    /* Page */
-    .about{
+    /* About hero (centered, airy) */
+    .about-hero{
       padding:88px 0 26px;
       position:relative;
-      border-bottom:1px solid rgba(255,255,255,.08);
     }
-
-    .about::before{
+    .about-hero::before{
       content:"";
       position:absolute;
-      inset:-180px -140px auto -140px;
-      height:520px;
+      inset:-180px -120px auto -120px;
+      height:480px;
       background:
-        radial-gradient(520px 320px at 20% 55%, rgba(154,215,255,.10), transparent 62%),
-        radial-gradient(620px 360px at 70% 50%, rgba(212,175,55,.12), transparent 62%);
-      filter:blur(12px);
+        radial-gradient(420px 240px at 20% 50%, rgba(154,215,255,.10), transparent 60%),
+        radial-gradient(520px 300px at 70% 55%, rgba(212,175,55,.12), transparent 60%);
+      filter:blur(10px);
       pointer-events:none;
       opacity:.9;
       transform:translateZ(0);
     }
 
-    .about-inner{position:relative;max-width:860px;margin:0 auto;text-align:center}
+    .about-hero-inner{position:relative;max-width:760px;margin:0 auto;text-align:center}
 
     h1{
-      margin:0 0 18px;
-      font-size:54px;line-height:1.05;
-      letter-spacing:-1.2px;
+      margin:0 0 14px;
+      font-size:48px;line-height:1.05;
+      letter-spacing:-1.0px;
       opacity:0;
       transform:translateY(12px);
       animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 120ms forwards;
     }
 
-    .copy{
+    .lede{
       margin:0 auto;
+      font-size:15px;line-height:1.8;
       color:var(--muted);
-      font-size:16px;
-      line-height:1.9;
-      max-width:820px;
       opacity:0;
       transform:translateY(12px);
       animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 220ms forwards;
-      text-align:left;
     }
 
-    .copy p{margin:0 0 14px}
-    .copy p:last-child{margin:0}
+    .lede p{margin:0 0 14px}
+    .lede p:last-child{margin-bottom:0}
 
-    @keyframes enter{ to{opacity:1;transform:translateY(0)} }
+    @keyframes enter{to{opacity:1;transform:translateY(0)}}
 
-    /* Media blocks */
+    /* Divider + micro headline (mid page) */
+    .mid{
+      padding:46px 0 26px;
+      max-width:760px;
+      margin:0 auto;
+      text-align:center;
+    }
+    .hair{
+      height:1px;
+      width:320px;
+      margin:0 auto 18px;
+      background:rgba(255,255,255,.10);
+    }
+    .mini{
+      color:rgba(255,255,255,.70);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .tag{
+      font-weight:700;
+      letter-spacing:-.4px;
+      color:rgba(255,255,255,.90);
+      margin:0 0 10px;
+    }
+    .subtag{
+      color:var(--muted2);
+      font-size:13px;
+      margin:0;
+    }
+
+    /* Media blocks (Zoox-ish) */
     .media{
-      max-width:980px;
-      margin:30px auto 0;
+      position:relative;
       border-radius:28px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.10);
       background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       box-shadow:0 30px 90px rgba(0,0,0,.55);
       transform-style:preserve-3d;
-      position:relative;
-      opacity:0;
-      transform:translateY(14px);
-      animation:enter 1200ms cubic-bezier(.2,.8,.2,1) 520ms forwards;
+      transform:translateZ(0);
+      will-change:transform;
     }
-
     .media::after{
       content:"";
       position:absolute;
-      inset:-40%;
+      inset:-40px;
       background:
-        radial-gradient(520px 320px at var(--mx, 50%) var(--my, 50%), rgba(212,175,55,.16), transparent 60%),
-        radial-gradient(520px 320px at calc(var(--mx, 50%) + 10%) calc(var(--my, 50%) - 8%), rgba(154,215,255,.10), transparent 60%);
-      filter:blur(40px);
-      opacity:.55;
+        radial-gradient(420px 240px at var(--mx, 50%) var(--my, 50%), rgba(212,175,55,.12), transparent 60%),
+        radial-gradient(520px 300px at calc(var(--mx, 50%) + 15%) calc(var(--my, 50%) - 10%), rgba(154,215,255,.10), transparent 60%);
+      opacity:0;
+      transition:opacity .25s ease;
       pointer-events:none;
+      mix-blend-mode:screen;
+      filter:blur(8px);
     }
+    .media:hover::after{opacity:1}
 
     .media video,
     .media img{
       display:block;
       width:100%;
       height:auto;
+      transform: translateZ(18px);
+      opacity:.98;
+      background:rgba(255,255,255,.02);
     }
 
-    .float{
-      animation:floaty 8s ease-in-out infinite;
-      will-change:transform;
+    /* Force visible real estate even if media is still loading */
+    .media video{aspect-ratio:16/9}
+    .media img{aspect-ratio:16/9;object-fit:cover}
+
+    .sheen{
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(110deg, transparent 0%, rgba(255,255,255,.06) 35%, transparent 70%);
+      transform:translateX(-120%);
+      animation:sheen 6.8s ease-in-out infinite;
+      opacity:.55;
+      mix-blend-mode:overlay;
     }
+    @keyframes sheen{
+      0%{transform:translateX(-120%)}
+      45%{transform:translateX(120%)}
+      100%{transform:translateX(120%)}
+    }
+
+    .float{animation:floaty 7.5s ease-in-out infinite}
     @keyframes floaty{
       0%,100%{transform:translateY(0)}
       50%{transform:translateY(-10px)}
     }
 
-    .divider{
-      max-width:980px;
-      margin:44px auto 0;
-      height:1px;
-      background:rgba(255,255,255,.08);
-    }
-
-    .section{
-      padding:54px 0 10px;
-      max-width:980px;
-      margin:0 auto;
-    }
-
-    .kicker{
+    /* Layout for the two media pieces */
+    .media-wrap{max-width:980px;margin:22px auto 0}
+    .media-block{margin:0 auto 34px;opacity:0;transform:translateY(14px);animation:enter 1200ms cubic-bezier(.2,.8,.2,1) 320ms forwards}
+    .media-block.two{animation-delay:420ms}
+    .caption{
+      margin:10px 2px 0;
       color:var(--muted2);
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      font-size:12px;
-      margin:0 0 12px;
+      font-size:13px;
+      line-height:1.6;
       text-align:center;
     }
 
-    h2{
-      margin:0 0 14px;
-      font-size:32px;
-      letter-spacing:-.6px;
-      text-align:center;
-    }
-
+    /* Footer */
     .foot{
       border-top:1px solid rgba(255,255,255,.08);
       padding:22px 0 30px;
       color:var(--muted2);
-      font-size:13px;
-      max-width:var(--max);
-      margin:34px auto 0;
+      font-size:13px
     }
 
-    /* Smooth page transition */
-    .page-fade{opacity:1;transition:opacity 380ms ease;}
-    .page-fade.out{opacity:0;}
-
     @media (max-width: 920px){
-      .about{padding:66px 0 22px}
-      h1{font-size:42px}
-      .copy{font-size:15px}
-      .media{border-radius:22px}
+      h1{font-size:40px}
+      .about-hero{padding:70px 0 20px}
+      .hair{width:240px}
+      .media-wrap{max-width:100%}
     }
   </style>
 </head>
@@ -252,34 +273,46 @@
       </div>
     </div>
 
-    <section class="about">
-      <div class="about-inner">
+    <section class="about-hero">
+      <div class="about-hero-inner">
         <h1>Operational clarity through automation.</h1>
 
-        <div class="copy">
-          <p>GÖ.AI was built to eliminate friction in business travel—fragmented bookings, manual follow-ups, and last-minute surprises.</p>
-          <p>We believe your trip should run like a clean, controlled system: predictable, visible, and easy to manage.</p>
-          <p>Launch market: Charlotte. Expansion: city by city—built to support modern travelers and teams as we scale.</p>
+        <div class="lede">
+          <p>GÖ.AI was built to remove friction from business travel—keeping flights, rides, stays, and timing in one clean flow.</p>
+          <p>We believe your trip should run like a calm timeline: predictable, readable, and ready for the real-world changes that happen.</p>
+          <p>Launch market: Charlotte. Expansion: city-by-city—built for modern travelers and teams as we scale.</p>
         </div>
+      </div>
 
+      <div class="media-wrap">
         <!-- CITY-BY-CITY REEL -->
-        <div class="media float" id="cityMedia">
-          <video autoplay muted loop playsinline preload="auto" poster="/assets/og-image.jpg">
-            <source src="/assets/city-city.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- TEAM IMAGE -->
-        <div class="section">
-          <div class="kicker">The team</div>
-          <h2>Building GÖ.AI with craft.</h2>
-
-          <div class="media float" id="teamMedia" style="animation-delay: .35s;">
-            <img src="/assets/about-team.jpg" alt="The GÖ.AI team building the platform" loading="eager" decoding="async">
+        <div class="media-block">
+          <div class="media float" id="cityMedia">
+            <span class="sheen"></span>
+            <video autoplay muted loop playsinline preload="metadata" poster="https://goaihq.com/assets/og-image.jpg">
+              <source src="https://goaihq.com/assets/city-city.mp4" type="video/mp4">
+            </video>
           </div>
+          <div class="caption">City-by-city expansion reel (GÖ.CLT, GÖ.ATL, GÖ.CHI, and more).</div>
         </div>
+      </div>
+    </section>
+
+    <section class="mid">
+      <div class="hair"></div>
+      <div class="mini">The team</div>
+      <h3 class="tag">Building GÖ.AI with craft.</h3>
+      <p class="subtag">A small team focused on clean UX, dependable systems, and calm travel context.</p>
+    </section>
+
+    <section class="media-wrap" style="margin-top:10px;">
+      <!-- TEAM IMAGE -->
+      <div class="media-block two">
+        <div class="media float" id="teamMedia" style="animation-delay:.35s;">
+          <span class="sheen"></span>
+          <img src="https://goaihq.com/assets/about-team.jpg" alt="The GÖ.AI team building the platform" loading="eager" decoding="async">
+        </div>
+        <div class="caption">The people building the product.</div>
       </div>
     </section>
 
@@ -292,7 +325,7 @@
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Glow tracking (for media)
+    // Glow tracking (quiet, controlled)
     function attachGlowTracking(el){
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
@@ -303,6 +336,25 @@
       }, { passive:true });
     }
     document.querySelectorAll('.media').forEach(attachGlowTracking);
+
+    // Subtle tilt (desktop only, prevents “blue overlay” / weird transform stacking)
+    function attachTilt(card){
+      if (!card) return;
+      const damp = 10;
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = (e.clientX - cx) / r.width;
+        const dy = (e.clientY - cy) / r.height;
+        card.style.transform = `translateY(-6px) rotateX(${(-dy * damp)}deg) rotateY(${(dx * damp)}deg)`;
+      }, { passive:true });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      }, { passive:true });
+    }
+    attachTilt(document.getElementById('cityMedia'));
+    attachTilt(document.getElementById('teamMedia'));
 
     // Smooth page transition (fade out before navigation)
     document.querySelectorAll('a[href]').forEach(a => {
