@@ -1,63 +1,247 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GÖ.AI — Intelligent Mobility & Executive Protection</title>
-  <meta name="description" content="GÖ.AI builds AI-powered travel automation and executive protection infrastructure: ETAS™ + SENTINEL™." />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GÖ.AI — Autonomous Travel Orchestration</title>
+  <meta name="description" content="GÖ.AI coordinates itineraries, ground transport, and real-time risk intelligence into a single automated flow."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5;background:#0b0b0d;color:#f2f2f3}
-    a{color:#9ad7ff;text-decoration:none} a:hover{text-decoration:underline}
-    .wrap{max-width:980px;margin:0 auto;padding:28px}
-    .nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-    .card{background:#141418;border:1px solid #23232a;border-radius:16px;padding:18px;margin:14px 0}
-    .btn{display:inline-block;background:#f2c14e;color:#0b0b0d;padding:10px 14px;border-radius:12px;font-weight:700}
-    .muted{color:#b7b7c2}
-    h1{font-size:34px;letter-spacing:0.3px;margin:0 0 10px}
-    h2{font-size:20px;margin:0 0 10px}
-    footer{margin-top:40px;color:#9a9aa6;font-size:13px}
+    :root{
+      --bg:#07080b;
+      --bg2:#0b0d12;
+      --card:rgba(255,255,255,.04);
+      --card2:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --gold:#d4af37;
+      --gold2:#f2c14e;
+      --blue:#9ad7ff;
+      --max:1120px;
+      --r:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 25% 10%, rgba(154,215,255,.09), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(212,175,55,.10), transparent 55%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      letter-spacing:-0.2px;
+    }
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 0 10px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--gold);box-shadow:0 0 24px rgba(212,175,55,.45)}
+    .nav{display:flex;gap:18px;flex-wrap:wrap}
+    .nav a{color:var(--muted);font-weight:500}
+    .nav a:hover{color:var(--text);text-decoration:none}
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;border:1px solid var(--border);
+      border-radius:999px;background:rgba(255,255,255,.03);
+      color:var(--muted);font-size:13px
+    }
+    .hero{
+      padding:72px 0 34px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    h1{
+      margin:18px 0 14px;
+      font-size:56px;line-height:1.02;
+      letter-spacing:-1.2px;
+    }
+    .sub{
+      max-width:760px;
+      font-size:18px;line-height:1.7;color:var(--muted);
+      margin:0 0 22px;
+    }
+    .cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+      font-weight:700;cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      user-select:none
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--gold),var(--gold2));
+      color:#0a0b0e;border:none;
+      box-shadow:0 12px 28px rgba(212,175,55,.18);
+    }
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 34px rgba(212,175,55,.22);text-decoration:none}
+    .btn-ghost{
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+    .btn-ghost:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);text-decoration:none}
+    .meta{margin-top:18px;color:var(--muted2);font-size:13px}
+    .section{padding:72px 0}
+    .kicker{color:var(--muted2);text-transform:uppercase;letter-spacing:.18em;font-size:12px;margin-bottom:12px}
+    h2{margin:0 0 10px;font-size:30px;letter-spacing:-.6px}
+    .p{max-width:820px;color:var(--muted);line-height:1.75}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:26px}
+    .card{
+      grid-column:span 4;
+      background:linear-gradient(180deg,var(--card),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--r);
+      padding:18px;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .card:hover{transform:translateY(-2px);background:linear-gradient(180deg,var(--card2),rgba(255,255,255,.03));border-color:rgba(255,255,255,.16)}
+    .card .n{color:rgba(255,255,255,.40);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+    .card h3{margin:10px 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted);line-height:1.65}
+    .split{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:26px
+    }
+    .panel{
+      grid-column:span 6;
+      background:linear-gradient(180deg,var(--card),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--r);
+      padding:18px;
+    }
+    .panel h3{margin:0 0 6px;font-size:18px}
+    .panel p{margin:0;color:var(--muted);line-height:1.65}
+    .foot{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:22px 0 30px;
+      color:var(--muted2);font-size:13px
+    }
+    @media (max-width: 920px){
+      h1{font-size:44px}
+      .card{grid-column:span 12}
+      .panel{grid-column:span 12}
+      .hero{padding:54px 0 26px}
+      .section{padding:54px 0}
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="nav">
-      <a href="/">Home</a>
-      <a href="/platform.html">Platform</a>
-      <a href="/security.html">Security</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span> GÖ.AI</div>
+      <div class="nav">
+        <a href="/platform.html">Platform</a>
+        <a href="/security.html">Security</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </div>
     </div>
 
-    <h1>GÖ.AI</h1>
-    <p class="muted">Intelligent Mobility. Executive Protection. Automated Travel Infrastructure.</p>
+    <section class="hero">
+      <div class="pill">Launching pilot cohorts • 2026</div>
+      <h1>Autonomous travel orchestration. Built for decision-makers.</h1>
+      <p class="sub">
+        GÖ.AI coordinates itineraries, ground transport, and real-time risk intelligence into a single automated flow.
+        No friction. No guesswork. No fragmented systems.
+      </p>
 
-    <div class="card">
-      <h2>What we do</h2>
-      <p>GÖ.AI builds AI-powered travel automation and executive protection infrastructure for corporate leaders and security-conscious organizations.</p>
-      <p>Our system unifies itinerary orchestration, risk intelligence, and human-in-the-loop security support.</p>
-      <p><a class="btn" href="/contact.html">Request Early Access</a></p>
+      <div class="cta">
+        <a class="btn btn-primary" href="/contact.html">Request Early Access</a>
+        <a class="btn btn-ghost" href="/platform.html">See how ETAS works →</a>
+      </div>
+
+      <div class="meta">Charlotte launch market • Enterprise-forward • Human-in-loop escalation</div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Platform</div>
+      <h2>Infrastructure for intelligent mobility.</h2>
+      <p class="p">
+        GÖ.AI unifies travel planning, routing logic, payment orchestration, and security-aware decisioning into a deterministic system.
+        Built on Azure. Powered by adaptive AI. Designed for operational clarity.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="n">01 — Plan</div>
+          <h3>Establish constraints.</h3>
+          <p>Ingest itinerary data. Sync preferences. Define routing and policy boundaries.</p>
+        </div>
+        <div class="card">
+          <div class="n">02 — Orchestrate</div>
+          <h3>Automate the flow.</h3>
+          <p>Book, route, and monitor transport across integrated providers and services.</p>
+        </div>
+        <div class="card">
+          <div class="n">03 — Protect</div>
+          <h3>Operate with intelligence.</h3>
+          <p>Assess risk signals continuously and trigger human-in-loop escalation when required.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Systems</div>
+      <h2>Two systems. One controlled state machine.</h2>
+
+      <div class="split">
+        <div class="panel">
+          <h3>ETAS™ — Enhanced Travel Automation Suite</h3>
+          <p>Predictive routing. Deterministic ETAs. Intelligent booking flow. Trip object integrity across lifecycle states.</p>
+        </div>
+        <div class="panel">
+          <h3>SENTINEL™ — Protective Intelligence Layer</h3>
+          <p>Trip risk scoring. Geofenced alerts. Escalation logic. Security-enriched routing for high-sensitivity travel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Who it’s for</div>
+      <h2>Designed for operators.</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Executive Assistants</h3>
+          <p>Travel coordination without constant manual intervention.</p>
+        </div>
+        <div class="card">
+          <h3>Security Teams</h3>
+          <p>Embedded risk intelligence within operational routing and mobility.</p>
+        </div>
+        <div class="card">
+          <h3>Corporate Operations</h3>
+          <p>Audit-ready activity logs. Predictable workflows. Clean data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="kicker">Trust</div>
+      <h2>Built for environments where failure is not an option.</h2>
+      <p class="p">
+        Azure-native architecture • API-gated governance layer • Human-in-loop controls • Structured beta validation framework
+      </p>
+      <div class="cta" style="margin-top:22px">
+        <a class="btn btn-primary" href="/contact.html">Join the controlled rollout</a>
+        <a class="btn btn-ghost" href="/security.html">Security posture →</a>
+      </div>
+    </section>
+
+    <div class="foot">
+      © <span id="y"></span> GÖ.AI • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a>
     </div>
-
-    <div class="card">
-      <h2>The platform</h2>
-      <p><strong>ETAS™</strong> — Enhanced Travel Automation & Security Suite</p>
-      <p class="muted">Predictive planning, itinerary control, routing intelligence, AI concierge support.</p>
-      <p><strong>SENTINEL™</strong> — Protective Intelligence Layer</p>
-      <p class="muted">Trip risk scoring, threat awareness, executive protection coordination.</p>
-      <p><a href="/platform.html">See platform overview →</a></p>
-    </div>
-
-    <div class="card">
-      <h2>Who we serve</h2>
-      <p>Corporate executives • Enterprise travel teams • Security teams • High-net-worth clients</p>
-    </div>
-
-    <footer>
-      © <span id="y"></span> GÖ.AI — All rights reserved.
-    </footer>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
