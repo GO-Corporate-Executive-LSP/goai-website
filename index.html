@@ -203,7 +203,9 @@
       animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 420ms forwards;
     }
 
-    /* HERO MEDIA (RIGHT SIDE) */
+    /* HERO MEDIA (RIGHT SIDE)
+       IMPORTANT FIX: use TWO animations on the same element (enter + floaty)
+       so float DOES NOT overwrite the fade-in. */
     .hero-media{
       position:relative;
       border-radius:22px;
@@ -212,11 +214,23 @@
       background:rgba(255,255,255,.02);
       box-shadow:0 18px 55px rgba(0,0,0,.55);
       transform:translateZ(0);
+      z-index:1;
+      will-change:transform, opacity;
+
       opacity:0;
       transform:translateY(14px);
-      animation:enter 1200ms cubic-bezier(.2,.8,.2,1) 520ms forwards;
-      z-index:1;
-      will-change:transform;
+
+      animation:
+        enterHero 1200ms cubic-bezier(.2,.8,.2,1) 520ms forwards,
+        floaty 7.5s ease-in-out 1.8s infinite;
+    }
+
+    @keyframes enterHero{
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes floaty{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
     }
 
     /* glow tracking */
@@ -239,13 +253,6 @@
       width:100%;
       display:block;
       transform:translateZ(0);
-    }
-
-    /* “Zoox-ish” quiet motion: slow float + gentle sheen */
-    .float{animation:floaty 7.5s ease-in-out infinite}
-    @keyframes floaty{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
     }
 
     .sheen{
@@ -298,7 +305,6 @@
       transform:translateZ(0);
     }
 
-    /* parallax-ish hover glow */
     .card::after{
       content:"";
       position:absolute;
@@ -374,7 +380,7 @@
       font-size:13px
     }
 
-    /* Zoox-like scroll reveal: slower, softer */
+    /* Zoox-like scroll reveal */
     .fade-in{
       opacity:0;
       transform:translateY(22px);
@@ -437,9 +443,9 @@
       </div>
 
       <!-- HERO MEDIA (visible, right side) -->
-      <div class="hero-media float" id="heroMedia" aria-hidden="true">
+      <div class="hero-media" id="heroMedia">
         <span class="sheen"></span>
-        <img src="./assets/og-image.jpg" alt="GÖ.AI — business travel preview" />
+        <img src="/assets/og-image.jpg" alt="GÖ.AI — business travel preview" />
       </div>
     </section>
 
@@ -535,7 +541,7 @@
     }, { threshold: 0.14 });
     elements.forEach(el => observer.observe(el));
 
-    // Glow tracking (cards, panels, hero image)
+    // Glow tracking (cards, panels, hero)
     function attachGlowTracking(el){
       el.addEventListener('mousemove', (e) => {
         const r = el.getBoundingClientRect();
@@ -547,7 +553,7 @@
     }
     document.querySelectorAll('.card, .panel, .hero-media').forEach(attachGlowTracking);
 
-    // Subtle tilt on hero media (Zoox-ish)
+    // Subtle tilt on hero media (kept gentle)
     const hero = document.getElementById('heroMedia');
     if (hero) {
       const damp = 14;
@@ -565,7 +571,7 @@
       });
     }
 
-    // Smooth page transition fade-out before navigation
+    // Smooth page transition fade-out
     document.querySelectorAll('a[href]').forEach(a => {
       const href = a.getAttribute('href');
       if (!href) return;
