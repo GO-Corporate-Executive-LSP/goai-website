@@ -1,1 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
 
+  <title>The GEO PRISM — GÖ.AI</title>
+
+  <meta name="description" content="The GEO PRISM — Intelligence briefings from GÖ.AI. Short-form updates on product architecture, routing logic, and contextual travel systems.">
+  <link rel="canonical" href="https://goaihq.com/prism.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The GEO PRISM — GÖ.AI">
+  <meta property="og:description" content="Intelligence briefings from GÖ.AI.">
+  <meta property="og:image" content="https://goaihq.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://goaihq.com/prism.html">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0B0D12">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#07080b;
+      --bg2:#0b0d12;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.65);
+      --gold:#d4af37;
+      --blue:#9ad7ff;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 600px at 20% 15%, rgba(154,215,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 25%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px}
+
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 0 10px;
+    }
+
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--gold);
+      box-shadow:0 0 18px rgba(212,175,55,.45)
+    }
+
+    .nav{display:flex;gap:18px}
+    .nav a{color:var(--muted);font-weight:500}
+    .nav a:hover{color:var(--text);text-decoration:none}
+
+    /* Hero */
+    .hero{
+      padding:90px 0 40px;
+      text-align:center;
+      position:relative;
+    }
+
+    .kicker{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 16px;
+      font-size:48px;
+      letter-spacing:-1px;
+    }
+
+    .sub{
+      max-width:720px;
+      margin:0 auto 28px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+
+    /* Podcast Frame */
+    .podcast-frame{
+      max-width:900px;
+      margin:30px auto 0;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 30px 90px rgba(0,0,0,.55);
+      position:relative;
+      transform-style:preserve-3d;
+    }
+
+    .podcast-frame::after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background:
+        radial-gradient(500px 300px at var(--mx,50%) var(--my,50%), rgba(212,175,55,.18), transparent 60%),
+        radial-gradient(500px 300px at calc(var(--mx,50%) + 10%) calc(var(--my,50%) - 10%), rgba(154,215,255,.12), transparent 60%);
+      opacity:.55;
+      pointer-events:none;
+      mix-blend-mode:screen;
+      filter:blur(12px);
+    }
+
+    video{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio:16/9;
+      background:#000;
+    }
+
+    /* Footer */
+    .foot{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:22px 0 30px;
+      color:rgba(255,255,255,.5);
+      font-size:13px;
+      margin-top:60px;
+      text-align:center;
+    }
+
+    @media (max-width: 900px){
+      h1{font-size:36px}
+      .hero{padding:70px 0 30px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="dot"></span> GÖ.AI</div>
+      <div class="nav">
+        <a href="/index.html">Home</a>
+        <a href="/platform.html">Platform</a>
+        <a href="/sentinel.html">Sentinel</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Get Access</a>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="kicker">Intelligence Briefing Series</div>
+      <h1>The GEO PRISM</h1>
+      <p class="sub">
+        A short-form briefing series exploring deterministic routing,
+        contextual travel systems, and the evolving architecture behind GÖ.AI.
+        Clear updates. Calm signal. No noise.
+      </p>
+
+      <div class="podcast-frame" id="prismFrame">
+        <!-- SOUND ENABLED | NO AUTOPLAY | NO MUTED -->
+        <video controls playsinline preload="metadata">
+          <source src="https://goaihq.com/assets/prism-geo.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <div class="foot">
+      © <span id="y"></span> GÖ.AI • Intelligence Layer Series
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Glow tracking
+    const frame = document.getElementById('prismFrame');
+    frame.addEventListener('mousemove', (e) => {
+      const r = frame.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      frame.style.setProperty('--mx', x.toFixed(2) + '%');
+      frame.style.setProperty('--my', y.toFixed(2) + '%');
+    }, { passive:true });
+  </script>
+</body>
+</html>
