@@ -5,26 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>GÖ.AI — Request Early Access</title>
 
-  <!-- Primary SEO -->
   <meta name="description" content="Request early access to GÖ.AI — business travel, on autopilot.">
   <link rel="canonical" href="https://goaihq.com/contact.html">
 
-  <!-- Social -->
-  <meta property="og:title" content="GÖ.AI — Request Early Access">
-  <meta property="og:description" content="Join early cohorts for business travel automation + SENTINEL intelligence.">
-  <meta property="og:image" content="https://goaihq.com/assets/og-image.jpg">
-  <meta property="og:url" content="https://goaihq.com/contact.html">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="GÖ.AI — Request Early Access">
-  <meta name="twitter:description" content="Join early cohorts for business travel automation + SENTINEL intelligence.">
-  <meta name="twitter:image" content="https://goaihq.com/assets/og-image.jpg">
-
-  <!-- Favicons (safe defaults) -->
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" href="/favicon.png">
-
   <meta name="theme-color" content="#0B0D12">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +21,6 @@
       --bg:#07080b;
       --bg2:#0b0d12;
       --card:rgba(255,255,255,.04);
-      --card2:rgba(255,255,255,.06);
       --border:rgba(255,255,255,.10);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
@@ -49,8 +33,6 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -60,73 +42,38 @@
         radial-gradient(900px 600px at 80% 20%, rgba(212,175,55,.10), transparent 55%),
         linear-gradient(180deg,var(--bg),var(--bg2));
       letter-spacing:-0.2px;
-      overflow-x:hidden;
     }
-
-    a{color:var(--blue);text-decoration:none}
-    a:hover{text-decoration:underline}
 
     .wrap{max-width:var(--max);margin:0 auto;padding:28px}
 
     .topbar{
       display:flex;align-items:center;justify-content:space-between;
       padding:18px 0 10px;
-      opacity:0;
-      transform:translateY(-10px);
-      animation:enterTop 900ms cubic-bezier(.2,.8,.2,1) forwards;
     }
-    @keyframes enterTop{ to{opacity:1;transform:translateY(0)} }
 
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .dot{
       width:10px;height:10px;border-radius:999px;background:var(--gold);
       box-shadow:0 0 24px rgba(212,175,55,.45)
     }
-    .nav{display:flex;gap:18px;flex-wrap:wrap}
-    .nav a{color:var(--muted);font-weight:500}
-    .nav a:hover{color:var(--text);text-decoration:none}
 
-    .page{
-      padding:58px 0 30px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      position:relative;
-    }
+    .nav{display:flex;gap:18px}
+    .nav a{color:var(--muted);text-decoration:none}
+    .nav a:hover{color:var(--text)}
 
-    .page::before{
-      content:"";
-      position:absolute;
-      inset:-160px -120px auto -120px;
-      height:420px;
-      background:
-        radial-gradient(420px 240px at 20% 50%, rgba(154,215,255,.10), transparent 60%),
-        radial-gradient(520px 300px at 70% 55%, rgba(212,175,55,.12), transparent 60%);
-      filter:blur(10px);
-      pointer-events:none;
-      opacity:.9;
-      transform:translateZ(0);
-    }
-
-    .inner{position:relative}
+    .page{padding:58px 0 30px}
 
     h1{
       margin:0 0 14px;
-      font-size:54px;line-height:1.02;
-      letter-spacing:-1.2px;
-      opacity:0;
-      transform:translateY(12px);
-      animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 120ms forwards;
+      font-size:54px;
     }
 
     .sub{
       max-width:860px;
-      font-size:18px;line-height:1.7;color:var(--muted);
+      font-size:18px;
+      color:var(--muted);
       margin:0 0 22px;
-      opacity:0;
-      transform:translateY(12px);
-      animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 220ms forwards;
     }
-
-    @keyframes enter{ to{opacity:1;transform:translateY(0)} }
 
     .grid{
       display:grid;
@@ -134,159 +81,115 @@
       gap:22px;
       align-items:start;
       margin-top:18px;
-      opacity:0;
-      transform:translateY(12px);
-      animation:enter 1100ms cubic-bezier(.2,.8,.2,1) 320ms forwards;
     }
 
     .card{
       background:linear-gradient(180deg,var(--card),rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--border);
       border-radius:var(--r);
-      padding:18px;
-      position:relative;
-      overflow:hidden;
-      transform:translateZ(0);
+      padding:22px;
     }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      inset:-60px;
-      background:radial-gradient(420px 240px at var(--mx, 50%) var(--my, 50%), rgba(154,215,255,.12), transparent 60%);
-      opacity:0;
-      transition:opacity .22s ease;
-      pointer-events:none;
-      filter:blur(10px);
-    }
-    .card:hover::after{opacity:1}
+    label{display:block;font-size:13px;color:var(--muted2);margin-bottom:6px}
 
-    label{display:block;font-size:13px;color:var(--muted2);margin:0 0 6px}
     input, textarea{
       width:100%;
       background:rgba(0,0,0,.20);
-      border:1px solid rgba(255,255,255,.12);
+      border:1px solid var(--border);
       color:var(--text);
       border-radius:14px;
-      padding:12px 12px;
-      outline:none;
-      transition:border-color .18s ease, background .18s ease;
+      padding:12px;
       font-family:inherit;
       font-size:14px;
     }
-    textarea{min-height:140px;resize:vertical}
-    input:focus, textarea:focus{
-      border-color:rgba(154,215,255,.32);
-      background:rgba(0,0,0,.28);
-    }
 
-    .field{margin-bottom:12px}
+    textarea{min-height:140px}
+
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-    .cta{
-      display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px;
-    }
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);
+      padding:12px 16px;border-radius:14px;
       font-weight:700;cursor:pointer;
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, filter .18s ease;
-      user-select:none
+      text-decoration:none;
     }
+
     .btn-primary{
       background:linear-gradient(135deg,var(--gold),var(--gold2));
       color:#0a0b0e;border:none;
-      box-shadow:0 12px 28px rgba(212,175,55,.18);
-      text-decoration:none;
     }
-    .btn-primary:hover{transform:translateY(-1px);filter:saturate(1.05);box-shadow:0 18px 42px rgba(212,175,55,.22);text-decoration:none}
-    .btn-ghost{background:rgba(255,255,255,.03);color:var(--text);text-decoration:none}
-    .btn-ghost:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);text-decoration:none}
 
-    .meta{margin-top:12px;color:var(--muted2);font-size:13px}
+    .btn-ghost{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+    }
 
-    /* Right column: 100 for 100 + media */
     .kicker{
       color:var(--muted2);
       text-transform:uppercase;
       letter-spacing:.18em;
       font-size:12px;
-      margin:0 0 10px;
-    }
-    h2{margin:0 0 10px;font-size:22px;letter-spacing:-.4px}
-    .p{margin:0;color:var(--muted);line-height:1.75}
-
-    .list{
-      margin:12px 0 0;
-      padding:0 0 0 18px;
-      color:var(--muted);
-      line-height:1.7;
+      margin-bottom:10px;
     }
 
-    /* Founding 100 benefits list (exact formatting vibe) */
+    h2{margin:0 0 10px;font-size:22px}
+
+    .p{margin:0;color:var(--muted);line-height:1.7}
+
+    /* ✅ ALL bullets highlighted */
     .benefits{
-      margin:14px 0 0;
+      margin-top:14px;
       padding-left:18px;
-      color:var(--text);
     }
     .benefits li{
       margin:10px 0;
       line-height:1.65;
-      color:var(--muted);
-    }
-    .benefits li strong{
       color:var(--text);
-      font-weight:700;
+      font-weight:500;
     }
+    .benefits li::marker{
+      color:var(--text);
+    }
+
     .benefits-close{
       color:var(--muted2);
       margin-top:10px;
     }
 
     .media{
-      margin-top:14px;
+      margin-top:16px;
       border-radius:22px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--border);
       background:rgba(255,255,255,.02);
-      box-shadow:0 18px 55px rgba(0,0,0,.55);
-      position:relative;
-      transform:translateZ(0);
     }
-    .media::after{
-      content:"";
-      position:absolute; inset:-40px;
-      background:
-        radial-gradient(420px 240px at var(--mx, 50%) var(--my, 50%), rgba(212,175,55,.12), transparent 60%),
-        radial-gradient(520px 300px at calc(var(--mx, 50%) + 15%) calc(var(--my, 50%) - 10%), rgba(154,215,255,.10), transparent 60%);
-      opacity:0; transition:opacity .25s ease;
-      pointer-events:none; mix-blend-mode:screen; filter:blur(6px);
+
+    video{
+      display:block;
+      width:100%;
+      height:auto;
+      background:#000;
     }
-    .media:hover::after{opacity:1}
-    video{display:block;width:100%;height:auto;background:#000}
 
     .foot{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:22px 0 30px;
+      border-top:1px solid var(--border);
+      padding:22px 0;
       color:var(--muted2);
-      font-size:13px
+      font-size:13px;
+      margin-top:40px;
     }
 
-    /* Page fade */
-    .page-fade{opacity:1;transition:opacity 380ms ease}
-    .page-fade.out{opacity:0}
-
     @media (max-width: 920px){
-      h1{font-size:42px}
       .grid{grid-template-columns:1fr}
       .row2{grid-template-columns:1fr}
-      .page{padding:44px 0 24px}
+      h1{font-size:42px}
     }
   </style>
 </head>
 
-<body class="page-fade">
+<body>
   <div class="wrap">
     <div class="topbar">
       <div class="brand"><span class="dot"></span> GÖ.AI</div>
@@ -301,109 +204,98 @@
     </div>
 
     <section class="page">
-      <div class="inner">
-        <h1>Request Early Access</h1>
-        <p class="sub">
-          Tell us how you travel for work. We’ll follow up with pilot availability and next steps.
-          If you’re ready now, you can also join the <b>100 for 100 Founders</b> waitlist.
-        </p>
+      <h1>Request Early Access</h1>
+      <p class="sub">
+        Tell us how you travel for work. We’ll follow up with pilot availability and next steps.
+        If you’re ready now, you can also join the <b>100 for 100 Founders</b> waitlist.
+      </p>
 
-        <div class="grid">
-          <!-- LEFT: Founding 100 Member Benefits + Form -->
-          <div class="card" id="formCard">
+      <div class="grid">
+        <!-- LEFT -->
+        <div class="card">
 
-            <!-- Founding 100 Member Benefits (drop-in) -->
-            <section id="founding-100">
-              <div class="kicker">Founders Campaign</div>
-              <h2>Founding 100 Member Benefits</h2>
+          <div class="kicker">Founders Campaign</div>
+          <h2>Founding 100 Member Benefits</h2>
 
-              <p class="p">
-                This is more than early access.<br>
-                It’s an opportunity to help build what corporate travel should have been all along.
-              </p>
+          <p class="p">
+            This is more than early access.<br>
+            It’s an opportunity to help build what corporate travel should have been all along.
+          </p>
 
-              <p class="p" style="margin-top:16px;">As a Founding 100 Member, you receive:</p>
+          <p class="p" style="margin-top:16px;">As a Founding 100 Member, you receive:</p>
 
-              <ul class="benefits">
-                <li>25% off your first 12 months following public launch</li>
-                <li><strong>Early access to the beta prototype</strong>, before public release</li>
-                <li><strong>Early access to the Sentinel Risk Dashboard</strong>, as it evolves</li>
-                <li><strong>Direct influence on platform development</strong> through structured feedback</li>
-                <li>Priority onboarding at launch</li>
-                <li><strong>Exclusive founder briefing</strong> with roadmap insight and live dialogue</li>
-                <li><strong>Additional discounted months</strong> for successful referrals</li>
-              </ul>
+          <ul class="benefits">
+            <li>25% off your first 12 months following public launch</li>
+            <li>Early access to the beta prototype, before public release</li>
+            <li>Early access to the Sentinel Risk Dashboard, as it evolves</li>
+            <li>Direct influence on platform development through structured feedback</li>
+            <li>Priority onboarding at launch</li>
+            <li>Exclusive founder briefing with roadmap insight and live dialogue</li>
+            <li>Additional discounted months for successful referrals</li>
+          </ul>
 
-              <p class="p" style="margin-top:18px;">
-                You won’t just use the platform — you’ll help shape it.
-              </p>
+          <p class="p" style="margin-top:18px;">
+            You won’t just use the platform — you’ll help shape it.
+          </p>
 
-              <p class="p benefits-close">
-                Limited access. Built with intention.<br>
-                Before scale. Before public pricing. Before everyone else.
-              </p>
-            </section>
+          <p class="p benefits-close">
+            Limited access. Built with intention.<br>
+            Before scale. Before public pricing. Before everyone else.
+          </p>
 
-            <div style="height:14px"></div>
+          <form name="early-access" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html" style="margin-top:22px">
+            <input type="hidden" name="form-name" value="early-access" />
+            <p style="display:none">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
 
-            <!-- Netlify Form -->
-            <form name="early-access" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-              <input type="hidden" name="form-name" value="early-access" />
-              <p style="display:none">
-                <label>Don’t fill this out: <input name="bot-field" /></label>
-              </p>
-
-              <div class="row2">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" autocomplete="name" required />
-                </div>
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required />
-                </div>
+            <div class="row2">
+              <div>
+                <label>Name</label>
+                <input name="name" required />
               </div>
-
-              <div class="field">
-                <label for="usecase">Tell us about your use case</label>
-                <textarea id="usecase" name="usecase" placeholder="Example: weekly client travel, multiple cities, tight schedules, need fewer surprises..." required></textarea>
+              <div>
+                <label>Email</label>
+                <input name="email" type="email" required />
               </div>
-
-              <div class="cta">
-                <button class="btn btn-ghost" type="submit">Submit use case</button>
-
-                <!-- Stripe -->
-                <a class="btn btn-primary" href="https://donate.stripe.com/28EdR94X83OkfSV0XjgQE03" target="_blank" rel="noopener">
-                  Join the waitlist ($100)
-                </a>
-
-                <!-- PDF (place Funding-Acknowledgement.pdf inside /assets) -->
-                <a class="btn btn-ghost" href="/assets/Funding-Acknowledgement.pdf" target="_blank" rel="noopener">
-                  View official document (PDF)
-                </a>
-              </div>
-
-              <div class="meta">We respond to the highest-fit pilots first. No spam.</div>
-            </form>
-          </div>
-
-          <!-- RIGHT: Campaign media (100-100.mp4) -->
-          <div class="card" id="campaignCard">
-            <div class="kicker">100 for 100</div>
-            <h2>Campaign Preview</h2>
-            <p class="p">A short visual mark for the Founding 100 campaign.</p>
-
-            <div class="media" id="campaignMedia" style="margin-top:16px">
-              <video
-                src="/assets/100-100.mp4"
-                playsinline
-                controls
-                preload="metadata"
-              ></video>
             </div>
 
-            <div class="meta">If video doesn’t load: confirm filename + exact casing in /assets.</div>
+            <div style="margin-top:12px">
+              <label>Tell us about your use case</label>
+              <textarea name="usecase" required></textarea>
+            </div>
+
+            <div class="cta">
+              <button class="btn btn-ghost" type="submit">Submit use case</button>
+              <a class="btn btn-primary" href="https://donate.stripe.com/28EdR94X83OkfSV0XjgQE03" target="_blank">
+                Join the waitlist ($100)
+              </a>
+              <a class="btn btn-ghost" href="/assets/Funding-Acknowledgement.pdf" target="_blank">
+                View official document (PDF)
+              </a>
+            </div>
+          </form>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="card">
+          <div class="kicker">100 for 100</div>
+          <h2>Campaign Preview</h2>
+          <p class="p">A short visual mark for the Founding 100 campaign.</p>
+
+          <div class="media">
+            <video
+              src="/assets/100-100.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              controls
+            ></video>
           </div>
+
         </div>
       </div>
     </section>
@@ -414,37 +306,7 @@
   </div>
 
   <script>
-    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Glow tracking
-    function attachGlowTracking(el){
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        el.style.setProperty('--mx', x.toFixed(2) + '%');
-        el.style.setProperty('--my', y.toFixed(2) + '%');
-      }, { passive:true });
-    }
-    document.querySelectorAll('.card, .media').forEach(attachGlowTracking);
-
-    // Smooth page transition (fade out before navigation)
-    document.querySelectorAll('a[href]').forEach(a => {
-      const href = a.getAttribute('href');
-      if (!href) return;
-      const isExternal = href.startsWith('http');
-      const isHash = href.startsWith('#');
-      const isSpecial = href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:');
-      if (isExternal || isHash || isSpecial) return;
-      if (a.target === '_blank' || a.hasAttribute('download')) return;
-
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.body.classList.add('out');
-        setTimeout(() => { window.location.href = href; }, 320);
-      });
-    });
   </script>
 </body>
 </html>
