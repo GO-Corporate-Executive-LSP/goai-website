@@ -1,42 +1,50 @@
-export default async (request) => {
-  try {
-    const url = new URL(request.url);
-    const airport = (url.searchParams.get("airport") || "").trim().toUpperCase();
+exports.handler = async (event) => {
+  const airport = event.queryStringParameters?.airport?.toUpperCase();
 
-    if (!/^[A-Z]{3}$/.test(airport)) {
-      return new Response(JSON.stringify({ error: "Invalid airport code. Use 3 letters (e.g., CLT)." }), {
-        status: 400,
+  // Validate input
+  if (!airport || !/^[A-Z]{3}$/.test(airport)) {
+    return {
+      statusCode: 400,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Valid 3-letter airport code required" })
+    };
+  }
+
+  try {
+    const response = await fetch(
+      `https://apps.tsa.dhs.gov/MyTSAWebService/GetConfirmedWaitTimes.ashx?ap=${airport}&output=json`
+    );
+
+    if (!response.ok) {
+      return {
+        statusCode: 502,
         headers: { "Content-Type": "application/json" },
-      });
+        body: JSON.stringify({ error: "TSA service unavailable" })
+      };
     }
 
-    // TODO: Replace this with your real TSA feed endpoint.
-    // Common failure here is: wrong endpoint, blocked by TSA, missing API key, or CORS issues.
-    // If the TSA endpoint requires a key, set it in Netlify env vars and read it here.
-    const TSA_API_KEY = process.env.TSA_API_KEY; // if needed
-    // if (!TSA_API_KEY) throw new Error("Missing TSA_API_KEY env var");
+    const data = await response.json();
 
-    // Example placeholder response (so the UI works even before you wire the feed):
-    const demo = {
-      airport,
-      WaitTimes: [
-        { Checkpoint: "Main Checkpoint", Lane: "PreCheck", WaitTime: "5–10 min", Created: "Live (demo)" },
-        { Checkpoint: "Main Checkpoint", Lane: "Standard", WaitTime: "15–25 min", Created: "Live (demo)" },
-      ],
+    // If TSA returns empty or unexpected structure
+    if (!data || (Array.isArray(data) && data.length === 0)) {
+      return {
+        statusCode: 200,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ WaitTimes: [] })
+      };
+    }
+
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
     };
 
-    return new Response(JSON.stringify(demo), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-store",
-      },
-    });
-
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err?.message || "Unhandled error" }), {
-      status: 500,
+  } catch (error) {
+    return {
+      statusCode: 500,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify({ error: "TSA fetch failed" })
+    };
   }
 };
