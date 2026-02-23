@@ -1,1 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GÖ.AI | Product Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+
+body {
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background: radial-gradient(circle at top, #0f1720 0%, #0b0f14 60%);
+  color:#f5f5f5;
+}
+
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(15,20,27,0.6);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+nav a {
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  opacity:.8;
+  transition:.2s ease;
+}
+nav a:hover { opacity:1; }
+
+.hero {
+  padding:80px 40px 40px;
+  text-align:center;
+}
+
+.hero h1 {
+  font-size:40px;
+  letter-spacing:.5px;
+}
+
+.dashboard-frame {
+  max-width:1500px;
+  margin:auto;
+  padding:40px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+  gap:40px;
+}
+
+.card {
+  background:rgba(18,24,33,0.65);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:18px;
+  position:relative;
+  transition:all .35s ease;
+  overflow:hidden;
+}
+
+.card:hover {
+  border-color:#c6a94c;
+  box-shadow:0 0 40px rgba(198,169,76,.2);
+  transform:translateY(-6px);
+}
+
+.card h2 { margin-top:0; }
+
+input, select {
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  margin-bottom:15px;
+  font-size:16px;
+}
+
+button {
+  padding:12px 20px;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(90deg,#c6a94c,#e8d48a);
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+button:hover {
+  transform:translateY(-2px);
+}
+
+.lifecycle-buttons {
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.lifecycle-buttons button {
+  flex:1;
+  background:#1f2630;
+  color:#fff;
+  font-weight:500;
+}
+
+.lifecycle-buttons button.active {
+  background:#c6a94c;
+  color:#000;
+}
+
+.dial {
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:20px auto;
+  font-size:36px;
+  font-weight:bold;
+  transition:all .5s ease;
+}
+
+#map {
+  height:300px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+.small {
+  font-size:14px;
+  opacity:.85;
+  margin-top:10px;
+}
+
+.placeholder-badge {
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:11px;
+  background:#1f2630;
+  padding:6px 12px;
+  border-radius:20px;
+  opacity:.6;
+  letter-spacing:.5px;
+}
+
+.fade-in {
+  animation:fadeIn .6s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeIn {
+  to { opacity:1; }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div><strong>GÖ.AI</strong></div>
+  <div>
+    <a href="/">Home</a>
+    <a href="/product-demo.html">Product Demo</a>
+    <a href="/get-access.html">Get Access</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Executive Mobility Intelligence Dashboard</h1>
+</section>
+
+<div class="dashboard-frame">
+<section class="grid">
+
+<!-- SENTINEL -->
+<div class="card fade-in">
+<h2>Sentinel™ Risk Engine</h2>
+
+<input type="text" id="zipInput" placeholder="Enter ZIP (e.g. 28202)" maxlength="5">
+<button onclick="getRisk()">Analyze Risk</button>
+
+<div class="lifecycle-buttons">
+<button onclick="setLifecycle('created')" id="btnCreated">Created</button>
+<button onclick="setLifecycle('enroute')" id="btnEnroute">En Route</button>
+<button onclick="setLifecycle('complete')" id="btnComplete">Complete</button>
+</div>
+
+<div id="dialContainer"></div>
+<div id="briefingOutput" class="small"></div>
+<div id="map"></div>
+<div id="telemetryOutput" class="small"></div>
+</div>
+
+<!-- BOOKING -->
+<div class="card fade-in">
+<div class="placeholder-badge">Coming Soon</div>
+<h2>End-to-End Booking Orchestration</h2>
+<input type="text" placeholder="Origin">
+<input type="text" placeholder="Destination">
+<input type="date">
+<button disabled>Simulate Booking Stack</button>
+<div class="small">
+Lyft Concierge + Duffel Flights + Hotel Inventory orchestration layer.
+</div>
+</div>
+
+<!-- TSA -->
+<div class="card fade-in">
+<div class="placeholder-badge">Coming Soon</div>
+<h2>TSA Intelligence Layer</h2>
+<input type="text" placeholder="Airport Code">
+<select>
+<option>Screening Type</option>
+<option>Standard</option>
+<option>PreCheck</option>
+</select>
+<button disabled>Check Wait Time</button>
+<div class="small">
+Predictive screening visibility using queue modeling.
+</div>
+</div>
+
+<!-- AI TIER -->
+<div class="card fade-in">
+<div class="placeholder-badge">Coming Soon</div>
+<h2>AI Tier Recommendation Engine</h2>
+<input type="number" placeholder="Party Size">
+<select>
+<option>Luggage Volume</option>
+<option>Minimal</option>
+<option>Moderate</option>
+<option>Heavy</option>
+</select>
+<button disabled>Generate Tier</button>
+<div class="small">
+GOJET · GOBIZZ · GÖAT · Executive routing logic.
+</div>
+</div>
+
+</section>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+let map, marker, geofence, telemetryInterval;
+let currentLifecycle="created";
+
+function setLifecycle(stage){
+currentLifecycle=stage;
+
+document.querySelectorAll(".lifecycle-buttons button")
+.forEach(btn=>btn.classList.remove("active"));
+
+if(stage==="created") document.getElementById("btnCreated").classList.add("active");
+if(stage==="enroute") document.getElementById("btnEnroute").classList.add("active");
+if(stage==="complete") document.getElementById("btnComplete").classList.add("active");
+
+if(stage==="complete"){
+clearInterval(telemetryInterval);
+document.getElementById("telemetryOutput").innerText="Trip Completed. Sentinel archived TRO.";
+}
+}
+
+async function getRisk(){
+const zip=document.getElementById("zipInput").value.trim();
+if(!/^\d{5}$/.test(zip)) return;
+
+const res=await fetch(`/.netlify/functions/sentinel-score?zip=${zip}`);
+const data=await res.json();
+
+renderDial(data.risk_score);
+document.getElementById("briefingOutput").innerText=data.briefing;
+
+initMap(zip,data.risk_score);
+}
+
+function renderDial(score){
+let color="#4caf50";
+if(score>=70) color="#ffb74d";
+else if(score>=55) color="#64b5f6";
+
+document.getElementById("dialContainer").innerHTML=`
+<div class="dial" style="
+background:conic-gradient(${color} ${score*3.6}deg,#1a1f27 0deg);
+box-shadow:0 0 40px ${color};
+">
+${score}
+</div>`;
+}
+
+function initMap(zip,score){
+
+const zipCoords={
+"28202":[35.2271,-80.8431],
+"94105":[37.789,-122.394],
+"33131":[25.768,-80.191]
+};
+
+const coords=zipCoords[zip]||[39.8283,-98.5795];
+
+if(!map){
+map=L.map("map").setView(coords,13);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+}else{
+map.setView(coords,13);
+}
+
+if(marker) map.removeLayer(marker);
+marker=L.marker(coords).addTo(map);
+
+if(geofence) map.removeLayer(geofence);
+geofence=L.circle(coords,{
+radius:score*20,
+color:score>=70?"#ffb74d":"#64b5f6",
+fillOpacity:.2
+}).addTo(map);
+
+if(currentLifecycle==="enroute") simulateTelemetry(coords,score);
+}
+
+function simulateTelemetry(coords,score){
+if(telemetryInterval) clearInterval(telemetryInterval);
+
+let offset=0;
+telemetryInterval=setInterval(()=>{
+offset+=.0005;
+marker.setLatLng([coords[0]+offset,coords[1]+offset]);
+
+if(score>=70){
+document.getElementById("telemetryOutput").innerText=
+"⚠ Geofence Breach Detected — Alert Triggered.";
+}
+},1000);
+}
+
+</script>
+
+</body>
+</html>
