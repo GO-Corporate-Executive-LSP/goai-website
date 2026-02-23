@@ -982,6 +982,94 @@
       white-space: nowrap;
       margin-top: 2px;
     }
+    /* ===== BEST VISUAL CARD HEADER (NO OVERLAP) ===== */
+
+/* Card gets a touch taller so everything breathes */
+.pick-card{
+  min-height: 138px;
+}
+
+/* Top area becomes a 2-row grid:
+   Left: logo + name (spans both rows)
+   Right: price (top-right) + meta (bottom-right)
+*/
+.pick-top{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  row-gap: 8px;
+  align-items:center;
+}
+
+/* Left cluster spans both rows */
+.pick-left{
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  display:flex;
+  align-items:center;         /* <— “left center” feel */
+  gap: 12px;
+  min-width:0;
+}
+
+/* Logo footprint */
+.pick-logo{
+  width: 44px;
+  height: 32px;
+  border-radius: 12px;
+  display:grid;
+  place-items:center;
+}
+
+/* If you want the logo slightly LOWER (tiny nudge), use this: */
+.pick-logo{ transform: translateY(4px); }
+
+/* Text stack */
+.pick-text{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap: 4px;
+}
+
+.pick-name{
+  font-weight: 950;
+  font-size: 15px;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Price top-right */
+.pick-price{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-weight: 1000;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -.01em;
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Meta bottom-right (keeps center clean) */
+.pick-meta{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  opacity: .72;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: right;
+  max-width: 28ch;            /* prevents giant meta wrapping weirdly */
+}
+
+/* On small screens, reduce price so it never feels cramped */
+@media (max-width: 560px){
+  .pick-price{ font-size: 17px; }
+  .pick-meta{ max-width: 20ch; }
+}
   </style>
 </head>
 
@@ -1514,23 +1602,26 @@
 
     // UPDATED: logo pinned top-left, price top-right, no collisions
     function cardHTML({ id, name, logo, price, meta, isSelected }){
-      const logoHTML = logo ? `<div class="pick-logo"><img src="${logo}" alt="${name} logo"></div>` : ``;
-      return `
-        <div class="pick-card ${isSelected ? "selected":""}" data-id="${id}">
-          <div class="pick-top">
-            <div class="pick-left">
-              ${logoHTML}
-              <div class="pick-text">
-                <div class="pick-name">${name}</div>
-                ${meta ? `<div class="pick-meta">${meta}</div>` : ``}
-              </div>
-            </div>
-            <div class="pick-price">${money(price)}</div>
+  const logoHTML = logo ? `<div class="pick-logo"><img src="${logo}" alt="${name} logo"></div>` : ``;
+
+  return `
+    <div class="pick-card ${isSelected ? "selected":""}" data-id="${id}">
+      <div class="pick-top">
+        <div class="pick-left">
+          ${logoHTML}
+          <div class="pick-text">
+            <div class="pick-name">${name}</div>
           </div>
-          <div style="opacity:.72;font-size:12px;">Tap to select</div>
         </div>
-      `;
-    }
+
+        <div class="pick-price">${money(price)}</div>
+        ${meta ? `<div class="pick-meta">${meta}</div>` : `<div class="pick-meta"></div>`}
+      </div>
+
+      <div style="opacity:.72;font-size:12px;">Tap to select</div>
+    </div>
+  `;
+}
 
     function renderStage(){
       const title = $("e2eStageTitle");
