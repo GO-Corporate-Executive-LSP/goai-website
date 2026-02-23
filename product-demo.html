@@ -697,26 +697,32 @@
 
             <!-- ===== UPDATED TSA CARD (LIVE INPUT + NO COMING SOON + NO PILLS) ===== -->
             <div class="card" id="tsaCard">
-              <div class="card-inner">
-                <div class="kicker">Module 03 • Airport Intel</div>
-                <h2>TSA Wait Times</h2>
-                <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
+  <div class="card-inner">
+    <div class="kicker">Module 03 • Airport Intel</div>
+    <h2>TSA Wait Times</h2>
+    <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
 
-                <div class="form" style="margin-top:14px;">
-                  <div class="row">
-                    <input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" />
-                    <button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Wait Times</button>
-                  </div>
-                </div>
+    <div class="form" style="margin-top:14px;">
+      <div class="row">
+        <input
+          type="text"
+          id="tsaAirportInput"
+          placeholder="Airport code (e.g., CLT, RDU, JFK)"
+          maxlength="3"
+          style="text-transform:uppercase"
+        />
+        <button class="btn btn-primary" id="tsaGetBtn" type="button">Get Wait Times</button>
+      </div>
 
-                <div id="tsaOutput"></div>
+      <div id="tsaOutput" style="margin-top:10px;"></div>
+    </div>
 
-                <div class="actions" style="margin-top:12px;">
-                  <button class="btn" type="button">Simulate TSA Window</button>
-                  <a class="btn" href="/get-access.html">Join Founding 100 →</a>
-                </div>
-              </div>
-            </div>
+    <div class="actions" style="margin-top:12px;">
+      <button class="btn" type="button">Simulate TSA Window</button>
+      <a class="btn" href="/get-access.html">Join Founding 100 →</a>
+    </div>
+  </div>
+</div>
 
             <div class="card" id="tierCard">
               <div class="card-inner">
