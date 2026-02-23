@@ -1095,6 +1095,15 @@
 .pick-card .pick-price{
   position: relative;
   z-index: 3;
+  }
+  /* Flights: keep meta on one line + align left */
+.pick-meta{
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22ch; /* tweak: 18–28ch depending on how much you want visible */
+}
 }
   </style>
 </head>
