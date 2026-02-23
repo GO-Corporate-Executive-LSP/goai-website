@@ -712,7 +712,16 @@
                 <div id="tsaOutput"></div>
 
                 <div class="actions" style="margin-top:12px;">
-                  <button class="btn" type="button">Simulate TSA Window</button>
+                  <button 
+  class="btn" 
+  type="button" 
+  onclick="
+    document.getElementById('tsaAirportInput').value='';
+    document.getElementById('tsaOutput').innerHTML='';
+    document.getElementById('tsaAirportInput').focus();
+  ">
+  Try Another Airport
+</button>
                   <a class="btn" href="/get-access.html">Join Founding 100 →</a>
                 </div>
               </div>
