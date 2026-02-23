@@ -1070,6 +1070,32 @@
   .pick-price{ font-size: 17px; }
   .pick-meta{ max-width: 20ch; }
 }
+    /* === Pin logos down-left (Flights + Hotels) without affecting price === */
+.pick-card{
+  position: relative; /* required for absolute positioning */
+}
+
+/* Only affect cards that actually have a logo */
+.pick-card .pick-logo{
+  position: absolute;
+  left: 14px;     /* how far from left edge */
+  top: 56px;      /* how far down from top (adjust this) */
+  margin-top: 0;  /* remove any old margin tweaks */
+  width: 46px;    /* optional: slightly larger */
+  height: 32px;
+  z-index: 2;
+}
+
+/* Make sure text block doesn't start underneath the pinned logo */
+.pick-card .pick-text{
+  padding-left: 62px; /* creates space to the right of the logo */
+}
+
+/* Keep price visually above everything */
+.pick-card .pick-price{
+  position: relative;
+  z-index: 3;
+}
   </style>
 </head>
 
