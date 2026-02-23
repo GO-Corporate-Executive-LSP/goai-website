@@ -1,7 +1,6 @@
 exports.handler = async (event) => {
   const airport = event.queryStringParameters?.airport?.toUpperCase();
 
-  // Validate input
   if (!airport || !/^[A-Z]{3}$/.test(airport)) {
     return {
       statusCode: 400,
@@ -11,11 +10,11 @@ exports.handler = async (event) => {
   }
 
   try {
-    const response = await fetch(
+    const res = await fetch(
       `https://apps.tsa.dhs.gov/MyTSAWebService/GetConfirmedWaitTimes.ashx?ap=${airport}&output=json`
     );
 
-    if (!response.ok) {
+    if (!res.ok) {
       return {
         statusCode: 502,
         headers: { "Content-Type": "application/json" },
@@ -23,16 +22,7 @@ exports.handler = async (event) => {
       };
     }
 
-    const data = await response.json();
-
-    // If TSA returns empty or unexpected structure
-    if (!data || (Array.isArray(data) && data.length === 0)) {
-      return {
-        statusCode: 200,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ WaitTimes: [] })
-      };
-    }
+    const data = await res.json();
 
     return {
       statusCode: 200,
@@ -40,7 +30,7 @@ exports.handler = async (event) => {
       body: JSON.stringify(data)
     };
 
-  } catch (error) {
+  } catch (err) {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
