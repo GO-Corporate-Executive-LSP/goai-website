@@ -1096,13 +1096,13 @@
   position: relative;
   z-index: 3;
   }
-  /* Flights: keep meta on one line + align left */
+  /* Flights: full duration visible, left aligned */
 .pick-meta{
   text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 22ch; /* tweak: 18–28ch depending on how much you want visible */
+  white-space: nowrap;   /* keeps it on one line */
+  overflow: visible;     /* allow full text */
+  text-overflow: unset;  /* remove ellipsis */
+  max-width: none;       /* remove width constraint */
 }
 }
   </style>
