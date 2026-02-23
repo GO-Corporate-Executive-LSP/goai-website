@@ -645,6 +645,216 @@
     }
     footer a{color: rgba(255,255,255,.72); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18)}
     footer a:hover{border-bottom-color: rgba(241,208,106,.45); color: rgba(255,255,255,.92)}
+
+    /* =========================
+       MODULE 02 (CLEAN UI) — NEW
+    ========================= */
+    .e2e-tabs{
+      display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 14px;
+    }
+    .e2e-tab{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      opacity:.85;
+      font-weight:700;
+      transition: transform .12s ease, background .12s ease, opacity .12s ease, border-color .12s ease;
+    }
+    .e2e-tab:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); opacity: 1;}
+    .e2e-tab.active{background: rgba(255,255,255,.06); opacity: 1;}
+
+    .e2e-form{
+      display:grid;
+      grid-template-columns: repeat(12,1fr);
+      gap:12px;
+      margin: 10px 0 14px;
+    }
+    .e2e-field{
+      background: rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:16px;
+      padding:10px 10px;
+      min-height:64px;
+    }
+    .e2e-label{
+      display:block;
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      opacity:.65;
+      margin:0 0 6px;
+    }
+    .e2e-field input,
+    .e2e-field select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.22);
+      color:#fff;
+      outline:none;
+      font-size:15px;
+    }
+
+    .e2e-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      align-items:center;
+    }
+    .e2e-status{align-self:center;opacity:.75;font-size:13px;}
+
+    .e2e-stage{
+      margin-top:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.18);
+      overflow:hidden;
+    }
+    .e2e-stage-h{
+      padding:12px 12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+    .e2e-stage-h .left{
+      display:flex; flex-direction:column; gap:2px;
+      min-width:0;
+    }
+    .e2e-stage-h .title{
+      font-weight:850;
+      font-size:14px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+    .e2e-stage-h .sub{
+      font-size:13px;
+      opacity:.70;
+      max-width: 62ch;
+      margin:0;
+    }
+    .e2e-stage-b{padding:12px;}
+
+    .e2e-cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:10px;
+    }
+
+    .pick-card{
+      grid-column: span 4;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      min-height:104px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:8px;
+    }
+    .pick-card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+    .pick-card.selected{
+      border-color: rgba(241,208,106,.26);
+      background: rgba(241,208,106,.10);
+    }
+    .pick-top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .pick-name{font-weight:850; font-size:15px;}
+    .pick-price{font-weight:900; font-size:18px;}
+    .pick-meta{opacity:.75; font-size:12px;}
+    .pick-logo{
+      width:44px; height:28px;
+      border-radius:10px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.08);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .pick-logo img{
+      max-width: 86%;
+      max-height: 86%;
+      object-fit: contain;
+      display:block;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.45));
+    }
+
+    .e2e-summary{
+      margin-top:12px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      overflow:hidden;
+    }
+    .e2e-summary-h{
+      padding:12px 12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .e2e-summary-h .title{
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.85;
+    }
+    .e2e-summary-b{
+      padding:12px;
+      display:grid;
+      gap:10px;
+    }
+    .sum-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+    .sum-row .k{opacity:.75}
+    .sum-row .v{font-weight:850}
+    .sum-total{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:12px 10px;
+      border-radius:16px;
+      border:1px solid rgba(241,208,106,.22);
+      background: rgba(241,208,106,.10);
+      font-size:16px;
+    }
+    .sum-total .k{font-weight:900}
+    .sum-total .v{font-weight:1000}
+
+    @media (max-width: 980px){
+      .pick-card{grid-column: span 6;}
+    }
+    @media (max-width: 560px){
+      .pick-card{grid-column: span 12;}
+    }
+
   </style>
 </head>
 
@@ -672,7 +882,7 @@
         </section>
 
         <section class="grid">
-          <!-- LEFT: Sentinel (fully interactive) -->
+          <!-- LEFT: Sentinel (UNCHANGED) -->
           <div class="card" id="sentinelCard">
             <div class="card-inner">
               <div class="kicker">SENTINEL • Risk + Geofence • Live Demo</div>
@@ -702,7 +912,6 @@
               </div>
 
               <div class="sentinel-grid">
-                <!-- Left panel: dial + briefing + telemetry -->
                 <div class="panel">
                   <div class="panel-h">
                     <div class="label">Risk Dial</div>
@@ -758,7 +967,6 @@
                   </div>
                 </div>
 
-                <!-- Right panel: map -->
                 <div class="mapWrap panel">
                   <div class="panel-h">
                     <div class="label">Map Visualization</div>
@@ -772,70 +980,115 @@
 
           <!-- RIGHT: Modules (2–4) -->
           <div style="display:grid; gap:18px;">
-            <!-- ===== MODULE 02 (REPLACED WITH END-TO-END ORCHESTRATION DEMO) ===== -->
+            <!-- =======================
+                 MODULE 02 • CLEAN ORCHESTRATION (NO JSON)
+                 ======================= -->
             <section id="module-orchestration" style="margin-top:0;">
               <div class="card" style="padding:18px;border-radius:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
                 <div style="font-size:12px;letter-spacing:.12em;opacity:.7;">MODULE 02 • ORCHESTRATION</div>
                 <h2 style="margin:10px 0 6px;font-size:28px;line-height:1.15;">End-to-End Booking</h2>
-                <div style="opacity:.75;margin-bottom:14px;">Rideshare + Flights + Hotels orchestration. Demo scaffold returning realistic sample trip objects.</div>
+                <div style="opacity:.75;margin-bottom:6px;">Rideshare + Flights + Hotels orchestration. Demo scaffold with realistic sample pricing.</div>
 
                 <!-- Tabs -->
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
-                  <button class="pill active" data-tab="rides" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.06);color:#fff;cursor:pointer;">Rideshare</button>
-                  <button class="pill" data-tab="flights" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">Flights</button>
-                  <button class="pill" data-tab="hotels" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">Hotels</button>
-                  <button class="pill" data-tab="all" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">All</button>
+                <div class="e2e-tabs">
+                  <button class="e2e-tab active" data-tab="rides">Rideshare</button>
+                  <button class="e2e-tab" data-tab="flights">Flights</button>
+                  <button class="e2e-tab" data-tab="hotels">Hotels</button>
+                  <button class="e2e-tab" data-tab="all">All</button>
                 </div>
 
-                <!-- Input -->
-                <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;margin:12px 0 12px;">
-                  <div style="grid-column:span 3;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">From (City / Airport)</label>
-                    <input id="e2eFrom" value="Charlotte (CLT)" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                <!-- Inputs (wider + cleaner) -->
+                <div class="e2e-form">
+                  <div class="e2e-field" style="grid-column:span 4;">
+                    <label class="e2e-label">From</label>
+                    <input id="e2eFrom" value="Charlotte (CLT)" />
                   </div>
-                  <div style="grid-column:span 3;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">To (City / Airport)</label>
-                    <input id="e2eTo" value="New York (JFK)" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+
+                  <div class="e2e-field" style="grid-column:span 4;">
+                    <label class="e2e-label">To</label>
+                    <input id="e2eTo" value="New York (JFK)" />
                   </div>
-                  <div style="grid-column:span 2;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Depart</label>
-                    <input id="e2eDepart" type="date" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+
+                  <div class="e2e-field" style="grid-column:span 2;">
+                    <label class="e2e-label">Depart</label>
+                    <input id="e2eDepart" type="date" />
                   </div>
-                  <div style="grid-column:span 2;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Return</label>
-                    <input id="e2eReturn" type="date" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+
+                  <div class="e2e-field" style="grid-column:span 2;">
+                    <label class="e2e-label">Return</label>
+                    <input id="e2eReturn" type="date" />
                   </div>
-                  <div style="grid-column:span 1;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Pax</label>
-                    <input id="e2ePax" type="number" min="1" max="6" value="1" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+
+                  <div class="e2e-field" style="grid-column:span 2;">
+                    <label class="e2e-label">Pax</label>
+                    <input id="e2ePax" type="number" min="1" max="6" value="1" />
                   </div>
-                  <div style="grid-column:span 1;">
-                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Cabin</label>
-                    <select id="e2eCabin" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;">
+
+                  <div class="e2e-field" style="grid-column:span 2;">
+                    <label class="e2e-label">Cabin</label>
+                    <select id="e2eCabin">
                       <option value="economy">Economy</option>
                       <option value="premium_economy">Prem Econ</option>
                       <option value="business">Business</option>
                       <option value="first">First</option>
                     </select>
                   </div>
+
+                  <div class="e2e-field" style="grid-column:span 8;">
+                    <label class="e2e-label">Trip Summary</label>
+                    <input id="e2eSummary" value="CLT → JFK • 2 nights • executive-ready" />
+                  </div>
                 </div>
 
-                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
-                  <button id="btnSimulateE2E" style="padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;font-weight:600;">
-                    Simulate Booking Flow
-                  </button>
-                  <button id="btnCopyTripJSON" style="padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#fff;cursor:pointer;opacity:.85;">
-                    Copy Trip Object JSON
-                  </button>
-                  <div id="e2eStatus" style="align-self:center;opacity:.75;font-size:13px;"></div>
+                <div class="e2e-actions">
+                  <button id="btnSimulateE2E" class="btn btn-primary" type="button">Simulate Booking Flow</button>
+                  <a id="btnGetAccess" class="btn" href="/get-access.html">Get Access</a>
+                  <div id="e2eStatus" class="e2e-status"></div>
                 </div>
 
-                <!-- Output -->
-                <div id="e2eOutput" style="margin-top:16px;display:grid;grid-template-columns:repeat(12,1fr);gap:12px;"></div>
+                <!-- Stage: single box that changes with tab -->
+                <div class="e2e-stage" id="e2eStage">
+                  <div class="e2e-stage-h">
+                    <div class="left">
+                      <div class="title" id="e2eStageTitle">Rideshare Options</div>
+                      <p class="sub" id="e2eStageSub">Select a tier. Outbound + return are calculated automatically.</p>
+                    </div>
+                    <div style="opacity:.75;font-size:12px;" id="e2eStageHint">Tap a card to select</div>
+                  </div>
+                  <div class="e2e-stage-b">
+                    <div class="e2e-cards" id="e2eStageCards"></div>
+                  </div>
+                </div>
+
+                <!-- Unified cumulative total (no JSON) -->
+                <div class="e2e-summary" id="e2eSummaryBlock">
+                  <div class="e2e-summary-h">
+                    <div class="title">Unified Trip Total</div>
+                    <div style="opacity:.75;font-size:12px;" id="e2eTotalHint">Select one option in each category</div>
+                  </div>
+                  <div class="e2e-summary-b">
+                    <div class="sum-row">
+                      <div class="k">Rideshare</div>
+                      <div class="v" id="sumRide">—</div>
+                    </div>
+                    <div class="sum-row">
+                      <div class="k">Flight</div>
+                      <div class="v" id="sumFlight">—</div>
+                    </div>
+                    <div class="sum-row">
+                      <div class="k">Hotel</div>
+                      <div class="v" id="sumHotel">—</div>
+                    </div>
+                    <div class="sum-total">
+                      <div class="k">Total</div>
+                      <div class="v" id="sumTotal">—</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
 
-            <!-- ===== UPDATED TSA CARD (LIVE INPUT + NO COMING SOON + NO PILLS) ===== -->
+            <!-- ===== MODULE 03 (UNCHANGED) ===== -->
             <div class="card" id="tsaCard">
               <div class="card-inner">
                 <div class="kicker">Module 03 • Airport Intel</div>
@@ -867,7 +1120,7 @@
               </div>
             </div>
 
-            <!-- ===== UPDATED TIER CARD (FUNCTIONAL) ===== -->
+            <!-- ===== MODULE 04 (UNCHANGED) ===== -->
             <div class="card" id="tierCard">
               <div class="card-inner">
                 <div class="kicker">Module 04 • Personalization</div>
@@ -936,6 +1189,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </section>
 
@@ -947,12 +1201,10 @@
   </div>
 
   <!-- =========================
-    MODULE 02 • ORCHESTRATION (DEMO)
-    Script (Self-contained)
+    MODULE 02 • ORCHESTRATION (CLEAN, NO JSON)
   ========================= -->
   <script>
   (() => {
-    // ---------- Utilities ----------
     const $ = (id) => document.getElementById(id);
 
     function pad2(n){ return String(n).padStart(2,'0'); }
@@ -964,16 +1216,7 @@
       d.setDate(d.getDate() + days);
       return isoDate(d);
     }
-    function addMinutesToISO(iso, minutes){
-      const d = new Date(iso);
-      d.setMinutes(d.getMinutes() + minutes);
-      return d.toISOString();
-    }
-    function hhmmFromDate(d){
-      return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
-    }
 
-    // Deterministic PRNG (mulberry32) for stable "random" demo results per input
     function hashString(str){
       let h = 2166136261;
       for (let i=0;i<str.length;i++){
@@ -996,465 +1239,131 @@
     function pick(rng, arr){ return arr[randInt(rng, 0, arr.length-1)]; }
     function money(amount){ return new Intl.NumberFormat(undefined, { style:'currency', currency:'USD' }).format(amount); }
 
-    function token(prefix, rng){
-      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      let out = prefix + "_";
-      for (let i=0;i<20;i++) out += chars[Math.floor(rng()*chars.length)];
-      return out;
-    }
+    // Logos (assets folder)
+    const LOGOS = {
+      AA: "assets/aa-logo.png",
+      DL: "assets/delta-logo.png",
+      WN: "assets/sw-logo.png",
+      HILTON: "assets/hilton-logo.png",
+      WESTIN: "assets/westin-logo.png",
+      JW: "assets/jwmarroitt-logo.png"
+    };
 
-    function approxLatLngFor(place, rng){
-      const s = place.toLowerCase();
-      if (s.includes("charlotte") || s.includes("clt")) return { lat: 35.2271 + (rng()-0.5)*0.04, lng: -80.8431 + (rng()-0.5)*0.04 };
-      if (s.includes("new york") || s.includes("jfk") || s.includes("nyc")) return { lat: 40.6413 + (rng()-0.5)*0.04, lng: -73.7781 + (rng()-0.5)*0.04 };
-      if (s.includes("san francisco") || s.includes("sfo")) return { lat: 37.6213 + (rng()-0.5)*0.04, lng: -122.3790 + (rng()-0.5)*0.04 };
-      if (s.includes("los angeles") || s.includes("lax")) return { lat: 33.9416 + (rng()-0.5)*0.04, lng: -118.4085 + (rng()-0.5)*0.04 };
-      return { lat: 37.7749 + (rng()-0.5)*0.5, lng: -122.4194 + (rng()-0.5)*0.5 };
-    }
-
-    // ---------- Mock "vendor-shaped" data generators ----------
-    function buildTripObject(input, rng){
-      const now = Date.now();
-      const tripId = "trip_" + Math.floor(now/1000) + "_" + randInt(rng, 1000, 9999);
-
-      const departDate = input.depart;
-      const returnDate = input.returnDate;
-
-      const fromLL = approxLatLngFor(input.from, rng);
-      const toLL   = approxLatLngFor(input.to, rng);
-
-      // Dummy flight times (stable-ish but variable)
-      const departHour = randInt(rng, 6, 12);
-      const returnHour = randInt(rng, 14, 20);
-      const departMinute = pick(rng, [0, 15, 30, 45]);
-      const returnMinute = pick(rng, [0, 10, 20, 30, 40, 50]);
-
-      const flightDepartTimeLocal = `${pad2(departHour)}:${pad2(departMinute)}`;
-      const flightReturnTimeLocal = `${pad2(returnHour)}:${pad2(returnMinute)}`;
-
-      // Dummy scheduled ground pickup times: 90–150 min before flight out; 25–60 min after return lands
-      const outPickup = new Date(`${departDate}T${flightDepartTimeLocal}:00`);
-      outPickup.setMinutes(outPickup.getMinutes() - randInt(rng, 90, 150));
-      const pickupOutMs = outPickup.getTime();
-
-      const backPickup = new Date(`${returnDate}T${flightReturnTimeLocal}:00`);
-      backPickup.setMinutes(backPickup.getMinutes() + randInt(rng, 25, 60));
-      const pickupBackMs = backPickup.getTime();
-
-      return {
-        trip_id: tripId,
-        created_at_ms: now,
-        mode: "demo",
-        traveler: { pax: input.pax, cabin_class: input.cabin },
-        route: {
-          from: { label: input.from, ...fromLL },
-          to:   { label: input.to,   ...toLL },
-          depart_date: departDate,
-          return_date: returnDate
-        },
-        legs: [
-          {
-            leg_id: "leg_ground_out",
-            type: "ground",
-            provider: "rideshare_aggregator",
-            dispatch_type: "scheduled",
-            pickup_time_ms: pickupOutMs,
-            origin: { label: `${input.from} • Pickup`, ...fromLL },
-            destination: { label: `${input.from} • Airport`, ...fromLL },
-          },
-          {
-            leg_id: "leg_flight_out",
-            type: "flight",
-            provider: "duffel_air",
-            slices: [{
-              origin: input.from.includes("(") ? input.from.split("(")[1].replace(")","").trim() : "CLT",
-              destination: input.to.includes("(") ? input.to.split("(")[1].replace(")","").trim() : "JFK",
-              departure_date: departDate,
-              departure_time: { from: flightDepartTimeLocal }
-            }],
-          },
-          {
-            leg_id: "leg_hotel",
-            type: "lodging",
-            provider: "duffel_stays",
-            check_in_date: departDate,
-            check_out_date: returnDate,
-            rooms: 1,
-            guests: [{ type:"adult" }]
-          },
-          {
-            leg_id: "leg_flight_back",
-            type: "flight",
-            provider: "duffel_air",
-            slices: [{
-              origin: input.to.includes("(") ? input.to.split("(")[1].replace(")","").trim() : "JFK",
-              destination: input.from.includes("(") ? input.from.split("(")[1].replace(")","").trim() : "CLT",
-              departure_date: returnDate,
-              departure_time: { from: flightReturnTimeLocal }
-            }],
-          },
-          {
-            leg_id: "leg_ground_back",
-            type: "ground",
-            provider: "rideshare_aggregator",
-            dispatch_type: "scheduled",
-            pickup_time_ms: pickupBackMs,
-            origin: { label: `${input.to} • Airport`, ...toLL },
-            destination: { label: `${input.to} • Dropoff`, ...toLL },
-          }
-        ],
-        state: {
-          lifecycle: "created → planned → quoted_demo",
-          can_book: false,
-          note: "Demo mode returns vendor-shaped sample objects only."
-        }
-      };
-    }
-
-    function mockRideshareEstimate(leg, rng){
-      // Generic rideshare: ties to AI Tier Selector (not vendor names)
-      const tiers = [
-        { tier_id:"standard", label:"Standard", multiplier: 1.0,  etaMin:[6,14] },
-        { tier_id:"executive", label:"Executive", multiplier: 1.6, etaMin:[5,12] },
-        { tier_id:"secure", label:"Secure", multiplier: 2.3, etaMin:[8,18] }
-      ];
-
-      const base = randInt(rng, 18, 55);
-      const surge = 1 + (rng() * 0.5);
-      const miles = Math.max(2, Math.round((rng()*18 + 3) * 10) / 10);
-      const durationSec = randInt(rng, 600, 2400);
-
-      // Dummy pickup window around scheduled time
-      const scheduledISO = new Date(leg.pickup_time_ms).toISOString();
-      const windowStart = addMinutesToISO(scheduledISO, -10);
-      const windowEnd   = addMinutesToISO(scheduledISO, +10);
-
-      const estimates = tiers.map((t) => {
-        const amountCents = Math.round(base * t.multiplier * surge * 100);
-        const eta = randInt(rng, t.etaMin[0]*60, t.etaMin[1]*60);
-        return {
-          tier_id: t.tier_id,
-          tier_label: t.label,
-          upfront_cost_cents: amountCents,
-          currency: "USD",
-          pickup_eta_seconds: eta,
-          quote_token: token("ride_quote", rng),
-          distance_miles: miles,
-          duration_seconds: durationSec
-        };
-      });
-
-      return {
-        endpoint_shape: "RIDESHARE/QUOTE (DEMO)",
-        start_lat: leg.origin.lat,
-        start_lng: leg.origin.lng,
-        end_lat: leg.destination.lat,
-        end_lng: leg.destination.lng,
-        scheduled_pickup_time_ms: leg.pickup_time_ms,
-        pickup_window_iso: { start: windowStart, end: windowEnd },
-        estimates,
-        valid_for_seconds: 120
-      };
-    }
-
-    function mockDuffelOfferRequest(trip, rng){
-      // Duffel: POST /air/offer_requests returns { data: { id, slices, offers, ... } }
-      const carriers = [
-        { name:"American Airlines", iata:"AA" },
-        { name:"Delta Air Lines", iata:"DL" },
-        { name:"Southwest Airlines", iata:"WN" }
-      ];
-
-      const cabin = trip.traveler.cabin_class;
-      const pax = trip.traveler.pax;
-
-      const outSlice = trip.legs.find(l => l.leg_id === "leg_flight_out").slices[0];
-      const backSlice = trip.legs.find(l => l.leg_id === "leg_flight_back").slices[0];
-
-      const offerRequestId = "orq_" + randInt(rng, 10000000, 99999999);
-      const createdAt = new Date().toISOString();
-
-      function makeOneWayOffer(slice){
-        const c = pick(rng, carriers);
-        const base = randInt(rng, 120, 540) *
-          (cabin === "economy" ? 1 : cabin === "premium_economy" ? 1.35 : cabin === "business" ? 2.2 : 2.9);
-        const total = Math.round(base * pax * (1 + rng()*0.18) * 100) / 100;
-
-        // derive times from trip slice time + randomized duration
-        const dep = new Date(`${slice.departure_date}T${slice.departure_time.from}:00`);
-        const durMin = randInt(rng, 95, 175);
-        const arr = new Date(dep.getTime() + durMin*60*1000);
-
-        const flightNo = randInt(rng, 200, 4999);
-
-        return {
-          id: "off_" + randInt(rng, 10000000, 99999999),
-          live_mode: false,
-          total_currency: "USD",
-          total_amount: total.toFixed(2),
-          expires_at: new Date(Date.now() + 18*60*1000).toISOString(),
-          slices: [{
-            duration: `PT${Math.floor(durMin/60)}H${pad2(durMin%60)}M`,
-            segments: [{
-              id: "seg_" + randInt(rng, 10000000, 99999999),
-              departing_at: dep.toISOString().slice(0,19),
-              arriving_at: arr.toISOString().slice(0,19),
-              operating_carrier: {
-                name: c.name,
-                iata_code: c.iata,
-                conditions_of_carriage_url: "https://example.com/conditions"
-              },
-              operating_carrier_flight_number: String(flightNo),
-              cabin_class: cabin
-            }]
-          }],
-          owner: { name: c.name, iata_code: c.iata }
-        };
-      }
-
-      // Bundle both directions into one "roundtrip-ish" offer
-      const offers = Array.from({length: randInt(rng, 2, 4)}).map(() => {
-        const out = makeOneWayOffer(outSlice);
-        const back = makeOneWayOffer(backSlice);
-        const total = (parseFloat(out.total_amount) + parseFloat(back.total_amount)).toFixed(2);
-        return {
-          id: "off_" + randInt(rng, 10000000, 99999999),
-          live_mode: false,
-          total_currency: "USD",
-          total_amount: total,
-          expires_at: new Date(Date.now() + 18*60*1000).toISOString(),
-          slices: [ out.slices[0], back.slices[0] ],
-          owner: out.owner
-        };
-      });
-
-      return {
-        endpoint_shape: "POST /air/offer_requests",
-        data: {
-          id: offerRequestId,
-          created_at: createdAt,
-          live_mode: false,
-          cabin_class: cabin,
-          slices: [outSlice, backSlice],
-          passengers: Array.from({length: pax}).map((_,i)=>({ id:`pas_${i}`, type:"adult" })),
-          offers
-        }
-      };
-    }
-
-    function mockDuffelHotelsSearch(trip, rng){
-      // Duffel stays-shaped: { data: { results: [...] } }
-      const neighborhoods = ["Uptown", "Midtown", "Financial District", "South End", "Downtown"];
-      const hotelBrands = [
-        { brand:"Hilton", variants:["Hilton", "Hilton Garden Inn", "Conrad"] },
-        { brand:"Westin", variants:["The Westin", "Westin Suites"] },
-        { brand:"JW Marriott", variants:["JW Marriott", "JW Marriott Grand"] }
-      ];
-
-      const checkIn = trip.route.depart_date;
-      const checkOut = trip.route.return_date;
-
-      const nights = Math.max(1, Math.round((new Date(checkOut) - new Date(checkIn)) / (1000*60*60*24)));
-      const resultCount = randInt(rng, 4, 7);
-
-      const results = Array.from({length: resultCount}).map(() => {
-        const b = pick(rng, hotelBrands);
-        const name = pick(rng, b.variants) + " " + pick(rng, ["Downtown", "City Center", "Uptown", "Riverside", "Park"]);
-
-        const nightly = randInt(rng, 179, 520);
-        const total = nightly * nights;
-
-        return {
-          id: "hrr_" + randInt(rng, 10000000, 99999999),
-          rooms: 1,
-          check_in_date: checkIn,
-          check_out_date: checkOut,
-          expires_at: new Date(Date.now() + randInt(rng, 10, 40)*60*1000).toISOString(),
-          cheapest_rate_currency: "USD",
-          cheapest_rate_total_amount: total.toFixed(2),
-          accommodation: {
-            id: "acc_" + randInt(rng, 10000000, 99999999),
-            name,
-            brand: b.brand,
-            rating: randInt(rng, 3, 5),
-            review_score: Math.round((7.9 + rng()*1.8)*10)/10,
-            location: {
-              address: {
-                city_name: trip.route.to.label.replace(/\(.*?\)/g,"").trim(),
-                line_one: `${randInt(rng, 10, 999)} ${pick(rng, ["Main St","Market St","Tryon St","Broadway","Park Ave"])}`,
-                region: "—",
-                country_code: "US",
-                postal_code: String(randInt(rng, 10000, 99999))
-              }
-            },
-            highlight: `${pick(rng, neighborhoods)} • ${pick(rng, ["Quiet", "Secure", "Walkable", "Business-ready", "Late check-in"])}`
-          }
-        };
-      }).sort((a,b)=>parseFloat(a.cheapest_rate_total_amount)-parseFloat(b.cheapest_rate_total_amount));
-
-      return {
-        endpoint_shape: "POST /stays/search",
-        data: {
-          created_at: new Date().toISOString(),
-          results
-        }
-      };
-    }
-
-    // ---------- Rendering ----------
-    function card(title, subtitle, html){
-      return `
-        <div style="grid-column:span 12;padding:14px;border-radius:16px;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.08);">
-          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;">
-            <div>
-              <div style="font-weight:700;font-size:16px;">${title}</div>
-              ${subtitle ? `<div style="opacity:.70;font-size:13px;margin-top:2px;">${subtitle}</div>` : ``}
-            </div>
-          </div>
-          <div style="margin-top:10px;opacity:.95;">${html}</div>
-        </div>
-      `;
-    }
-
-    function pre(obj){
-      const json = JSON.stringify(obj, null, 2)
-        .replace(/[<>&]/g, s => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[s]));
-      return `<pre style="margin:0;padding:12px;border-radius:14px;overflow:auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.35;">${json}</pre>`;
-    }
-
-    function renderRides(rideOut, rideBack){
-      function summarize(est){
-        const scheduled = new Date(est.scheduled_pickup_time_ms);
-        const scheduledHHMM = hhmmFromDate(scheduled);
-        return `
-          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-            <div><b>Scheduled</b>: ${scheduledHHMM}</div>
-            <div><b>Window</b>: ${new Date(est.pickup_window_iso.start).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
-              – ${new Date(est.pickup_window_iso.end).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
-            <div><b>Valid</b>: ${est.valid_for_seconds}s</div>
-          </div>
-          <div style="margin-top:10px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
-            ${est.estimates.map(x => `
-              <div style="grid-column:span 4;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-                <div style="font-weight:800;">${x.tier_label}</div>
-                <div style="opacity:.8;margin-top:4px;">Upfront: <b>${money(x.upfront_cost_cents/100)}</b></div>
-                <div style="opacity:.75;font-size:12px;margin-top:2px;">ETA ~ ${Math.round(x.pickup_eta_seconds/60)} min • ${x.distance_miles} mi</div>
-                <div style="opacity:.65;font-size:11px;margin-top:6px;">quote_token: <span style="font-family:monospace;">${x.quote_token}</span></div>
-              </div>
-            `).join("")}
-          </div>
-        `;
-      }
-
-      return `
-        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
-          <div style="grid-column:span 12;">
-            <div style="opacity:.75;margin-bottom:8px;">Generic rideshare quotes (demo). Tiers map to your AI selector (Standard / Executive / Secure).</div>
-          </div>
-          <div style="grid-column:span 12;">
-            <div style="font-weight:700;margin-bottom:6px;">Outbound</div>
-            ${summarize(rideOut)}
-          </div>
-          <div style="grid-column:span 12;">
-            <div style="font-weight:700;margin:14px 0 6px;">Return</div>
-            ${summarize(rideBack)}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderFlights(duffelAir){
-      const offers = duffelAir.data.offers || [];
-      const top = offers.slice(0, 3);
-      return `
-        <div style="opacity:.75;margin-bottom:10px;">Duffel-shaped offer request (quotes only; no Orders).</div>
-        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
-          ${top.map(o => {
-            const owner = o.owner?.name || "Carrier";
-            const exp = new Date(o.expires_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-            return `
-              <div style="grid-column:span 4;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-                <div style="font-weight:800;">${money(parseFloat(o.total_amount))}</div>
-                <div style="opacity:.8;margin-top:4px;">${owner}</div>
-                <div style="opacity:.7;font-size:12px;margin-top:4px;">Expires ~ ${exp}</div>
-                <div style="opacity:.65;font-size:11px;margin-top:6px;">offer_id: <span style="font-family:monospace;">${o.id}</span></div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-        <div style="margin-top:12px;">${pre({ offer_request_id: duffelAir.data.id, cabin_class: duffelAir.data.cabin_class, slice_count: duffelAir.data.slices.length, offer_count: offers.length })}</div>
-      `;
-    }
-
-    function renderHotels(duffelHotels){
-      const results = duffelHotels.data.results || [];
-      const top = results.slice(0, 4);
-      return `
-        <div style="opacity:.75;margin-bottom:10px;">Duffel Stays-shaped search (quotes only; no Booking).</div>
-        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
-          ${top.map(r => {
-            const acc = r.accommodation || {};
-            const total = money(parseFloat(r.cheapest_rate_total_amount));
-            const exp = new Date(r.expires_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-            return `
-              <div style="grid-column:span 6;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-                <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-                  <div style="font-weight:800;">${acc.name || "Hotel"}</div>
-                  <div style="font-weight:800;">${total}</div>
-                </div>
-                <div style="opacity:.8;margin-top:4px;">${acc.brand ? `<b>${acc.brand}</b> • ` : ""}${acc.highlight || ""}</div>
-                <div style="opacity:.7;font-size:12px;margin-top:4px;">Rating ${acc.rating || "—"} • Review ${acc.review_score || "—"}</div>
-                <div style="opacity:.65;font-size:11px;margin-top:6px;">result_id: <span style="font-family:monospace;">${r.id}</span> • expires ~ ${exp}</div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      `;
-    }
-
-    function renderTripSummary(trip){
-      const depart = trip.route.depart_date;
-      const ret = trip.route.return_date;
-      return `
-        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-          <div><b>Trip</b>: ${trip.route.from.label} → ${trip.route.to.label}</div>
-          <div><b>Dates</b>: ${depart} → ${ret}</div>
-          <div><b>Pax</b>: ${trip.traveler.pax} • <b>Cabin</b>: ${trip.traveler.cabin_class}</div>
-          <div><b>Mode</b>: ${trip.mode.toUpperCase()} • <b>Booking</b>: disabled</div>
-        </div>
-        <div style="margin-top:10px;">${pre(trip)}</div>
-      `;
-    }
-
-    // ---------- Interaction / State ----------
-    let lastTripObject = null;
-    let lastBundle = null;
+    // State
     let activeTab = "rides";
+    let data = null;
 
-    function setTab(tab){
-      activeTab = tab;
-      document.querySelectorAll("#module-orchestration .pill").forEach(btn => {
-        const isActive = btn.getAttribute("data-tab") === tab;
-        btn.classList.toggle("active", isActive);
-        btn.style.background = isActive ? "rgba(255,255,255,0.06)" : "transparent";
-        btn.style.opacity = isActive ? "1" : ".8";
-      });
-      paint();
-    }
+    let selected = {
+      rideTier: null,   // "standard" | "executive" | "secure"
+      flight: null,     // id
+      hotel: null       // id
+    };
 
     function getInput(){
       const today = isoDate(new Date());
       const depart = $("e2eDepart").value || addDays(today, 7);
-      const returnDate = $("e2eReturn").value || addDays(depart, 2);
+      const ret = $("e2eReturn").value || addDays(depart, 2);
 
       return {
-        from: $("e2eFrom").value.trim(),
-        to: $("e2eTo").value.trim(),
+        from: ($("e2eFrom").value || "").trim(),
+        to: ($("e2eTo").value || "").trim(),
         depart,
-        returnDate,
+        returnDate: ret,
         pax: Math.max(1, Math.min(6, parseInt($("e2ePax").value || "1", 10))),
         cabin: $("e2eCabin").value
       };
+    }
+
+    function buildMockData(input, rng){
+      // Rideshare: outbound/return totals per tier (no tokens, no extra text)
+      const milesOut = Math.max(2, Math.round((rng()*8 + 3) * 10) / 10);
+      const milesBack = Math.max(2, Math.round((rng()*12 + 4) * 10) / 10);
+
+      const baseOut = randInt(rng, 22, 64);
+      const baseBack = randInt(rng, 18, 58);
+      const surge = 1 + rng()*0.45;
+
+      const tiers = [
+        { tier:"standard", name:"Standard", mult:1.0 },
+        { tier:"executive", name:"Executive", mult:1.6 },
+        { tier:"secure", name:"Secure", mult:2.3 }
+      ];
+
+      const rides = tiers.map(t => {
+        const out = Math.round(baseOut * t.mult * surge * 100) / 100;
+        const back = Math.round(baseBack * t.mult * surge * 100) / 100;
+        const etaOut = randInt(rng, 7, 14);
+        const etaBack = randInt(rng, 6, 13);
+        return {
+          tier: t.tier,
+          name: t.name,
+          outbound: { price: out, etaMin: etaOut, miles: milesOut },
+          ret: { price: back, etaMin: etaBack, miles: milesBack },
+          total: Math.round((out + back) * 100) / 100
+        };
+      });
+
+      // Flights: three carriers, price depends on pax + cabin
+      const cabinMult =
+        input.cabin === "economy" ? 1 :
+        input.cabin === "premium_economy" ? 1.35 :
+        input.cabin === "business" ? 2.15 : 2.85;
+
+      const carriers = [
+        { id:"AA", name:"American", logo: LOGOS.AA },
+        { id:"DL", name:"Delta", logo: LOGOS.DL },
+        { id:"WN", name:"Southwest", logo: LOGOS.WN }
+      ];
+
+      const flights = carriers.map(c => {
+        const base = randInt(rng, 160, 520);
+        const total = Math.round(base * input.pax * cabinMult * (1 + rng()*0.18) * 100) / 100;
+        const duration = randInt(rng, 95, 185);
+        const stops = pick(rng, ["Nonstop", "1 stop"]);
+        return {
+          id: `flt_${c.id}_${randInt(rng, 1000, 9999)}`,
+          carrierId: c.id,
+          name: c.name,
+          logo: c.logo,
+          total,
+          meta: `${stops} • ${Math.floor(duration/60)}h ${pad2(duration%60)}m`
+        };
+      }).sort((a,b)=>a.total-b.total);
+
+      // Hotels: three brands (with logos), total is 1 room * nights
+      const nights = Math.max(1, Math.round((new Date(input.returnDate) - new Date(input.depart)) / (1000*60*60*24)));
+      const brands = [
+        { id:"HILTON", name:"Hilton", logo: LOGOS.HILTON },
+        { id:"WESTIN", name:"Westin", logo: LOGOS.WESTIN },
+        { id:"JW", name:"JW Marriott", logo: LOGOS.JW }
+      ];
+
+      const hotels = brands.map(b => {
+        const nightly = randInt(rng, 190, 560);
+        const total = Math.round(nightly * nights * (1 + rng()*0.08) * 100) / 100;
+        const rating = randInt(rng, 4, 5);
+        const review = Math.round((8.1 + rng()*1.3)*10)/10;
+        const area = pick(rng, ["Uptown", "Midtown", "Financial District", "Downtown"]);
+        return {
+          id: `htl_${b.id}_${randInt(rng, 1000, 9999)}`,
+          brandId: b.id,
+          name: b.name,
+          logo: b.logo,
+          total,
+          meta: `${area} • Rating ${rating} • Review ${review}`
+        };
+      }).sort((a,b)=>a.total-b.total);
+
+      return { rides, flights, hotels, nights };
+    }
+
+    function setTab(tab){
+      activeTab = tab;
+      document.querySelectorAll("#module-orchestration .e2e-tab").forEach(btn => {
+        const isActive = btn.getAttribute("data-tab") === tab;
+        btn.classList.toggle("active", isActive);
+      });
+      renderStage();
     }
 
     function simulate(){
@@ -1462,117 +1371,231 @@
       const seed = hashString(`${input.from}|${input.to}|${input.depart}|${input.returnDate}|${input.pax}|${input.cabin}`);
       const rng = mulberry32(seed);
 
-      $("e2eStatus").textContent = "Generating demo trip objects…";
+      $("e2eStatus").textContent = "Generating options…";
 
-      const trip = buildTripObject(input, rng);
+      data = buildMockData(input, rng);
 
-      // Generic rideshare estimates for the two ground legs (round trip)
-      const legOut = trip.legs.find(l => l.leg_id === "leg_ground_out");
-      const legBack = trip.legs.find(l => l.leg_id === "leg_ground_back");
+      // Default selections (first of each)
+      selected.rideTier = selected.rideTier || data.rides[0]?.tier || null;
+      selected.flight = selected.flight || data.flights[0]?.id || null;
+      selected.hotel = selected.hotel || data.hotels[0]?.id || null;
 
-      const rideOut = mockRideshareEstimate(legOut, rng);
-      const rideBack = mockRideshareEstimate(legBack, rng);
-
-      // Flights + hotels
-      const duffelAir = mockDuffelOfferRequest(trip, rng);
-      const duffelHotels = mockDuffelHotelsSearch(trip, rng);
-
-      const bundle = {
-        trip_object: trip,
-        quote_run: {
-          quote_run_id: "qr_" + randInt(rng, 1000000, 9999999),
-          created_at: new Date().toISOString(),
-          mode: "demo",
-          can_book: false,
-          notes: [
-            "Rideshare: generic tiers mapped to AI preference selector (no vendor names).",
-            "Flights: Duffel-shaped offer_request demo data (no orders).",
-            "Hotels: Duffel stays-shaped search demo data (no bookings)."
-          ],
-          expires_soonest_at: new Date(Math.min(
-            Date.now() + 120*1000,
-            new Date(duffelAir.data.offers[0]?.expires_at || Date.now() + 18*60*1000).getTime(),
-            new Date(duffelHotels.data.results[0]?.expires_at || Date.now() + 18*60*1000).getTime()
-          )).toISOString()
-        },
-        vendors: {
-          rideshare: { outbound: rideOut, return: rideBack },
-          duffel_air: duffelAir,
-          duffel_hotels: duffelHotels
-        }
-      };
-
-      lastTripObject = trip;
-      lastBundle = bundle;
-
-      $("e2eStatus").textContent = "Demo objects ready (quotes simulated; booking disabled).";
-      paint();
+      $("e2eStatus").textContent = "Options ready.";
+      renderStage();
+      renderSummary();
     }
 
-    function paint(){
-      const out = $("e2eOutput");
-      if (!out) return;
+    function cardHTML({ id, name, logo, price, meta, isSelected }){
+      const logoHTML = logo ? `<div class="pick-logo"><img src="${logo}" alt="${name} logo"></div>` : ``;
+      return `
+        <div class="pick-card ${isSelected ? "selected":""}" data-id="${id}">
+          <div class="pick-top">
+            <div style="display:flex; gap:10px; align-items:center; min-width:0;">
+              ${logoHTML}
+              <div style="min-width:0;">
+                <div class="pick-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${name}</div>
+                ${meta ? `<div class="pick-meta">${meta}</div>` : ``}
+              </div>
+            </div>
+            <div class="pick-price">${money(price)}</div>
+          </div>
+          <div style="opacity:.72;font-size:12px;">Tap to select</div>
+        </div>
+      `;
+    }
 
-      if (!lastBundle){
-        out.innerHTML = card(
-          "Coming soon: route object → vendor calls → confirmations → trip timeline.",
-          "This card is intentionally staged as an investor-facing surface.",
-          `<div style="opacity:.75;">Click <b>Simulate Booking Flow</b> to generate end-to-end demo objects.</div>`
-        );
+    function renderStage(){
+      const title = $("e2eStageTitle");
+      const sub = $("e2eStageSub");
+      const cards = $("e2eStageCards");
+      const hint = $("e2eStageHint");
+
+      if(!data){
+        title.textContent = "Rideshare Options";
+        sub.textContent = "Click “Simulate Booking Flow” to load options.";
+        hint.textContent = "";
+        cards.innerHTML = "";
+        renderSummary();
         return;
       }
 
-      const trip = lastBundle.trip_object;
-      const rides = lastBundle.vendors.rideshare;
-      const air = lastBundle.vendors.duffel_air;
-      const hotels = lastBundle.vendors.duffel_hotels;
+      const input = getInput();
 
-      const blocks = [];
-      blocks.push(card("Trip Object (Platform)", "Deterministic demo object; drives all downstream quotes.", renderTripSummary(trip)));
+      if(activeTab === "rides"){
+        title.textContent = "Rideshare Options";
+        sub.textContent = "Select a tier. Outbound + return are calculated automatically.";
+        hint.textContent = "Tap a card to select";
 
-      if (activeTab === "rides" || activeTab === "all"){
-        blocks.push(card("Rideshare Quotes (Generic)", "Tiers map to your AI selector; includes scheduled windows + quote tokens.", renderRides(rides.outbound, rides.return)));
-      }
-      if (activeTab === "flights" || activeTab === "all"){
-        blocks.push(card("Flight Quotes", "American • Delta • Southwest included in carrier pool (demo).", renderFlights(air)));
-      }
-      if (activeTab === "hotels" || activeTab === "all"){
-        blocks.push(card("Hotel Quotes", "Hilton • Westin • JW Marriott included in hotel pool (demo).", renderHotels(hotels)));
-      }
+        cards.innerHTML = data.rides.map(r => cardHTML({
+          id: r.tier,
+          name: r.name,
+          logo: null,
+          price: r.total,
+          meta: `Outbound ${money(r.outbound.price)} • Return ${money(r.ret.price)}`,
+          isSelected: selected.rideTier === r.tier
+        })).join("");
 
-      blocks.push(card("Unified Quote Bundle (Internal)", "What your backend would store for a quote run.", pre(lastBundle.quote_run)));
-      out.innerHTML = blocks.join("");
-    }
+        cards.querySelectorAll(".pick-card").forEach(el => {
+          el.addEventListener("click", () => {
+            selected.rideTier = el.getAttribute("data-id");
+            renderStage();
+            renderSummary();
+          });
+        });
 
-    async function copyTripJSON(){
-      if (!lastTripObject){
-        $("e2eStatus").textContent = "Run Simulate Booking Flow first.";
         return;
       }
-      const text = JSON.stringify(lastTripObject, null, 2);
-      try {
-        await navigator.clipboard.writeText(text);
-        $("e2eStatus").textContent = "Trip Object JSON copied to clipboard.";
-      } catch {
-        $("e2eStatus").textContent = "Copy failed (clipboard permissions).";
+
+      if(activeTab === "flights"){
+        title.textContent = "Flight Options";
+        sub.textContent = `Choose a carrier • ${input.cabin.replace("_"," ")} • ${input.pax} passenger(s)`;
+        hint.textContent = "Tap a card to select";
+
+        cards.innerHTML = data.flights.map(f => cardHTML({
+          id: f.id,
+          name: f.name,
+          logo: f.logo,
+          price: f.total,
+          meta: f.meta,
+          isSelected: selected.flight === f.id
+        })).join("");
+
+        cards.querySelectorAll(".pick-card").forEach(el => {
+          el.addEventListener("click", () => {
+            selected.flight = el.getAttribute("data-id");
+            renderStage();
+            renderSummary();
+          });
+        });
+
+        return;
+      }
+
+      if(activeTab === "hotels"){
+        title.textContent = "Hotel Options";
+        sub.textContent = `One room • ${data.nights} night(s) • Select a brand`;
+        hint.textContent = "Tap a card to select";
+
+        cards.innerHTML = data.hotels.map(h => cardHTML({
+          id: h.id,
+          name: h.name,
+          logo: h.logo,
+          price: h.total,
+          meta: h.meta,
+          isSelected: selected.hotel === h.id
+        })).join("");
+
+        cards.querySelectorAll(".pick-card").forEach(el => {
+          el.addEventListener("click", () => {
+            selected.hotel = el.getAttribute("data-id");
+            renderStage();
+            renderSummary();
+          });
+        });
+
+        return;
+      }
+
+      // ALL: show 3 cards per category (stacked) but still one stage box
+      if(activeTab === "all"){
+        title.textContent = "Trip Options";
+        sub.textContent = "Select one in each category. Your total updates below.";
+        hint.textContent = "Tap to select";
+
+        const rideCards = data.rides.map(r => cardHTML({
+          id: `ride:${r.tier}`,
+          name: `${r.name} (Rideshare)`,
+          logo: null,
+          price: r.total,
+          meta: `Outbound ${money(r.outbound.price)} • Return ${money(r.ret.price)}`,
+          isSelected: selected.rideTier === r.tier
+        })).join("");
+
+        const flightCards = data.flights.map(f => cardHTML({
+          id: `flight:${f.id}`,
+          name: `${f.name} (Flight)`,
+          logo: f.logo,
+          price: f.total,
+          meta: f.meta,
+          isSelected: selected.flight === f.id
+        })).join("");
+
+        const hotelCards = data.hotels.map(h => cardHTML({
+          id: `hotel:${h.id}`,
+          name: `${h.name} (Hotel)`,
+          logo: h.logo,
+          price: h.total,
+          meta: h.meta,
+          isSelected: selected.hotel === h.id
+        })).join("");
+
+        cards.innerHTML = rideCards + flightCards + hotelCards;
+
+        cards.querySelectorAll(".pick-card").forEach(el => {
+          el.addEventListener("click", () => {
+            const raw = el.getAttribute("data-id") || "";
+            const [kind, val] = raw.split(":");
+            if(kind === "ride") selected.rideTier = val;
+            if(kind === "flight") selected.flight = val;
+            if(kind === "hotel") selected.hotel = val;
+            renderStage();
+            renderSummary();
+          });
+        });
+
+        return;
       }
     }
 
-    // ---------- Wire up ----------
+    function renderSummary(){
+      const sumRide = $("sumRide");
+      const sumFlight = $("sumFlight");
+      const sumHotel = $("sumHotel");
+      const sumTotal = $("sumTotal");
+      const hint = $("e2eTotalHint");
+
+      if(!data){
+        sumRide.textContent = "—";
+        sumFlight.textContent = "—";
+        sumHotel.textContent = "—";
+        sumTotal.textContent = "—";
+        hint.textContent = "Click “Simulate Booking Flow” to load options";
+        return;
+      }
+
+      const ride = data.rides.find(r => r.tier === selected.rideTier);
+      const flight = data.flights.find(f => f.id === selected.flight);
+      const hotel = data.hotels.find(h => h.id === selected.hotel);
+
+      sumRide.textContent = ride ? `${ride.name} • ${money(ride.total)}` : "—";
+      sumFlight.textContent = flight ? `${flight.name} • ${money(flight.total)}` : "—";
+      sumHotel.textContent = hotel ? `${hotel.name} • ${money(hotel.total)}` : "—";
+
+      const total =
+        (ride?.total || 0) +
+        (flight?.total || 0) +
+        (hotel?.total || 0);
+
+      sumTotal.textContent = total > 0 ? money(Math.round(total*100)/100) : "—";
+
+      const done = !!ride && !!flight && !!hotel;
+      hint.textContent = done ? "Selections complete • totals updated" : "Select one option in each category";
+    }
+
+    // Wire up
     const today = isoDate(new Date());
-    if ($("e2eDepart") && $("e2eReturn")){
-      $("e2eDepart").value = addDays(today, 7);
-      $("e2eReturn").value = addDays(addDays(today, 7), 2);
-    }
+    $("e2eDepart").value = addDays(today, 7);
+    $("e2eReturn").value = addDays(addDays(today, 7), 2);
 
-    $("btnSimulateE2E")?.addEventListener("click", simulate);
-    $("btnCopyTripJSON")?.addEventListener("click", copyTripJSON);
-
-    document.querySelectorAll("#module-orchestration .pill").forEach(btn => {
+    document.querySelectorAll("#module-orchestration .e2e-tab").forEach(btn => {
       btn.addEventListener("click", () => setTab(btn.getAttribute("data-tab")));
     });
 
+    $("btnSimulateE2E").addEventListener("click", simulate);
+
     setTab("rides");
+    renderStage();
+    renderSummary();
   })();
   </script>
 
@@ -1653,7 +1676,6 @@
         geoStateTag.textContent = "Geofence: idle";
       } else {
         if(currentZip && currentScore !== null){
-          // re-init map (centers + redraw) and start telemetry
           initMap(currentZip, currentScore);
         }
       }
@@ -1697,13 +1719,11 @@
       return "SENTINEL indicates standard conditions. Keep basic buffers and monitor disruptions.";
     }
 
-    // Toggle: T-24 briefing (UI-only preview)
     function toggleT24(){
       t24On = !t24On;
       t24Switch.classList.toggle("on", t24On);
       t24Switch.setAttribute("aria-checked", t24On ? "true" : "false");
       t24State.textContent = t24On ? "On" : "Off";
-      // Soft tweak to briefing output
       if(currentScore !== null){
         const base = briefingFromScore(currentScore);
         briefText.textContent = t24On
@@ -1714,9 +1734,6 @@
     t24Switch.addEventListener("click", toggleT24);
     t24Switch.addEventListener("keydown", (e) => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleT24(); } });
 
-    // ===== UPDATED: ZIP -> lat/lon via Netlify Function =====
-    // This assumes you created: netlify/functions/zip-geocode.js
-    // and it returns: { zip: "28202", lat: 35.2271, lon: -80.8431, city: "...", state: "..." }
     async function getGeoFromZip(zip){
       const res = await fetch(`/.netlify/functions/zip-geocode?zip=${encodeURIComponent(zip)}`);
       const data = await res.json().catch(() => ({}));
@@ -1729,7 +1746,6 @@
       return data;
     }
 
-    // Map init (uses live geocode now)
     async function initMap(zip, score){
       let geo;
       try{
@@ -1743,7 +1759,6 @@
       const lat = geo.lat;
       const lon = geo.lon;
 
-      // Create or recenter map
       if(!map){
         map = L.map("map").setView([lat, lon], 12);
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -1754,11 +1769,9 @@
         map.setView([lat, lon], 12);
       }
 
-      // Marker
       if(marker) map.removeLayer(marker);
       marker = L.marker([lat, lon]).addTo(map);
 
-      // Geofence circle radius from selector (meters)
       const radiusMeters = parseInt(radiusSelect.value, 10) || 1600;
       const ringColor =
         score >= 70 ? "#ffb74d" :
@@ -1773,7 +1786,6 @@
         fillOpacity: 0.18
       }).addTo(map);
 
-      // Live “polygon demo” (static scaffold)
       if(polygonDemo) map.removeLayer(polygonDemo);
       polygonDemo = L.polygon([
         [lat + 0.018, lon - 0.02],
@@ -1789,20 +1801,17 @@
       }).addTo(map);
 
       geoStateTag.textContent = `Geofence: ${Math.round(radiusMeters/1609.34*10)/10} mi + polygon`;
-      // Start telemetry if needed
       if(currentLifecycle === "enroute"){
         simulateTelemetry([lat, lon], score);
       }
     }
 
-    // Telemetry simulation: draws a short line path
     function simulateTelemetry(center, score){
       stopTelemetry();
 
       let progress = 0;
       const [lat, lon] = center;
 
-      // Build a small loop path
       const pts = [
         [lat, lon],
         [lat + 0.008, lon + 0.006],
@@ -1828,7 +1837,6 @@
         idx = Math.min(pts.length-1, idx + 1);
         telemetryLine.addLatLng(pts[idx]);
 
-        // “Entered geofence” simple demo trigger near end if elevated
         if(progress >= 63 && score >= 70){
           geoStateTag.textContent = "Geofence: alert • entered risk polygon";
         }
@@ -1846,7 +1854,6 @@
       }
     }
 
-    // Fetch risk score from your existing function
     async function getRisk(){
       const zip = zipInput.value.trim();
       if(!/^\d{5}$/.test(zip)){
@@ -1882,11 +1889,8 @@
         briefText.textContent = t24On ? (baseBrief + " (T-24: confirm hotel, route windows, and contingency pickup.)") : baseBrief;
 
         renderReasoning(data.reasoning || []);
-
-        // UPDATED: map uses zip-geocode function now
         await initMap(zip, currentScore);
 
-        // If in “created” lifecycle, show minimal “ready” state
         if(currentLifecycle === "idle"){
           setLifecycle("created");
         }
@@ -1903,7 +1907,6 @@
       }
     }
 
-    // Safety: escape for HTML injection in reasoning list
     function escapeHtml(str){
       return String(str)
         .replaceAll("&","&amp;")
@@ -1913,7 +1916,6 @@
         .replaceAll("'","&#039;");
     }
 
-    // ===== TSA WAIT TIMES (LIVE) =====
     async function getTsaWaitTimes() {
       const input = document.getElementById("tsaAirportInput");
       const out = document.getElementById("tsaOutput");
@@ -1935,7 +1937,6 @@
           return;
         }
 
-        // TSA payloads can vary; handle both {WaitTimes:[...]} and raw arrays safely
         const rows = data.WaitTimes || data.waitTimes || data || [];
         if (!Array.isArray(rows) || rows.length === 0) {
           out.innerHTML = `<p style='opacity:.85'>No confirmed wait times currently published for <strong>${ap}</strong>.</p>`;
@@ -1967,7 +1968,6 @@
       }
     }
 
-    // ===== Module 04: AI Tier Selector (simulated concierge logic) =====
     (function initTierSelector(){
       const tierParty = document.getElementById("tierParty");
       const tierLuggage = document.getElementById("tierLuggage");
@@ -2012,57 +2012,50 @@
         const sec = tierSecurity.value;
         const notes = (tierNotes.value || "").toLowerCase();
 
-        // Start baseline
         let jet = 10, bizz = 10, klub = 10;
 
-        // Party size
         if(party === 1){
           jet += 10; bizz += 6; klub += 2;
         } else if(party === 2){
           jet += 8; bizz += 8; klub += 4;
         } else if(party === 3){
-          jet += 2; bizz += 8; klub += 12;  // 3–4
-        } else { // 5+
+          jet += 2; bizz += 8; klub += 12;
+        } else {
           jet -= 4; bizz += 4; klub += 18;
         }
 
-        // Luggage
         if(luggage === "none"){
           jet += 8; bizz += 4; klub += 2;
         } else if(luggage === "carry"){
           jet += 6; bizz += 6; klub += 4;
         } else if(luggage === "checked"){
           jet += 2; bizz += 10; klub += 10;
-        } else { // heavy
+        } else {
           jet -= 2; bizz += 6; klub += 18;
         }
 
-        // Distance
         if(dist === "short"){
           jet += 10; bizz += 6; klub += 2;
         } else if(dist === "metro"){
           jet += 4; bizz += 10; klub += 8;
-        } else { // long
+        } else {
           jet -= 2; bizz += 8; klub += 16;
         }
 
-        // Tone
         if(tone === "efficient"){
           jet += 10; bizz += 6; klub += 2;
         } else if(tone === "client"){
           jet += 2; bizz += 14; klub += 8;
         } else if(tone === "family"){
           jet -= 2; bizz += 6; klub += 16;
-        } else { // vip
+        } else {
           jet += 0; bizz += 10; klub += 14;
         }
 
-        // Security posture
         if(sec === "aware"){
           jet += 1; bizz += 6; klub += 14;
         }
 
-        // Notes keyword nudges (optional)
         const hasKids = /kid|kids|child|children|stroller/.test(notes);
         const highVis = /high visibility|vip|press|stalker|threat|unsafe|security/.test(notes);
         const multiStop = /multi|stops|stop|itinerary|route/.test(notes);
@@ -2073,7 +2066,6 @@
         if(multiStop){ klub += 10; bizz += 4; jet -= 2; }
         if(tight){ jet += 6; bizz += 4; klub += 2; }
 
-        // Soft clamp
         jet = Math.max(0, jet);
         bizz = Math.max(0, bizz);
         klub = Math.max(0, klub);
@@ -2088,7 +2080,6 @@
       }
 
       function buildRationale(recoKey, ctx){
-        // Keep it short + investor-demo readable
         const lines = [];
 
         if(recoKey === "JET"){
@@ -2111,7 +2102,6 @@
           if(ctx.sec === "aware") lines.push("Elevated awareness aligns with a discreet security-driver posture.");
         }
 
-        // Add a tiny “alive” element (like your risk score demo vibe)
         const buffer = randInt(6, 18);
         lines.push(`Suggested buffer: +${buffer} minutes for curb-to-gate continuity.`);
 
@@ -2191,7 +2181,6 @@
       tierRecommendBtn.addEventListener("click", renderTierResult);
       tierResetBtn.addEventListener("click", resetTier);
 
-      // Optional: allow Enter key in notes to run
       tierNotes.addEventListener("keydown", (e) => {
         if(e.key === "Enter"){
           e.preventDefault();
@@ -2202,3 +2191,4 @@
   </script>
 </body>
 </html>
+```0
