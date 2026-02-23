@@ -531,6 +531,11 @@
     }
     .switch.on .knob{transform: translateX(20px);}
 
+    /* ===== UPDATED (TSA live UI) ===== */
+    #tsaOutput{
+      margin-top:14px;
+    }
+
     footer{
       padding:18px 0 10px;
       color: rgba(255,255,255,.45);
@@ -690,21 +695,21 @@
               </div>
             </div>
 
+            <!-- ===== UPDATED TSA CARD (LIVE INPUT + NO COMING SOON + NO PILLS) ===== -->
             <div class="card" id="tsaCard">
               <div class="card-inner">
                 <div class="kicker">Module 03 • Airport Intel</div>
                 <h2>TSA Wait Times</h2>
-                <p>PreCheck vs Standard screening visibility. UI shell ready for real data hooks.</p>
+                <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
 
-                <div class="pillrow">
-                  <div class="pill">Airport code input</div>
-                  <div class="pill">PreCheck vs Regular</div>
-                  <div class="pill">Time windows</div>
+                <div class="form" style="margin-top:14px;">
+                  <div class="row">
+                    <input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" />
+                    <button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Wait Times</button>
+                  </div>
                 </div>
 
-                <div class="soon">
-                  <strong>Coming soon:</strong> plug-in for live wait feeds + predictive congestion.
-                </div>
+                <div id="tsaOutput"></div>
 
                 <div class="actions" style="margin-top:12px;">
                   <button class="btn" type="button">Simulate TSA Window</button>
@@ -720,9 +725,9 @@
                 <p>Trip preferences → recommended tier. UI scaffold staged for concierge logic.</p>
 
                 <p style="margin-top:10px; color: rgba(255,255,255,.78); font-weight:700;">
-                GÖ JET | GÖ BIZZ | G-KLÜB
+                  GÖ JET | GÖ BIZZ | G-KLÜB
                 </p>
-              
+
                 <div class="pillrow">
                   <div class="pill">Luggage</div>
                   <div class="pill">Party size</div>
@@ -1082,6 +1087,60 @@
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+    }
+
+    // ===== TSA WAIT TIMES (LIVE) =====
+    async function getTsaWaitTimes() {
+      const input = document.getElementById("tsaAirportInput");
+      const out = document.getElementById("tsaOutput");
+      const ap = (input.value || "").trim().toUpperCase();
+
+      if (!/^[A-Z]{3}$/.test(ap)) {
+        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, RDU, JFK).</p>";
+        return;
+      }
+
+      out.innerHTML = "<p style='opacity:.8'>Fetching TSA wait times…</p>";
+
+      try {
+        const res = await fetch(`/.netlify/functions/tsa-wait?airport=${encodeURIComponent(ap)}`);
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          out.innerHTML = `<p style='opacity:.9;color:#ff6b6b'>${data.error || "No data returned."}</p>`;
+          return;
+        }
+
+        // TSA payloads can vary; handle both {WaitTimes:[...]} and raw arrays safely
+        const rows = data.WaitTimes || data.waitTimes || data || [];
+        if (!Array.isArray(rows) || rows.length === 0) {
+          out.innerHTML = `<p style='opacity:.85'>No confirmed wait times currently published for <strong>${ap}</strong>.</p>`;
+          return;
+        }
+
+        const top = rows.slice(0, 6).map(x => {
+          const checkpoint = x.Checkpoint || x.checkpoint || "Checkpoint";
+          const wait = x.WaitTime || x.waitTime || x.Wait || "N/A";
+          const category = x.Lane || x.lane || x.Type || "";
+          const time = x.Created || x.created || x.Time || "";
+          return `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="font-weight:700">${checkpoint} <span style="opacity:.7;font-weight:600">${category ? "• " + category : ""}</span></div>
+            <div style="opacity:.85">Wait: <strong>${wait}</strong> <span style="opacity:.6">${time ? "• " + time : ""}</span></div>
+          </div>`;
+        }).join("");
+
+        out.innerHTML = `
+          <div style="margin-top:14px">
+            <div style="opacity:.85;margin-bottom:8px">Confirmed wait times for <strong>${ap}</strong></div>
+            <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">
+              ${top}
+            </div>
+          </div>
+        `;
+
+      } catch (e) {
+        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Error retrieving TSA data. Try again.</p>";
+      }
     }
   </script>
 </body>
