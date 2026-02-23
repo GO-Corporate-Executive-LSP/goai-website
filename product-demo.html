@@ -752,7 +752,7 @@
                     </div>
 
                     <div class="soon" id="reasoningBox" style="margin-top:12px;">
-                      <strong>Reasoning blocks</strong><br/>
+                      <strong>Reasoning blocks</strong><br/><br>
                       Run “Analyze Risk” to populate structured factors.
                     </div>
                   </div>
@@ -770,31 +770,70 @@
             </div>
           </div>
 
-          <!-- RIGHT: Modules (2–4 shells) -->
+          <!-- RIGHT: Modules (2–4) -->
           <div style="display:grid; gap:18px;">
-            <div class="card" id="bookingCard">
-              <div class="card-inner">
-                <div class="kicker">Module 02 • Orchestration</div>
-                <h2>End-to-End Booking</h2>
-                <p>Lyft + Flights + Hotel orchestration. UI scaffold ready to plug in.</p>
+            <!-- ===== MODULE 02 (REPLACED WITH END-TO-END ORCHESTRATION DEMO) ===== -->
+            <section id="module-orchestration" style="margin-top:0;">
+              <div class="card" style="padding:18px;border-radius:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+                <div style="font-size:12px;letter-spacing:.12em;opacity:.7;">MODULE 02 • ORCHESTRATION</div>
+                <h2 style="margin:10px 0 6px;font-size:28px;line-height:1.15;">End-to-End Booking</h2>
+                <div style="opacity:.75;margin-bottom:14px;">Rideshare + Flights + Hotels orchestration. Demo scaffold returning realistic sample trip objects.</div>
 
-                <div class="pillrow">
-                  <div class="pill">Rideshare</div>
-                  <div class="pill">Flights</div>
-                  <div class="pill">Lodging</div>
+                <!-- Tabs -->
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                  <button class="pill active" data-tab="rides" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.06);color:#fff;cursor:pointer;">Rideshare</button>
+                  <button class="pill" data-tab="flights" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">Flights</button>
+                  <button class="pill" data-tab="hotels" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">Hotels</button>
+                  <button class="pill" data-tab="all" style="padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:transparent;color:#fff;cursor:pointer;opacity:.8;">All</button>
                 </div>
 
-                <div class="soon">
-                  <strong>Coming soon:</strong> route object → vendor calls → confirmations → trip timeline.
-                  This card is intentionally staged as an investor-facing surface.
+                <!-- Input -->
+                <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;margin:12px 0 12px;">
+                  <div style="grid-column:span 3;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">From (City / Airport)</label>
+                    <input id="e2eFrom" value="Charlotte (CLT)" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                  </div>
+                  <div style="grid-column:span 3;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">To (City / Airport)</label>
+                    <input id="e2eTo" value="New York (JFK)" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                  </div>
+                  <div style="grid-column:span 2;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Depart</label>
+                    <input id="e2eDepart" type="date" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                  </div>
+                  <div style="grid-column:span 2;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Return</label>
+                    <input id="e2eReturn" type="date" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                  </div>
+                  <div style="grid-column:span 1;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Pax</label>
+                    <input id="e2ePax" type="number" min="1" max="6" value="1" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;" />
+                  </div>
+                  <div style="grid-column:span 1;">
+                    <label style="display:block;font-size:12px;opacity:.7;margin-bottom:6px;">Cabin</label>
+                    <select id="e2eCabin" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.25);color:#fff;outline:none;">
+                      <option value="economy">Economy</option>
+                      <option value="premium_economy">Prem Econ</option>
+                      <option value="business">Business</option>
+                      <option value="first">First</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div class="actions" style="margin-top:12px;">
-                  <button class="btn" type="button">Simulate Booking Flow</button>
-                  <a class="btn" href="/get-access.html">Request access →</a>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
+                  <button id="btnSimulateE2E" style="padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;font-weight:600;">
+                    Simulate Booking Flow
+                  </button>
+                  <button id="btnCopyTripJSON" style="padding:12px 16px;border-radius:14px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#fff;cursor:pointer;opacity:.85;">
+                    Copy Trip Object JSON
+                  </button>
+                  <div id="e2eStatus" style="align-self:center;opacity:.75;font-size:13px;"></div>
                 </div>
+
+                <!-- Output -->
+                <div id="e2eOutput" style="margin-top:16px;display:grid;grid-template-columns:repeat(12,1fr);gap:12px;"></div>
               </div>
-            </div>
+            </section>
 
             <!-- ===== UPDATED TSA CARD (LIVE INPUT + NO COMING SOON + NO PILLS) ===== -->
             <div class="card" id="tsaCard">
@@ -897,7 +936,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -908,6 +946,639 @@
     </div>
   </div>
 
+  <!-- =========================
+    MODULE 02 • ORCHESTRATION (DEMO)
+    Script (Self-contained)
+  ========================= -->
+  <script>
+  (() => {
+    // ---------- Utilities ----------
+    const $ = (id) => document.getElementById(id);
+
+    function pad2(n){ return String(n).padStart(2,'0'); }
+    function isoDate(d){
+      return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+    }
+    function addDays(dateStr, days){
+      const d = new Date(dateStr + "T12:00:00");
+      d.setDate(d.getDate() + days);
+      return isoDate(d);
+    }
+    function addMinutesToISO(iso, minutes){
+      const d = new Date(iso);
+      d.setMinutes(d.getMinutes() + minutes);
+      return d.toISOString();
+    }
+    function hhmmFromDate(d){
+      return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+    }
+
+    // Deterministic PRNG (mulberry32) for stable "random" demo results per input
+    function hashString(str){
+      let h = 2166136261;
+      for (let i=0;i<str.length;i++){
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return h >>> 0;
+    }
+    function mulberry32(a){
+      return function(){
+        let t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      }
+    }
+    function randInt(rng, min, max){
+      return Math.floor(rng() * (max - min + 1)) + min;
+    }
+    function pick(rng, arr){ return arr[randInt(rng, 0, arr.length-1)]; }
+    function money(amount){ return new Intl.NumberFormat(undefined, { style:'currency', currency:'USD' }).format(amount); }
+
+    function token(prefix, rng){
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let out = prefix + "_";
+      for (let i=0;i<20;i++) out += chars[Math.floor(rng()*chars.length)];
+      return out;
+    }
+
+    function approxLatLngFor(place, rng){
+      const s = place.toLowerCase();
+      if (s.includes("charlotte") || s.includes("clt")) return { lat: 35.2271 + (rng()-0.5)*0.04, lng: -80.8431 + (rng()-0.5)*0.04 };
+      if (s.includes("new york") || s.includes("jfk") || s.includes("nyc")) return { lat: 40.6413 + (rng()-0.5)*0.04, lng: -73.7781 + (rng()-0.5)*0.04 };
+      if (s.includes("san francisco") || s.includes("sfo")) return { lat: 37.6213 + (rng()-0.5)*0.04, lng: -122.3790 + (rng()-0.5)*0.04 };
+      if (s.includes("los angeles") || s.includes("lax")) return { lat: 33.9416 + (rng()-0.5)*0.04, lng: -118.4085 + (rng()-0.5)*0.04 };
+      return { lat: 37.7749 + (rng()-0.5)*0.5, lng: -122.4194 + (rng()-0.5)*0.5 };
+    }
+
+    // ---------- Mock "vendor-shaped" data generators ----------
+    function buildTripObject(input, rng){
+      const now = Date.now();
+      const tripId = "trip_" + Math.floor(now/1000) + "_" + randInt(rng, 1000, 9999);
+
+      const departDate = input.depart;
+      const returnDate = input.returnDate;
+
+      const fromLL = approxLatLngFor(input.from, rng);
+      const toLL   = approxLatLngFor(input.to, rng);
+
+      // Dummy flight times (stable-ish but variable)
+      const departHour = randInt(rng, 6, 12);
+      const returnHour = randInt(rng, 14, 20);
+      const departMinute = pick(rng, [0, 15, 30, 45]);
+      const returnMinute = pick(rng, [0, 10, 20, 30, 40, 50]);
+
+      const flightDepartTimeLocal = `${pad2(departHour)}:${pad2(departMinute)}`;
+      const flightReturnTimeLocal = `${pad2(returnHour)}:${pad2(returnMinute)}`;
+
+      // Dummy scheduled ground pickup times: 90–150 min before flight out; 25–60 min after return lands
+      const outPickup = new Date(`${departDate}T${flightDepartTimeLocal}:00`);
+      outPickup.setMinutes(outPickup.getMinutes() - randInt(rng, 90, 150));
+      const pickupOutMs = outPickup.getTime();
+
+      const backPickup = new Date(`${returnDate}T${flightReturnTimeLocal}:00`);
+      backPickup.setMinutes(backPickup.getMinutes() + randInt(rng, 25, 60));
+      const pickupBackMs = backPickup.getTime();
+
+      return {
+        trip_id: tripId,
+        created_at_ms: now,
+        mode: "demo",
+        traveler: { pax: input.pax, cabin_class: input.cabin },
+        route: {
+          from: { label: input.from, ...fromLL },
+          to:   { label: input.to,   ...toLL },
+          depart_date: departDate,
+          return_date: returnDate
+        },
+        legs: [
+          {
+            leg_id: "leg_ground_out",
+            type: "ground",
+            provider: "rideshare_aggregator",
+            dispatch_type: "scheduled",
+            pickup_time_ms: pickupOutMs,
+            origin: { label: `${input.from} • Pickup`, ...fromLL },
+            destination: { label: `${input.from} • Airport`, ...fromLL },
+          },
+          {
+            leg_id: "leg_flight_out",
+            type: "flight",
+            provider: "duffel_air",
+            slices: [{
+              origin: input.from.includes("(") ? input.from.split("(")[1].replace(")","").trim() : "CLT",
+              destination: input.to.includes("(") ? input.to.split("(")[1].replace(")","").trim() : "JFK",
+              departure_date: departDate,
+              departure_time: { from: flightDepartTimeLocal }
+            }],
+          },
+          {
+            leg_id: "leg_hotel",
+            type: "lodging",
+            provider: "duffel_stays",
+            check_in_date: departDate,
+            check_out_date: returnDate,
+            rooms: 1,
+            guests: [{ type:"adult" }]
+          },
+          {
+            leg_id: "leg_flight_back",
+            type: "flight",
+            provider: "duffel_air",
+            slices: [{
+              origin: input.to.includes("(") ? input.to.split("(")[1].replace(")","").trim() : "JFK",
+              destination: input.from.includes("(") ? input.from.split("(")[1].replace(")","").trim() : "CLT",
+              departure_date: returnDate,
+              departure_time: { from: flightReturnTimeLocal }
+            }],
+          },
+          {
+            leg_id: "leg_ground_back",
+            type: "ground",
+            provider: "rideshare_aggregator",
+            dispatch_type: "scheduled",
+            pickup_time_ms: pickupBackMs,
+            origin: { label: `${input.to} • Airport`, ...toLL },
+            destination: { label: `${input.to} • Dropoff`, ...toLL },
+          }
+        ],
+        state: {
+          lifecycle: "created → planned → quoted_demo",
+          can_book: false,
+          note: "Demo mode returns vendor-shaped sample objects only."
+        }
+      };
+    }
+
+    function mockRideshareEstimate(leg, rng){
+      // Generic rideshare: ties to AI Tier Selector (not vendor names)
+      const tiers = [
+        { tier_id:"standard", label:"Standard", multiplier: 1.0,  etaMin:[6,14] },
+        { tier_id:"executive", label:"Executive", multiplier: 1.6, etaMin:[5,12] },
+        { tier_id:"secure", label:"Secure", multiplier: 2.3, etaMin:[8,18] }
+      ];
+
+      const base = randInt(rng, 18, 55);
+      const surge = 1 + (rng() * 0.5);
+      const miles = Math.max(2, Math.round((rng()*18 + 3) * 10) / 10);
+      const durationSec = randInt(rng, 600, 2400);
+
+      // Dummy pickup window around scheduled time
+      const scheduledISO = new Date(leg.pickup_time_ms).toISOString();
+      const windowStart = addMinutesToISO(scheduledISO, -10);
+      const windowEnd   = addMinutesToISO(scheduledISO, +10);
+
+      const estimates = tiers.map((t) => {
+        const amountCents = Math.round(base * t.multiplier * surge * 100);
+        const eta = randInt(rng, t.etaMin[0]*60, t.etaMin[1]*60);
+        return {
+          tier_id: t.tier_id,
+          tier_label: t.label,
+          upfront_cost_cents: amountCents,
+          currency: "USD",
+          pickup_eta_seconds: eta,
+          quote_token: token("ride_quote", rng),
+          distance_miles: miles,
+          duration_seconds: durationSec
+        };
+      });
+
+      return {
+        endpoint_shape: "RIDESHARE/QUOTE (DEMO)",
+        start_lat: leg.origin.lat,
+        start_lng: leg.origin.lng,
+        end_lat: leg.destination.lat,
+        end_lng: leg.destination.lng,
+        scheduled_pickup_time_ms: leg.pickup_time_ms,
+        pickup_window_iso: { start: windowStart, end: windowEnd },
+        estimates,
+        valid_for_seconds: 120
+      };
+    }
+
+    function mockDuffelOfferRequest(trip, rng){
+      // Duffel: POST /air/offer_requests returns { data: { id, slices, offers, ... } }
+      const carriers = [
+        { name:"American Airlines", iata:"AA" },
+        { name:"Delta Air Lines", iata:"DL" },
+        { name:"Southwest Airlines", iata:"WN" }
+      ];
+
+      const cabin = trip.traveler.cabin_class;
+      const pax = trip.traveler.pax;
+
+      const outSlice = trip.legs.find(l => l.leg_id === "leg_flight_out").slices[0];
+      const backSlice = trip.legs.find(l => l.leg_id === "leg_flight_back").slices[0];
+
+      const offerRequestId = "orq_" + randInt(rng, 10000000, 99999999);
+      const createdAt = new Date().toISOString();
+
+      function makeOneWayOffer(slice){
+        const c = pick(rng, carriers);
+        const base = randInt(rng, 120, 540) *
+          (cabin === "economy" ? 1 : cabin === "premium_economy" ? 1.35 : cabin === "business" ? 2.2 : 2.9);
+        const total = Math.round(base * pax * (1 + rng()*0.18) * 100) / 100;
+
+        // derive times from trip slice time + randomized duration
+        const dep = new Date(`${slice.departure_date}T${slice.departure_time.from}:00`);
+        const durMin = randInt(rng, 95, 175);
+        const arr = new Date(dep.getTime() + durMin*60*1000);
+
+        const flightNo = randInt(rng, 200, 4999);
+
+        return {
+          id: "off_" + randInt(rng, 10000000, 99999999),
+          live_mode: false,
+          total_currency: "USD",
+          total_amount: total.toFixed(2),
+          expires_at: new Date(Date.now() + 18*60*1000).toISOString(),
+          slices: [{
+            duration: `PT${Math.floor(durMin/60)}H${pad2(durMin%60)}M`,
+            segments: [{
+              id: "seg_" + randInt(rng, 10000000, 99999999),
+              departing_at: dep.toISOString().slice(0,19),
+              arriving_at: arr.toISOString().slice(0,19),
+              operating_carrier: {
+                name: c.name,
+                iata_code: c.iata,
+                conditions_of_carriage_url: "https://example.com/conditions"
+              },
+              operating_carrier_flight_number: String(flightNo),
+              cabin_class: cabin
+            }]
+          }],
+          owner: { name: c.name, iata_code: c.iata }
+        };
+      }
+
+      // Bundle both directions into one "roundtrip-ish" offer
+      const offers = Array.from({length: randInt(rng, 2, 4)}).map(() => {
+        const out = makeOneWayOffer(outSlice);
+        const back = makeOneWayOffer(backSlice);
+        const total = (parseFloat(out.total_amount) + parseFloat(back.total_amount)).toFixed(2);
+        return {
+          id: "off_" + randInt(rng, 10000000, 99999999),
+          live_mode: false,
+          total_currency: "USD",
+          total_amount: total,
+          expires_at: new Date(Date.now() + 18*60*1000).toISOString(),
+          slices: [ out.slices[0], back.slices[0] ],
+          owner: out.owner
+        };
+      });
+
+      return {
+        endpoint_shape: "POST /air/offer_requests",
+        data: {
+          id: offerRequestId,
+          created_at: createdAt,
+          live_mode: false,
+          cabin_class: cabin,
+          slices: [outSlice, backSlice],
+          passengers: Array.from({length: pax}).map((_,i)=>({ id:`pas_${i}`, type:"adult" })),
+          offers
+        }
+      };
+    }
+
+    function mockDuffelHotelsSearch(trip, rng){
+      // Duffel stays-shaped: { data: { results: [...] } }
+      const neighborhoods = ["Uptown", "Midtown", "Financial District", "South End", "Downtown"];
+      const hotelBrands = [
+        { brand:"Hilton", variants:["Hilton", "Hilton Garden Inn", "Conrad"] },
+        { brand:"Westin", variants:["The Westin", "Westin Suites"] },
+        { brand:"JW Marriott", variants:["JW Marriott", "JW Marriott Grand"] }
+      ];
+
+      const checkIn = trip.route.depart_date;
+      const checkOut = trip.route.return_date;
+
+      const nights = Math.max(1, Math.round((new Date(checkOut) - new Date(checkIn)) / (1000*60*60*24)));
+      const resultCount = randInt(rng, 4, 7);
+
+      const results = Array.from({length: resultCount}).map(() => {
+        const b = pick(rng, hotelBrands);
+        const name = pick(rng, b.variants) + " " + pick(rng, ["Downtown", "City Center", "Uptown", "Riverside", "Park"]);
+
+        const nightly = randInt(rng, 179, 520);
+        const total = nightly * nights;
+
+        return {
+          id: "hrr_" + randInt(rng, 10000000, 99999999),
+          rooms: 1,
+          check_in_date: checkIn,
+          check_out_date: checkOut,
+          expires_at: new Date(Date.now() + randInt(rng, 10, 40)*60*1000).toISOString(),
+          cheapest_rate_currency: "USD",
+          cheapest_rate_total_amount: total.toFixed(2),
+          accommodation: {
+            id: "acc_" + randInt(rng, 10000000, 99999999),
+            name,
+            brand: b.brand,
+            rating: randInt(rng, 3, 5),
+            review_score: Math.round((7.9 + rng()*1.8)*10)/10,
+            location: {
+              address: {
+                city_name: trip.route.to.label.replace(/\(.*?\)/g,"").trim(),
+                line_one: `${randInt(rng, 10, 999)} ${pick(rng, ["Main St","Market St","Tryon St","Broadway","Park Ave"])}`,
+                region: "—",
+                country_code: "US",
+                postal_code: String(randInt(rng, 10000, 99999))
+              }
+            },
+            highlight: `${pick(rng, neighborhoods)} • ${pick(rng, ["Quiet", "Secure", "Walkable", "Business-ready", "Late check-in"])}`
+          }
+        };
+      }).sort((a,b)=>parseFloat(a.cheapest_rate_total_amount)-parseFloat(b.cheapest_rate_total_amount));
+
+      return {
+        endpoint_shape: "POST /stays/search",
+        data: {
+          created_at: new Date().toISOString(),
+          results
+        }
+      };
+    }
+
+    // ---------- Rendering ----------
+    function card(title, subtitle, html){
+      return `
+        <div style="grid-column:span 12;padding:14px;border-radius:16px;background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;">
+            <div>
+              <div style="font-weight:700;font-size:16px;">${title}</div>
+              ${subtitle ? `<div style="opacity:.70;font-size:13px;margin-top:2px;">${subtitle}</div>` : ``}
+            </div>
+          </div>
+          <div style="margin-top:10px;opacity:.95;">${html}</div>
+        </div>
+      `;
+    }
+
+    function pre(obj){
+      const json = JSON.stringify(obj, null, 2)
+        .replace(/[<>&]/g, s => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[s]));
+      return `<pre style="margin:0;padding:12px;border-radius:14px;overflow:auto;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.35;">${json}</pre>`;
+    }
+
+    function renderRides(rideOut, rideBack){
+      function summarize(est){
+        const scheduled = new Date(est.scheduled_pickup_time_ms);
+        const scheduledHHMM = hhmmFromDate(scheduled);
+        return `
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <div><b>Scheduled</b>: ${scheduledHHMM}</div>
+            <div><b>Window</b>: ${new Date(est.pickup_window_iso.start).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}
+              – ${new Date(est.pickup_window_iso.end).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+            <div><b>Valid</b>: ${est.valid_for_seconds}s</div>
+          </div>
+          <div style="margin-top:10px;display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
+            ${est.estimates.map(x => `
+              <div style="grid-column:span 4;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+                <div style="font-weight:800;">${x.tier_label}</div>
+                <div style="opacity:.8;margin-top:4px;">Upfront: <b>${money(x.upfront_cost_cents/100)}</b></div>
+                <div style="opacity:.75;font-size:12px;margin-top:2px;">ETA ~ ${Math.round(x.pickup_eta_seconds/60)} min • ${x.distance_miles} mi</div>
+                <div style="opacity:.65;font-size:11px;margin-top:6px;">quote_token: <span style="font-family:monospace;">${x.quote_token}</span></div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      return `
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:12px;">
+          <div style="grid-column:span 12;">
+            <div style="opacity:.75;margin-bottom:8px;">Generic rideshare quotes (demo). Tiers map to your AI selector (Standard / Executive / Secure).</div>
+          </div>
+          <div style="grid-column:span 12;">
+            <div style="font-weight:700;margin-bottom:6px;">Outbound</div>
+            ${summarize(rideOut)}
+          </div>
+          <div style="grid-column:span 12;">
+            <div style="font-weight:700;margin:14px 0 6px;">Return</div>
+            ${summarize(rideBack)}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFlights(duffelAir){
+      const offers = duffelAir.data.offers || [];
+      const top = offers.slice(0, 3);
+      return `
+        <div style="opacity:.75;margin-bottom:10px;">Duffel-shaped offer request (quotes only; no Orders).</div>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
+          ${top.map(o => {
+            const owner = o.owner?.name || "Carrier";
+            const exp = new Date(o.expires_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+            return `
+              <div style="grid-column:span 4;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+                <div style="font-weight:800;">${money(parseFloat(o.total_amount))}</div>
+                <div style="opacity:.8;margin-top:4px;">${owner}</div>
+                <div style="opacity:.7;font-size:12px;margin-top:4px;">Expires ~ ${exp}</div>
+                <div style="opacity:.65;font-size:11px;margin-top:6px;">offer_id: <span style="font-family:monospace;">${o.id}</span></div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <div style="margin-top:12px;">${pre({ offer_request_id: duffelAir.data.id, cabin_class: duffelAir.data.cabin_class, slice_count: duffelAir.data.slices.length, offer_count: offers.length })}</div>
+      `;
+    }
+
+    function renderHotels(duffelHotels){
+      const results = duffelHotels.data.results || [];
+      const top = results.slice(0, 4);
+      return `
+        <div style="opacity:.75;margin-bottom:10px;">Duffel Stays-shaped search (quotes only; no Booking).</div>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:10px;">
+          ${top.map(r => {
+            const acc = r.accommodation || {};
+            const total = money(parseFloat(r.cheapest_rate_total_amount));
+            const exp = new Date(r.expires_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+            return `
+              <div style="grid-column:span 6;padding:10px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
+                <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                  <div style="font-weight:800;">${acc.name || "Hotel"}</div>
+                  <div style="font-weight:800;">${total}</div>
+                </div>
+                <div style="opacity:.8;margin-top:4px;">${acc.brand ? `<b>${acc.brand}</b> • ` : ""}${acc.highlight || ""}</div>
+                <div style="opacity:.7;font-size:12px;margin-top:4px;">Rating ${acc.rating || "—"} • Review ${acc.review_score || "—"}</div>
+                <div style="opacity:.65;font-size:11px;margin-top:6px;">result_id: <span style="font-family:monospace;">${r.id}</span> • expires ~ ${exp}</div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderTripSummary(trip){
+      const depart = trip.route.depart_date;
+      const ret = trip.route.return_date;
+      return `
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div><b>Trip</b>: ${trip.route.from.label} → ${trip.route.to.label}</div>
+          <div><b>Dates</b>: ${depart} → ${ret}</div>
+          <div><b>Pax</b>: ${trip.traveler.pax} • <b>Cabin</b>: ${trip.traveler.cabin_class}</div>
+          <div><b>Mode</b>: ${trip.mode.toUpperCase()} • <b>Booking</b>: disabled</div>
+        </div>
+        <div style="margin-top:10px;">${pre(trip)}</div>
+      `;
+    }
+
+    // ---------- Interaction / State ----------
+    let lastTripObject = null;
+    let lastBundle = null;
+    let activeTab = "rides";
+
+    function setTab(tab){
+      activeTab = tab;
+      document.querySelectorAll("#module-orchestration .pill").forEach(btn => {
+        const isActive = btn.getAttribute("data-tab") === tab;
+        btn.classList.toggle("active", isActive);
+        btn.style.background = isActive ? "rgba(255,255,255,0.06)" : "transparent";
+        btn.style.opacity = isActive ? "1" : ".8";
+      });
+      paint();
+    }
+
+    function getInput(){
+      const today = isoDate(new Date());
+      const depart = $("e2eDepart").value || addDays(today, 7);
+      const returnDate = $("e2eReturn").value || addDays(depart, 2);
+
+      return {
+        from: $("e2eFrom").value.trim(),
+        to: $("e2eTo").value.trim(),
+        depart,
+        returnDate,
+        pax: Math.max(1, Math.min(6, parseInt($("e2ePax").value || "1", 10))),
+        cabin: $("e2eCabin").value
+      };
+    }
+
+    function simulate(){
+      const input = getInput();
+      const seed = hashString(`${input.from}|${input.to}|${input.depart}|${input.returnDate}|${input.pax}|${input.cabin}`);
+      const rng = mulberry32(seed);
+
+      $("e2eStatus").textContent = "Generating demo trip objects…";
+
+      const trip = buildTripObject(input, rng);
+
+      // Generic rideshare estimates for the two ground legs (round trip)
+      const legOut = trip.legs.find(l => l.leg_id === "leg_ground_out");
+      const legBack = trip.legs.find(l => l.leg_id === "leg_ground_back");
+
+      const rideOut = mockRideshareEstimate(legOut, rng);
+      const rideBack = mockRideshareEstimate(legBack, rng);
+
+      // Flights + hotels
+      const duffelAir = mockDuffelOfferRequest(trip, rng);
+      const duffelHotels = mockDuffelHotelsSearch(trip, rng);
+
+      const bundle = {
+        trip_object: trip,
+        quote_run: {
+          quote_run_id: "qr_" + randInt(rng, 1000000, 9999999),
+          created_at: new Date().toISOString(),
+          mode: "demo",
+          can_book: false,
+          notes: [
+            "Rideshare: generic tiers mapped to AI preference selector (no vendor names).",
+            "Flights: Duffel-shaped offer_request demo data (no orders).",
+            "Hotels: Duffel stays-shaped search demo data (no bookings)."
+          ],
+          expires_soonest_at: new Date(Math.min(
+            Date.now() + 120*1000,
+            new Date(duffelAir.data.offers[0]?.expires_at || Date.now() + 18*60*1000).getTime(),
+            new Date(duffelHotels.data.results[0]?.expires_at || Date.now() + 18*60*1000).getTime()
+          )).toISOString()
+        },
+        vendors: {
+          rideshare: { outbound: rideOut, return: rideBack },
+          duffel_air: duffelAir,
+          duffel_hotels: duffelHotels
+        }
+      };
+
+      lastTripObject = trip;
+      lastBundle = bundle;
+
+      $("e2eStatus").textContent = "Demo objects ready (quotes simulated; booking disabled).";
+      paint();
+    }
+
+    function paint(){
+      const out = $("e2eOutput");
+      if (!out) return;
+
+      if (!lastBundle){
+        out.innerHTML = card(
+          "Coming soon: route object → vendor calls → confirmations → trip timeline.",
+          "This card is intentionally staged as an investor-facing surface.",
+          `<div style="opacity:.75;">Click <b>Simulate Booking Flow</b> to generate end-to-end demo objects.</div>`
+        );
+        return;
+      }
+
+      const trip = lastBundle.trip_object;
+      const rides = lastBundle.vendors.rideshare;
+      const air = lastBundle.vendors.duffel_air;
+      const hotels = lastBundle.vendors.duffel_hotels;
+
+      const blocks = [];
+      blocks.push(card("Trip Object (Platform)", "Deterministic demo object; drives all downstream quotes.", renderTripSummary(trip)));
+
+      if (activeTab === "rides" || activeTab === "all"){
+        blocks.push(card("Rideshare Quotes (Generic)", "Tiers map to your AI selector; includes scheduled windows + quote tokens.", renderRides(rides.outbound, rides.return)));
+      }
+      if (activeTab === "flights" || activeTab === "all"){
+        blocks.push(card("Flight Quotes", "American • Delta • Southwest included in carrier pool (demo).", renderFlights(air)));
+      }
+      if (activeTab === "hotels" || activeTab === "all"){
+        blocks.push(card("Hotel Quotes", "Hilton • Westin • JW Marriott included in hotel pool (demo).", renderHotels(hotels)));
+      }
+
+      blocks.push(card("Unified Quote Bundle (Internal)", "What your backend would store for a quote run.", pre(lastBundle.quote_run)));
+      out.innerHTML = blocks.join("");
+    }
+
+    async function copyTripJSON(){
+      if (!lastTripObject){
+        $("e2eStatus").textContent = "Run Simulate Booking Flow first.";
+        return;
+      }
+      const text = JSON.stringify(lastTripObject, null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        $("e2eStatus").textContent = "Trip Object JSON copied to clipboard.";
+      } catch {
+        $("e2eStatus").textContent = "Copy failed (clipboard permissions).";
+      }
+    }
+
+    // ---------- Wire up ----------
+    const today = isoDate(new Date());
+    if ($("e2eDepart") && $("e2eReturn")){
+      $("e2eDepart").value = addDays(today, 7);
+      $("e2eReturn").value = addDays(addDays(today, 7), 2);
+    }
+
+    $("btnSimulateE2E")?.addEventListener("click", simulate);
+    $("btnCopyTripJSON")?.addEventListener("click", copyTripJSON);
+
+    document.querySelectorAll("#module-orchestration .pill").forEach(btn => {
+      btn.addEventListener("click", () => setTab(btn.getAttribute("data-tab")));
+    });
+
+    setTab("rides");
+  })();
+  </script>
+
+  <!-- =========================
+    EXISTING SCRIPT (SENTINEL / TSA / TIER) — UNCHANGED
+  ========================= -->
   <script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -1493,7 +2164,7 @@
             </div>
 
             <div style="color: rgba(255,255,255,.76); font-size:13px; line-height:1.6;">
-              <b>Why:</b><br/>
+              <b>Why:</b><br/><br>
               ${rationale.map(x => `• ${escapeHtml(x)}`).join("<br/>")}
             </div>
 
