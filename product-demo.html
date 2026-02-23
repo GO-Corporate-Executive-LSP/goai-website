@@ -1,351 +1,1085 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>GÖ.AI | Product Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <title>GÖ.AI | Product Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <!-- Leaflet (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<style>
+  <style>
+    :root{
+      --bg0:#07090d;
+      --bg1:#0b0f14;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.045);
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.66);
+      --muted2:rgba(255,255,255,.52);
+      --gold:#d3ad3a;
+      --gold2:#f1d06a;
+      --blue:#9ad7ff;
+      --shadow: 0 30px 80px rgba(0,0,0,.55);
+      --r:18px;
+    }
 
-body {
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background: radial-gradient(circle at top, #0f1720 0%, #0b0f14 60%);
-  color:#f5f5f5;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  background:rgba(15,20,27,0.6);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 15% 15%, rgba(60,110,180,.20), transparent 55%),
+        radial-gradient(900px 600px at 80% 20%, rgba(210,160,40,.18), transparent 55%),
+        radial-gradient(1200px 900px at 50% 90%, rgba(255,255,255,.05), transparent 60%),
+        var(--bg0);
+      overflow-x:hidden;
+    }
 
-nav a {
-  color:#fff;
-  text-decoration:none;
-  margin-left:20px;
-  opacity:.8;
-  transition:.2s ease;
-}
-nav a:hover { opacity:1; }
+    /* Cinematic “drift” glow */
+    .bg-drift{
+      position:fixed; inset:-40vh -40vw;
+      pointer-events:none;
+      filter: blur(40px);
+      opacity:.55;
+      background:
+        radial-gradient(600px 420px at 20% 30%, rgba(120,170,255,.20), transparent 60%),
+        radial-gradient(680px 460px at 75% 25%, rgba(255,200,80,.18), transparent 62%),
+        radial-gradient(720px 520px at 55% 70%, rgba(255,255,255,.06), transparent 65%);
+      animation: drift 14s ease-in-out infinite;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes drift{
+      0%{transform: translate3d(-1.5%, -1%, 0) scale(1.02)}
+      50%{transform: translate3d(1.8%, 1.2%, 0) scale(1.04)}
+      100%{transform: translate3d(-1.5%, -1%, 0) scale(1.02)}
+    }
 
-.hero {
-  padding:80px 40px 40px;
-  text-align:center;
-}
+    /* Top nav */
+    nav{
+      position:sticky; top:0; z-index:60;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 22px;
+      background: linear-gradient(to bottom, rgba(7,9,13,.72), rgba(7,9,13,.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing:.08em;
+      font-weight:650;
+      color:rgba(255,255,255,.92);
+      user-select:none;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--gold);
+      box-shadow:0 0 22px rgba(211,173,58,.35);
+    }
+    .navlinks{
+      display:flex; gap:14px; align-items:center;
+      font-size:14px;
+      color:rgba(255,255,255,.72);
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .navlinks a{
+      color:inherit;
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:10px;
+      transition: background .15s ease, color .15s ease, transform .15s ease;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      transform: translateY(-1px);
+    }
+    .navlinks a.active{
+      color: rgba(255,255,255,.95);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+    }
 
-.hero h1 {
-  font-size:40px;
-  letter-spacing:.5px;
-}
+    /* Executive dashboard frame */
+    .wrap{max-width:1220px;margin:0 auto;padding:0 18px 60px; position:relative;}
+    .dashboard-frame{
+      margin:26px auto 0;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .dashboard-frame::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(520px 320px at 18% 15%, rgba(211,173,58,.10), transparent 60%),
+        radial-gradient(600px 360px at 85% 5%, rgba(120,170,255,.10), transparent 58%),
+        radial-gradient(700px 420px at 55% 85%, rgba(255,255,255,.06), transparent 62%);
+      opacity:.95;
+      pointer-events:none;
+      mix-blend-mode: screen;
+    }
 
-.dashboard-frame {
-  max-width:1500px;
-  margin:auto;
-  padding:40px;
-}
+    /* Dark glass overlay */
+    .glass{
+      position:relative;
+      padding:22px;
+      background: rgba(0,0,0,.16);
+      backdrop-filter: blur(10px);
+    }
 
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
-  gap:40px;
-}
+    /* Hero */
+    .hero{
+      padding:40px 14px 8px;
+      text-align:center;
+      position:relative;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+      text-shadow: 0 20px 70px rgba(0,0,0,.55);
+      opacity:0;
+      transform: translateY(10px);
+      animation: enter .9s cubic-bezier(.2,.8,.2,1) .05s forwards;
+    }
+    .sub{
+      margin:0 auto 10px;
+      max-width:860px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.65;
+      opacity:0;
+      transform: translateY(10px);
+      animation: enter .9s cubic-bezier(.2,.8,.2,1) .14s forwards;
+    }
+    @keyframes enter{to{opacity:1;transform:translateY(0)}}
 
-.card {
-  background:rgba(18,24,33,0.65);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(255,255,255,0.05);
-  padding:30px;
-  border-radius:18px;
-  position:relative;
-  transition:all .35s ease;
-  overflow:hidden;
-}
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:18px;
+      align-items:start;
+      padding: 10px 14px 16px;
+      opacity:0;
+      transform: translateY(10px);
+      animation: enter .9s cubic-bezier(.2,.8,.2,1) .20s forwards;
+    }
 
-.card:hover {
-  border-color:#c6a94c;
-  box-shadow:0 0 40px rgba(198,169,76,.2);
-  transform:translateY(-6px);
-}
+    @media (max-width: 980px){
+      h1{font-size:36px}
+      .grid{grid-template-columns:1fr;}
+    }
 
-.card h2 { margin-top:0; }
+    /* Card (with subtle hover glow + micro animation) */
+    .card{
+      position:relative;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
+      overflow:hidden;
+      transform: translateZ(0);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .card::after{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(520px 320px at var(--mx, 50%) var(--my, 50%), rgba(154,215,255,.12), transparent 60%),
+        radial-gradient(520px 320px at calc(var(--mx, 50%) + 10%) calc(var(--my, 50%) - 10%), rgba(211,173,58,.10), transparent 62%);
+      opacity:0;
+      transition: opacity .22s ease;
+      pointer-events:none;
+      filter: blur(10px);
+      mix-blend-mode: screen;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+    }
+    .card:hover::after{opacity:1}
 
-input, select {
-  width:100%;
-  padding:12px;
-  border-radius:8px;
-  border:none;
-  margin-bottom:15px;
-  font-size:16px;
-}
+    .card-inner{position:relative; padding:18px;}
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.12);
+      color: rgba(255,255,255,.72);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
 
-button {
-  padding:12px 20px;
-  border-radius:8px;
-  border:none;
-  background:linear-gradient(90deg,#c6a94c,#e8d48a);
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s ease;
-}
+    .title-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:6px;
+    }
+    h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.01em;
+      color: rgba(255,255,255,.92);
+    }
+    p{
+      margin:0;
+      color: var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
 
-button:hover {
-  transform:translateY(-2px);
-}
+    /* Form controls */
+    .form{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 720px){
+      .row{grid-template-columns:1fr;}
+    }
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.92);
+      outline:none;
+      font-size:14px;
+      transition: border-color .15s ease, background .15s ease, transform .12s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(154,215,255,.30);
+      background: rgba(0,0,0,.26);
+    }
+    input::placeholder, textarea::placeholder{color: rgba(255,255,255,.42);}
 
-.lifecycle-buttons {
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
+    /* Buttons */
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top:2px;
+    }
+    button, .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      font-weight:650;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, filter .12s ease;
+      user-select:none;
+    }
+    button:hover, .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+      filter: saturate(1.05);
+    }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(241,208,106,.95), rgba(211,173,58,.95));
+      color: rgba(0,0,0,.88);
+      border-color: rgba(241,208,106,.35);
+      box-shadow: 0 16px 50px rgba(211,173,58,.22);
+    }
 
-.lifecycle-buttons button {
-  flex:1;
-  background:#1f2630;
-  color:#fff;
-  font-weight:500;
-}
+    /* Module “coming soon” */
+    .soon{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.14);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.72);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .soon strong{color: rgba(255,255,255,.90)}
+    .pillrow{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
+    }
+    .pill{
+      font-size:12px;
+      color: rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding:6px 10px;
+      border-radius:999px;
+    }
 
-.lifecycle-buttons button.active {
-  background:#c6a94c;
-  color:#000;
-}
+    /* Sentinel UI */
+    .sentinel-grid{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:14px;
+      margin-top:14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .sentinel-grid{grid-template-columns:1fr;}
+    }
 
-.dial {
-  width:200px;
-  height:200px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:20px auto;
-  font-size:36px;
-  font-weight:bold;
-  transition:all .5s ease;
-}
+    .panel{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel-h{
+      padding:12px 12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .panel-h .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.62);
+    }
+    .panel-b{padding:12px;}
 
-#map {
-  height:300px;
-  border-radius:14px;
-  margin-top:20px;
-}
+    /* Risk dial */
+    .dialWrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px;
+    }
+    .dial{
+      width:130px;height:130px;border-radius:999px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,0,0,.35) 0 58%, transparent 59%),
+        conic-gradient(var(--dialColor, #4caf50) 0 var(--dialPct, 0%), rgba(255,255,255,.10) var(--dialPct, 0%) 100%);
+      box-shadow: 0 0 42px rgba(0,0,0,.55);
+      transition: filter .25s ease, transform .25s ease;
+    }
+    .dial::after{
+      content:"";
+      position:absolute; inset:-18px;
+      border-radius:999px;
+      background: radial-gradient(120px 120px at 50% 50%, rgba(154,215,255,.10), transparent 60%),
+                  radial-gradient(120px 120px at 50% 50%, rgba(211,173,58,.10), transparent 62%);
+      filter: blur(10px);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .dialVal{
+      font-size:34px;
+      font-weight:800;
+      color: rgba(255,255,255,.92);
+      text-shadow: 0 12px 40px rgba(0,0,0,.6);
+    }
+    .dialMeta{
+      flex:1;
+      display:grid;
+      gap:8px;
+      align-content:start;
+    }
+    .tier{
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .brief{
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .facts{
+      display:grid;
+      gap:6px;
+      margin-top:2px;
+    }
+    .fact{
+      font-size:12px;
+      color: rgba(255,255,255,.62);
+    }
+    .fact b{color: rgba(255,255,255,.86)}
 
-.small {
-  font-size:14px;
-  opacity:.85;
-  margin-top:10px;
-}
+    /* Map */
+    #map{
+      width:100%;
+      height:320px;
+      border-radius:0 0 16px 16px;
+    }
+    .mapWrap{
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
 
-.placeholder-badge {
-  position:absolute;
-  top:20px;
-  right:20px;
-  font-size:11px;
-  background:#1f2630;
-  padding:6px 12px;
-  border-radius:20px;
-  opacity:.6;
-  letter-spacing:.5px;
-}
+    /* Leaflet control rounding */
+    .leaflet-control-zoom a{
+      border-radius:10px !important;
+      overflow:hidden;
+    }
 
-.fade-in {
-  animation:fadeIn .6s ease forwards;
-  opacity:0;
-}
+    /* Telemetry */
+    .telemetry{
+      display:grid;
+      gap:10px;
+    }
+    .track{
+      height:10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(154,215,255,.9), rgba(241,208,106,.9));
+      transition: width .25s ease;
+    }
+    .telemetryRow{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      color: rgba(255,255,255,.70);
+      font-size:12px;
+    }
+    .telemetryRow .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
 
-@keyframes fadeIn {
-  to { opacity:1; }
-}
+    /* Lifecycle buttons */
+    .lifecycle{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;
+    }
+    .lifeBtn{
+      padding:9px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.86);
+      font-weight:700;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .lifeBtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14);}
+    .lifeBtn.active{
+      background: rgba(241,208,106,.14);
+      border-color: rgba(241,208,106,.26);
+      color: rgba(255,255,255,.92);
+    }
 
-</style>
+    /* T-24 briefing toggle */
+    .toggleRow{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .toggleRow .muted{color: rgba(255,255,255,.62); font-size:12px;}
+    .switch{
+      position:relative; width:46px; height:26px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      cursor:pointer;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .knob{
+      position:absolute; top:3px; left:3px;
+      width:20px; height:20px; border-radius:999px;
+      background: rgba(255,255,255,.85);
+      transition: transform .15s ease;
+    }
+    .switch.on{
+      background: rgba(241,208,106,.22);
+      border-color: rgba(241,208,106,.35);
+    }
+    .switch.on .knob{transform: translateX(20px);}
+
+    footer{
+      padding:18px 0 10px;
+      color: rgba(255,255,255,.45);
+      font-size:12px;
+      text-align:center;
+    }
+    footer a{color: rgba(255,255,255,.72); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18)}
+    footer a:hover{border-bottom-color: rgba(241,208,106,.45); color: rgba(255,255,255,.92)}
+  </style>
 </head>
+
 <body>
+  <div class="bg-drift"></div>
 
-<nav>
-  <div><strong>GÖ.AI</strong></div>
-  <div>
-    <a href="/">Home</a>
-    <a href="/product-demo.html">Product Demo</a>
-    <a href="/get-access.html">Get Access</a>
+  <nav>
+    <div class="brand"><span class="dot"></span> GÖ.AI</div>
+    <div class="navlinks">
+      <a href="/">Home</a>
+      <a class="active" href="/product-demo.html">Product Demo</a>
+      <a href="/get-access.html">Get Access</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="dashboard-frame">
+      <div class="glass">
+        <section class="hero">
+          <h1>Interactive Product Demo</h1>
+          <p class="sub">
+            Explore the intelligence layer behind GÖ.AI. This preview demonstrates how Sentinel™ evaluates trip risk,
+            simulates telemetry, and triggers geofence awareness.
+          </p>
+        </section>
+
+        <section class="grid">
+          <!-- LEFT: Sentinel (fully interactive) -->
+          <div class="card" id="sentinelCard">
+            <div class="card-inner">
+              <div class="kicker">SENTINEL • Risk + Geofence • Live Demo</div>
+              <div class="title-row">
+                <div>
+                  <h2>Sentinel™ Risk Engine</h2>
+                  <p>Enter a ZIP code to compute a score, render a risk dial, and place a geofence on the map.</p>
+                </div>
+              </div>
+
+              <div class="form">
+                <div class="row">
+                  <input type="text" id="zipInput" placeholder="ZIP (e.g., 28202)" maxlength="5" />
+                  <select id="radiusSelect" title="Geofence radius">
+                    <option value="800">Geofence: 0.5 mi</option>
+                    <option value="1600" selected>Geofence: 1 mi</option>
+                    <option value="3200">Geofence: 2 mi</option>
+                  </select>
+                </div>
+
+                <div class="actions">
+                  <button class="btn btn-primary" id="analyzeBtn" type="button">Analyze Risk</button>
+                  <button class="btn" id="simCreated" type="button">Simulate: Created</button>
+                  <button class="btn" id="simEnRoute" type="button">Simulate: En Route</button>
+                  <button class="btn" id="simComplete" type="button">Simulate: Complete</button>
+                </div>
+              </div>
+
+              <div class="sentinel-grid">
+                <!-- Left panel: dial + briefing + telemetry -->
+                <div class="panel">
+                  <div class="panel-h">
+                    <div class="label">Risk Dial</div>
+                    <div class="label" id="tierLabel">—</div>
+                  </div>
+                  <div class="panel-b">
+                    <div class="dialWrap">
+                      <div class="dial" id="dial" style="--dialPct:0%; --dialColor:#4caf50;">
+                        <div class="dialVal" id="dialVal">—</div>
+                      </div>
+
+                      <div class="dialMeta">
+                        <div class="tier" id="tierText">Awaiting input…</div>
+                        <div class="brief" id="briefText">Enter a ZIP and run analysis to generate a briefing.</div>
+
+                        <div class="facts">
+                          <div class="fact"><b>Data Hooks:</b> Census + SVI (scaffold)</div>
+                          <div class="fact"><b>Telemetry:</b> simulated route pings</div>
+                          <div class="fact"><b>Geofence:</b> radius + polygon demo (scaffold)</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="toggleRow">
+                      <div>
+                        <div class="muted"><b>T-24 Briefing</b> (preview toggle)</div>
+                        <div class="muted" id="t24State">Off</div>
+                      </div>
+                      <div class="switch" id="t24Switch" role="switch" aria-checked="false" tabindex="0">
+                        <div class="knob"></div>
+                      </div>
+                    </div>
+
+                    <div style="margin-top:12px;" class="telemetry">
+                      <div class="telemetryRow">
+                        <span class="tag" id="lifeStateTag">Lifecycle: idle</span>
+                        <span class="tag" id="geoStateTag">Geofence: idle</span>
+                        <span class="tag" id="telemetryTag">Telemetry: 0%</span>
+                      </div>
+                      <div class="track"><div class="bar" id="telemetryBar"></div></div>
+
+                      <div class="lifecycle">
+                        <div class="lifeBtn" data-life="created" id="lifeCreated">Created</div>
+                        <div class="lifeBtn" data-life="enroute" id="lifeEnRoute">En Route</div>
+                        <div class="lifeBtn" data-life="complete" id="lifeComplete">Complete</div>
+                      </div>
+                    </div>
+
+                    <div class="soon" id="reasoningBox" style="margin-top:12px;">
+                      <strong>Reasoning blocks</strong><br/>
+                      Run “Analyze Risk” to populate structured factors.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right panel: map -->
+                <div class="mapWrap panel">
+                  <div class="panel-h">
+                    <div class="label">Map Visualization</div>
+                    <div class="label">Leaflet • OpenStreetMap</div>
+                  </div>
+                  <div id="map"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Modules (2–4 shells) -->
+          <div style="display:grid; gap:18px;">
+            <div class="card" id="bookingCard">
+              <div class="card-inner">
+                <div class="kicker">Module 02 • Orchestration</div>
+                <h2>End-to-End Booking</h2>
+                <p>Lyft + Flights + Hotel orchestration. UI scaffold ready to plug in.</p>
+
+                <div class="pillrow">
+                  <div class="pill">Lyft API (shell)</div>
+                  <div class="pill">Duffel Flights (shell)</div>
+                  <div class="pill">Hotel booking (shell)</div>
+                </div>
+
+                <div class="soon">
+                  <strong>Coming soon:</strong> route object → vendor calls → confirmations → trip timeline.
+                  This card is intentionally staged as an investor-facing surface.
+                </div>
+
+                <div class="actions" style="margin-top:12px;">
+                  <button class="btn" type="button">Simulate Booking Flow</button>
+                  <a class="btn" href="/get-access.html">Request access →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" id="tsaCard">
+              <div class="card-inner">
+                <div class="kicker">Module 03 • Airport Intel</div>
+                <h2>TSA Wait Times</h2>
+                <p>PreCheck vs Standard screening visibility. UI shell ready for real data hooks.</p>
+
+                <div class="pillrow">
+                  <div class="pill">Airport code input</div>
+                  <div class="pill">PreCheck vs Regular</div>
+                  <div class="pill">Time windows</div>
+                </div>
+
+                <div class="soon">
+                  <strong>Coming soon:</strong> plug-in for live wait feeds + predictive congestion.
+                </div>
+
+                <div class="actions" style="margin-top:12px;">
+                  <button class="btn" type="button">Simulate TSA Window</button>
+                  <a class="btn" href="/get-access.html">Join Founding 100 →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" id="tierCard">
+              <div class="card-inner">
+                <div class="kicker">Module 04 • Personalization</div>
+                <h2>AI Tier Selector</h2>
+                <p>Trip preferences → recommended tier. UI scaffold staged for concierge logic.</p>
+
+                <div class="pillrow">
+                  <div class="pill">Luggage</div>
+                  <div class="pill">Party size</div>
+                  <div class="pill">Atmosphere</div>
+                  <div class="pill">Preferences</div>
+                </div>
+
+                <div class="soon">
+                  <strong>Coming soon:</strong> preference vector + constraints + tier recommendation + rationale.
+                </div>
+
+                <div class="actions" style="margin-top:12px;">
+                  <button class="btn" type="button">Simulate Tier Match</button>
+                  <a class="btn btn-primary" href="/get-access.html">Get early access →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          © <span id="y"></span> GÖ.AI • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a>
+        </footer>
+      </div>
+    </div>
   </div>
-</nav>
 
-<section class="hero">
-  <h1>Executive Mobility Intelligence Dashboard</h1>
-</section>
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-<div class="dashboard-frame">
-<section class="grid">
+    // Subtle hover glow tracking
+    function attachGlowTracking(el){
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        el.style.setProperty('--mx', x.toFixed(2) + '%');
+        el.style.setProperty('--my', y.toFixed(2) + '%');
+      }, { passive:true });
+    }
+    document.querySelectorAll('.card').forEach(attachGlowTracking);
 
-<!-- SENTINEL -->
-<div class="card fade-in">
-<h2>Sentinel™ Risk Engine</h2>
+    // ===== Sentinel demo state =====
+    let map, marker, geofenceCircle, telemetryLine, polygonDemo;
+    let currentZip = null;
+    let currentScore = null;
+    let currentTier = null;
+    let currentLifecycle = "idle";
+    let telemetryTimer = null;
+    let t24On = false;
 
-<input type="text" id="zipInput" placeholder="Enter ZIP (e.g. 28202)" maxlength="5">
-<button onclick="getRisk()">Analyze Risk</button>
+    const zipInput = document.getElementById("zipInput");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+    const radiusSelect = document.getElementById("radiusSelect");
 
-<div class="lifecycle-buttons">
-<button onclick="setLifecycle('created')" id="btnCreated">Created</button>
-<button onclick="setLifecycle('enroute')" id="btnEnroute">En Route</button>
-<button onclick="setLifecycle('complete')" id="btnComplete">Complete</button>
-</div>
+    const dial = document.getElementById("dial");
+    const dialVal = document.getElementById("dialVal");
+    const tierText = document.getElementById("tierText");
+    const tierLabel = document.getElementById("tierLabel");
+    const briefText = document.getElementById("briefText");
+    const reasoningBox = document.getElementById("reasoningBox");
 
-<div id="dialContainer"></div>
-<div id="briefingOutput" class="small"></div>
-<div id="map"></div>
-<div id="telemetryOutput" class="small"></div>
-</div>
+    const telemetryBar = document.getElementById("telemetryBar");
+    const telemetryTag = document.getElementById("telemetryTag");
+    const lifeStateTag = document.getElementById("lifeStateTag");
+    const geoStateTag = document.getElementById("geoStateTag");
 
-<!-- BOOKING -->
-<div class="card fade-in">
-<div class="placeholder-badge">Coming Soon</div>
-<h2>End-to-End Booking Orchestration</h2>
-<input type="text" placeholder="Origin">
-<input type="text" placeholder="Destination">
-<input type="date">
-<button disabled>Simulate Booking Stack</button>
-<div class="small">
-Lyft Concierge + Duffel Flights + Hotel Inventory orchestration layer.
-</div>
-</div>
+    const lifeCreated = document.getElementById("lifeCreated");
+    const lifeEnRoute = document.getElementById("lifeEnRoute");
+    const lifeComplete = document.getElementById("lifeComplete");
 
-<!-- TSA -->
-<div class="card fade-in">
-<div class="placeholder-badge">Coming Soon</div>
-<h2>TSA Intelligence Layer</h2>
-<input type="text" placeholder="Airport Code">
-<select>
-<option>Screening Type</option>
-<option>Standard</option>
-<option>PreCheck</option>
-</select>
-<button disabled>Check Wait Time</button>
-<div class="small">
-Predictive screening visibility using queue modeling.
-</div>
-</div>
+    const t24Switch = document.getElementById("t24Switch");
+    const t24State = document.getElementById("t24State");
 
-<!-- AI TIER -->
-<div class="card fade-in">
-<div class="placeholder-badge">Coming Soon</div>
-<h2>AI Tier Recommendation Engine</h2>
-<input type="number" placeholder="Party Size">
-<select>
-<option>Luggage Volume</option>
-<option>Minimal</option>
-<option>Moderate</option>
-<option>Heavy</option>
-</select>
-<button disabled>Generate Tier</button>
-<div class="small">
-GÖJET · GÖBIZZ · G-KLÜB · Executive routing logic.
-</div>
-</div>
+    document.getElementById("simCreated").addEventListener("click", () => setLifecycle("created"));
+    document.getElementById("simEnRoute").addEventListener("click", () => setLifecycle("enroute"));
+    document.getElementById("simComplete").addEventListener("click", () => setLifecycle("complete"));
 
-</section>
-</div>
+    lifeCreated.addEventListener("click", () => setLifecycle("created"));
+    lifeEnRoute.addEventListener("click", () => setLifecycle("enroute"));
+    lifeComplete.addEventListener("click", () => setLifecycle("complete"));
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    analyzeBtn.addEventListener("click", () => getRisk());
+    zipInput.addEventListener("keydown", (e) => { if (e.key === "Enter") getRisk(); });
 
-<script>
+    function setLifecycle(state){
+      currentLifecycle = state;
+      lifeStateTag.textContent = `Lifecycle: ${state}`;
+      [lifeCreated, lifeEnRoute, lifeComplete].forEach(b => b.classList.remove("active"));
+      if(state === "created") lifeCreated.classList.add("active");
+      if(state === "enroute") lifeEnRoute.classList.add("active");
+      if(state === "complete") lifeComplete.classList.add("active");
 
-let map, marker, geofence, telemetryInterval;
-let currentLifecycle="created";
+      if(state !== "enroute"){
+        stopTelemetry();
+        telemetryBar.style.width = "0%";
+        telemetryTag.textContent = "Telemetry: 0%";
+        geoStateTag.textContent = "Geofence: idle";
+      } else {
+        if(currentZip && currentScore !== null){
+          // re-init map (centers + redraw) and start telemetry
+          initMap(currentZip, currentScore);
+        }
+      }
+    }
 
-function setLifecycle(stage){
-currentLifecycle=stage;
+    function setDial(score){
+      const pct = Math.max(0, Math.min(100, score));
+      const color =
+        pct >= 70 ? "#ffb74d" :
+        pct >= 55 ? "#64b5f6" :
+        "#4caf50";
 
-document.querySelectorAll(".lifecycle-buttons button")
-.forEach(btn=>btn.classList.remove("active"));
+      dial.style.setProperty("--dialPct", pct + "%");
+      dial.style.setProperty("--dialColor", color);
+      dialVal.textContent = pct.toString();
+      dial.style.filter = "drop-shadow(0 0 18px rgba(0,0,0,.45))";
+      dial.style.transform = "scale(1.01)";
+      setTimeout(() => dial.style.transform = "scale(1.0)", 180);
+    }
 
-if(stage==="created") document.getElementById("btnCreated").classList.add("active");
-if(stage==="enroute") document.getElementById("btnEnroute").classList.add("active");
-if(stage==="complete") document.getElementById("btnComplete").classList.add("active");
+    function renderReasoning(list){
+      if(!Array.isArray(list) || !list.length){
+        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>No reasoning blocks returned.";
+        return;
+      }
+      reasoningBox.innerHTML =
+        "<strong>Reasoning blocks</strong><br/>" +
+        list.map(x => `• ${escapeHtml(x)}`).join("<br/>");
+    }
 
-if(stage==="complete"){
-clearInterval(telemetryInterval);
-document.getElementById("telemetryOutput").innerText="Trip Completed. Sentinel archived TRO.";
-}
-}
+    function tierFromScore(score){
+      if(score >= 70) return "ELEVATED";
+      if(score >= 55) return "MODERATE";
+      return "STANDARD";
+    }
 
-async function getRisk(){
-const zip=document.getElementById("zipInput").value.trim();
-if(!/^\d{5}$/.test(zip)) return;
+    function briefingFromScore(score){
+      const t = tierFromScore(score);
+      if(t === "ELEVATED") return "SENTINEL recommends minimizing stops, using a single pickup point, and adding buffer time.";
+      if(t === "MODERATE") return "SENTINEL recommends normal routing with moderate buffers and awareness of peak windows.";
+      return "SENTINEL indicates standard conditions. Keep basic buffers and monitor disruptions.";
+    }
 
-const res=await fetch(`/.netlify/functions/sentinel-score?zip=${zip}`);
-const data=await res.json();
+    // Toggle: T-24 briefing (UI-only preview)
+    function toggleT24(){
+      t24On = !t24On;
+      t24Switch.classList.toggle("on", t24On);
+      t24Switch.setAttribute("aria-checked", t24On ? "true" : "false");
+      t24State.textContent = t24On ? "On" : "Off";
+      // Soft tweak to briefing output
+      if(currentScore !== null){
+        const base = briefingFromScore(currentScore);
+        briefText.textContent = t24On
+          ? base + " (T-24: confirm hotel, route windows, and contingency pickup.)"
+          : base;
+      }
+    }
+    t24Switch.addEventListener("click", toggleT24);
+    t24Switch.addEventListener("keydown", (e) => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleT24(); } });
 
-renderDial(data.risk_score);
-document.getElementById("briefingOutput").innerText=data.briefing;
+    // ===== UPDATED: ZIP -> lat/lon via Netlify Function =====
+    // This assumes you created: netlify/functions/zip-geocode.js
+    // and it returns: { zip: "28202", lat: 35.2271, lon: -80.8431, city: "...", state: "..." }
+    async function getGeoFromZip(zip){
+      const res = await fetch(`/.netlify/functions/zip-geocode?zip=${encodeURIComponent(zip)}`);
+      const data = await res.json().catch(() => ({}));
+      if(!res.ok){
+        throw new Error(data?.error || "Geocode failed");
+      }
+      if(typeof data.lat !== "number" || typeof data.lon !== "number"){
+        throw new Error("Invalid geocode response");
+      }
+      return data;
+    }
 
-initMap(zip,data.risk_score);
-}
+    // Map init (uses live geocode now)
+    async function initMap(zip, score){
+      let geo;
+      try{
+        geo = await getGeoFromZip(zip);
+      } catch(e){
+        console.error(e);
+        geoStateTag.textContent = "Geofence: geocode error";
+        return;
+      }
 
-function renderDial(score){
-let color="#4caf50";
-if(score>=70) color="#ffb74d";
-else if(score>=55) color="#64b5f6";
+      const lat = geo.lat;
+      const lon = geo.lon;
 
-document.getElementById("dialContainer").innerHTML=`
-<div class="dial" style="
-background:conic-gradient(${color} ${score*3.6}deg,#1a1f27 0deg);
-box-shadow:0 0 40px ${color};
-">
-${score}
-</div>`;
-}
+      // Create or recenter map
+      if(!map){
+        map = L.map("map").setView([lat, lon], 12);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+      } else {
+        map.setView([lat, lon], 12);
+      }
 
-function initMap(zip,score){
+      // Marker
+      if(marker) map.removeLayer(marker);
+      marker = L.marker([lat, lon]).addTo(map);
 
-const zipCoords={
-"28202":[35.2271,-80.8431],
-"94105":[37.789,-122.394],
-"33131":[25.768,-80.191]
-};
+      // Geofence circle radius from selector (meters)
+      const radiusMeters = parseInt(radiusSelect.value, 10) || 1600;
+      const ringColor =
+        score >= 70 ? "#ffb74d" :
+        score >= 55 ? "#64b5f6" :
+        "#4caf50";
 
-const coords=zipCoords[zip]||[39.8283,-98.5795];
+      if(geofenceCircle) map.removeLayer(geofenceCircle);
+      geofenceCircle = L.circle([lat, lon], {
+        radius: radiusMeters,
+        color: ringColor,
+        weight: 2,
+        fillOpacity: 0.18
+      }).addTo(map);
 
-if(!map){
-map=L.map("map").setView(coords,13);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-}else{
-map.setView(coords,13);
-}
+      // Live “polygon demo” (static scaffold)
+      if(polygonDemo) map.removeLayer(polygonDemo);
+      polygonDemo = L.polygon([
+        [lat + 0.018, lon - 0.02],
+        [lat + 0.030, lon + 0.005],
+        [lat + 0.010, lon + 0.022],
+        [lat - 0.010, lon + 0.012],
+        [lat - 0.015, lon - 0.010]
+      ], {
+        color: "rgba(154,215,255,.95)",
+        weight: 1,
+        fillColor: "rgba(154,215,255,.25)",
+        fillOpacity: 0.12
+      }).addTo(map);
 
-if(marker) map.removeLayer(marker);
-marker=L.marker(coords).addTo(map);
+      geoStateTag.textContent = `Geofence: ${Math.round(radiusMeters/1609.34*10)/10} mi + polygon`;
+      // Start telemetry if needed
+      if(currentLifecycle === "enroute"){
+        simulateTelemetry([lat, lon], score);
+      }
+    }
 
-if(geofence) map.removeLayer(geofence);
-geofence=L.circle(coords,{
-radius:score*20,
-color:score>=70?"#ffb74d":"#64b5f6",
-fillOpacity:.2
-}).addTo(map);
+    // Telemetry simulation: draws a short line path
+    function simulateTelemetry(center, score){
+      stopTelemetry();
 
-if(currentLifecycle==="enroute") simulateTelemetry(coords,score);
-}
+      let progress = 0;
+      const [lat, lon] = center;
 
-function simulateTelemetry(coords,score){
-if(telemetryInterval) clearInterval(telemetryInterval);
+      // Build a small loop path
+      const pts = [
+        [lat, lon],
+        [lat + 0.008, lon + 0.006],
+        [lat + 0.014, lon - 0.002],
+        [lat + 0.006, lon - 0.012],
+        [lat - 0.004, lon - 0.006],
+        [lat, lon]
+      ];
 
-let offset=0;
-telemetryInterval=setInterval(()=>{
-offset+=.0005;
-marker.setLatLng([coords[0]+offset,coords[1]+offset]);
+      if(telemetryLine) map.removeLayer(telemetryLine);
+      telemetryLine = L.polyline([pts[0]], {
+        color: "rgba(241,208,106,.95)",
+        weight: 3,
+        opacity: 0.9
+      }).addTo(map);
 
-if(score>=70){
-document.getElementById("telemetryOutput").innerText=
-"⚠ Geofence Breach Detected — Alert Triggered.";
-}
-},1000);
-}
+      let idx = 0;
+      telemetryTimer = setInterval(() => {
+        progress = Math.min(100, progress + 7);
+        telemetryBar.style.width = progress + "%";
+        telemetryTag.textContent = `Telemetry: ${progress}%`;
 
-</script>
+        idx = Math.min(pts.length-1, idx + 1);
+        telemetryLine.addLatLng(pts[idx]);
 
+        // “Entered geofence” simple demo trigger near end if elevated
+        if(progress >= 63 && score >= 70){
+          geoStateTag.textContent = "Geofence: alert • entered risk polygon";
+        }
+
+        if(progress >= 100){
+          stopTelemetry();
+        }
+      }, 320);
+    }
+
+    function stopTelemetry(){
+      if(telemetryTimer){
+        clearInterval(telemetryTimer);
+        telemetryTimer = null;
+      }
+    }
+
+    // Fetch risk score from your existing function
+    async function getRisk(){
+      const zip = zipInput.value.trim();
+      if(!/^\d{5}$/.test(zip)){
+        tierLabel.textContent = "—";
+        tierText.textContent = "Enter a valid ZIP";
+        dialVal.textContent = "—";
+        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>Enter a valid ZIP (5 digits).";
+        return;
+      }
+
+      analyzeBtn.disabled = true;
+      analyzeBtn.textContent = "Analyzing…";
+      tierText.textContent = "Running analysis…";
+      tierLabel.textContent = "…";
+
+      try{
+        const res = await fetch(`/.netlify/functions/sentinel-score?zip=${encodeURIComponent(zip)}`);
+        const data = await res.json();
+
+        if(!res.ok || data.error){
+          throw new Error(data?.error || "Risk function failed");
+        }
+
+        currentZip = zip;
+        currentScore = Number(data.risk_score);
+        currentTier = data.tier || tierFromScore(currentScore);
+
+        setDial(currentScore);
+
+        tierLabel.textContent = currentTier;
+        tierText.textContent = `Risk Tier: ${currentTier}`;
+        const baseBrief = data.briefing || briefingFromScore(currentScore);
+        briefText.textContent = t24On ? (baseBrief + " (T-24: confirm hotel, route windows, and contingency pickup.)") : baseBrief;
+
+        renderReasoning(data.reasoning || []);
+
+        // UPDATED: map uses zip-geocode function now
+        await initMap(zip, currentScore);
+
+        // If in “created” lifecycle, show minimal “ready” state
+        if(currentLifecycle === "idle"){
+          setLifecycle("created");
+        }
+
+      } catch(err){
+        console.error(err);
+        tierLabel.textContent = "ERROR";
+        tierText.textContent = "Error retrieving risk data.";
+        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>Error retrieving risk data.";
+        geoStateTag.textContent = "Geofence: error";
+      } finally {
+        analyzeBtn.disabled = false;
+        analyzeBtn.textContent = "Analyze Risk";
+      }
+    }
+
+    // Safety: escape for HTML injection in reasoning list
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+  </script>
 </body>
 </html>
+```0
