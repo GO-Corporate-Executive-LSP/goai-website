@@ -697,32 +697,26 @@
 
             <!-- ===== UPDATED TSA CARD (LIVE INPUT + NO COMING SOON + NO PILLS) ===== -->
             <div class="card" id="tsaCard">
-  <div class="card-inner">
-    <div class="kicker">Module 03 • Airport Intel</div>
-    <h2>TSA Wait Times</h2>
-    <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
+              <div class="card-inner">
+                <div class="kicker">Module 03 • Airport Intel</div>
+                <h2>TSA Wait Times</h2>
+                <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
 
-    <div class="form" style="margin-top:14px;">
-      <div class="row">
-        <input
-          type="text"
-          id="tsaAirportInput"
-          placeholder="Airport code (e.g., CLT, RDU, JFK)"
-          maxlength="3"
-          style="text-transform:uppercase"
-        />
-        <button class="btn btn-primary" id="tsaGetBtn" type="button">Get Wait Times</button>
-      </div>
+                <div class="form" style="margin-top:14px;">
+                  <div class="row">
+                    <input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" />
+                    <button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Wait Times</button>
+                  </div>
+                </div>
 
-      <div id="tsaOutput" style="margin-top:10px;"></div>
-    </div>
+                <div id="tsaOutput"></div>
 
-    <div class="actions" style="margin-top:12px;">
-      <button class="btn" type="button">Simulate TSA Window</button>
-      <a class="btn" href="/get-access.html">Join Founding 100 →</a>
-    </div>
-  </div>
-</div>
+                <div class="actions" style="margin-top:12px;">
+                  <button class="btn" type="button">Simulate TSA Window</button>
+                  <a class="btn" href="/get-access.html">Join Founding 100 →</a>
+                </div>
+              </div>
+            </div>
 
             <div class="card" id="tierCard">
               <div class="card-inner">
@@ -1096,72 +1090,59 @@
     }
 
     // ===== TSA WAIT TIMES (LIVE) =====
-    <script>
-  async function getTsaWaitTimes() {
-    const input = document.getElementById("tsaAirportInput");
-    const out = document.getElementById("tsaOutput");
-    const ap = (input.value || "").trim().toUpperCase();
+    async function getTsaWaitTimes() {
+      const input = document.getElementById("tsaAirportInput");
+      const out = document.getElementById("tsaOutput");
+      const ap = (input.value || "").trim().toUpperCase();
 
-    if (!/^[A-Z]{3}$/.test(ap)) {
-      out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, RDU, JFK).</p>";
-      return;
-    }
-
-    out.innerHTML = "<p style='opacity:.8'>Fetching TSA wait times…</p>";
-
-    try {
-      const url = `/.netlify/functions/tsa-wait?airport=${encodeURIComponent(ap)}`;
-      const res = await fetch(url);
-
-      // Read text first (so we can show it even if JSON parsing fails)
-      const raw = await res.text();
-      let data = {};
-      try { data = JSON.parse(raw); } catch { data = { raw }; }
-
-      if (!res.ok) {
-        const msg = data?.error || data?.message || raw || "Unknown error";
-        out.innerHTML = `<p style="opacity:.9;color:#ff6b6b">
-          TSA fetch failed (${res.status}): ${escapeHtml(msg)}
-        </p>`;
+      if (!/^[A-Z]{3}$/.test(ap)) {
+        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, RDU, JFK).</p>";
         return;
       }
 
-      const rows = data.WaitTimes || data.waitTimes || data.rows || [];
-      if (!Array.isArray(rows) || rows.length === 0) {
-        out.innerHTML = `<p style='opacity:.85'>No published wait times currently available for <strong>${ap}</strong>.</p>`;
-        return;
-      }
+      out.innerHTML = "<p style='opacity:.8'>Fetching TSA wait times…</p>";
 
-      const top = rows.slice(0, 6).map(x => {
-        const checkpoint = x.Checkpoint || x.checkpoint || "Checkpoint";
-        const wait = x.WaitTime || x.waitTime || x.Wait || "N/A";
-        const category = x.Lane || x.lane || x.Type || "";
-        const time = x.Created || x.created || x.Time || "";
-        return `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)">
-          <div style="font-weight:700">${escapeHtml(checkpoint)} <span style="opacity:.7;font-weight:600">${category ? "• " + escapeHtml(category) : ""}</span></div>
-          <div style="opacity:.85">Wait: <strong>${escapeHtml(wait)}</strong> <span style="opacity:.6">${time ? "• " + escapeHtml(time) : ""}</span></div>
-        </div>`;
-      }).join("");
+      try {
+        const res = await fetch(`/.netlify/functions/tsa-wait?airport=${encodeURIComponent(ap)}`);
+        const data = await res.json();
 
-      out.innerHTML = `
-        <div style="margin-top:14px">
-          <div style="opacity:.85;margin-bottom:8px">Confirmed wait times for <strong>${ap}</strong></div>
-          <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">
-            ${top}
+        if (!res.ok || data.error) {
+          out.innerHTML = `<p style='opacity:.9;color:#ff6b6b'>${data.error || "No data returned."}</p>`;
+          return;
+        }
+
+        // TSA payloads can vary; handle both {WaitTimes:[...]} and raw arrays safely
+        const rows = data.WaitTimes || data.waitTimes || data || [];
+        if (!Array.isArray(rows) || rows.length === 0) {
+          out.innerHTML = `<p style='opacity:.85'>No confirmed wait times currently published for <strong>${ap}</strong>.</p>`;
+          return;
+        }
+
+        const top = rows.slice(0, 6).map(x => {
+          const checkpoint = x.Checkpoint || x.checkpoint || "Checkpoint";
+          const wait = x.WaitTime || x.waitTime || x.Wait || "N/A";
+          const category = x.Lane || x.lane || x.Type || "";
+          const time = x.Created || x.created || x.Time || "";
+          return `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)">
+            <div style="font-weight:700">${checkpoint} <span style="opacity:.7;font-weight:600">${category ? "• " + category : ""}</span></div>
+            <div style="opacity:.85">Wait: <strong>${wait}</strong> <span style="opacity:.6">${time ? "• " + time : ""}</span></div>
+          </div>`;
+        }).join("");
+
+        out.innerHTML = `
+          <div style="margin-top:14px">
+            <div style="opacity:.85;margin-bottom:8px">Confirmed wait times for <strong>${ap}</strong></div>
+            <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">
+              ${top}
+            </div>
           </div>
-        </div>
-      `;
-    } catch (e) {
-      out.innerHTML = `<p style="opacity:.9;color:#ff6b6b">TSA fetch failed: ${escapeHtml(e?.message || "Unknown error")}</p>`;
-    }
-  }
+        `;
 
-  function escapeHtml(str){
-    return String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-</script>
+      } catch (e) {
+        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Error retrieving TSA data. Try again.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
+```0
