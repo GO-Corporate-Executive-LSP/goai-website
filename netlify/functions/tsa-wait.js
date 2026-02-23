@@ -1,50 +1,39 @@
-exports.handler = async (event) => {
-  const airport = event.queryStringParameters?.airport?.toUpperCase();
-
-  // Validate input
-  if (!airport || !/^[A-Z]{3}$/.test(airport)) {
-    return {
-      statusCode: 400,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Valid 3-letter airport code required" })
-    };
-  }
-
+export default async (request) => {
   try {
-    const response = await fetch(
-      `https://apps.tsa.dhs.gov/MyTSAWebService/GetConfirmedWaitTimes.ashx?ap=${airport}&output=json`
+    const url = new URL(request.url);
+    const airport = (url.searchParams.get("airport") || "").trim().toUpperCase();
+
+    if (!/^[A-Z]{3}$/.test(airport)) {
+      return new Response(JSON.stringify({ error: "Invalid airport code." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const tsaRes = await fetch(
+      `https://apps.tsa.dhs.gov/MyTSAWebService/GetConfirmedWaitTimes.ashx?ap=${airport}&output=json`,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0"
+        }
+      }
     );
 
-    if (!response.ok) {
-      return {
-        statusCode: 502,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ error: "TSA service unavailable" })
-      };
+    if (!tsaRes.ok) {
+      throw new Error(`TSA upstream error ${tsaRes.status}`);
     }
 
-    const data = await response.json();
+    const data = await tsaRes.json();
 
-    // If TSA returns empty or unexpected structure
-    if (!data || (Array.isArray(data) && data.length === 0)) {
-      return {
-        statusCode: 200,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ WaitTimes: [] })
-      };
-    }
-
-    return {
-      statusCode: 200,
+    return new Response(JSON.stringify(data), {
+      status: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    };
+    });
 
-  } catch (error) {
-    return {
-      statusCode: 500,
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "TSA fetch failed" })
-    };
+    });
   }
 };
