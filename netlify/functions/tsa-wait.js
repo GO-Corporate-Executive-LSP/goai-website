@@ -4,34 +4,37 @@ export default async (request) => {
     const airport = (url.searchParams.get("airport") || "").trim().toUpperCase();
 
     if (!/^[A-Z]{3}$/.test(airport)) {
-      return new Response(JSON.stringify({ error: "Invalid airport code." }), {
+      return new Response(JSON.stringify({ error: "Invalid airport code. Use 3 letters (e.g., CLT)." }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    const tsaRes = await fetch(
-      `https://apps.tsa.dhs.gov/MyTSAWebService/GetConfirmedWaitTimes.ashx?ap=${airport}&output=json`,
-      {
-        headers: {
-          "User-Agent": "Mozilla/5.0"
-        }
-      }
-    );
+    // TODO: Replace this with your real TSA feed endpoint.
+    // Common failure here is: wrong endpoint, blocked by TSA, missing API key, or CORS issues.
+    // If the TSA endpoint requires a key, set it in Netlify env vars and read it here.
+    const TSA_API_KEY = process.env.TSA_API_KEY; // if needed
+    // if (!TSA_API_KEY) throw new Error("Missing TSA_API_KEY env var");
 
-    if (!tsaRes.ok) {
-      throw new Error(`TSA upstream error ${tsaRes.status}`);
-    }
+    // Example placeholder response (so the UI works even before you wire the feed):
+    const demo = {
+      airport,
+      WaitTimes: [
+        { Checkpoint: "Main Checkpoint", Lane: "PreCheck", WaitTime: "5–10 min", Created: "Live (demo)" },
+        { Checkpoint: "Main Checkpoint", Lane: "Standard", WaitTime: "15–25 min", Created: "Live (demo)" },
+      ],
+    };
 
-    const data = await tsaRes.json();
-
-    return new Response(JSON.stringify(data), {
+    return new Response(JSON.stringify(demo), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "no-store",
+      },
     });
 
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: err?.message || "Unhandled error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
