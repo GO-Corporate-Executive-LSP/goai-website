@@ -536,6 +536,107 @@
       margin-top:14px;
     }
 
+    /* ===== Tier Selector output (Module 04) ===== */
+    .tierOutput{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      overflow:hidden;
+    }
+
+    .tierOutHead{
+      padding:12px 12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+
+    .tierOutHead .label{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.62);
+    }
+
+    .tierOutBody{
+      padding:12px;
+      display:grid;
+      gap:10px;
+    }
+
+    .tierHero{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .tierImg{
+      width:86px;
+      height:86px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+    }
+
+    .tierImg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .tierTitle{
+      font-weight:850;
+      letter-spacing:.01em;
+      font-size:16px;
+    }
+
+    .tierSub{
+      color: rgba(255,255,255,.72);
+      font-size:13px;
+      line-height:1.55;
+      margin-top:3px;
+    }
+
+    .tierBadges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:6px;
+    }
+
+    .badge{
+      font-size:12px;
+      color: rgba(255,255,255,.74);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+
+    .badge.gold{
+      border-color: rgba(241,208,106,.22);
+      background: rgba(241,208,106,.10);
+      color: rgba(255,255,255,.88);
+    }
+
+    .altRow{
+      margin-top:2px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      color: rgba(255,255,255,.70);
+      font-size:12px;
+    }
+
+    .altRow b{ color: rgba(255,255,255,.88); }
+
     footer{
       padding:18px 0 10px;
       color: rgba(255,255,255,.45);
@@ -678,9 +779,9 @@
                 <p>Lyft + Flights + Hotel orchestration. UI scaffold ready to plug in.</p>
 
                 <div class="pillrow">
-                  <div class="pill">Lyft API (shell)</div>
-                  <div class="pill">Duffel Flights (shell)</div>
-                  <div class="pill">Hotel booking (shell)</div>
+                  <div class="pill">Rideshare</div>
+                  <div class="pill">Flights</div>
+                  <div class="pill">Lodging</div>
                 </div>
 
                 <div class="soon">
@@ -712,48 +813,91 @@
                 <div id="tsaOutput"></div>
 
                 <div class="actions" style="margin-top:12px;">
-                  <button 
-  class="btn" 
-  type="button" 
-  onclick="
-    document.getElementById('tsaAirportInput').value='';
-    document.getElementById('tsaOutput').innerHTML='';
-    document.getElementById('tsaAirportInput').focus();
-  ">
-  Try Another Airport
-</button>
+                  <button
+                    class="btn"
+                    type="button"
+                    onclick="
+                      document.getElementById('tsaAirportInput').value='';
+                      document.getElementById('tsaOutput').innerHTML='';
+                      document.getElementById('tsaAirportInput').focus();
+                    ">
+                    Try Another Airport
+                  </button>
                   <a class="btn" href="/get-access.html">Join Founding 100 →</a>
                 </div>
               </div>
             </div>
 
+            <!-- ===== UPDATED TIER CARD (FUNCTIONAL) ===== -->
             <div class="card" id="tierCard">
               <div class="card-inner">
                 <div class="kicker">Module 04 • Personalization</div>
-                <h2>AI Tier Selector</h2>
-                <p>Trip preferences → recommended tier. UI scaffold staged for concierge logic.</p>
+
+                <div class="title-row">
+                  <div>
+                    <h2>AI Tier Selector</h2>
+                    <p>Describe the trip — get a tier recommendation with rationale (simulated concierge logic).</p>
+                  </div>
+                </div>
 
                 <p style="margin-top:10px; color: rgba(255,255,255,.78); font-weight:700;">
                   GÖ JET | GÖ BIZZ | G-KLÜB
                 </p>
 
-                <div class="pillrow">
-                  <div class="pill">Luggage</div>
-                  <div class="pill">Party size</div>
-                  <div class="pill">Atmosphere</div>
-                  <div class="pill">Preferences</div>
+                <div class="form" style="margin-top:12px;">
+                  <div class="row">
+                    <select id="tierParty" title="Party size">
+                      <option value="1" selected>Party size: 1</option>
+                      <option value="2">Party size: 2</option>
+                      <option value="3">Party size: 3–4</option>
+                      <option value="5">Party size: 5+</option>
+                    </select>
+
+                    <select id="tierLuggage" title="Luggage">
+                      <option value="none" selected>Luggage: none / small bag</option>
+                      <option value="carry">Luggage: carry-on</option>
+                      <option value="checked">Luggage: 1–2 checked</option>
+                      <option value="heavy">Luggage: 3+ / strollers / heavy</option>
+                    </select>
+                  </div>
+
+                  <div class="row">
+                    <select id="tierDistance" title="Trip distance">
+                      <option value="short" selected>Distance: local (0–15 mi)</option>
+                      <option value="metro">Distance: metro (15–40 mi)</option>
+                      <option value="long">Distance: long (40+ mi)</option>
+                    </select>
+
+                    <select id="tierTone" title="Trip tone">
+                      <option value="efficient" selected>Tone: efficient / on-the-go</option>
+                      <option value="client">Tone: client-facing / business</option>
+                      <option value="family">Tone: family / multi-stop</option>
+                      <option value="vip">Tone: VIP / discreet</option>
+                    </select>
+                  </div>
+
+                  <div class="row">
+                    <select id="tierSecurity" title="Security posture">
+                      <option value="normal" selected>Security: standard</option>
+                      <option value="aware">Security: elevated awareness</option>
+                    </select>
+
+                    <input id="tierNotes" type="text" placeholder="Optional notes (e.g., ‘late arrival’, ‘tight connection’, ‘kids’, ‘high visibility’)" />
+                  </div>
+
+                  <div class="actions" style="margin-top:6px;">
+                    <button class="btn btn-primary" id="tierRecommendBtn" type="button">Get Recommendation</button>
+                    <button class="btn" id="tierResetBtn" type="button">Try Another Scenario</button>
+                    <a class="btn" href="/get-access.html">Get early access →</a>
+                  </div>
                 </div>
 
-                <div class="soon">
-                  <strong>Coming soon:</strong> preference vector + constraints + tier recommendation + rationale.
-                </div>
-
-                <div class="actions" style="margin-top:12px;">
-                  <button class="btn" type="button">Simulate Tier Match</button>
-                  <a class="btn btn-primary" href="/get-access.html">Get early access →</a>
+                <div id="tierOutput" class="tierOutput" style="margin-top:12px;">
+                  <div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>
                 </div>
               </div>
             </div>
+
           </div>
         </section>
 
@@ -1151,7 +1295,239 @@
         out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Error retrieving TSA data. Try again.</p>";
       }
     }
+
+    // ===== Module 04: AI Tier Selector (simulated concierge logic) =====
+    (function initTierSelector(){
+      const tierParty = document.getElementById("tierParty");
+      const tierLuggage = document.getElementById("tierLuggage");
+      const tierDistance = document.getElementById("tierDistance");
+      const tierTone = document.getElementById("tierTone");
+      const tierSecurity = document.getElementById("tierSecurity");
+      const tierNotes = document.getElementById("tierNotes");
+
+      const tierRecommendBtn = document.getElementById("tierRecommendBtn");
+      const tierResetBtn = document.getElementById("tierResetBtn");
+      const tierOutput = document.getElementById("tierOutput");
+
+      if(!tierRecommendBtn || !tierOutput) return;
+
+      const TIER_META = {
+        JET: {
+          name: "GÖ JET",
+          img: "assets/go-jet.png",
+          oneLiner: "Fast, reliable point-to-point travel with concierge-managed premium rideshare."
+        },
+        BIZZ: {
+          name: "GÖ BIZZ",
+          img: "assets/go-bizz.png",
+          oneLiner: "Business-class executive mobility for meetings, client travel, and presentation-forward movement."
+        },
+        KLUB: {
+          name: "G-KLÜB",
+          img: "assets/g-klub.png",
+          oneLiner: "Luxury SUV concierge tier for VIP travel, executive families, long-distance, and discreet posture."
+        }
+      };
+
+      function randInt(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function scoreScenario(){
+        const party = parseInt(tierParty.value, 10) || 1;
+        const luggage = tierLuggage.value;
+        const dist = tierDistance.value;
+        const tone = tierTone.value;
+        const sec = tierSecurity.value;
+        const notes = (tierNotes.value || "").toLowerCase();
+
+        // Start baseline
+        let jet = 10, bizz = 10, klub = 10;
+
+        // Party size
+        if(party === 1){
+          jet += 10; bizz += 6; klub += 2;
+        } else if(party === 2){
+          jet += 8; bizz += 8; klub += 4;
+        } else if(party === 3){
+          jet += 2; bizz += 8; klub += 12;  // 3–4
+        } else { // 5+
+          jet -= 4; bizz += 4; klub += 18;
+        }
+
+        // Luggage
+        if(luggage === "none"){
+          jet += 8; bizz += 4; klub += 2;
+        } else if(luggage === "carry"){
+          jet += 6; bizz += 6; klub += 4;
+        } else if(luggage === "checked"){
+          jet += 2; bizz += 10; klub += 10;
+        } else { // heavy
+          jet -= 2; bizz += 6; klub += 18;
+        }
+
+        // Distance
+        if(dist === "short"){
+          jet += 10; bizz += 6; klub += 2;
+        } else if(dist === "metro"){
+          jet += 4; bizz += 10; klub += 8;
+        } else { // long
+          jet -= 2; bizz += 8; klub += 16;
+        }
+
+        // Tone
+        if(tone === "efficient"){
+          jet += 10; bizz += 6; klub += 2;
+        } else if(tone === "client"){
+          jet += 2; bizz += 14; klub += 8;
+        } else if(tone === "family"){
+          jet -= 2; bizz += 6; klub += 16;
+        } else { // vip
+          jet += 0; bizz += 10; klub += 14;
+        }
+
+        // Security posture
+        if(sec === "aware"){
+          jet += 1; bizz += 6; klub += 14;
+        }
+
+        // Notes keyword nudges (optional)
+        const hasKids = /kid|kids|child|children|stroller/.test(notes);
+        const highVis = /high visibility|vip|press|stalker|threat|unsafe|security/.test(notes);
+        const multiStop = /multi|stops|stop|itinerary|route/.test(notes);
+        const tight = /tight|connection|late|delay|rush/.test(notes);
+
+        if(hasKids){ klub += 12; bizz += 4; jet -= 1; }
+        if(highVis){ klub += 14; bizz += 6; }
+        if(multiStop){ klub += 10; bizz += 4; jet -= 2; }
+        if(tight){ jet += 6; bizz += 4; klub += 2; }
+
+        // Soft clamp
+        jet = Math.max(0, jet);
+        bizz = Math.max(0, bizz);
+        klub = Math.max(0, klub);
+
+        const scores = [
+          { key:"JET", score: jet },
+          { key:"BIZZ", score: bizz },
+          { key:"KLUB", score: klub },
+        ].sort((a,b) => b.score - a.score);
+
+        return { party, luggage, dist, tone, sec, notes, scores };
+      }
+
+      function buildRationale(recoKey, ctx){
+        // Keep it short + investor-demo readable
+        const lines = [];
+
+        if(recoKey === "JET"){
+          lines.push("Optimized for speed and clean point-to-point movement.");
+          if(ctx.dist !== "short") lines.push("If distance increases, consider BIZZ for comfort and consistency.");
+          if(ctx.party >= 3) lines.push("For 3+ passengers, KLÜB typically reduces friction and adds space.");
+        }
+
+        if(recoKey === "BIZZ"){
+          lines.push("Best balance of presentation, comfort, and availability.");
+          if(ctx.tone === "client") lines.push("Client-facing tone favors a business-class posture.");
+          if(ctx.luggage === "checked" || ctx.luggage === "heavy") lines.push("Extra space supports luggage-heavy itineraries.");
+          if(ctx.sec === "aware") lines.push("If discreet awareness is required, KLÜB is the preferred posture.");
+        }
+
+        if(recoKey === "KLUB"){
+          lines.push("Max comfort + space for VIP, family, multi-stop, or long-distance scenarios.");
+          if(ctx.party >= 3) lines.push("Party size suggests SUV-class logistics and smoother loading/unloading.");
+          if(ctx.luggage === "heavy") lines.push("Heavy luggage/strollers strongly favors KLÜB capacity.");
+          if(ctx.sec === "aware") lines.push("Elevated awareness aligns with a discreet security-driver posture.");
+        }
+
+        // Add a tiny “alive” element (like your risk score demo vibe)
+        const buffer = randInt(6, 18);
+        lines.push(`Suggested buffer: +${buffer} minutes for curb-to-gate continuity.`);
+
+        return lines;
+      }
+
+      function renderTierResult(){
+        const ctx = scoreScenario();
+        const best = ctx.scores[0];
+        const alt1 = ctx.scores[1];
+        const alt2 = ctx.scores[2];
+
+        const meta = TIER_META[best.key];
+        const rationale = buildRationale(best.key, ctx);
+
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2,"0");
+        const mm = String(now.getMinutes()).padStart(2,"0");
+        const stamp = `${hh}:${mm}`;
+
+        const badges = [];
+        badges.push({ text: `Party: ${ctx.party === 3 ? "3–4" : ctx.party === 5 ? "5+" : ctx.party}`, gold:false });
+        badges.push({ text: `Distance: ${ctx.dist}`, gold:false });
+        badges.push({ text: `Luggage: ${ctx.luggage}`, gold:false });
+        if(ctx.sec === "aware") badges.push({ text: "Elevated awareness", gold:true });
+        if(ctx.tone === "vip") badges.push({ text: "VIP posture", gold:true });
+        if(ctx.tone === "client") badges.push({ text: "Client-facing", gold:true });
+        if(ctx.tone === "family") badges.push({ text: "Family logistics", gold:true });
+
+        tierOutput.innerHTML = `
+          <div class="tierOutHead">
+            <div class="label">Recommendation</div>
+            <div class="label">Simulated • ${stamp}</div>
+          </div>
+
+          <div class="tierOutBody">
+            <div class="tierHero">
+              <div class="tierImg">
+                <img src="${meta.img}" alt="${meta.name}"/>
+              </div>
+
+              <div style="min-width:0;">
+                <div class="tierTitle">${meta.name}</div>
+                <div class="tierSub">${escapeHtml(meta.oneLiner)}</div>
+
+                <div class="tierBadges">
+                  ${badges.slice(0,6).map(b => `<span class="badge ${b.gold ? "gold":""}">${escapeHtml(b.text)}</span>`).join("")}
+                </div>
+              </div>
+            </div>
+
+            <div style="color: rgba(255,255,255,.76); font-size:13px; line-height:1.6;">
+              <b>Why:</b><br/>
+              ${rationale.map(x => `• ${escapeHtml(x)}`).join("<br/>")}
+            </div>
+
+            <div class="altRow">
+              <span><b>Alternates:</b></span>
+              <span class="badge">${TIER_META[alt1.key].name}</span>
+              <span class="badge">${TIER_META[alt2.key].name}</span>
+              <span style="opacity:.65;">(demo ranking)</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function resetTier(){
+        tierParty.value = "1";
+        tierLuggage.value = "none";
+        tierDistance.value = "short";
+        tierTone.value = "efficient";
+        tierSecurity.value = "normal";
+        tierNotes.value = "";
+        tierOutput.innerHTML = `<div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>`;
+      }
+
+      tierRecommendBtn.addEventListener("click", renderTierResult);
+      tierResetBtn.addEventListener("click", resetTier);
+
+      // Optional: allow Enter key in notes to run
+      tierNotes.addEventListener("keydown", (e) => {
+        if(e.key === "Enter"){
+          e.preventDefault();
+          renderTierResult();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
-```0
