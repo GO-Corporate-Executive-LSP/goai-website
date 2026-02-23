@@ -647,7 +647,7 @@
     footer a:hover{border-bottom-color: rgba(241,208,106,.45); color: rgba(255,255,255,.92)}
 
     /* =========================
-       MODULE 02 (CLEAN UI) — NEW
+       MODULE 02 (CLEAN UI) — BASE
     ========================= */
     .e2e-tabs{
       display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 14px;
@@ -855,6 +855,132 @@
       .pick-card{grid-column: span 12;}
     }
 
+    /* =========================
+       MODULE 02 (CLEAN UI) — COSMETIC OVERRIDES (NEW)
+       (Inputs wider + card layout with logo top-left and no overlaps)
+    ========================= */
+
+    /* Make inputs wider + more readable */
+    .e2e-form{
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .e2e-field{
+      min-height: 72px;
+      padding: 12px;
+    }
+    .e2e-label{
+      font-size: 12px;
+      letter-spacing: .10em;
+    }
+    .e2e-field input,
+    .e2e-field select{
+      padding: 14px 14px;
+      border-radius: 16px;
+      font-size: 15px;
+    }
+
+    /* Pax number visibility */
+    #e2ePax{
+      text-align: center;
+      font-weight: 850;
+      font-size: 16px;
+      letter-spacing: .02em;
+    }
+
+    /* Better tap target for date inputs */
+    #e2eDepart, #e2eReturn{
+      min-height: 46px;
+    }
+
+    /* Desktop layout via data-col (keeps things readable without hiding Pax) */
+    #module-orchestration .e2e-field[data-col="from"]{ grid-column: span 6; }
+    #module-orchestration .e2e-field[data-col="to"]{ grid-column: span 6; }
+
+    #module-orchestration .e2e-field[data-col="depart"]{ grid-column: span 3; }
+    #module-orchestration .e2e-field[data-col="return"]{ grid-column: span 3; }
+    #module-orchestration .e2e-field[data-col="pax"]{ grid-column: span 3; }
+    #module-orchestration .e2e-field[data-col="cabin"]{ grid-column: span 3; }
+
+    #module-orchestration .e2e-field[data-col="summary"]{ grid-column: span 12; min-height: 76px; }
+
+    /* Tablet / Mobile */
+    @media (max-width: 980px){
+      #module-orchestration .e2e-field[data-col="from"]{ grid-column: span 12; }
+      #module-orchestration .e2e-field[data-col="to"]{ grid-column: span 12; }
+
+      #module-orchestration .e2e-field[data-col="depart"]{ grid-column: span 6; }
+      #module-orchestration .e2e-field[data-col="return"]{ grid-column: span 6; }
+
+      #module-orchestration .e2e-field[data-col="pax"]{ grid-column: span 6; }
+      #module-orchestration .e2e-field[data-col="cabin"]{ grid-column: span 6; }
+
+      #module-orchestration .e2e-field[data-col="summary"]{ grid-column: span 12; }
+    }
+
+    /* Card layout: logo top-left, text clean, price top-right */
+    .pick-card{
+      position: relative;
+      padding: 14px 14px 12px;
+      min-height: 126px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .pick-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+
+    .pick-left{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .pick-logo{
+      width: 40px;
+      height: 28px;
+      border-radius: 10px;
+      margin-top: 2px;
+    }
+
+    .pick-text{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+    }
+
+    .pick-name{
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pick-meta{
+      opacity: .72;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .pick-price{
+      font-weight: 1000;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -.01em;
+      text-align: right;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
   </style>
 </head>
 
@@ -999,32 +1125,32 @@
 
                 <!-- Inputs (wider + cleaner) -->
                 <div class="e2e-form">
-                  <div class="e2e-field" style="grid-column:span 4;">
+                  <div class="e2e-field" data-col="from">
                     <label class="e2e-label">From</label>
                     <input id="e2eFrom" value="Charlotte (CLT)" />
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 4;">
+                  <div class="e2e-field" data-col="to">
                     <label class="e2e-label">To</label>
                     <input id="e2eTo" value="New York (JFK)" />
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 2;">
+                  <div class="e2e-field" data-col="depart">
                     <label class="e2e-label">Depart</label>
                     <input id="e2eDepart" type="date" />
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 2;">
+                  <div class="e2e-field" data-col="return">
                     <label class="e2e-label">Return</label>
                     <input id="e2eReturn" type="date" />
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 2;">
+                  <div class="e2e-field" data-col="pax">
                     <label class="e2e-label">Pax</label>
                     <input id="e2ePax" type="number" min="1" max="6" value="1" />
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 2;">
+                  <div class="e2e-field" data-col="cabin">
                     <label class="e2e-label">Cabin</label>
                     <select id="e2eCabin">
                       <option value="economy">Economy</option>
@@ -1034,7 +1160,7 @@
                     </select>
                   </div>
 
-                  <div class="e2e-field" style="grid-column:span 8;">
+                  <div class="e2e-field" data-col="summary">
                     <label class="e2e-label">Trip Summary</label>
                     <input id="e2eSummary" value="CLT → JFK • 2 nights • executive-ready" />
                   </div>
@@ -1275,7 +1401,7 @@
     }
 
     function buildMockData(input, rng){
-      // Rideshare: outbound/return totals per tier (no tokens, no extra text)
+      // Rideshare: outbound/return totals per tier
       const milesOut = Math.max(2, Math.round((rng()*8 + 3) * 10) / 10);
       const milesBack = Math.max(2, Math.round((rng()*12 + 4) * 10) / 10);
 
@@ -1303,7 +1429,7 @@
         };
       });
 
-      // Flights: three carriers, price depends on pax + cabin
+      // Flights
       const cabinMult =
         input.cabin === "economy" ? 1 :
         input.cabin === "premium_economy" ? 1.35 :
@@ -1330,7 +1456,7 @@
         };
       }).sort((a,b)=>a.total-b.total);
 
-      // Hotels: three brands (with logos), total is 1 room * nights
+      // Hotels
       const nights = Math.max(1, Math.round((new Date(input.returnDate) - new Date(input.depart)) / (1000*60*60*24)));
       const brands = [
         { id:"HILTON", name:"Hilton", logo: LOGOS.HILTON },
@@ -1385,15 +1511,16 @@
       renderSummary();
     }
 
+    // UPDATED: logo pinned top-left, price top-right, no collisions
     function cardHTML({ id, name, logo, price, meta, isSelected }){
       const logoHTML = logo ? `<div class="pick-logo"><img src="${logo}" alt="${name} logo"></div>` : ``;
       return `
         <div class="pick-card ${isSelected ? "selected":""}" data-id="${id}">
           <div class="pick-top">
-            <div style="display:flex; gap:10px; align-items:center; min-width:0;">
+            <div class="pick-left">
               ${logoHTML}
-              <div style="min-width:0;">
-                <div class="pick-name" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${name}</div>
+              <div class="pick-text">
+                <div class="pick-name">${name}</div>
                 ${meta ? `<div class="pick-meta">${meta}</div>` : ``}
               </div>
             </div>
@@ -1496,7 +1623,6 @@
         return;
       }
 
-      // ALL: show 3 cards per category (stacked) but still one stage box
       if(activeTab === "all"){
         title.textContent = "Trip Options";
         sub.textContent = "Select one in each category. Your total updates below.";
