@@ -173,11 +173,11 @@
       border-radius: 22px;
 
       background:
-        linear-gradient(rgba(201,162,77,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,162,77,.06) 1px, transparent 1px),
-        radial-gradient(circle at 35% 35%, rgba(90,167,255,.14), transparent 28%),
-        radial-gradient(circle at 70% 60%, rgba(140,29,24,.16), transparent 34%),
-        #070a0f;
+        linear-gradient(rgba(201,162,77,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,162,77,.07) 1px, transparent 1px),
+        radial-gradient(circle at 35% 35%, rgba(90,167,255,.16), transparent 28%),
+        radial-gradient(circle at 70% 60%, rgba(140,29,24,.18), transparent 34%),
+        linear-gradient(180deg, #0b1017 0%, #06090d 100%);
 
       background-size:
         42px 42px,
@@ -192,13 +192,14 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      opacity: .2;
+      opacity: .42;
+      filter: drop-shadow(0 0 18px rgba(201,162,77,.08));
     }
 
     .usa-map path {
-      fill: rgba(255,255,255,.06);
-      stroke: rgba(201,162,77,.22);
-      stroke-width: 2;
+      fill: rgba(255,255,255,.08);
+      stroke: rgba(201,162,77,.38);
+      stroke-width: 2.5;
     }
 
     .city {
@@ -215,8 +216,21 @@
       height: 14px;
       border-radius: 50%;
       margin: 0 auto;
-      background: var(--gold);
-      box-shadow: 0 0 22px var(--gold);
+    }
+
+    .safe-dot {
+      background: var(--green);
+      box-shadow: 0 0 20px rgba(63,165,107,.95);
+    }
+
+    .warn-dot {
+      background: var(--warn);
+      box-shadow: 0 0 20px rgba(230,184,74,.95);
+    }
+
+    .danger-dot {
+      background: var(--danger);
+      box-shadow: 0 0 22px rgba(255,77,77,.95);
     }
 
     .city span {
@@ -384,10 +398,6 @@
       100% { transform: translate(500px,330px); }
     }
 
-    /* =========================
-       TABLE
-    ========================== */
-
     .table {
       width: 100%;
       border-collapse: collapse;
@@ -438,10 +448,6 @@
       color: #8cc5ff;
     }
 
-    /* =========================
-       ALERTS
-    ========================== */
-
     .alert-list {
       display: grid;
       gap: 12px;
@@ -465,10 +471,6 @@
       font-size: .9rem;
       line-height: 1.5;
     }
-
-    /* =========================
-       LOWER GRID
-    ========================== */
 
     .lower-grid {
       display: grid;
@@ -595,8 +597,6 @@
 
   </div>
 
-  <!-- TICKER -->
-
   <div class="ticker">
     <div class="wrap">
 
@@ -617,8 +617,6 @@
 
   <div class="wrap">
 
-    <!-- MAIN GRID -->
-
     <section class="situation-grid">
 
       <!-- LEFT PANEL -->
@@ -628,8 +626,6 @@
         <h2>National Movement Risk Grid</h2>
 
         <div class="map">
-
-          <!-- USA MAP -->
 
           <svg viewBox="0 0 1000 600" class="usa-map">
             <path d="M110,260
@@ -654,356 +650,34 @@
             Z" />
           </svg>
 
-          <!-- CITYS -->
-
           <div class="city nyc">
-            <div class="dot"></div>
+            <div class="dot danger-dot"></div>
             <span>NYC · 72</span>
           </div>
 
           <div class="city dc">
-            <div class="dot"></div>
+            <div class="dot danger-dot"></div>
             <span>DC · 68</span>
           </div>
 
           <div class="city clt">
-            <div class="dot"></div>
+            <div class="dot safe-dot"></div>
             <span>CLT · 41</span>
           </div>
 
           <div class="city mia">
-            <div class="dot"></div>
+            <div class="dot warn-dot"></div>
             <span>MIA · 63</span>
           </div>
 
           <div class="city chi">
-            <div class="dot"></div>
+            <div class="dot warn-dot"></div>
             <span>CHI · 57</span>
           </div>
 
           <div class="city la">
-            <div class="dot"></div>
+            <div class="dot warn-dot"></div>
             <span>LA · 66</span>
           </div>
 
         </div>
-
-        <!-- RISK LOWER -->
-
-        <div class="risk-lower">
-
-          <div class="risk-main">
-
-            <div class="score-ring">
-              <div>
-                <strong>72</strong>
-                <small>Trip Risk</small>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="metric-list">
-
-            <div class="metric">
-              <span>Crime Signal</span>
-              <b>Elevated activity near destination corridor</b>
-            </div>
-
-            <div class="metric">
-              <span>Weather Exposure</span>
-              <b>Storm activity approaching transfer window</b>
-            </div>
-
-            <div class="metric">
-              <span>Satellite Anomaly</span>
-              <b>Thermal anomaly detected near infrastructure zone</b>
-            </div>
-
-            <div class="metric">
-              <span>EP Escalation</span>
-              <b>Protective detail notified</b>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- RIGHT PANEL -->
-
-      <div class="panel">
-
-        <h2>Travel Disruption Intelligence</h2>
-
-        <!-- FLIGHT MAP -->
-
-        <div class="flight-map">
-
-          <svg viewBox="0 0 1000 500" class="flight-svg">
-
-            <!-- ROUTES -->
-
-            <path class="route route1"
-              d="M180 210 Q500 80 820 250" />
-
-            <path class="route route2"
-              d="M240 230 Q520 120 830 260" />
-
-            <path class="route route3"
-              d="M700 190 Q600 250 500 330" />
-
-            <!-- AIRPORTS -->
-
-            <circle cx="180" cy="210" r="8" class="airport" />
-            <circle cx="240" cy="230" r="8" class="airport" />
-            <circle cx="700" cy="190" r="8" class="airport" />
-            <circle cx="820" cy="250" r="8" class="airport" />
-            <circle cx="830" cy="260" r="8" class="airport" />
-            <circle cx="500" cy="330" r="8" class="airport" />
-
-            <!-- PLANES -->
-
-            <circle class="plane plane1" r="6" />
-            <circle class="plane plane2" r="6" />
-            <circle class="plane plane3" r="6" />
-
-          </svg>
-
-        </div>
-
-        <!-- TABLE -->
-
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Flight</th>
-              <th>Status</th>
-              <th>Updated</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <tr>
-              <td>JFK → LAX</td>
-              <td><span class="status red">Delayed</span></td>
-              <td>21:40</td>
-            </tr>
-
-            <tr>
-              <td>LGA → LAX</td>
-              <td><span class="status green">On Time</span></td>
-              <td>20:55</td>
-            </tr>
-
-            <tr>
-              <td>DCA → CLT</td>
-              <td><span class="status blue">Boarding</span></td>
-              <td>18:10</td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-        <!-- ALERTS -->
-
-        <div class="alert-list">
-
-          <div class="alert">
-            <strong>JFK</strong>
-
-            <span>
-              Outbound flight delays detected. Alternative routing available through LaGuardia (LGA).
-              Flight found with on-time arrival.
-            </span>
-          </div>
-
-          <div class="alert">
-            <strong>Charlotte Corridor</strong>
-
-            <span>
-              Heavy traffic reported on I-77 northbound.
-              Alternate airport routing prepared.
-            </span>
-          </div>
-
-          <div class="alert">
-            <strong>Washington DC</strong>
-
-            <span>
-              Severe weather moving into the DC corridor.
-              Monitoring for escalation.
-            </span>
-          </div>
-
-          <div class="alert">
-            <strong>Remote Sensing Layer</strong>
-
-            <span>
-              Thermal anomaly detected near route-adjacent infrastructure zone.
-              Alerting EP teams now.
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- INFO CARDS -->
-
-    <section class="cards">
-
-      <div class="card">
-        <h3>Crime & Local Activity</h3>
-
-        <p>
-          Dummy incident signals show elevated corridor activity
-          near selected urban movement routes.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Weather & Infrastructure</h3>
-
-        <p>
-          Weather exposure, infrastructure reliability,
-          and route continuity are evaluated as part of the movement profile.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Remote Sensing Intelligence</h3>
-
-        <p>
-          Satellite anomaly detection concept layer flags
-          environmental irregularities and operational disruptions.
-        </p>
-      </div>
-
-    </section>
-
-    <!-- LOWER GRID -->
-
-    <section class="lower-grid">
-
-      <!-- EP TEAM -->
-
-      <div class="panel">
-
-        <h2>EP Team Status</h2>
-
-        <table class="table">
-
-          <thead>
-            <tr>
-              <th>Team</th>
-              <th>City</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <tr>
-              <td>Alpha</td>
-              <td>New York</td>
-              <td><span class="status red">Active Movement</span></td>
-            </tr>
-
-            <tr>
-              <td>Bravo</td>
-              <td>Washington DC</td>
-              <td><span class="status yellow">Standby</span></td>
-            </tr>
-
-            <tr>
-              <td>Carolina</td>
-              <td>Charlotte</td>
-              <td><span class="status green">Available</span></td>
-            </tr>
-
-            <tr>
-              <td>Pacific</td>
-              <td>Los Angeles</td>
-              <td><span class="status blue">Monitoring</span></td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-      <!-- MOVEMENT NOTES -->
-
-      <div class="panel">
-
-        <h2>Movement Operations Notes</h2>
-
-        <div class="alert-list">
-
-          <div class="alert">
-            <strong>New York Movement Window</strong>
-
-            <span>
-              Executive arrival timing adjusted due to outbound departure clustering at JFK.
-            </span>
-          </div>
-
-          <div class="alert">
-            <strong>Charlotte Transfer Corridor</strong>
-
-            <span>
-              Alternate airport route prepared following congestion increase northbound.
-            </span>
-          </div>
-
-          <div class="alert">
-            <strong>DC Weather Monitoring</strong>
-
-            <span>
-              Weather activity increasing across operational corridor. Monitoring for escalation.
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CTA -->
-
-    <section class="cta-section">
-
-      <div class="badge">Movement Intelligence Layer</div>
-
-      <h2>Not reactive. Structured.</h2>
-
-      <p>
-        The Product Demo shows how a traveler experiences GÖ.AI.
-        SENTINEL™ shows what powers the intelligence behind it:
-        disruption awareness, escalation logic, route continuity,
-        and coordinated movement operations.
-      </p>
-
-      <a class="button" href="/kickstarter.html">
-        Join Founding Access
-      </a>
-
-    </section>
-
-  </div>
-
-  <footer>
-    GÖ.AI — SENTINEL™ Situation Room · Dummy demonstration data for concept visualization.
-  </footer>
-
-</body>
-</html>
