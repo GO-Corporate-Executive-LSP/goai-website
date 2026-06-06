@@ -6,2437 +6,269 @@
   <title>GÖ.AI | Product Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Leaflet (map) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
     :root{
-      --bg0:#07090d;
-      --bg1:#0b0f14;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.045);
-      --stroke:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.66);
-      --muted2:rgba(255,255,255,.52);
-      --gold:#d3ad3a;
-      --gold2:#f1d06a;
-      --blue:#9ad7ff;
-      --shadow: 0 30px 80px rgba(0,0,0,.55);
-      --r:18px;
+      --bg0:#07090d; --panel:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92); --muted:rgba(255,255,255,.66); --muted2:rgba(255,255,255,.52);
+      --gold:#d3ad3a; --gold2:#f1d06a; --blue:#9ad7ff; --red:#ff6b6b; --green:#57d17b; --orange:#ffb74d;
+      --shadow:0 30px 80px rgba(0,0,0,.55);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
-
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 15% 15%, rgba(60,110,180,.20), transparent 55%),
-        radial-gradient(900px 600px at 80% 20%, rgba(210,160,40,.18), transparent 55%),
-        radial-gradient(1200px 900px at 50% 90%, rgba(255,255,255,.05), transparent 60%),
-        var(--bg0);
-      overflow-x:hidden;
-    }
-
-    /* Cinematic “drift” glow */
-    .bg-drift{
-      position:fixed; inset:-40vh -40vw;
-      pointer-events:none;
-      filter: blur(40px);
-      opacity:.55;
-      background:
-        radial-gradient(600px 420px at 20% 30%, rgba(120,170,255,.20), transparent 60%),
-        radial-gradient(680px 460px at 75% 25%, rgba(255,200,80,.18), transparent 62%),
-        radial-gradient(720px 520px at 55% 70%, rgba(255,255,255,.06), transparent 65%);
-      animation: drift 14s ease-in-out infinite;
-      transform: translate3d(0,0,0);
-    }
-    @keyframes drift{
-      0%{transform: translate3d(-1.5%, -1%, 0) scale(1.02)}
-      50%{transform: translate3d(1.8%, 1.2%, 0) scale(1.04)}
-      100%{transform: translate3d(-1.5%, -1%, 0) scale(1.02)}
-    }
-
-    /* Top nav */
-    nav{
-      position:sticky; top:0; z-index:60;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 22px;
-      background: linear-gradient(to bottom, rgba(7,9,13,.72), rgba(7,9,13,.35));
-      border-bottom:1px solid rgba(255,255,255,.06);
-      backdrop-filter: blur(10px);
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      letter-spacing:.08em;
-      font-weight:650;
-      color:rgba(255,255,255,.92);
-      user-select:none;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:999px;background:var(--gold);
-      box-shadow:0 0 22px rgba(211,173,58,.35);
-    }
-    .navlinks{
-      display:flex; gap:14px; align-items:center;
-      font-size:14px;
-      color:rgba(255,255,255,.72);
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .navlinks a{
-      color:inherit;
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:10px;
-      transition: background .15s ease, color .15s ease, transform .15s ease;
-    }
-    .navlinks a:hover{
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.90);
-      transform: translateY(-1px);
-    }
-    .navlinks a.active{
-      color: rgba(255,255,255,.95);
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    /* Executive dashboard frame */
-    .wrap{max-width:1220px;margin:0 auto;padding:0 18px 60px; position:relative;}
-    .dashboard-frame{
-      margin:26px auto 0;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .dashboard-frame::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(520px 320px at 18% 15%, rgba(211,173,58,.10), transparent 60%),
-        radial-gradient(600px 360px at 85% 5%, rgba(120,170,255,.10), transparent 58%),
-        radial-gradient(700px 420px at 55% 85%, rgba(255,255,255,.06), transparent 62%);
-      opacity:.95;
-      pointer-events:none;
-      mix-blend-mode: screen;
-    }
-
-    /* Dark glass overlay */
-    .glass{
-      position:relative;
-      padding:22px;
-      background: rgba(0,0,0,.16);
-      backdrop-filter: blur(10px);
-    }
-
-    /* Hero */
-    .hero{
-      padding:40px 14px 8px;
-      text-align:center;
-      position:relative;
-    }
-    h1{
-      margin:0 0 10px;
-      font-size:44px;
-      line-height:1.05;
-      letter-spacing:-.03em;
-      text-shadow: 0 20px 70px rgba(0,0,0,.55);
-      opacity:0;
-      transform: translateY(10px);
-      animation: enter .9s cubic-bezier(.2,.8,.2,1) .05s forwards;
-    }
-    .sub{
-      margin:0 auto 10px;
-      max-width:860px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.65;
-      opacity:0;
-      transform: translateY(10px);
-      animation: enter .9s cubic-bezier(.2,.8,.2,1) .14s forwards;
-    }
-    @keyframes enter{to{opacity:1;transform:translateY(0)}}
-
-    /* Grid */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:18px;
-      align-items:start;
-      padding: 10px 14px 16px;
-      opacity:0;
-      transform: translateY(10px);
-      animation: enter .9s cubic-bezier(.2,.8,.2,1) .20s forwards;
-    }
-
-    @media (max-width: 980px){
-      h1{font-size:36px}
-      .grid{grid-template-columns:1fr;}
-    }
-
-    /* Card (with subtle hover glow + micro animation) */
-    .card{
-      position:relative;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.035));
-      overflow:hidden;
-      transform: translateZ(0);
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .card::after{
-      content:"";
-      position:absolute; inset:-40px;
-      background:
-        radial-gradient(520px 320px at var(--mx, 50%) var(--my, 50%), rgba(154,215,255,.12), transparent 60%),
-        radial-gradient(520px 320px at calc(var(--mx, 50%) + 10%) calc(var(--my, 50%) - 10%), rgba(211,173,58,.10), transparent 62%);
-      opacity:0;
-      transition: opacity .22s ease;
-      pointer-events:none;
-      filter: blur(10px);
-      mix-blend-mode: screen;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
-    }
-    .card:hover::after{opacity:1}
-
-    .card-inner{position:relative; padding:18px;}
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.12);
-      color: rgba(255,255,255,.72);
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-
-    .title-row{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:6px;
-    }
-    h2{
-      margin:0;
-      font-size:18px;
-      letter-spacing:-.01em;
-      color: rgba(255,255,255,.92);
-    }
-    p{
-      margin:0;
-      color: var(--muted);
-      line-height:1.65;
-      font-size:14px;
-    }
-
-    /* Form controls */
-    .form{
-      display:grid;
-      gap:12px;
-      margin-top:14px;
-    }
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 720px){
-      .row{grid-template-columns:1fr;}
-    }
-    input, select, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      color: rgba(255,255,255,.92);
-      outline:none;
-      font-size:14px;
-      transition: border-color .15s ease, background .15s ease, transform .12s ease;
-    }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(154,215,255,.30);
-      background: rgba(0,0,0,.26);
-    }
-    input::placeholder, textarea::placeholder{color: rgba(255,255,255,.42);}
-
-    /* Buttons */
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-      margin-top:2px;
-    }
-    button, .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.92);
-      text-decoration:none;
-      font-weight:650;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease, filter .12s ease;
-      user-select:none;
-    }
-    button:hover, .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.14);
-      filter: saturate(1.05);
-    }
-    .btn-primary{
-      background: linear-gradient(180deg, rgba(241,208,106,.95), rgba(211,173,58,.95));
-      color: rgba(0,0,0,.88);
-      border-color: rgba(241,208,106,.35);
-      box-shadow: 0 16px 50px rgba(211,173,58,.22);
-    }
-
-    /* Module “coming soon” */
-    .soon{
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px dashed rgba(255,255,255,.14);
-      background: rgba(0,0,0,.16);
-      color: rgba(255,255,255,.72);
-      font-size:13px;
-      line-height:1.5;
-    }
-    .soon strong{color: rgba(255,255,255,.90)}
-    .pillrow{
-      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
-    }
-    .pill{
-      font-size:12px;
-      color: rgba(255,255,255,.72);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      padding:6px 10px;
-      border-radius:999px;
-    }
-
-    /* Sentinel UI */
-    .sentinel-grid{
-      display:grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap:14px;
-      margin-top:14px;
-      align-items:start;
-    }
-    @media (max-width: 980px){
-      .sentinel-grid{grid-template-columns:1fr;}
-    }
-
-    .panel{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      overflow:hidden;
-      position:relative;
-    }
-    .panel-h{
-      padding:12px 12px 10px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .panel-h .label{
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color: rgba(255,255,255,.62);
-    }
-    .panel-b{padding:12px;}
-
-    /* Risk dial */
-    .dialWrap{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px;
-    }
-    .dial{
-      width:130px;height:130px;border-radius:999px;
-      position:relative;
-      display:grid;
-      place-items:center;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(0,0,0,.35) 0 58%, transparent 59%),
-        conic-gradient(var(--dialColor, #4caf50) 0 var(--dialPct, 0%), rgba(255,255,255,.10) var(--dialPct, 0%) 100%);
-      box-shadow: 0 0 42px rgba(0,0,0,.55);
-      transition: filter .25s ease, transform .25s ease;
-    }
-    .dial::after{
-      content:"";
-      position:absolute; inset:-18px;
-      border-radius:999px;
-      background: radial-gradient(120px 120px at 50% 50%, rgba(154,215,255,.10), transparent 60%),
-                  radial-gradient(120px 120px at 50% 50%, rgba(211,173,58,.10), transparent 62%);
-      filter: blur(10px);
-      opacity:.8;
-      pointer-events:none;
-    }
-    .dialVal{
-      font-size:34px;
-      font-weight:800;
-      color: rgba(255,255,255,.92);
-      text-shadow: 0 12px 40px rgba(0,0,0,.6);
-    }
-    .dialMeta{
-      flex:1;
-      display:grid;
-      gap:8px;
-      align-content:start;
-    }
-    .tier{
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-    .brief{
-      color: rgba(255,255,255,.78);
-      font-size:13px;
-      line-height:1.55;
-    }
-    .facts{
-      display:grid;
-      gap:6px;
-      margin-top:2px;
-    }
-    .fact{
-      font-size:12px;
-      color: rgba(255,255,255,.62);
-    }
-    .fact b{color: rgba(255,255,255,.86)}
-
-    /* Map */
-    #map{
-      width:100%;
-      height:320px;
-      border-radius:0 0 16px 16px;
-    }
-    .mapWrap{
-      overflow:hidden;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
-    }
-
-    /* Leaflet control rounding */
-    .leaflet-control-zoom a{
-      border-radius:10px !important;
-      overflow:hidden;
-    }
-
-    /* Telemetry */
-    .telemetry{
-      display:grid;
-      gap:10px;
-    }
-    .track{
-      height:10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.10);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-    }
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(154,215,255,.9), rgba(241,208,106,.9));
-      transition: width .25s ease;
-    }
-    .telemetryRow{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      color: rgba(255,255,255,.70);
-      font-size:12px;
-    }
-    .telemetryRow .tag{
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
-    }
-
-    /* Lifecycle buttons */
-    .lifecycle{
-      display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;
-    }
-    .lifeBtn{
-      padding:9px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.86);
-      font-weight:700;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .lifeBtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14);}
-    .lifeBtn.active{
-      background: rgba(241,208,106,.14);
-      border-color: rgba(241,208,106,.26);
-      color: rgba(255,255,255,.92);
-    }
-
-    /* T-24 briefing toggle */
-    .toggleRow{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-    .toggleRow .muted{color: rgba(255,255,255,.62); font-size:12px;}
-    .switch{
-      position:relative; width:46px; height:26px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.08);
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease;
-    }
-    .knob{
-      position:absolute; top:3px; left:3px;
-      width:20px; height:20px; border-radius:999px;
-      background: rgba(255,255,255,.85);
-      transition: transform .15s ease;
-    }
-    .switch.on{
-      background: rgba(241,208,106,.22);
-      border-color: rgba(241,208,106,.35);
-    }
-    .switch.on .knob{transform: translateX(20px);}
-
-    /* ===== UPDATED (TSA live UI) ===== */
-    #tsaOutput{
-      margin-top:14px;
-    }
-
-    /* ===== Tier Selector output (Module 04) ===== */
-    .tierOutput{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      overflow:hidden;
-    }
-
-    .tierOutHead{
-      padding:12px 12px 10px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-
-    .tierOutHead .label{
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color: rgba(255,255,255,.62);
-    }
-
-    .tierOutBody{
-      padding:12px;
-      display:grid;
-      gap:10px;
-    }
-
-    .tierHero{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-
-    .tierImg{
-      width:86px;
-      height:86px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      overflow:hidden;
-      flex:0 0 auto;
-      display:grid;
-      place-items:center;
-    }
-
-    .tierImg img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .tierTitle{
-      font-weight:850;
-      letter-spacing:.01em;
-      font-size:16px;
-    }
-
-    .tierSub{
-      color: rgba(255,255,255,.72);
-      font-size:13px;
-      line-height:1.55;
-      margin-top:3px;
-    }
-
-    .tierBadges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:6px;
-    }
-
-    .badge{
-      font-size:12px;
-      color: rgba(255,255,255,.74);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      padding:6px 10px;
-      border-radius:999px;
-    }
-
-    .badge.gold{
-      border-color: rgba(241,208,106,.22);
-      background: rgba(241,208,106,.10);
-      color: rgba(255,255,255,.88);
-    }
-
-    .altRow{
-      margin-top:2px;
-      padding-top:10px;
-      border-top:1px solid rgba(255,255,255,.08);
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
-      color: rgba(255,255,255,.70);
-      font-size:12px;
-    }
-
-    .altRow b{ color: rgba(255,255,255,.88); }
-
-    footer{
-      padding:18px 0 10px;
-      color: rgba(255,255,255,.45);
-      font-size:12px;
-      text-align:center;
-    }
-    footer a{color: rgba(255,255,255,.72); text-decoration:none; border-bottom:1px solid rgba(255,255,255,.18)}
-    footer a:hover{border-bottom-color: rgba(241,208,106,.45); color: rgba(255,255,255,.92)}
-
-    /* =========================
-       MODULE 02 (CLEAN UI) — BASE
-    ========================= */
-    .e2e-tabs{
-      display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 14px;
-    }
-    .e2e-tab{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:transparent;
-      color:#fff;
-      cursor:pointer;
-      opacity:.85;
-      font-weight:700;
-      transition: transform .12s ease, background .12s ease, opacity .12s ease, border-color .12s ease;
-    }
-    .e2e-tab:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); opacity: 1;}
-    .e2e-tab.active{background: rgba(255,255,255,.06); opacity: 1;}
-
-    .e2e-form{
-      display:grid;
-      grid-template-columns: repeat(12,1fr);
-      gap:12px;
-      margin: 10px 0 14px;
-    }
-    .e2e-field{
-      background: rgba(0,0,0,0.18);
-      border:1px solid rgba(255,255,255,0.10);
-      border-radius:16px;
-      padding:10px 10px;
-      min-height:64px;
-    }
-    .e2e-label{
-      display:block;
-      font-size:12px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      opacity:.65;
-      margin:0 0 6px;
-    }
-    .e2e-field input,
-    .e2e-field select{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.22);
-      color:#fff;
-      outline:none;
-      font-size:15px;
-    }
-
-    .e2e-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:10px;
-      align-items:center;
-    }
-    .e2e-status{align-self:center;opacity:.75;font-size:13px;}
-
-    .e2e-stage{
-      margin-top:14px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.18);
-      overflow:hidden;
-    }
-    .e2e-stage-h{
-      padding:12px 12px 10px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-    }
-    .e2e-stage-h .left{
-      display:flex; flex-direction:column; gap:2px;
-      min-width:0;
-    }
-    .e2e-stage-h .title{
-      font-weight:850;
-      font-size:14px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-    .e2e-stage-h .sub{
-      font-size:13px;
-      opacity:.70;
-      max-width: 62ch;
-      margin:0;
-    }
-    .e2e-stage-b{padding:12px;}
-
-    .e2e-cards{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:10px;
-    }
-
-    .pick-card{
-      grid-column: span 4;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      min-height:104px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:8px;
-    }
-    .pick-card:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-    }
-    .pick-card.selected{
-      border-color: rgba(241,208,106,.26);
-      background: rgba(241,208,106,.10);
-    }
-    .pick-top{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .pick-name{font-weight:850; font-size:15px;}
-    .pick-price{font-weight:900; font-size:18px;}
-    .pick-meta{opacity:.75; font-size:12px;}
-    .pick-logo{
-      width:44px; height:28px;
-      border-radius:10px;
-      background: rgba(0,0,0,.18);
-      border:1px solid rgba(255,255,255,.08);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .pick-logo img{
-      max-width: 86%;
-      max-height: 86%;
-      object-fit: contain;
-      display:block;
-      filter: drop-shadow(0 10px 24px rgba(0,0,0,.45));
-    }
-
-    .e2e-summary{
-      margin-top:12px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.22);
-      overflow:hidden;
-    }
-    .e2e-summary-h{
-      padding:12px 12px 10px;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .e2e-summary-h .title{
-      font-weight:900;
-      font-size:14px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-    .e2e-summary-b{
-      padding:12px;
-      display:grid;
-      gap:10px;
-    }
-    .sum-row{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding:10px 10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-    }
-    .sum-row .k{opacity:.75}
-    .sum-row .v{font-weight:850}
-    .sum-total{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding:12px 10px;
-      border-radius:16px;
-      border:1px solid rgba(241,208,106,.22);
-      background: rgba(241,208,106,.10);
-      font-size:16px;
-    }
-    .sum-total .k{font-weight:900}
-    .sum-total .v{font-weight:1000}
-
-    @media (max-width: 980px){
-      .pick-card{grid-column: span 6;}
-    }
-    @media (max-width: 560px){
-      .pick-card{grid-column: span 12;}
-    }
-
-    /* =========================
-       MODULE 02 (CLEAN UI) — COSMETIC OVERRIDES (NEW)
-       (Inputs wider + card layout with logo top-left and no overlaps)
-    ========================= */
-
-    /* Make inputs wider + more readable */
-    .e2e-form{
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .e2e-field{
-      min-height: 72px;
-      padding: 12px;
-    }
-    .e2e-label{
-      font-size: 12px;
-      letter-spacing: .10em;
-    }
-    .e2e-field input,
-    .e2e-field select{
-      padding: 14px 14px;
-      border-radius: 16px;
-      font-size: 15px;
-    }
-
-    /* Pax number visibility */
-    #e2ePax{
-      text-align: center;
-      font-weight: 850;
-      font-size: 16px;
-      letter-spacing: .02em;
-    }
-
-    /* Better tap target for date inputs */
-    #e2eDepart, #e2eReturn{
-      min-height: 46px;
-    }
-
-    /* Desktop layout via data-col (keeps things readable without hiding Pax) */
-    #module-orchestration .e2e-field[data-col="from"]{ grid-column: span 6; }
-    #module-orchestration .e2e-field[data-col="to"]{ grid-column: span 6; }
-
-    #module-orchestration .e2e-field[data-col="depart"]{ grid-column: span 3; }
-    #module-orchestration .e2e-field[data-col="return"]{ grid-column: span 3; }
-    #module-orchestration .e2e-field[data-col="pax"]{ grid-column: span 3; }
-    #module-orchestration .e2e-field[data-col="cabin"]{ grid-column: span 3; }
-
-    #module-orchestration .e2e-field[data-col="summary"]{ grid-column: span 12; min-height: 76px; }
-
-    /* Tablet / Mobile */
-    @media (max-width: 980px){
-      #module-orchestration .e2e-field[data-col="from"]{ grid-column: span 12; }
-      #module-orchestration .e2e-field[data-col="to"]{ grid-column: span 12; }
-
-      #module-orchestration .e2e-field[data-col="depart"]{ grid-column: span 6; }
-      #module-orchestration .e2e-field[data-col="return"]{ grid-column: span 6; }
-
-      #module-orchestration .e2e-field[data-col="pax"]{ grid-column: span 6; }
-      #module-orchestration .e2e-field[data-col="cabin"]{ grid-column: span 6; }
-
-      #module-orchestration .e2e-field[data-col="summary"]{ grid-column: span 12; }
-    }
-
-    /* Card layout: logo top-left, text clean, price top-right */
-    .pick-card{
-      position: relative;
-      padding: 14px 14px 12px;
-      min-height: 126px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .pick-top{
-  display:flex;
-  align-items:center;   /* ← change */
-  justify-content:space-between;
-  gap: 12px;
-}
-
-.pick-left{
-  display:flex;
-  align-items:center;   /* ← change */
-  gap: 10px;
-}
-      min-width: 0;
-    }
-
-    .pick-logo{
-      width: 40px;
-      height: 28px;
-      border-radius: 10px;
-      margin-top: 2px;
-    }
-
-    .pick-text{
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap: 4px;
-    }
-
-    .pick-name{
-      font-weight: 900;
-      font-size: 14px;
-      line-height: 1.15;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .pick-meta{
-      opacity: .72;
-      font-size: 12px;
-      line-height: 1.25;
-    }
-
-    .pick-price{
-      font-weight: 1000;
-      font-size: 18px;
-      line-height: 1;
-      letter-spacing: -.01em;
-      text-align: right;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-    /* ===== BEST VISUAL CARD HEADER (NO OVERLAP) ===== */
-
-/* Card gets a touch taller so everything breathes */
-.pick-card{
-  min-height: 138px;
-}
-
-/* Top area becomes a 2-row grid:
-   Left: logo + name (spans both rows)
-   Right: price (top-right) + meta (bottom-right)
-*/
-.pick-top{
-  display:grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  column-gap: 14px;
-  row-gap: 8px;
-  align-items:center;
-}
-
-/* Left cluster spans both rows */
-.pick-left{
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-  display:flex;
-  align-items:center;         /* <— “left center” feel */
-  gap: 12px;
-  min-width:0;
-}
-
-/* Logo footprint */
-.pick-logo{
-  width: 44px;
-  height: 32px;
-  border-radius: 12px;
-  display:grid;
-  place-items:center;
-}
-
-/* If you want the logo slightly LOWER (tiny nudge), use this: */
-.pick-logo{ transform: translateY(4px); }
-
-/* Text stack */
-.pick-text{
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  gap: 4px;
-}
-
-.pick-name{
-  font-weight: 950;
-  font-size: 15px;
-  line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Price top-right */
-.pick-price{
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  font-weight: 1000;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: -.01em;
-  text-align: right;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Meta bottom-right (keeps center clean) */
-.pick-meta{
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  opacity: .72;
-  font-size: 12px;
-  line-height: 1.25;
-  text-align: right;
-  max-width: 28ch;            /* prevents giant meta wrapping weirdly */
-}
-
-/* On small screens, reduce price so it never feels cramped */
-@media (max-width: 560px){
-  .pick-price{ font-size: 17px; }
-  .pick-meta{ max-width: 20ch; }
-}
-    /* === Pin logos down-left (Flights + Hotels) without affecting price === */
-.pick-card{
-  position: relative; /* required for absolute positioning */
-}
-
-/* Only affect cards that actually have a logo */
-.pick-card .pick-logo{
-  position: absolute;
-  left: 14px;     /* how far from left edge */
-  top: 56px;      /* how far down from top (adjust this) */
-  margin-top: 0;  /* remove any old margin tweaks */
-  width: 46px;    /* optional: slightly larger */
-  height: 32px;
-  z-index: 2;
-}
-/* Hotels: shift logo slightly more left */
-.pick-card.kind-hotel .pick-logo{
-  left: 2px;   /* was 14px globally */
-}
-/* Make sure text block doesn't start underneath the pinned logo */
-.pick-card .pick-text{
-  padding-left: 62px; /* creates space to the right of the logo */
-}
-
-/* Keep price visually above everything */
-.pick-card .pick-price{
-  position: relative;
-  z-index: 3;
-}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:radial-gradient(900px 600px at 15% 15%,rgba(60,110,180,.20),transparent 55%),radial-gradient(900px 600px at 80% 20%,rgba(210,160,40,.18),transparent 55%),radial-gradient(1200px 900px at 50% 90%,rgba(255,255,255,.05),transparent 60%),var(--bg0);overflow-x:hidden}
+    .bg-drift{position:fixed;inset:-40vh -40vw;pointer-events:none;filter:blur(40px);opacity:.55;background:radial-gradient(600px 420px at 20% 30%,rgba(120,170,255,.20),transparent 60%),radial-gradient(680px 460px at 75% 25%,rgba(255,200,80,.18),transparent 62%),radial-gradient(720px 520px at 55% 70%,rgba(255,255,255,.06),transparent 65%);animation:drift 14s ease-in-out infinite;transform:translate3d(0,0,0)}
+    @keyframes drift{0%{transform:translate3d(-1.5%,-1%,0) scale(1.02)}50%{transform:translate3d(1.8%,1.2%,0) scale(1.04)}100%{transform:translate3d(-1.5%,-1%,0) scale(1.02)}}
+    nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:linear-gradient(to bottom,rgba(7,9,13,.72),rgba(7,9,13,.35));border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:10px;letter-spacing:.08em;font-weight:650;user-select:none}.dot{width:10px;height:10px;border-radius:999px;background:var(--gold);box-shadow:0 0 22px rgba(211,173,58,.35)}
+    .navlinks{display:flex;gap:14px;align-items:center;font-size:14px;color:rgba(255,255,255,.72);flex-wrap:wrap;justify-content:flex-end}.navlinks a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:10px}.navlinks a:hover,.navlinks a.active{background:rgba(255,255,255,.06);color:rgba(255,255,255,.95)}
+    .wrap{max-width:1220px;margin:0 auto;padding:0 18px 60px;position:relative}.dashboard-frame{margin:26px auto 0;border-radius:24px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow);overflow:hidden;position:relative}.glass{position:relative;padding:22px;background:rgba(0,0,0,.16);backdrop-filter:blur(10px)}
+    .hero{padding:40px 14px 8px;text-align:center}h1{margin:0 0 10px;font-size:44px;line-height:1.05;letter-spacing:-.03em}.sub{margin:0 auto 10px;max-width:880px;color:var(--muted);font-size:16px;line-height:1.65}
+    .grid{display:grid;grid-template-columns:1.35fr .95fr;gap:18px;align-items:start;padding:10px 14px 16px}@media(max-width:980px){h1{font-size:36px}.grid{grid-template-columns:1fr}}
+    .card{position:relative;border-radius:18px;border:1px solid rgba(255,255,255,.10);background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.035));overflow:hidden}.card-inner{position:relative;padding:18px}.kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.12);color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}.title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px}h2{margin:0;font-size:18px;letter-spacing:-.01em}p{margin:0;color:var(--muted);line-height:1.65;font-size:14px}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);color:rgba(255,255,255,.92);outline:none;font-size:14px}label{display:grid;gap:7px;color:rgba(255,255,255,.72);font-size:13px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:720px){.row{grid-template-columns:1fr}}
+    button,.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);color:rgba(255,255,255,.92);text-decoration:none;font-weight:650;cursor:pointer;transition:transform .12s ease,background .12s ease,border-color .12s ease;user-select:none}button:hover,.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn-primary{background:linear-gradient(180deg,rgba(241,208,106,.95),rgba(211,173,58,.95));color:rgba(0,0,0,.88);border-color:rgba(241,208,106,.35);box-shadow:0 16px 50px rgba(211,173,58,.22)}.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+    .brief-grid{display:grid;grid-template-columns:210px 1fr;gap:14px;margin-top:14px}@media(max-width:720px){.brief-grid{grid-template-columns:1fr}}.score-orb{min-height:210px;border-radius:22px;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,rgba(241,208,106,.24),rgba(255,255,255,.04) 62%,rgba(0,0,0,.20));border:1px solid rgba(241,208,106,.20)}.score-orb .num{font-size:64px;font-weight:950;text-align:center}.score-orb .cap{text-align:center;color:var(--gold2);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.brief-list{display:grid;gap:10px}.mini-card,.update-card{border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.20);padding:12px}.mini-card strong{display:block;margin-bottom:4px}.source-legend{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.10);font-size:12px;color:rgba(255,255,255,.52)}
+    .panel{border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);overflow:hidden}.panel-h{padding:12px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-h .label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62)}#map{width:100%;height:330px;border-radius:0 0 16px 16px}.mapWrap{overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.12)}
+    .demo-three{display:grid;gap:18px}.intent-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}@media(max-width:720px){.intent-grid{grid-template-columns:1fr}}.scenario-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}@media(max-width:560px){.scenario-buttons{grid-template-columns:1fr}}.scenario-result{display:none;margin-top:14px;border-radius:16px;border:1px solid rgba(241,208,106,.18);background:rgba(0,0,0,.22);padding:14px}.scenario-result.show{display:block}.scenario-result h3{margin:0 0 8px;color:var(--gold2)}.scenario-result ul{margin:12px 0 0;padding-left:20px;color:rgba(255,255,255,.76);font-size:13px;line-height:1.6}.status-line{margin-top:14px;color:var(--gold2);font-weight:800;font-size:13px}.timeline{display:grid;gap:10px;margin-top:12px}.timeline-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}.timeline-row .k{opacity:.72}.timeline-row .v{font-weight:850}.changed .v{color:var(--gold2)}
+    #tsaOutput{margin-top:14px}.tierOutput{border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.16);overflow:hidden;padding:12px}.badge{font-size:12px;color:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:6px 10px;border-radius:999px}footer{padding:18px 0 10px;color:rgba(255,255,255,.45);font-size:12px;text-align:center}footer a{color:rgba(255,255,255,.72);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}
   </style>
 </head>
-
 <body>
   <div class="bg-drift"></div>
-
-  <nav>
-    <div class="brand"><span class="dot"></span> GÖ.AI</div>
-    <div class="navlinks">
-      <a href="/">Home</a>
-      <a class="active" href="/product-demo.html">Product Demo</a>
-      <a href="/get-access.html">Get Access</a>
-    </div>
-  </nav>
-
-  <div class="wrap">
-    <div class="dashboard-frame">
-      <div class="glass">
-        <section class="hero">
-          <h1>Interactive Product Demo</h1>
-          <p class="sub">
-            Explore the intelligence layer behind GÖ.AI. This preview demonstrates how Sentinel™ evaluates trip risk,
-            simulates telemetry, and triggers geofence awareness.
-          </p>
-        </section>
-
-        <section class="grid">
-          <!-- LEFT: Sentinel (UNCHANGED) -->
-          <div class="card" id="sentinelCard">
-            <div class="card-inner">
-              <div class="kicker">SENTINEL • Risk + Geofence • Live Demo</div>
-              <div class="title-row">
-                <div>
-                  <h2>Sentinel™ Risk Engine</h2>
-                  <p>Enter a ZIP code to compute a score, render a risk dial, and place a geofence on the map.</p>
-                </div>
-              </div>
-
-              <div class="form">
-                <div class="row">
-                  <input type="text" id="zipInput" placeholder="ZIP (e.g., 28202)" maxlength="5" />
-                  <select id="radiusSelect" title="Geofence radius">
-                    <option value="800">Geofence: 0.5 mi</option>
-                    <option value="1600" selected>Geofence: 1 mi</option>
-                    <option value="3200">Geofence: 2 mi</option>
-                  </select>
-                </div>
-
-                <div class="actions">
-                  <button class="btn btn-primary" id="analyzeBtn" type="button">Analyze Risk</button>
-                  <button class="btn" id="simCreated" type="button">Simulate: Created</button>
-                  <button class="btn" id="simEnRoute" type="button">Simulate: En Route</button>
-                  <button class="btn" id="simComplete" type="button">Simulate: Complete</button>
-                </div>
-              </div>
-
-              <div class="sentinel-grid">
-                <div class="panel">
-                  <div class="panel-h">
-                    <div class="label">Risk Dial</div>
-                    <div class="label" id="tierLabel">—</div>
-                  </div>
-                  <div class="panel-b">
-                    <div class="dialWrap">
-                      <div class="dial" id="dial" style="--dialPct:0%; --dialColor:#4caf50;">
-                        <div class="dialVal" id="dialVal">—</div>
-                      </div>
-
-                      <div class="dialMeta">
-                        <div class="tier" id="tierText">Awaiting input…</div>
-                        <div class="brief" id="briefText">Enter a ZIP and run analysis to generate a briefing.</div>
-
-                        <div class="facts">
-                          <div class="fact"><b>Data Hooks:</b> Census + SVI (scaffold)</div>
-                          <div class="fact"><b>Telemetry:</b> simulated route pings</div>
-                          <div class="fact"><b>Geofence:</b> radius + polygon demo (scaffold)</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="toggleRow">
-                      <div>
-                        <div class="muted"><b>T-24 Briefing</b> (preview toggle)</div>
-                        <div class="muted" id="t24State">Off</div>
-                      </div>
-                      <div class="switch" id="t24Switch" role="switch" aria-checked="false" tabindex="0">
-                        <div class="knob"></div>
-                      </div>
-                    </div>
-
-                    <div style="margin-top:12px;" class="telemetry">
-                      <div class="telemetryRow">
-                        <span class="tag" id="lifeStateTag">Lifecycle: idle</span>
-                        <span class="tag" id="geoStateTag">Geofence: idle</span>
-                        <span class="tag" id="telemetryTag">Telemetry: 0%</span>
-                      </div>
-                      <div class="track"><div class="bar" id="telemetryBar"></div></div>
-
-                      <div class="lifecycle">
-                        <div class="lifeBtn" data-life="created" id="lifeCreated">Created</div>
-                        <div class="lifeBtn" data-life="enroute" id="lifeEnRoute">En Route</div>
-                        <div class="lifeBtn" data-life="complete" id="lifeComplete">Complete</div>
-                      </div>
-                    </div>
-
-                    <div class="soon" id="reasoningBox" style="margin-top:12px;">
-                      <strong>Reasoning blocks</strong><br/><br>
-                      Run “Analyze Risk” to populate structured factors.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mapWrap panel">
-                  <div class="panel-h">
-                    <div class="label">Map Visualization</div>
-                    <div class="label">Leaflet • OpenStreetMap</div>
-                  </div>
-                  <div id="map"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- RIGHT: Modules (2–4) -->
-          <div style="display:grid; gap:18px;">
-            <!-- =======================
-                 MODULE 02 • CLEAN ORCHESTRATION (NO JSON)
-                 ======================= -->
-            <section id="module-orchestration" style="margin-top:0;">
-              <div class="card" style="padding:18px;border-radius:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);">
-                <div style="font-size:12px;letter-spacing:.12em;opacity:.7;">MODULE 02 • ORCHESTRATION</div>
-                <h2 style="margin:10px 0 6px;font-size:28px;line-height:1.15;">End-to-End Booking</h2>
-                <div style="opacity:.75;margin-bottom:6px;">Rideshare + Flights + Hotels orchestration. Demo scaffold with realistic sample pricing.</div>
-
-                <!-- Tabs -->
-                <div class="e2e-tabs">
-                  <button class="e2e-tab active" data-tab="rides">Rideshare</button>
-                  <button class="e2e-tab" data-tab="flights">Flights</button>
-                  <button class="e2e-tab" data-tab="hotels">Hotels</button>
-                  <button class="e2e-tab" data-tab="all">All</button>
-                </div>
-
-                <!-- Inputs (wider + cleaner) -->
-                <div class="e2e-form">
-                  <div class="e2e-field" data-col="from">
-                    <label class="e2e-label">From</label>
-                    <input id="e2eFrom" value="Charlotte (CLT)" />
-                  </div>
-
-                  <div class="e2e-field" data-col="to">
-                    <label class="e2e-label">To</label>
-                    <input id="e2eTo" value="New York (JFK)" />
-                  </div>
-
-                  <div class="e2e-field" data-col="depart">
-                    <label class="e2e-label">Depart</label>
-                    <input id="e2eDepart" type="date" />
-                  </div>
-
-                  <div class="e2e-field" data-col="return">
-                    <label class="e2e-label">Return</label>
-                    <input id="e2eReturn" type="date" />
-                  </div>
-
-                  <div class="e2e-field" data-col="pax">
-                    <label class="e2e-label">Pax</label>
-                    <input id="e2ePax" type="number" min="1" max="6" value="1" />
-                  </div>
-
-                  <div class="e2e-field" data-col="cabin">
-                    <label class="e2e-label">Cabin</label>
-                    <select id="e2eCabin">
-                      <option value="economy">Economy</option>
-                      <option value="premium_economy">Prem Econ</option>
-                      <option value="business">Business</option>
-                      <option value="first">First</option>
-                    </select>
-                  </div>
-
-                  <div class="e2e-field" data-col="summary">
-                    <label class="e2e-label">Trip Summary</label>
-                    <input id="e2eSummary" value="CLT → JFK • 2 nights • executive-ready" />
-                  </div>
-                </div>
-
-                <div class="e2e-actions">
-                  <button id="btnSimulateE2E" class="btn btn-primary" type="button">Simulate Booking Flow</button>
-                  <a id="btnGetAccess" class="btn" href="/get-access.html">Get Access</a>
-                  <div id="e2eStatus" class="e2e-status"></div>
-                </div>
-
-                <!-- Stage: single box that changes with tab -->
-                <div class="e2e-stage" id="e2eStage">
-                  <div class="e2e-stage-h">
-                    <div class="left">
-                      <div class="title" id="e2eStageTitle">Rideshare Options</div>
-                      <p class="sub" id="e2eStageSub">Select a tier. Outbound + return are calculated automatically.</p>
-                    </div>
-                    <div style="opacity:.75;font-size:12px;" id="e2eStageHint">Tap a card to select</div>
-                  </div>
-                  <div class="e2e-stage-b">
-                    <div class="e2e-cards" id="e2eStageCards"></div>
-                  </div>
-                </div>
-
-                <!-- Unified cumulative total (no JSON) -->
-                <div class="e2e-summary" id="e2eSummaryBlock">
-                  <div class="e2e-summary-h">
-                    <div class="title">Unified Trip Total</div>
-                    <div style="opacity:.75;font-size:12px;" id="e2eTotalHint">Select one option in each category</div>
-                  </div>
-                  <div class="e2e-summary-b">
-                    <div class="sum-row">
-                      <div class="k">Rideshare</div>
-                      <div class="v" id="sumRide">—</div>
-                    </div>
-                    <div class="sum-row">
-                      <div class="k">Flight</div>
-                      <div class="v" id="sumFlight">—</div>
-                    </div>
-                    <div class="sum-row">
-                      <div class="k">Hotel</div>
-                      <div class="v" id="sumHotel">—</div>
-                    </div>
-                    <div class="sum-total">
-                      <div class="k">Total</div>
-                      <div class="v" id="sumTotal">—</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- ===== MODULE 03 (UNCHANGED) ===== -->
-            <div class="card" id="tsaCard">
-              <div class="card-inner">
-                <div class="kicker">Module 03 • Airport Intel</div>
-                <h2>TSA Wait Times</h2>
-                <p>Live PreCheck vs Standard screening visibility via TSA Web Service.</p>
-
-                <div class="form" style="margin-top:14px;">
-                  <div class="row">
-                    <input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" />
-                    <button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Wait Times</button>
-                  </div>
-                </div>
-
-                <div id="tsaOutput"></div>
-
-                <div class="actions" style="margin-top:12px;">
-                  <button
-                    class="btn"
-                    type="button"
-                    onclick="
-                      document.getElementById('tsaAirportInput').value='';
-                      document.getElementById('tsaOutput').innerHTML='';
-                      document.getElementById('tsaAirportInput').focus();
-                    ">
-                    Try Another Airport
-                  </button>
-                  <a class="btn" href="/get-access.html">Join Founding 100 →</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- ===== MODULE 04 (UNCHANGED) ===== -->
-            <div class="card" id="tierCard">
-              <div class="card-inner">
-                <div class="kicker">Module 04 • Personalization</div>
-
-                <div class="title-row">
-                  <div>
-                    <h2>AI Tier Selector</h2>
-                    <p>Describe the trip — get a tier recommendation with rationale (simulated concierge logic).</p>
-                  </div>
-                </div>
-
-                <p style="margin-top:10px; color: rgba(255,255,255,.78); font-weight:700;">
-                  GÖ JET | GÖ BIZZ | G-KLÜB
-                </p>
-
-                <div class="form" style="margin-top:12px;">
-                  <div class="row">
-                    <select id="tierParty" title="Party size">
-                      <option value="1" selected>Party size: 1</option>
-                      <option value="2">Party size: 2</option>
-                      <option value="3">Party size: 3–4</option>
-                      <option value="5">Party size: 5+</option>
-                    </select>
-
-                    <select id="tierLuggage" title="Luggage">
-                      <option value="none" selected>Luggage: none / small bag</option>
-                      <option value="carry">Luggage: carry-on</option>
-                      <option value="checked">Luggage: 1–2 checked</option>
-                      <option value="heavy">Luggage: 3+ / strollers / heavy</option>
-                    </select>
-                  </div>
-
-                  <div class="row">
-                    <select id="tierDistance" title="Trip distance">
-                      <option value="short" selected>Distance: local (0–15 mi)</option>
-                      <option value="metro">Distance: metro (15–40 mi)</option>
-                      <option value="long">Distance: long (40+ mi)</option>
-                    </select>
-
-                    <select id="tierTone" title="Trip tone">
-                      <option value="efficient" selected>Tone: efficient / on-the-go</option>
-                      <option value="client">Tone: client-facing / business</option>
-                      <option value="family">Tone: family / multi-stop</option>
-                      <option value="vip">Tone: VIP / discreet</option>
-                    </select>
-                  </div>
-
-                  <div class="row">
-                    <select id="tierSecurity" title="Security posture">
-                      <option value="normal" selected>Security: standard</option>
-                      <option value="aware">Security: elevated awareness</option>
-                    </select>
-
-                    <input id="tierNotes" type="text" placeholder="Optional notes (e.g., ‘late arrival’, ‘tight connection’, ‘kids’, ‘high visibility’)" />
-                  </div>
-
-                  <div class="actions" style="margin-top:6px;">
-                    <button class="btn btn-primary" id="tierRecommendBtn" type="button">Get Recommendation</button>
-                    <button class="btn" id="tierResetBtn" type="button">Try Another Scenario</button>
-                    <a class="btn" href="/get-access.html">Get early access →</a>
-                  </div>
-                </div>
-
-                <div id="tierOutput" class="tierOutput" style="margin-top:12px;">
-                  <div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <footer>
-          © <span id="y"></span> GÖ.AI • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a>
-        </footer>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================
-    MODULE 02 • ORCHESTRATION (CLEAN, NO JSON)
-  ========================= -->
-  <script>
-  (() => {
-    const $ = (id) => document.getElementById(id);
-
-    function pad2(n){ return String(n).padStart(2,'0'); }
-    function isoDate(d){
-      return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
-    }
-    function addDays(dateStr, days){
-      const d = new Date(dateStr + "T12:00:00");
-      d.setDate(d.getDate() + days);
-      return isoDate(d);
-    }
-
-    function hashString(str){
-      let h = 2166136261;
-      for (let i=0;i<str.length;i++){
-        h ^= str.charCodeAt(i);
-        h = Math.imul(h, 16777619);
-      }
-      return h >>> 0;
-    }
-    function mulberry32(a){
-      return function(){
-        let t = a += 0x6D2B79F5;
-        t = Math.imul(t ^ (t >>> 15), t | 1);
-        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-      }
-    }
-    function randInt(rng, min, max){
-      return Math.floor(rng() * (max - min + 1)) + min;
-    }
-    function pick(rng, arr){ return arr[randInt(rng, 0, arr.length-1)]; }
-    function money(amount){ return new Intl.NumberFormat(undefined, { style:'currency', currency:'USD' }).format(amount); }
-
-    // Logos (assets folder)
-    const LOGOS = {
-      AA: "assets/aa-logo.png",
-      DL: "assets/delta-logo.png",
-      WN: "assets/sw-logo.png",
-      HILTON: "assets/hilton-logo.png",
-      WESTIN: "assets/westin-logo.png",
-      JW: "assets/jwmarroitt-logo.png"
-    };
-
-    // State
-    let activeTab = "rides";
-    let data = null;
-
-    let selected = {
-      rideTier: null,   // "standard" | "executive" | "secure"
-      flight: null,     // id
-      hotel: null       // id
-    };
-
-    function getInput(){
-      const today = isoDate(new Date());
-      const depart = $("e2eDepart").value || addDays(today, 7);
-      const ret = $("e2eReturn").value || addDays(depart, 2);
-
-      return {
-        from: ($("e2eFrom").value || "").trim(),
-        to: ($("e2eTo").value || "").trim(),
-        depart,
-        returnDate: ret,
-        pax: Math.max(1, Math.min(6, parseInt($("e2ePax").value || "1", 10))),
-        cabin: $("e2eCabin").value
-      };
-    }
-
-    function buildMockData(input, rng){
-      // Rideshare: outbound/return totals per tier
-      const milesOut = Math.max(2, Math.round((rng()*8 + 3) * 10) / 10);
-      const milesBack = Math.max(2, Math.round((rng()*12 + 4) * 10) / 10);
-
-      const baseOut = randInt(rng, 22, 64);
-      const baseBack = randInt(rng, 18, 58);
-      const surge = 1 + rng()*0.45;
-
-      const tiers = [
-        { tier:"standard", name:"Standard", mult:1.0 },
-        { tier:"executive", name:"Executive", mult:1.6 },
-        { tier:"secure", name:"Secure", mult:2.3 }
-      ];
-
-      const rides = tiers.map(t => {
-        const out = Math.round(baseOut * t.mult * surge * 100) / 100;
-        const back = Math.round(baseBack * t.mult * surge * 100) / 100;
-        const etaOut = randInt(rng, 7, 14);
-        const etaBack = randInt(rng, 6, 13);
-        return {
-          tier: t.tier,
-          name: t.name,
-          outbound: { price: out, etaMin: etaOut, miles: milesOut },
-          ret: { price: back, etaMin: etaBack, miles: milesBack },
-          total: Math.round((out + back) * 100) / 100
-        };
-      });
-
-      // Flights
-      const cabinMult =
-        input.cabin === "economy" ? 1 :
-        input.cabin === "premium_economy" ? 1.35 :
-        input.cabin === "business" ? 2.15 : 2.85;
-
-      const carriers = [
-        { id:"AA", name:"American", logo: LOGOS.AA },
-        { id:"DL", name:"Delta", logo: LOGOS.DL },
-        { id:"WN", name:"Southwest", logo: LOGOS.WN }
-      ];
-
-      const flights = carriers.map(c => {
-        const base = randInt(rng, 160, 520);
-        const total = Math.round(base * input.pax * cabinMult * (1 + rng()*0.18) * 100) / 100;
-        const duration = randInt(rng, 95, 185);
-        const stops = pick(rng, ["Nonstop", "1 stop"]);
-        return {
-          id: `flt_${c.id}_${randInt(rng, 1000, 9999)}`,
-          carrierId: c.id,
-          name: c.name,
-          logo: c.logo,
-          total,
-          meta: `${stops} • ${Math.floor(duration/60)}h ${pad2(duration%60)}m`
-        };
-      }).sort((a,b)=>a.total-b.total);
-
-      // Hotels
-      const nights = Math.max(1, Math.round((new Date(input.returnDate) - new Date(input.depart)) / (1000*60*60*24)));
-      const brands = [
-        { id:"HILTON", name:"Hilton", logo: LOGOS.HILTON },
-        { id:"WESTIN", name:"Westin", logo: LOGOS.WESTIN },
-        { id:"JW", name:"JW Marriott", logo: LOGOS.JW }
-      ];
-
-      const hotels = brands.map(b => {
-        const nightly = randInt(rng, 190, 560);
-        const total = Math.round(nightly * nights * (1 + rng()*0.08) * 100) / 100;
-        const rating = randInt(rng, 4, 5);
-        const review = Math.round((8.1 + rng()*1.3)*10)/10;
-        const area = pick(rng, ["Uptown", "Midtown", "Financial District", "Downtown"]);
-        return {
-          id: `htl_${b.id}_${randInt(rng, 1000, 9999)}`,
-          brandId: b.id,
-          name: b.name,
-          logo: b.logo,
-          total,
-          meta: `${area} • Rating ${rating} • Review ${review}`
-        };
-      }).sort((a,b)=>a.total-b.total);
-
-      return { rides, flights, hotels, nights };
-    }
-
-    function setTab(tab){
-      activeTab = tab;
-      document.querySelectorAll("#module-orchestration .e2e-tab").forEach(btn => {
-        const isActive = btn.getAttribute("data-tab") === tab;
-        btn.classList.toggle("active", isActive);
-      });
-      renderStage();
-    }
-
-    function simulate(){
-      const input = getInput();
-      const seed = hashString(`${input.from}|${input.to}|${input.depart}|${input.returnDate}|${input.pax}|${input.cabin}`);
-      const rng = mulberry32(seed);
-
-      $("e2eStatus").textContent = "Generating options…";
-
-      data = buildMockData(input, rng);
-
-      // Default selections (first of each)
-      selected.rideTier = selected.rideTier || data.rides[0]?.tier || null;
-      selected.flight = selected.flight || data.flights[0]?.id || null;
-      selected.hotel = selected.hotel || data.hotels[0]?.id || null;
-
-      $("e2eStatus").textContent = "Options ready.";
-      renderStage();
-      renderSummary();
-    }
-
-    // UPDATED: logo pinned top-left, price top-right, no collisions
-    function cardHTML({ id, name, logo, price, meta, isSelected }){
-  const logoHTML = logo ? `<div class="pick-logo"><img src="${logo}" alt="${name} logo"></div>` : ``;
-
-  return `
-    <div class="pick-card ${isSelected ? "selected":""}" data-id="${id}">
-      <div class="pick-top">
-        <div class="pick-left">
-          ${logoHTML}
-          <div class="pick-text">
-            <div class="pick-name">${name}</div>
+  <nav><div class="brand"><span class="dot"></span> GÖ.AI</div><div class="navlinks"><a href="/">Home</a><a class="active" href="/product-demo.html">Product Demo</a><a href="/get-access.html">Get Access</a></div></nav>
+
+  <div class="wrap"><div class="dashboard-frame"><div class="glass">
+    <section class="hero"><h1>SENTINEL™ Interactive Product Demo</h1><p class="sub">Enter movement intent. SENTINEL analyzes the operational environment, SENTRY™ scores movement risk, and ETAS re-orchestrates flights, TSA buffers, hotels, dinner zones, and ground transport.</p></section>
+
+    <section class="grid">
+      <div class="card" id="sentinelCard"><div class="card-inner">
+        <div class="kicker">SENTINEL • Executive Briefing • SENTRY™</div>
+        <div class="title-row"><div><h2>Operational Movement Intelligence</h2><p>From simple trip intent to actionable movement guidance.</p></div></div>
+        <div class="brief-grid">
+          <div class="score-orb"><div><div class="num" id="sentryScore">—</div><div class="cap">SENTRY™ Score</div></div></div>
+          <div class="brief-list">
+            <div class="mini-card"><strong>Executive Briefing</strong><p id="execBrief">Awaiting trip intent.</p></div>
+            <div class="mini-card"><strong>Operational Corridor Analysis</strong><p id="corridorAnalysis">—</p></div>
+            <div class="mini-card"><strong>Infrastructure Reliability</strong><p id="infraReliability">—</p></div>
+            <div class="mini-card"><strong>TSA Arrival Buffer</strong><p id="tsaBuffer">—</p></div>
+            <div class="mini-card"><strong>Hotel Zone Recommendation</strong><p id="hotelZone">—</p></div>
+            <div class="mini-card"><strong>Dinner Zone Recommendation</strong><p id="dinnerZone">—</p></div>
+            <div class="mini-card"><strong>Recommended Action</strong><p id="recommendedAction">—</p></div>
           </div>
         </div>
-
-        <div class="pick-price">${money(price)}</div>
-        ${meta ? `<div class="pick-meta">${meta}</div>` : `<div class="pick-meta"></div>`}
-      </div>
-
-      <div style="opacity:.72;font-size:12px;">Tap to select</div>
-    </div>
-  `;
-}
-
-    function renderStage(){
-      const title = $("e2eStageTitle");
-      const sub = $("e2eStageSub");
-      const cards = $("e2eStageCards");
-      const hint = $("e2eStageHint");
-
-      if(!data){
-        title.textContent = "Rideshare Options";
-        sub.textContent = "Click “Simulate Booking Flow” to load options.";
-        hint.textContent = "";
-        cards.innerHTML = "";
-        renderSummary();
-        return;
-      }
-
-      const input = getInput();
-
-      if(activeTab === "rides"){
-        title.textContent = "Rideshare Options";
-        sub.textContent = "Select a tier. Outbound + return are calculated automatically.";
-        hint.textContent = "Tap a card to select";
-
-        cards.innerHTML = data.rides.map(r => cardHTML({
-          id: r.tier,
-          name: r.name,
-          logo: null,
-          price: r.total,
-          meta: `Outbound ${money(r.outbound.price)} • Return ${money(r.ret.price)}`,
-          isSelected: selected.rideTier === r.tier
-        })).join("");
-
-        cards.querySelectorAll(".pick-card").forEach(el => {
-          el.addEventListener("click", () => {
-            selected.rideTier = el.getAttribute("data-id");
-            renderStage();
-            renderSummary();
-          });
-        });
-
-        return;
-      }
-
-      if(activeTab === "flights"){
-        title.textContent = "Flight Options";
-        sub.textContent = `Choose a carrier • ${input.cabin.replace("_"," ")} • ${input.pax} passenger(s)`;
-        hint.textContent = "Tap a card to select";
-
-        cards.innerHTML = data.flights.map(f => cardHTML({
-          id: f.id,
-          name: f.name,
-          logo: f.logo,
-          price: f.total,
-          meta: f.meta,
-          isSelected: selected.flight === f.id
-        })).join("");
-
-        cards.querySelectorAll(".pick-card").forEach(el => {
-          el.addEventListener("click", () => {
-            selected.flight = el.getAttribute("data-id");
-            renderStage();
-            renderSummary();
-          });
-        });
-
-        return;
-      }
-
-      if(activeTab === "hotels"){
-        title.textContent = "Hotel Options";
-        sub.textContent = `One room • ${data.nights} night(s) • Select a brand`;
-        hint.textContent = "Tap a card to select";
-
-        cards.innerHTML = data.hotels.map(h => cardHTML({
-          id: h.id,
-          name: h.name,
-          logo: h.logo,
-          price: h.total,
-          meta: h.meta,
-          isSelected: selected.hotel === h.id
-        })).join("");
-
-        cards.querySelectorAll(".pick-card").forEach(el => {
-          el.addEventListener("click", () => {
-            selected.hotel = el.getAttribute("data-id");
-            renderStage();
-            renderSummary();
-          });
-        });
-
-        return;
-      }
-
-      if(activeTab === "all"){
-        title.textContent = "Trip Options";
-        sub.textContent = "Select one in each category. Your total updates below.";
-        hint.textContent = "Tap to select";
-
-        const rideCards = data.rides.map(r => cardHTML({
-          id: `ride:${r.tier}`,
-          name: `${r.name} (Rideshare)`,
-          logo: null,
-          price: r.total,
-          meta: `Outbound ${money(r.outbound.price)} • Return ${money(r.ret.price)}`,
-          isSelected: selected.rideTier === r.tier
-        })).join("");
-
-        const flightCards = data.flights.map(f => cardHTML({
-          id: `flight:${f.id}`,
-          name: `${f.name} (Flight)`,
-          logo: f.logo,
-          price: f.total,
-          meta: f.meta,
-          isSelected: selected.flight === f.id
-        })).join("");
-
-        const hotelCards = data.hotels.map(h => cardHTML({
-          id: `hotel:${h.id}`,
-          name: `${h.name} (Hotel)`,
-          logo: h.logo,
-          price: h.total,
-          meta: h.meta,
-          isSelected: selected.hotel === h.id
-        })).join("");
-
-        cards.innerHTML = rideCards + flightCards + hotelCards;
-
-        cards.querySelectorAll(".pick-card").forEach(el => {
-          el.addEventListener("click", () => {
-            const raw = el.getAttribute("data-id") || "";
-            const [kind, val] = raw.split(":");
-            if(kind === "ride") selected.rideTier = val;
-            if(kind === "flight") selected.flight = val;
-            if(kind === "hotel") selected.hotel = val;
-            renderStage();
-            renderSummary();
-          });
-        });
-
-        return;
-      }
-    }
-
-    function renderSummary(){
-      const sumRide = $("sumRide");
-      const sumFlight = $("sumFlight");
-      const sumHotel = $("sumHotel");
-      const sumTotal = $("sumTotal");
-      const hint = $("e2eTotalHint");
-
-      if(!data){
-        sumRide.textContent = "—";
-        sumFlight.textContent = "—";
-        sumHotel.textContent = "—";
-        sumTotal.textContent = "—";
-        hint.textContent = "Click “Simulate Booking Flow” to load options";
-        return;
-      }
-
-      const ride = data.rides.find(r => r.tier === selected.rideTier);
-      const flight = data.flights.find(f => f.id === selected.flight);
-      const hotel = data.hotels.find(h => h.id === selected.hotel);
-
-      sumRide.textContent = ride ? `${ride.name} • ${money(ride.total)}` : "—";
-      sumFlight.textContent = flight ? `${flight.name} • ${money(flight.total)}` : "—";
-      sumHotel.textContent = hotel ? `${hotel.name} • ${money(hotel.total)}` : "—";
-
-      const total =
-        (ride?.total || 0) +
-        (flight?.total || 0) +
-        (hotel?.total || 0);
-
-      sumTotal.textContent = total > 0 ? money(Math.round(total*100)/100) : "—";
-
-      const done = !!ride && !!flight && !!hotel;
-      hint.textContent = done ? "Selections complete • totals updated" : "Select one option in each category";
-    }
-
-    // Wire up
-    const today = isoDate(new Date());
-    $("e2eDepart").value = addDays(today, 7);
-    $("e2eReturn").value = addDays(addDays(today, 7), 2);
-
-    document.querySelectorAll("#module-orchestration .e2e-tab").forEach(btn => {
-      btn.addEventListener("click", () => setTab(btn.getAttribute("data-tab")));
-    });
-
-    $("btnSimulateE2E").addEventListener("click", simulate);
-
-    setTab("rides");
-    renderStage();
-    renderSummary();
-  })();
-  </script>
-
-  <!-- =========================
-    EXISTING SCRIPT (SENTINEL / TSA / TIER) — UNCHANGED
-  ========================= -->
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Subtle hover glow tracking
-    function attachGlowTracking(el){
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        el.style.setProperty('--mx', x.toFixed(2) + '%');
-        el.style.setProperty('--my', y.toFixed(2) + '%');
-      }, { passive:true });
-    }
-    document.querySelectorAll('.card').forEach(attachGlowTracking);
-
-    // ===== Sentinel demo state =====
-    let map, marker, geofenceCircle, telemetryLine, polygonDemo;
-    let currentZip = null;
-    let currentScore = null;
-    let currentTier = null;
-    let currentLifecycle = "idle";
-    let telemetryTimer = null;
-    let t24On = false;
-
-    const zipInput = document.getElementById("zipInput");
-    const analyzeBtn = document.getElementById("analyzeBtn");
-    const radiusSelect = document.getElementById("radiusSelect");
-
-    const dial = document.getElementById("dial");
-    const dialVal = document.getElementById("dialVal");
-    const tierText = document.getElementById("tierText");
-    const tierLabel = document.getElementById("tierLabel");
-    const briefText = document.getElementById("briefText");
-    const reasoningBox = document.getElementById("reasoningBox");
-
-    const telemetryBar = document.getElementById("telemetryBar");
-    const telemetryTag = document.getElementById("telemetryTag");
-    const lifeStateTag = document.getElementById("lifeStateTag");
-    const geoStateTag = document.getElementById("geoStateTag");
-
-    const lifeCreated = document.getElementById("lifeCreated");
-    const lifeEnRoute = document.getElementById("lifeEnRoute");
-    const lifeComplete = document.getElementById("lifeComplete");
-
-    const t24Switch = document.getElementById("t24Switch");
-    const t24State = document.getElementById("t24State");
-
-    document.getElementById("simCreated").addEventListener("click", () => setLifecycle("created"));
-    document.getElementById("simEnRoute").addEventListener("click", () => setLifecycle("enroute"));
-    document.getElementById("simComplete").addEventListener("click", () => setLifecycle("complete"));
-
-    lifeCreated.addEventListener("click", () => setLifecycle("created"));
-    lifeEnRoute.addEventListener("click", () => setLifecycle("enroute"));
-    lifeComplete.addEventListener("click", () => setLifecycle("complete"));
-
-    analyzeBtn.addEventListener("click", () => getRisk());
-    zipInput.addEventListener("keydown", (e) => { if (e.key === "Enter") getRisk(); });
-
-    function setLifecycle(state){
-      currentLifecycle = state;
-      lifeStateTag.textContent = `Lifecycle: ${state}`;
-      [lifeCreated, lifeEnRoute, lifeComplete].forEach(b => b.classList.remove("active"));
-      if(state === "created") lifeCreated.classList.add("active");
-      if(state === "enroute") lifeEnRoute.classList.add("active");
-      if(state === "complete") lifeComplete.classList.add("active");
-
-      if(state !== "enroute"){
-        stopTelemetry();
-        telemetryBar.style.width = "0%";
-        telemetryTag.textContent = "Telemetry: 0%";
-        geoStateTag.textContent = "Geofence: idle";
-      } else {
-        if(currentZip && currentScore !== null){
-          initMap(currentZip, currentScore);
-        }
-      }
-    }
-
-    function setDial(score){
-      const pct = Math.max(0, Math.min(100, score));
-      const color =
-        pct >= 70 ? "#ffb74d" :
-        pct >= 55 ? "#64b5f6" :
-        "#4caf50";
-
-      dial.style.setProperty("--dialPct", pct + "%");
-      dial.style.setProperty("--dialColor", color);
-      dialVal.textContent = pct.toString();
-      dial.style.filter = "drop-shadow(0 0 18px rgba(0,0,0,.45))";
-      dial.style.transform = "scale(1.01)";
-      setTimeout(() => dial.style.transform = "scale(1.0)", 180);
-    }
-
-    function renderReasoning(list){
-      if(!Array.isArray(list) || !list.length){
-        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>No reasoning blocks returned.";
-        return;
-      }
-      reasoningBox.innerHTML =
-        "<strong>Reasoning blocks</strong><br/>" +
-        list.map(x => `• ${escapeHtml(x)}`).join("<br/>");
-    }
-
-    function tierFromScore(score){
-      if(score >= 70) return "ELEVATED";
-      if(score >= 55) return "MODERATE";
-      return "STANDARD";
-    }
-
-    function briefingFromScore(score){
-      const t = tierFromScore(score);
-      if(t === "ELEVATED") return "SENTINEL recommends minimizing stops, using a single pickup point, and adding buffer time.";
-      if(t === "MODERATE") return "SENTINEL recommends normal routing with moderate buffers and awareness of peak windows.";
-      return "SENTINEL indicates standard conditions. Keep basic buffers and monitor disruptions.";
-    }
-
-    function toggleT24(){
-      t24On = !t24On;
-      t24Switch.classList.toggle("on", t24On);
-      t24Switch.setAttribute("aria-checked", t24On ? "true" : "false");
-      t24State.textContent = t24On ? "On" : "Off";
-      if(currentScore !== null){
-        const base = briefingFromScore(currentScore);
-        briefText.textContent = t24On
-          ? base + " (T-24: confirm hotel, route windows, and contingency pickup.)"
-          : base;
-      }
-    }
-    t24Switch.addEventListener("click", toggleT24);
-    t24Switch.addEventListener("keydown", (e) => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleT24(); } });
-
-    async function getGeoFromZip(zip){
-      const res = await fetch(`/.netlify/functions/zip-geocode?zip=${encodeURIComponent(zip)}`);
-      const data = await res.json().catch(() => ({}));
-      if(!res.ok){
-        throw new Error(data?.error || "Geocode failed");
-      }
-      if(typeof data.lat !== "number" || typeof data.lon !== "number"){
-        throw new Error("Invalid geocode response");
-      }
-      return data;
-    }
-
-    async function initMap(zip, score){
-      let geo;
-      try{
-        geo = await getGeoFromZip(zip);
-      } catch(e){
-        console.error(e);
-        geoStateTag.textContent = "Geofence: geocode error";
-        return;
-      }
-
-      const lat = geo.lat;
-      const lon = geo.lon;
-
-      if(!map){
-        map = L.map("map").setView([lat, lon], 12);
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
-      } else {
-        map.setView([lat, lon], 12);
-      }
-
-      if(marker) map.removeLayer(marker);
-      marker = L.marker([lat, lon]).addTo(map);
-
-      const radiusMeters = parseInt(radiusSelect.value, 10) || 1600;
-      const ringColor =
-        score >= 70 ? "#ffb74d" :
-        score >= 55 ? "#64b5f6" :
-        "#4caf50";
-
-      if(geofenceCircle) map.removeLayer(geofenceCircle);
-      geofenceCircle = L.circle([lat, lon], {
-        radius: radiusMeters,
-        color: ringColor,
-        weight: 2,
-        fillOpacity: 0.18
-      }).addTo(map);
-
-      if(polygonDemo) map.removeLayer(polygonDemo);
-      polygonDemo = L.polygon([
-        [lat + 0.018, lon - 0.02],
-        [lat + 0.030, lon + 0.005],
-        [lat + 0.010, lon + 0.022],
-        [lat - 0.010, lon + 0.012],
-        [lat - 0.015, lon - 0.010]
-      ], {
-        color: "rgba(154,215,255,.95)",
-        weight: 1,
-        fillColor: "rgba(154,215,255,.25)",
-        fillOpacity: 0.12
-      }).addTo(map);
-
-      geoStateTag.textContent = `Geofence: ${Math.round(radiusMeters/1609.34*10)/10} mi + polygon`;
-      if(currentLifecycle === "enroute"){
-        simulateTelemetry([lat, lon], score);
-      }
-    }
-
-    function simulateTelemetry(center, score){
-      stopTelemetry();
-
-      let progress = 0;
-      const [lat, lon] = center;
-
-      const pts = [
-        [lat, lon],
-        [lat + 0.008, lon + 0.006],
-        [lat + 0.014, lon - 0.002],
-        [lat + 0.006, lon - 0.012],
-        [lat - 0.004, lon - 0.006],
-        [lat, lon]
-      ];
-
-      if(telemetryLine) map.removeLayer(telemetryLine);
-      telemetryLine = L.polyline([pts[0]], {
-        color: "rgba(241,208,106,.95)",
-        weight: 3,
-        opacity: 0.9
-      }).addTo(map);
-
-      let idx = 0;
-      telemetryTimer = setInterval(() => {
-        progress = Math.min(100, progress + 7);
-        telemetryBar.style.width = progress + "%";
-        telemetryTag.textContent = `Telemetry: ${progress}%`;
-
-        idx = Math.min(pts.length-1, idx + 1);
-        telemetryLine.addLatLng(pts[idx]);
-
-        if(progress >= 63 && score >= 70){
-          geoStateTag.textContent = "Geofence: alert • entered risk polygon";
-        }
-
-        if(progress >= 100){
-          stopTelemetry();
-        }
-      }, 320);
-    }
-
-    function stopTelemetry(){
-      if(telemetryTimer){
-        clearInterval(telemetryTimer);
-        telemetryTimer = null;
-      }
-    }
-
-    async function getRisk(){
-      const zip = zipInput.value.trim();
-      if(!/^\d{5}$/.test(zip)){
-        tierLabel.textContent = "—";
-        tierText.textContent = "Enter a valid ZIP";
-        dialVal.textContent = "—";
-        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>Enter a valid ZIP (5 digits).";
-        return;
-      }
-
-      analyzeBtn.disabled = true;
-      analyzeBtn.textContent = "Analyzing…";
-      tierText.textContent = "Running analysis…";
-      tierLabel.textContent = "…";
-
-      try{
-        const res = await fetch(`/.netlify/functions/sentinel-score?zip=${encodeURIComponent(zip)}`);
-        const data = await res.json();
-
-        if(!res.ok || data.error){
-          throw new Error(data?.error || "Risk function failed");
-        }
-
-        currentZip = zip;
-        currentScore = Number(data.risk_score);
-        currentTier = data.tier || tierFromScore(currentScore);
-
-        setDial(currentScore);
-
-        tierLabel.textContent = currentTier;
-        tierText.textContent = `Risk Tier: ${currentTier}`;
-        const baseBrief = data.briefing || briefingFromScore(currentScore);
-        briefText.textContent = t24On ? (baseBrief + " (T-24: confirm hotel, route windows, and contingency pickup.)") : baseBrief;
-
-        renderReasoning(data.reasoning || []);
-        await initMap(zip, currentScore);
-
-        if(currentLifecycle === "idle"){
-          setLifecycle("created");
-        }
-
-      } catch(err){
-        console.error(err);
-        tierLabel.textContent = "ERROR";
-        tierText.textContent = "Error retrieving risk data.";
-        reasoningBox.innerHTML = "<strong>Reasoning blocks</strong><br/>Error retrieving risk data.";
-        geoStateTag.textContent = "Geofence: error";
-      } finally {
-        analyzeBtn.disabled = false;
-        analyzeBtn.textContent = "Analyze Risk";
-      }
-    }
-
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    async function getTsaWaitTimes() {
-      const input = document.getElementById("tsaAirportInput");
-      const out = document.getElementById("tsaOutput");
-      const ap = (input.value || "").trim().toUpperCase();
-
-      if (!/^[A-Z]{3}$/.test(ap)) {
-        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, RDU, JFK).</p>";
-        return;
-      }
-
-      out.innerHTML = "<p style='opacity:.8'>Fetching TSA wait times…</p>";
-
-      try {
-        const res = await fetch(`/.netlify/functions/tsa-wait?airport=${encodeURIComponent(ap)}`);
-        const data = await res.json();
-
-        if (!res.ok || data.error) {
-          out.innerHTML = `<p style='opacity:.9;color:#ff6b6b'>${data.error || "No data returned."}</p>`;
-          return;
-        }
-
-        const rows = data.WaitTimes || data.waitTimes || data || [];
-        if (!Array.isArray(rows) || rows.length === 0) {
-          out.innerHTML = `<p style='opacity:.85'>No confirmed wait times currently published for <strong>${ap}</strong>.</p>`;
-          return;
-        }
-
-        const top = rows.slice(0, 6).map(x => {
-          const checkpoint = x.Checkpoint || x.checkpoint || "Checkpoint";
-          const wait = x.WaitTime || x.waitTime || x.Wait || "N/A";
-          const category = x.Lane || x.lane || x.Type || "";
-          const time = x.Created || x.created || x.Time || "";
-          return `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)">
-            <div style="font-weight:700">${checkpoint} <span style="opacity:.7;font-weight:600">${category ? "• " + category : ""}</span></div>
-            <div style="opacity:.85">Wait: <strong>${wait}</strong> <span style="opacity:.6">${time ? "• " + time : ""}</span></div>
-          </div>`;
-        }).join("");
-
-        out.innerHTML = `
-          <div style="margin-top:14px">
-            <div style="opacity:.85;margin-bottom:8px">Confirmed wait times for <strong>${ap}</strong></div>
-            <div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">
-              ${top}
-            </div>
+        <div class="source-legend">Environmental Inputs: OpenWeather • OpenStreetMap • Public Infrastructure Feeds • Historical Movement Data • Event Density Analysis</div>
+        <div class="mapWrap panel" style="margin-top:14px;"><div class="panel-h"><div class="label">Map Visualization</div><div class="label">Leaflet • OpenStreetMap</div></div><div id="map"></div></div>
+      </div></div>
+
+      <div class="demo-three">
+        <section class="card" id="module-orchestration"><div class="card-inner">
+          <div class="kicker">Module 02 • ETAS Orchestration</div>
+          <h2 style="font-size:28px;line-height:1.15;">Trip Intent → System Response</h2>
+          <p>Choose from controlled demo cities. The map, airport code, SENTRY score, geofence, and ETAS plan update from preset demo intelligence.</p>
+          <div class="intent-grid">
+            <label>From <select id="tripFrom"></select></label>
+            <label>To <select id="tripTo"></select></label>
+            <label>Date / Time <input id="tripWhen" value="Tomorrow · 08:30 AM" /></label>
+            <label>Travelers <input id="tripPax" value="1 Executive" /></label>
+            <label>Executive Protection
+              <select id="tripProtection"><option selected>None</option><option>Schwarz</option><option>Silber</option><option>Weiß</option><option>Gold</option></select>
+            </label>
+            <label>Priority Profile
+              <select id="tripProfile"><option selected>Executive</option><option>Family</option><option>Corporate Team</option><option>High Visibility</option><option>Time Sensitive</option></select>
+            </label>
           </div>
-        `;
+          <div class="actions"><button class="btn btn-primary" id="generateBriefing" type="button">Generate SENTINEL Executive Briefing</button><a class="btn" href="/get-access.html">Get Access</a></div>
+          <div class="timeline" id="etasTimeline">
+            <div class="timeline-row"><span class="k">Flight</span><span class="v" id="flightPlan">Pending briefing</span></div>
+            <div class="timeline-row"><span class="k">TSA Buffer</span><span class="v" id="timelineTsa">Pending briefing</span></div>
+            <div class="timeline-row"><span class="k">Ground Transport</span><span class="v" id="groundPlan">Pending briefing</span></div>
+            <div class="timeline-row"><span class="k">Hotel Arrival</span><span class="v" id="hotelPlan">Pending briefing</span></div>
+            <div class="timeline-row"><span class="k">Dinner Zone</span><span class="v" id="dinnerPlan">Pending briefing</span></div>
+          </div>
+        </div></section>
 
-      } catch (e) {
-        out.innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Error retrieving TSA data. Try again.</p>";
-      }
+        <section class="card"><div class="card-inner">
+          <div class="kicker">Module 03 • FlightAware-Style Event</div><h2>Simulated Disruption</h2>
+          <p>Demo-only event logic: SENTINEL detects the anomaly, SENTRY evaluates impact, and ETAS re-orchestrates the movement plan.</p>
+          <div class="scenario-buttons"><button class="btn" id="scenarioWeather" type="button" disabled>Scenario A: Weather Delay</button><button class="btn" id="scenarioCorridor" type="button" disabled>Scenario B: Corridor Blocked</button></div>
+          <div class="scenario-result" id="scenarioResult"><h3 id="scenarioTitle">—</h3><p id="scenarioTrigger">—</p><div class="update-card" style="margin-top:12px;"><strong id="scenarioFlight">—</strong><p id="scenarioPickup">—</p></div><ul id="scenarioList"></ul><div class="status-line">SENTINEL detects the anomaly. SENTRY evaluates impact. ETAS re-orchestrates the movement plan.</div></div>
+        </div></section>
+
+        <div class="card" id="tsaCard"><div class="card-inner">
+          <div class="kicker">Module 04 • Airport Intel</div><h2>TSA Wait Times</h2><p>Demo TSA wait-time intelligence. Values are seeded for presentation stability and react to the selected scenario.</p>
+          <div class="row" style="margin-top:14px;"><input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" /><button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Demo Wait Times</button></div>
+          <div id="tsaOutput"></div>
+          <div class="actions"><button class="btn" type="button" onclick="document.getElementById('tsaAirportInput').value='';document.getElementById('tsaOutput').innerHTML='';document.getElementById('tsaAirportInput').focus();">Try Another Airport</button><a class="btn" href="/get-access.html">Join Founding 100 →</a></div>
+        </div></div>
+
+        <div class="card" id="tierCard"><div class="card-inner">
+          <div class="kicker">Module 05 • ETAS Mobility Tier</div><h2>AI Tier Selector</h2><p>Describe the trip — get a mobility tier recommendation with rationale.</p><p style="margin-top:10px;color:rgba(255,255,255,.78);font-weight:700;">GÖ JET | GÖ BIZZ | G-KLÜB</p>
+          <div class="row" style="margin-top:12px;"><select id="tierParty"><option value="1" selected>Party size: 1</option><option value="2">Party size: 2</option><option value="3">Party size: 3–4</option><option value="5">Party size: 5+</option></select><select id="tierLuggage"><option value="none" selected>Luggage: none / small bag</option><option value="carry">Luggage: carry-on</option><option value="checked">Luggage: 1–2 checked</option><option value="heavy">Luggage: 3+ / strollers / heavy</option></select></div>
+          <div class="row" style="margin-top:12px;"><select id="tierDistance"><option value="short" selected>Distance: local (0–15 mi)</option><option value="metro">Distance: metro (15–40 mi)</option><option value="long">Distance: long (40+ mi)</option></select><select id="tierTone"><option value="efficient" selected>Tone: efficient / on-the-go</option><option value="client">Tone: client-facing / business</option><option value="family">Tone: family / multi-stop</option><option value="vip">Tone: VIP / discreet</option></select></div>
+          <div class="row" style="margin-top:12px;"><select id="tierSecurity"><option value="normal" selected>Security: standard</option><option value="aware">Security: elevated awareness</option></select><input id="tierNotes" type="text" placeholder="Optional notes: late arrival, tight connection, kids, high visibility" /></div>
+          <div class="actions"><button class="btn btn-primary" id="tierRecommendBtn" type="button">Get Recommendation</button><button class="btn" id="tierResetBtn" type="button">Try Another Scenario</button></div>
+          <div id="tierOutput" class="tierOutput" style="margin-top:12px;"><div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div></div>
+        </div></div>
+      </div>
+    </section>
+    <footer>© <span id="y"></span> GÖ.AI • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></footer>
+  </div></div></div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    function $(id){ return document.getElementById(id); }
+    function escapeHtml(str){ return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+
+    const CITIES = {
+      CLT:{label:'Charlotte, NC — CLT', airport:'CLT', lat:35.2271, lon:-80.8431, score:64, corridor:'Moderate — Uptown-to-airport corridor shows normal commuter pressure.', infra:'Stable — reliable road network with normal airport operations.', hotel:'Uptown Executive Corridor', dinner:'SouthPark/Uptown controlled-access dining zone', tsa:60, color:'#64b5f6'},
+      NYC:{label:'New York, NY — JFK', airport:'JFK', lat:40.7128, lon:-74.0060, score:72, corridor:'Elevated — airport-to-hotel corridor shows congestion and event-density pressure.', infra:'Reduced — road network stability and airport timing confidence below preferred threshold.', hotel:'Midtown Executive Corridor', dinner:'Controlled-access dining zone within 1.2 mi of hotel', tsa:75, color:'#ffb74d'},
+      WAS:{label:'Washington, DC — DCA', airport:'DCA', lat:38.9072, lon:-77.0369, score:69, corridor:'Moderate/Elevated — government district movement windows require tighter buffer control.', infra:'Stable but sensitive — route reliability varies around event/security closures.', hotel:'Downtown / Capitol Corridor', dinner:'Hotel-adjacent diplomatic dining corridor', tsa:70, color:'#ffb74d'},
+      ATL:{label:'Atlanta, GA — ATL', airport:'ATL', lat:33.7490, lon:-84.3880, score:67, corridor:'Moderate — airport and downtown corridors show recurring congestion.', infra:'Stable — high-capacity airport with peak-window volatility.', hotel:'Midtown / Buckhead Executive Zone', dinner:'Buckhead controlled-access dining zone', tsa:65, color:'#64b5f6'},
+      CHI:{label:'Chicago, IL — ORD', airport:'ORD', lat:41.8781, lon:-87.6298, score:74, corridor:'Elevated — airport-to-downtown movement affected by congestion and event density.', infra:'Reduced — weather and arterial congestion can impact arrival sequencing.', hotel:'River North Executive Corridor', dinner:'West Loop / River North dining zone', tsa:80, color:'#ff6b6b'},
+      MIA:{label:'Miami, FL — MIA', airport:'MIA', lat:25.7617, lon:-80.1918, score:70, corridor:'Elevated — tourism density and weather volatility affect movement stability.', infra:'Moderate — coastal weather and event patterns require adaptive buffer logic.', hotel:'Brickell Executive Corridor', dinner:'Brickell / Design District controlled zone', tsa:70, color:'#ffb74d'},
+      LAX:{label:'Los Angeles, CA — LAX', airport:'LAX', lat:34.0522, lon:-118.2437, score:76, corridor:'Elevated — airport egress and cross-city routing create high movement complexity.', infra:'Reduced — freeway volatility and event density require active rerouting posture.', hotel:'Beverly Hills / Century City Corridor', dinner:'Westside controlled-access dining zone', tsa:85, color:'#ff6b6b'},
+      SFO:{label:'San Francisco, CA — SFO', airport:'SFO', lat:37.7749, lon:-122.4194, score:71, corridor:'Elevated — airport-to-city corridor sensitive to traffic and event clustering.', infra:'Moderate — bridge/arterial reliability can shift quickly.', hotel:'Financial District / Embarcadero Corridor', dinner:'Embarcadero / Nob Hill dining zone', tsa:75, color:'#ffb74d'}
+    };
+
+    function fillCitySelects(){
+      const opts = Object.entries(CITIES).map(([key,c]) => `<option value="${key}">${c.label}</option>`).join('');
+      $('tripFrom').innerHTML = opts; $('tripTo').innerHTML = opts;
+      $('tripFrom').value = 'CLT'; $('tripTo').value = 'NYC';
+      $('tripFrom').addEventListener('change', previewRoute);
+      $('tripTo').addEventListener('change', previewRoute);
+    }
+
+    function selectedOrigin(){ return CITIES[$('tripFrom').value] || CITIES.CLT; }
+    function selectedDest(){ return CITIES[$('tripTo').value] || CITIES.NYC; }
+    function currentFlightNo(prefix='DL'){ return `${prefix}${selectedOrigin().airport}${selectedDest().airport}`; }
+
+    let map, originMarker, destMarker, geofenceCircle, corridorLine, alertMarker, weatherCircle;
+    function initMap(){
+      if(map) return;
+      map = L.map('map').setView([39.8,-95.5],4);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+      previewRoute();
+    }
+    function clearLayer(layer){ if(layer && map) map.removeLayer(layer); }
+    function previewRoute(mode='base'){
+      if(!map) return;
+      const o = selectedOrigin(), d = selectedDest();
+      [originMarker,destMarker,geofenceCircle,corridorLine,alertMarker,weatherCircle].forEach(clearLayer);
+      originMarker = L.marker([o.lat,o.lon]).addTo(map).bindPopup(`${o.label} departure`);
+      destMarker = L.marker([d.lat,d.lon]).addTo(map).bindPopup(`${d.label} destination zone`);
+      geofenceCircle = L.circle([d.lat,d.lon],{radius:24000,color:d.color,weight:2,fillColor:d.color,fillOpacity:.16}).addTo(map);
+      corridorLine = L.polyline([[o.lat,o.lon],[(o.lat+d.lat)/2 + .6,(o.lon+d.lon)/2], [d.lat,d.lon]],{color:mode==='blocked'?'#ff6b6b':'#f1d06a',weight:4,opacity:.88}).addTo(map);
+      if(mode==='blocked') alertMarker = L.marker([(o.lat+d.lat)/2 + .6,(o.lon+d.lon)/2]).addTo(map).bindPopup('Corridor instability detected');
+      if(mode==='weather') weatherCircle = L.circle([o.lat,o.lon],{radius:52000,color:'#9ad7ff',weight:2,fillColor:'#9ad7ff',fillOpacity:.12}).addTo(map).bindPopup('Weather instability near departure operations');
+      map.fitBounds(L.latLngBounds([[o.lat,o.lon],[d.lat,d.lon]]).pad(.25));
+    }
+
+    function generateBriefing(){
+      const o = selectedOrigin(), d = selectedDest();
+      const protection = $('tripProtection').value;
+      const action = d.score >= 70 ? 'Ground transport adjustment recommended.' : 'Standard routing with monitored buffer recommended.';
+      $('sentryScore').textContent = d.score;
+      $('execBrief').textContent = `${o.airport} → ${d.airport} movement profile generated. Destination environment indicates ${d.score >= 74 ? 'high' : d.score >= 70 ? 'elevated' : 'moderate'} operational complexity. Executive protection posture: ${protection}.`;
+      $('corridorAnalysis').textContent = d.corridor;
+      $('infraReliability').textContent = d.infra;
+      $('tsaBuffer').textContent = `${d.tsa} minutes — demo buffer based on airport pressure and movement complexity.`;
+      $('hotelZone').textContent = d.hotel;
+      $('dinnerZone').textContent = d.dinner;
+      $('recommendedAction').textContent = action;
+      $('flightPlan').textContent = `${currentFlightNo('DL')} • ${o.airport} → ${d.airport} • On Time`;
+      $('timelineTsa').textContent = `Arrive ${d.tsa} minutes before departure`;
+      $('groundPlan').textContent = 'Pickup scheduled → 10:20 AM';
+      $('hotelPlan').textContent = 'Arrival synchronized → 2:45 PM';
+      $('dinnerPlan').textContent = 'Reserved window → 7:30 PM within stable zone';
+      $('tsaAirportInput').value = o.airport;
+      $('scenarioWeather').disabled = false; $('scenarioCorridor').disabled = false;
+      document.querySelectorAll('.timeline-row').forEach(r => r.classList.remove('changed'));
+      $('scenarioResult').classList.remove('show');
+      renderDemoTsa(o.airport, 'base');
+      previewRoute('base');
+    }
+    $('generateBriefing').addEventListener('click', generateBriefing);
+
+    function scenarioData(type){
+      const o = selectedOrigin(), d = selectedDest();
+      if(type === 'weather') return {
+        title:'Scenario A: Weather Instability',
+        trigger:`Weather instability detected near ${o.airport}. Outbound flight delay risk generated from demo airport operations model.`,
+        flight:`${currentFlightNo('DL')} delayed → Rebooked to ${currentFlightNo('DLX')}`,
+        pickup:`Ground pickup adjusted → 11:05 AM. Destination pickup resynchronized at ${d.airport}.`,
+        mapMode:'weather', tsaMode:'weather',
+        list:['Alternate flight selected','TSA buffer recalculated','Hotel arrival updated','Destination ground pickup resynchronized','ETAS itinerary revised'],
+        updates:{flight:`${currentFlightNo('DLX')} • ${o.airport} → ${d.airport} • Rebooked`, tsa:`Arrive ${Math.max(55,d.tsa-10)} minutes before revised departure`, ground:'Pickup adjusted → 11:05 AM', hotel:'Arrival updated → 4:20 PM', dinner:'Dinner preserved → 7:30 PM'}
+      };
+      return {
+        title:'Scenario B: Corridor Blocked',
+        trigger:`Primary route to ${o.airport} blocked. SENTINEL predicts missed-flight risk before departure.`,
+        flight:`Original ${o.airport} departure at risk → Alternate selected to ${d.airport}`,
+        pickup:`Airport pickup adjusted → 10:35 AM. Arrival rideshare resynchronized from ${d.airport}.`,
+        mapMode:'blocked', tsaMode:'corridor',
+        list:['Missed flight predicted','Alternate departure selected','Airport pickup time adjusted','Arrival rideshare resynchronized','Hotel and dinner timing preserved'],
+        updates:{flight:`Alternate selected • ${o.airport} → ${d.airport}`, tsa:`Arrive ${d.tsa+10} minutes before alternate departure`, ground:'Pickup adjusted → 10:35 AM', hotel:'Arrival protected → 5:05 PM', dinner:'Dinner preserved → 7:45 PM'}
+      };
+    }
+    function runScenario(type){
+      const s = scenarioData(type);
+      $('scenarioResult').classList.add('show'); $('scenarioTitle').textContent = s.title; $('scenarioTrigger').textContent = s.trigger;
+      $('scenarioFlight').textContent = s.flight; $('scenarioPickup').textContent = s.pickup;
+      $('scenarioList').innerHTML = s.list.map(x => `<li>${escapeHtml(x)}</li>`).join('');
+      $('flightPlan').textContent = s.updates.flight; $('timelineTsa').textContent = s.updates.tsa; $('groundPlan').textContent = s.updates.ground; $('hotelPlan').textContent = s.updates.hotel; $('dinnerPlan').textContent = s.updates.dinner;
+      ['flightPlan','timelineTsa','groundPlan','hotelPlan','dinnerPlan'].forEach(id => $(id).closest('.timeline-row').classList.add('changed'));
+      renderDemoTsa(selectedOrigin().airport, s.tsaMode); previewRoute(s.mapMode);
+    }
+    $('scenarioWeather').addEventListener('click', () => runScenario('weather'));
+    $('scenarioCorridor').addEventListener('click', () => runScenario('corridor'));
+
+    function tsaRows(ap, mode='base'){
+      const city = Object.values(CITIES).find(c => c.airport === ap) || CITIES.CLT;
+      let standard = city.tsa - 20, pre = Math.max(8, Math.round(standard * .42));
+      if(mode === 'weather'){ standard = Math.max(25, standard - 8); pre = Math.max(8, pre - 3); }
+      if(mode === 'corridor'){ standard += 12; pre += 5; }
+      return [
+        {checkpoint:'Checkpoint A', lane:'Standard', wait:`${standard}-${standard+12} min`},
+        {checkpoint:'Checkpoint B', lane:'Standard', wait:`${Math.max(12,standard-7)}-${standard+6} min`},
+        {checkpoint:'PreCheck', lane:'TSA PreCheck', wait:`${pre}-${pre+7} min`}
+      ];
+    }
+    function renderDemoTsa(ap, mode='base'){
+      const out = $('tsaOutput'); const rows = tsaRows(ap, mode);
+      const note = mode === 'weather' ? 'Weather delay scenario: TSA buffer recalculated around revised departure.' : mode === 'corridor' ? 'Corridor-blocked scenario: TSA buffer increased due to missed-flight risk.' : 'Baseline demo values shown for selected airport.';
+      out.innerHTML = `<div style="margin-top:14px"><div style="opacity:.85;margin-bottom:8px">Demo TSA wait profile for <strong>${ap}</strong></div><div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">${rows.map(x => `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)"><div style="font-weight:700">${x.checkpoint} <span style="opacity:.7;font-weight:600">• ${x.lane}</span></div><div style="opacity:.85">Wait: <strong>${x.wait}</strong></div></div>`).join('')}</div><div class="source-legend">${note}</div></div>`;
+    }
+    function getTsaWaitTimes(){
+      const ap = ($('tsaAirportInput').value || '').trim().toUpperCase();
+      if(!/^[A-Z]{3}$/.test(ap)){ $('tsaOutput').innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, JFK, LAX).</p>"; return; }
+      renderDemoTsa(ap, 'base');
     }
 
     (function initTierSelector(){
-      const tierParty = document.getElementById("tierParty");
-      const tierLuggage = document.getElementById("tierLuggage");
-      const tierDistance = document.getElementById("tierDistance");
-      const tierTone = document.getElementById("tierTone");
-      const tierSecurity = document.getElementById("tierSecurity");
-      const tierNotes = document.getElementById("tierNotes");
-
-      const tierRecommendBtn = document.getElementById("tierRecommendBtn");
-      const tierResetBtn = document.getElementById("tierResetBtn");
-      const tierOutput = document.getElementById("tierOutput");
-
-      if(!tierRecommendBtn || !tierOutput) return;
-
-      const TIER_META = {
-        JET: {
-          name: "GÖ JET",
-          img: "assets/go-jet.png",
-          oneLiner: "Fast, reliable point-to-point travel with concierge-managed premium rideshare."
-        },
-        BIZZ: {
-          name: "GÖ BIZZ",
-          img: "assets/go-bizz.png",
-          oneLiner: "Business-class executive mobility for meetings, client travel, and presentation-forward movement."
-        },
-        KLUB: {
-          name: "G-KLÜB",
-          img: "assets/g-klub.png",
-          oneLiner: "Luxury SUV concierge tier for VIP travel, executive families, long-distance, and discreet posture."
-        }
-      };
-
-      function randInt(min, max){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
-
       function scoreScenario(){
-        const party = parseInt(tierParty.value, 10) || 1;
-        const luggage = tierLuggage.value;
-        const dist = tierDistance.value;
-        const tone = tierTone.value;
-        const sec = tierSecurity.value;
-        const notes = (tierNotes.value || "").toLowerCase();
-
-        let jet = 10, bizz = 10, klub = 10;
-
-        if(party === 1){
-          jet += 10; bizz += 6; klub += 2;
-        } else if(party === 2){
-          jet += 8; bizz += 8; klub += 4;
-        } else if(party === 3){
-          jet += 2; bizz += 8; klub += 12;
-        } else {
-          jet -= 4; bizz += 4; klub += 18;
-        }
-
-        if(luggage === "none"){
-          jet += 8; bizz += 4; klub += 2;
-        } else if(luggage === "carry"){
-          jet += 6; bizz += 6; klub += 4;
-        } else if(luggage === "checked"){
-          jet += 2; bizz += 10; klub += 10;
-        } else {
-          jet -= 2; bizz += 6; klub += 18;
-        }
-
-        if(dist === "short"){
-          jet += 10; bizz += 6; klub += 2;
-        } else if(dist === "metro"){
-          jet += 4; bizz += 10; klub += 8;
-        } else {
-          jet -= 2; bizz += 8; klub += 16;
-        }
-
-        if(tone === "efficient"){
-          jet += 10; bizz += 6; klub += 2;
-        } else if(tone === "client"){
-          jet += 2; bizz += 14; klub += 8;
-        } else if(tone === "family"){
-          jet -= 2; bizz += 6; klub += 16;
-        } else {
-          jet += 0; bizz += 10; klub += 14;
-        }
-
-        if(sec === "aware"){
-          jet += 1; bizz += 6; klub += 14;
-        }
-
-        const hasKids = /kid|kids|child|children|stroller/.test(notes);
-        const highVis = /high visibility|vip|press|stalker|threat|unsafe|security/.test(notes);
-        const multiStop = /multi|stops|stop|itinerary|route/.test(notes);
-        const tight = /tight|connection|late|delay|rush/.test(notes);
-
-        if(hasKids){ klub += 12; bizz += 4; jet -= 1; }
-        if(highVis){ klub += 14; bizz += 6; }
-        if(multiStop){ klub += 10; bizz += 4; jet -= 2; }
-        if(tight){ jet += 6; bizz += 4; klub += 2; }
-
-        jet = Math.max(0, jet);
-        bizz = Math.max(0, bizz);
-        klub = Math.max(0, klub);
-
-        const scores = [
-          { key:"JET", score: jet },
-          { key:"BIZZ", score: bizz },
-          { key:"KLUB", score: klub },
-        ].sort((a,b) => b.score - a.score);
-
-        return { party, luggage, dist, tone, sec, notes, scores };
+        const party=parseInt($('tierParty').value,10)||1,luggage=$('tierLuggage').value,dist=$('tierDistance').value,tone=$('tierTone').value,sec=$('tierSecurity').value,notes=($('tierNotes').value||'').toLowerCase();
+        let jet=10,bizz=10,klub=10;
+        if(party===1){jet+=10;bizz+=6;klub+=2}else if(party===2){jet+=8;bizz+=8;klub+=4}else if(party===3){jet+=2;bizz+=8;klub+=12}else{jet-=4;bizz+=4;klub+=18}
+        if(luggage==='none'){jet+=8;bizz+=4;klub+=2}else if(luggage==='carry'){jet+=6;bizz+=6;klub+=4}else if(luggage==='checked'){jet+=2;bizz+=10;klub+=10}else{jet-=2;bizz+=6;klub+=18}
+        if(dist==='short'){jet+=10;bizz+=6;klub+=2}else if(dist==='metro'){jet+=4;bizz+=10;klub+=8}else{jet-=2;bizz+=8;klub+=16}
+        if(tone==='efficient'){jet+=10;bizz+=6;klub+=2}else if(tone==='client'){jet+=2;bizz+=14;klub+=8}else if(tone==='family'){jet-=2;bizz+=6;klub+=16}else{bizz+=10;klub+=14}
+        if(sec==='aware'){jet+=1;bizz+=6;klub+=14}
+        if(/kid|kids|child|children|stroller/.test(notes)){klub+=12;bizz+=4;jet-=1} if(/high visibility|vip|press|security/.test(notes)){klub+=14;bizz+=6} if(/multi|stops|stop|itinerary|route/.test(notes)){klub+=10;bizz+=4;jet-=2} if(/tight|connection|late|delay|rush/.test(notes)){jet+=6;bizz+=4;klub+=2}
+        return [{key:'GÖ JET',score:jet},{key:'GÖ BIZZ',score:bizz},{key:'G-KLÜB',score:klub}].sort((a,b)=>b.score-a.score);
       }
-
-      function buildRationale(recoKey, ctx){
-        const lines = [];
-
-        if(recoKey === "JET"){
-          lines.push("Optimized for speed and clean point-to-point movement.");
-          if(ctx.dist !== "short") lines.push("If distance increases, consider BIZZ for comfort and consistency.");
-          if(ctx.party >= 3) lines.push("For 3+ passengers, KLÜB typically reduces friction and adds space.");
-        }
-
-        if(recoKey === "BIZZ"){
-          lines.push("Best balance of presentation, comfort, and availability.");
-          if(ctx.tone === "client") lines.push("Client-facing tone favors a business-class posture.");
-          if(ctx.luggage === "checked" || ctx.luggage === "heavy") lines.push("Extra space supports luggage-heavy itineraries.");
-          if(ctx.sec === "aware") lines.push("If discreet awareness is required, KLÜB is the preferred posture.");
-        }
-
-        if(recoKey === "KLUB"){
-          lines.push("Max comfort + space for VIP, family, multi-stop, or long-distance scenarios.");
-          if(ctx.party >= 3) lines.push("Party size suggests SUV-class logistics and smoother loading/unloading.");
-          if(ctx.luggage === "heavy") lines.push("Heavy luggage/strollers strongly favors KLÜB capacity.");
-          if(ctx.sec === "aware") lines.push("Elevated awareness aligns with a discreet security-driver posture.");
-        }
-
-        const buffer = randInt(6, 18);
-        lines.push(`Suggested buffer: +${buffer} minutes for curb-to-gate continuity.`);
-
-        return lines;
-      }
-
       function renderTierResult(){
-        const ctx = scoreScenario();
-        const best = ctx.scores[0];
-        const alt1 = ctx.scores[1];
-        const alt2 = ctx.scores[2];
-
-        const meta = TIER_META[best.key];
-        const rationale = buildRationale(best.key, ctx);
-
-        const now = new Date();
-        const hh = String(now.getHours()).padStart(2,"0");
-        const mm = String(now.getMinutes()).padStart(2,"0");
-        const stamp = `${hh}:${mm}`;
-
-        const badges = [];
-        badges.push({ text: `Party: ${ctx.party === 3 ? "3–4" : ctx.party === 5 ? "5+" : ctx.party}`, gold:false });
-        badges.push({ text: `Distance: ${ctx.dist}`, gold:false });
-        badges.push({ text: `Luggage: ${ctx.luggage}`, gold:false });
-        if(ctx.sec === "aware") badges.push({ text: "Elevated awareness", gold:true });
-        if(ctx.tone === "vip") badges.push({ text: "VIP posture", gold:true });
-        if(ctx.tone === "client") badges.push({ text: "Client-facing", gold:true });
-        if(ctx.tone === "family") badges.push({ text: "Family logistics", gold:true });
-
-        tierOutput.innerHTML = `
-          <div class="tierOutHead">
-            <div class="label">Recommendation</div>
-            <div class="label">Simulated • ${stamp}</div>
-          </div>
-
-          <div class="tierOutBody">
-            <div class="tierHero">
-              <div class="tierImg">
-                <img src="${meta.img}" alt="${meta.name}"/>
-              </div>
-
-              <div style="min-width:0;">
-                <div class="tierTitle">${meta.name}</div>
-                <div class="tierSub">${escapeHtml(meta.oneLiner)}</div>
-
-                <div class="tierBadges">
-                  ${badges.slice(0,6).map(b => `<span class="badge ${b.gold ? "gold":""}">${escapeHtml(b.text)}</span>`).join("")}
-                </div>
-              </div>
-            </div>
-
-            <div style="color: rgba(255,255,255,.76); font-size:13px; line-height:1.6;">
-              <b>Why:</b><br/><br>
-              ${rationale.map(x => `• ${escapeHtml(x)}`).join("<br/>")}
-            </div>
-
-            <div class="altRow">
-              <span><b>Alternates:</b></span>
-              <span class="badge">${TIER_META[alt1.key].name}</span>
-              <span class="badge">${TIER_META[alt2.key].name}</span>
-              <span style="opacity:.65;">(demo ranking)</span>
-            </div>
-          </div>
-        `;
+        const scores=scoreScenario(), best=scores[0];
+        const why=best.key==='GÖ JET'?['Optimized for speed and clean point-to-point movement.','Suggested buffer: +10 minutes for curb-to-gate continuity.']:best.key==='GÖ BIZZ'?['Best balance of presentation, comfort, and availability.','Business posture supports client-facing movement.']:['Max comfort + space for VIP, family, multi-stop, or long-distance scenarios.','Elevated awareness aligns with a discreet executive posture.'];
+        $('tierOutput').innerHTML=`<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:8px;">Recommendation</div><div style="font-size:20px;font-weight:900;color:#f1d06a;">${best.key}</div><div style="color:rgba(255,255,255,.76);font-size:13px;line-height:1.6;margin-top:10px;"><b>Why:</b><br>${why.map(x=>`• ${escapeHtml(x)}`).join('<br>')}</div><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><span class="badge">Alternate: ${scores[1].key}</span><span class="badge">Alternate: ${scores[2].key}</span></div>`;
       }
-
-      function resetTier(){
-        tierParty.value = "1";
-        tierLuggage.value = "none";
-        tierDistance.value = "short";
-        tierTone.value = "efficient";
-        tierSecurity.value = "normal";
-        tierNotes.value = "";
-        tierOutput.innerHTML = `<div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>`;
-      }
-
-      tierRecommendBtn.addEventListener("click", renderTierResult);
-      tierResetBtn.addEventListener("click", resetTier);
-
-      tierNotes.addEventListener("keydown", (e) => {
-        if(e.key === "Enter"){
-          e.preventDefault();
-          renderTierResult();
-        }
-      });
+      function resetTier(){ $('tierParty').value='1';$('tierLuggage').value='none';$('tierDistance').value='short';$('tierTone').value='efficient';$('tierSecurity').value='normal';$('tierNotes').value='';$('tierOutput').innerHTML=`<div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>`; }
+      $('tierRecommendBtn').addEventListener('click', renderTierResult); $('tierResetBtn').addEventListener('click', resetTier);
     })();
+
+    window.addEventListener('load', () => { fillCitySelects(); initMap(); });
   </script>
 </body>
 </html>
-```0
