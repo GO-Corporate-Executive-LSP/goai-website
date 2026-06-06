@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,7 +32,21 @@
     .brief-grid{display:grid;grid-template-columns:210px 1fr;gap:14px;margin-top:14px}@media(max-width:720px){.brief-grid{grid-template-columns:1fr}}.score-orb{min-height:210px;border-radius:22px;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,rgba(241,208,106,.24),rgba(255,255,255,.04) 62%,rgba(0,0,0,.20));border:1px solid rgba(241,208,106,.20)}.score-orb .num{font-size:64px;font-weight:950;text-align:center}.score-orb .cap{text-align:center;color:var(--gold2);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.brief-list{display:grid;gap:10px}.mini-card,.update-card{border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.20);padding:12px}.mini-card strong{display:block;margin-bottom:4px}.source-legend{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.10);font-size:12px;color:rgba(255,255,255,.52)}
     .panel{border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18);overflow:hidden}.panel-h{padding:12px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-h .label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62)}#map{width:100%;height:330px;border-radius:0 0 16px 16px}.mapWrap{overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.12)}
     .demo-three{display:grid;gap:18px}.intent-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}@media(max-width:720px){.intent-grid{grid-template-columns:1fr}}.scenario-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}@media(max-width:560px){.scenario-buttons{grid-template-columns:1fr}}.scenario-result{display:none;margin-top:14px;border-radius:16px;border:1px solid rgba(241,208,106,.18);background:rgba(0,0,0,.22);padding:14px}.scenario-result.show{display:block}.scenario-result h3{margin:0 0 8px;color:var(--gold2)}.scenario-result ul{margin:12px 0 0;padding-left:20px;color:rgba(255,255,255,.76);font-size:13px;line-height:1.6}.status-line{margin-top:14px;color:var(--gold2);font-weight:800;font-size:13px}.timeline{display:grid;gap:10px;margin-top:12px}.timeline-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}.timeline-row .k{opacity:.72}.timeline-row .v{font-weight:850}.changed .v{color:var(--gold2)}
-    #tsaOutput{margin-top:14px}.tierOutput{border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.16);overflow:hidden;padding:12px}.badge{font-size:12px;color:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:6px 10px;border-radius:999px}footer{padding:18px 0 10px;color:rgba(255,255,255,.45);font-size:12px;text-align:center}footer a{color:rgba(255,255,255,.72);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}
+    #tsaOutput{margin-top:14px}.tierOutput{border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.16);overflow:hidden;padding:12px}.badge{font-size:12px;color:rgba(255,255,255,.74);border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:6px 10px;border-radius:999px}
+    /* ===== Premium bottom modules: ETAS Mobility + TSA Intel ===== */
+    .bottom-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:18px;padding:0 14px 18px;align-items:stretch}
+    @media(max-width:980px){.bottom-grid{grid-template-columns:1fr}}
+    .premium-card{border-radius:22px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.032));box-shadow:0 24px 70px rgba(0,0,0,.35);overflow:hidden;position:relative}
+    .premium-card::before{content:"";position:absolute;inset:-2px;background:radial-gradient(520px 300px at 16% 10%,rgba(154,215,255,.08),transparent 60%),radial-gradient(520px 300px at 90% 0%,rgba(241,208,106,.12),transparent 58%);pointer-events:none;mix-blend-mode:screen}
+    .premium-inner{position:relative;padding:20px 20px 18px}.premium-title{font-size:28px;line-height:1.15;margin:10px 0 6px;font-weight:900;letter-spacing:-.025em}.tier-strip{margin-top:10px;color:var(--gold2);font-weight:900;letter-spacing:.03em}.tier-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.tier-form-grid .wide{grid-column:1/-1}@media(max-width:680px){.tier-form-grid{grid-template-columns:1fr}}
+    .field-shell{border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);padding:10px}.field-label{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.68);margin-bottom:6px}.field-icon{width:18px;height:18px;display:inline-grid;place-items:center;opacity:.8}.tier-action-grid{display:grid;grid-template-columns:1fr .82fr;gap:10px;margin-top:10px}@media(max-width:680px){.tier-action-grid{grid-template-columns:1fr}}
+    .tier-result-premium{margin-top:18px;border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);padding:16px}.tier-result-head{display:grid;grid-template-columns:96px 1fr auto;gap:14px;align-items:center}.tier-logo-box{width:88px;height:88px;border-radius:24px;border:1px solid rgba(241,208,106,.18);background:radial-gradient(circle at 50% 40%,rgba(241,208,106,.16),rgba(0,0,0,.22));display:grid;place-items:center;overflow:hidden}.tier-logo-box img{max-width:82%;max-height:82%;object-fit:contain;filter:drop-shadow(0 14px 22px rgba(0,0,0,.45))}.tier-reco-label{font-size:12px;color:rgba(255,255,255,.68);letter-spacing:.04em}.tier-reco-name{font-size:28px;font-weight:1000;color:var(--gold2);line-height:1.05;margin-top:2px}.best-fit{justify-self:end;align-self:start;padding:7px 10px;border-radius:999px;background:rgba(87,209,123,.12);border:1px solid rgba(87,209,123,.18);color:#80e69a;font-weight:850;font-size:12px}.why-split{display:grid;grid-template-columns:1fr 155px;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}@media(max-width:680px){.tier-result-head{grid-template-columns:80px 1fr}.best-fit{display:none}.why-split{grid-template-columns:1fr}.tier-logo-box{width:72px;height:72px;border-radius:20px}}
+    .why-list{display:grid;gap:8px}.why-item{display:flex;gap:9px;align-items:flex-start;color:rgba(255,255,255,.85);font-size:13px;line-height:1.45}.check-dot{width:17px;height:17px;flex:0 0 auto;border-radius:999px;border:1px solid rgba(241,208,106,.8);color:var(--gold2);display:grid;place-items:center;font-size:11px;margin-top:1px}.alt-box{border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035);padding:12px}.alt-title{font-size:12px;color:rgba(255,255,255,.68);margin-bottom:8px}.alt-pill{display:block;text-align:center;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:9px 10px;color:rgba(255,255,255,.9);font-weight:800;margin-top:8px}
+    .note-line{display:flex;gap:9px;align-items:center;color:rgba(255,255,255,.58);font-size:13px;margin-top:14px}.info-dot{width:18px;height:18px;border-radius:999px;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;font-size:12px;color:rgba(255,255,255,.68)}
+    .tsa-top-grid{display:grid;grid-template-columns:1fr 1.05fr .9fr;gap:12px;align-items:end;margin-top:22px}@media(max-width:780px){.tsa-top-grid{grid-template-columns:1fr}}
+    .scenario-select-wrap label{font-size:12px;color:rgba(255,255,255,.62);display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.scenario-info-card{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.20);padding:14px;margin-top:16px}.warn-icon{width:34px;height:34px;border-radius:999px;display:grid;place-items:center;color:#ffb74d;border:1px solid rgba(255,183,77,.22);background:rgba(255,183,77,.08);font-weight:1000}.scenario-name{color:var(--gold2);font-weight:900}.buffer-callout{border-left:1px solid rgba(255,255,255,.10);padding-left:16px}.buffer-callout span{display:block;color:rgba(255,255,255,.7);font-size:12px}.buffer-callout b{font-size:24px;color:var(--gold2)}@media(max-width:560px){.scenario-info-card{grid-template-columns:34px 1fr}.buffer-callout{grid-column:1/-1;border-left:0;border-top:1px solid rgba(255,255,255,.10);padding:10px 0 0}}
+    .tsa-profile-title{margin-top:18px;font-size:19px;color:rgba(255,255,255,.75)}.tsa-list-premium{margin-top:12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.22);overflow:hidden}.tsa-row-premium{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-top:1px solid rgba(255,255,255,.06)}.tsa-row-premium:first-child{border-top:0}.tsa-avatar{width:45px;height:45px;border-radius:999px;display:grid;place-items:center;font-size:23px;color:white;box-shadow:0 10px 24px rgba(0,0,0,.32)}.tsa-avatar.orange{background:linear-gradient(180deg,#ff8a30,#f05a22)}.tsa-avatar.gold{background:linear-gradient(180deg,#ffd34a,#e3a900)}.tsa-avatar.green{background:linear-gradient(180deg,#76d987,#3cae5c)}.tsa-main strong{font-size:17px}.tsa-main span{color:rgba(255,255,255,.68);font-weight:600}.tsa-main p{font-size:13px;margin-top:2px}.tsa-wait{text-align:right;font-weight:1000;color:var(--gold2)}.tsa-wait.green{color:#67d988}.tsa-delta{display:block;font-size:12px;color:rgba(255,255,255,.76);font-weight:700;margin-top:4px}.tsa-explainer{display:flex;gap:12px;align-items:flex-start;margin-top:14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);padding:14px;color:rgba(255,255,255,.68);font-size:13px;line-height:1.55}.bottom-actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}@media(max-width:560px){.tsa-row-premium{grid-template-columns:48px 1fr}.tsa-wait{grid-column:2;text-align:left}.bottom-actions-grid{grid-template-columns:1fr}}
+footer{padding:18px 0 10px;color:rgba(255,255,255,.45);font-size:12px;text-align:center}footer a{color:rgba(255,255,255,.72);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.18)}
   </style>
 </head>
 <body>
@@ -96,23 +109,51 @@
           <div class="scenario-buttons"><button class="btn" id="scenarioWeather" type="button" disabled>Scenario A: Weather Delay</button><button class="btn" id="scenarioCorridor" type="button" disabled>Scenario B: Corridor Blocked</button></div>
           <div class="scenario-result" id="scenarioResult"><h3 id="scenarioTitle">—</h3><p id="scenarioTrigger">—</p><div class="update-card" style="margin-top:12px;"><strong id="scenarioFlight">—</strong><p id="scenarioPickup">—</p></div><ul id="scenarioList"></ul><div class="status-line">SENTINEL detects the anomaly. SENTRY evaluates impact. ETAS re-orchestrates the movement plan.</div></div>
         </div></section>
-
-        <div class="card" id="tsaCard"><div class="card-inner">
-          <div class="kicker">Module 04 • Airport Intel</div><h2>TSA Wait Times</h2><p>Demo TSA wait-time intelligence. Values are seeded for presentation stability and react to the selected scenario.</p>
-          <div class="row" style="margin-top:14px;"><input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" /><button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Demo Wait Times</button></div>
-          <div id="tsaOutput"></div>
-          <div class="actions"><button class="btn" type="button" onclick="document.getElementById('tsaAirportInput').value='';document.getElementById('tsaOutput').innerHTML='';document.getElementById('tsaAirportInput').focus();">Try Another Airport</button><a class="btn" href="/get-access.html">Join Founding 100 →</a></div>
-        </div></div>
-
-        <div class="card" id="tierCard"><div class="card-inner">
-          <div class="kicker">Module 05 • ETAS Mobility Tier</div><h2>AI Tier Selector</h2><p>Describe the trip — get a mobility tier recommendation with rationale.</p><p style="margin-top:10px;color:rgba(255,255,255,.78);font-weight:700;">GÖ JET | GÖ BIZZ | G-KLÜB</p>
-          <div class="row" style="margin-top:12px;"><select id="tierParty"><option value="1" selected>Party size: 1</option><option value="2">Party size: 2</option><option value="3">Party size: 3–4</option><option value="5">Party size: 5+</option></select><select id="tierLuggage"><option value="none" selected>Luggage: none / small bag</option><option value="carry">Luggage: carry-on</option><option value="checked">Luggage: 1–2 checked</option><option value="heavy">Luggage: 3+ / strollers / heavy</option></select></div>
-          <div class="row" style="margin-top:12px;"><select id="tierDistance"><option value="short" selected>Distance: local (0–15 mi)</option><option value="metro">Distance: metro (15–40 mi)</option><option value="long">Distance: long (40+ mi)</option></select><select id="tierTone"><option value="efficient" selected>Tone: efficient / on-the-go</option><option value="client">Tone: client-facing / business</option><option value="family">Tone: family / multi-stop</option><option value="vip">Tone: VIP / discreet</option></select></div>
-          <div class="row" style="margin-top:12px;"><select id="tierSecurity"><option value="normal" selected>Security: standard</option><option value="aware">Security: elevated awareness</option></select><input id="tierNotes" type="text" placeholder="Optional notes: late arrival, tight connection, kids, high visibility" /></div>
-          <div class="actions"><button class="btn btn-primary" id="tierRecommendBtn" type="button">Get Recommendation</button><button class="btn" id="tierResetBtn" type="button">Try Another Scenario</button></div>
-          <div id="tierOutput" class="tierOutput" style="margin-top:12px;"><div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div></div>
-        </div></div>
       </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="premium-card" id="tierCard"><div class="premium-inner">
+        <div class="kicker">Module 05 • ETAS Mobility Tier</div>
+        <h2 class="premium-title">AI Mobility Tier Selector</h2>
+        <p>Describe the trip — get a mobility tier recommendation with rationale.</p>
+        <div class="tier-strip">GÖ JET&nbsp;&nbsp; | &nbsp;&nbsp;GÖ BIZZ&nbsp;&nbsp; | &nbsp;&nbsp;G-KLÜB</div>
+
+        <div class="tier-form-grid">
+          <div class="field-shell"><div class="field-label"><span class="field-icon">♙</span>Party Size</div><select id="tierParty"><option value="1" selected>1 Passenger</option><option value="2">2 Passengers</option><option value="3">3–4 Passengers</option><option value="5">5+ Passengers</option></select></div>
+          <div class="field-shell"><div class="field-label"><span class="field-icon">▣</span>Luggage</div><select id="tierLuggage"><option value="none" selected>None / Small Bag</option><option value="carry">Carry-on</option><option value="checked">1–2 Checked Bags</option><option value="heavy">3+ / Strollers / Heavy</option></select></div>
+          <div class="field-shell"><div class="field-label"><span class="field-icon">⌁</span>Trip Distance</div><select id="tierDistance"><option value="short" selected>Local (0–15 mi)</option><option value="metro">Metro (15–40 mi)</option><option value="long">Long (40+ mi)</option></select></div>
+          <div class="field-shell"><div class="field-label"><span class="field-icon">♟</span>Trip Tone</div><select id="tierTone"><option value="efficient" selected>Efficient / On-the-go</option><option value="client">Client-facing / Business</option><option value="family">Family / Multi-stop</option><option value="vip">VIP / Discreet</option></select></div>
+          <div class="field-shell wide"><div class="field-label"><span class="field-icon">◈</span>Executive Protection</div><select id="tierSecurity"><option value="normal" selected>None</option><option value="aware">Elevated Awareness</option></select></div>
+          <div class="field-shell wide"><div class="field-label"><span class="field-icon">◌</span>Notes (Optional)</div><input id="tierNotes" type="text" placeholder="e.g., tight connection, kids, VIP, high visibility" /></div>
+        </div>
+
+        <div class="tier-action-grid"><button class="btn btn-primary" id="tierRecommendBtn" type="button">✦ Get Tier Recommendation</button><button class="btn" id="tierResetBtn" type="button">↻ Reset Scenario</button></div>
+        <div id="tierOutput" class="tierResultMount"></div>
+        <div class="note-line"><span class="info-dot">i</span><span>Note: This is a demo. Recommendations are simulated.</span></div>
+      </div></div>
+
+      <div class="premium-card" id="tsaCard"><div class="premium-inner">
+        <div class="kicker">Module 04 • Airport Intel</div>
+        <h2 class="premium-title">TSA Wait Times</h2>
+        <p>Demo TSA wait-time intelligence. Values are seeded for presentation stability and react to the selected scenario.</p>
+
+        <div class="tsa-top-grid">
+          <input type="text" id="tsaAirportInput" placeholder="Airport code (e.g., CLT)" maxlength="3" />
+          <button class="btn btn-primary" type="button" onclick="getTsaWaitTimes()">Get Demo Wait Times</button>
+          <div class="scenario-select-wrap"><label>Disruption Scenario <span class="info-dot">i</span></label><select id="tsaScenarioSelect"><option value="base">Baseline</option><option value="weather">Weather Delay</option><option value="corridor" selected>Corridor Blocked</option></select></div>
+        </div>
+
+        <div class="scenario-info-card" id="tsaScenarioInfo">
+          <div class="warn-icon">!</div>
+          <div><div class="scenario-name" id="tsaScenarioName">Scenario: Corridor Blocked</div><p id="tsaScenarioCopy">TSA buffer increased due to missed-flight risk.</p></div>
+          <div class="buffer-callout"><span>Recommended TSA Buffer</span><b id="tsaBufferDelta">+25 min</b></div>
+        </div>
+
+        <div id="tsaOutput"></div>
+        <div class="tsa-explainer"><span class="info-dot">i</span><span>Weather delay: TSA buffer recalculates based on current disruptions.<br>Corridor blocked: Increased buffer helps reduce missed-flight risk.</span></div>
+        <div class="bottom-actions-grid"><button class="btn" type="button" onclick="document.getElementById('tsaAirportInput').value='';document.getElementById('tsaOutput').innerHTML='';document.getElementById('tsaAirportInput').focus();">↻ Try Another Airport</button><a class="btn btn-primary" href="/get-access.html">Join Founding 100 →</a></div>
+      </div></div>
     </section>
     <footer>© <span id="y"></span> GÖ.AI • <a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></footer>
   </div></div></div>
@@ -236,18 +277,38 @@
         {checkpoint:'PreCheck', lane:'TSA PreCheck', wait:`${pre}-${pre+7} min`}
       ];
     }
+    function updateTsaScenarioUI(mode){
+      const name = mode === 'weather' ? 'Scenario: Weather Delay' : mode === 'corridor' ? 'Scenario: Corridor Blocked' : 'Scenario: Baseline';
+      const copy = mode === 'weather' ? 'TSA buffer recalculated around revised departure timing.' : mode === 'corridor' ? 'TSA buffer increased due to missed-flight risk.' : 'Baseline wait profile for selected airport.';
+      const delta = mode === 'weather' ? '+15 min' : mode === 'corridor' ? '+25 min' : '+0 min';
+      if($('tsaScenarioName')) $('tsaScenarioName').textContent = name;
+      if($('tsaScenarioCopy')) $('tsaScenarioCopy').textContent = copy;
+      if($('tsaBufferDelta')) $('tsaBufferDelta').textContent = delta;
+    }
     function renderDemoTsa(ap, mode='base'){
       const out = $('tsaOutput'); const rows = tsaRows(ap, mode);
-      const note = mode === 'weather' ? 'Weather delay scenario: TSA buffer recalculated around revised departure.' : mode === 'corridor' ? 'Corridor-blocked scenario: TSA buffer increased due to missed-flight risk.' : 'Baseline demo values shown for selected airport.';
-      out.innerHTML = `<div style="margin-top:14px"><div style="opacity:.85;margin-bottom:8px">Demo TSA wait profile for <strong>${ap}</strong></div><div style="border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;background:rgba(0,0,0,.18)">${rows.map(x => `<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.06)"><div style="font-weight:700">${x.checkpoint} <span style="opacity:.7;font-weight:600">• ${x.lane}</span></div><div style="opacity:.85">Wait: <strong>${x.wait}</strong></div></div>`).join('')}</div><div class="source-legend">${note}</div></div>`;
+      updateTsaScenarioUI(mode);
+      out.innerHTML = `<div class="tsa-profile-title">Demo TSA wait profile for <strong>${ap}</strong></div><div class="tsa-list-premium">${rows.map((x,i) => {
+        const cls = i === 0 ? 'orange' : i === 1 ? 'gold' : 'green';
+        const icon = i === 2 ? '✓' : '♟';
+        const green = i === 2 ? ' green' : '';
+        const normal = mode === 'corridor' ? (i === 2 ? '+10 min vs normal' : '+25 min vs normal') : mode === 'weather' ? (i === 2 ? '+5 min vs normal' : '+15 min vs normal') : 'baseline demo';
+        return `<div class="tsa-row-premium"><div class="tsa-avatar ${cls}">${icon}</div><div class="tsa-main"><strong>${x.checkpoint}</strong> <span>• ${x.lane}</span><p>${i === 2 ? 'Expedited screening' : 'General screening'}</p></div><div class="tsa-wait${green}">Wait: ${x.wait}<span class="tsa-delta">${normal}</span></div></div>`;
+      }).join('')}</div>`;
     }
     function getTsaWaitTimes(){
       const ap = ($('tsaAirportInput').value || '').trim().toUpperCase();
+      const mode = $('tsaScenarioSelect') ? $('tsaScenarioSelect').value : 'base';
       if(!/^[A-Z]{3}$/.test(ap)){ $('tsaOutput').innerHTML = "<p style='opacity:.9;color:#ff6b6b'>Enter a valid 3-letter airport code (e.g., CLT, JFK, LAX).</p>"; return; }
-      renderDemoTsa(ap, 'base');
+      renderDemoTsa(ap, mode);
     }
 
     (function initTierSelector(){
+      const TIER_META = {
+        'GÖ JET': { img:'assets/go-jet.png', sub:'Fast, reliable point-to-point travel with concierge-managed premium rideshare.' },
+        'GÖ BIZZ': { img:'assets/go-bizz.png', sub:'Business-class executive mobility for meetings, client travel, and presentation-forward movement.' },
+        'G-KLÜB': { img:'assets/g-klub.png', sub:'Luxury SUV concierge tier for VIP travel, executive families, long-distance, and discreet posture.' }
+      };
       function scoreScenario(){
         const party=parseInt($('tierParty').value,10)||1,luggage=$('tierLuggage').value,dist=$('tierDistance').value,tone=$('tierTone').value,sec=$('tierSecurity').value,notes=($('tierNotes').value||'').toLowerCase();
         let jet=10,bizz=10,klub=10;
@@ -256,19 +317,31 @@
         if(dist==='short'){jet+=10;bizz+=6;klub+=2}else if(dist==='metro'){jet+=4;bizz+=10;klub+=8}else{jet-=2;bizz+=8;klub+=16}
         if(tone==='efficient'){jet+=10;bizz+=6;klub+=2}else if(tone==='client'){jet+=2;bizz+=14;klub+=8}else if(tone==='family'){jet-=2;bizz+=6;klub+=16}else{bizz+=10;klub+=14}
         if(sec==='aware'){jet+=1;bizz+=6;klub+=14}
-        if(/kid|kids|child|children|stroller/.test(notes)){klub+=12;bizz+=4;jet-=1} if(/high visibility|vip|press|security/.test(notes)){klub+=14;bizz+=6} if(/multi|stops|stop|itinerary|route/.test(notes)){klub+=10;bizz+=4;jet-=2} if(/tight|connection|late|delay|rush/.test(notes)){jet+=6;bizz+=4;klub+=2}
+        if(/kid|kids|child|children|stroller/.test(notes)){klub+=12;bizz+=4;jet-=1}
+        if(/high visibility|vip|press|security/.test(notes)){klub+=14;bizz+=6}
+        if(/multi|stops|stop|itinerary|route/.test(notes)){klub+=10;bizz+=4;jet-=2}
+        if(/tight|connection|late|delay|rush/.test(notes)){jet+=6;bizz+=4;klub+=2}
         return [{key:'GÖ JET',score:jet},{key:'GÖ BIZZ',score:bizz},{key:'G-KLÜB',score:klub}].sort((a,b)=>b.score-a.score);
       }
-      function renderTierResult(){
-        const scores=scoreScenario(), best=scores[0];
-        const why=best.key==='GÖ JET'?['Optimized for speed and clean point-to-point movement.','Suggested buffer: +10 minutes for curb-to-gate continuity.']:best.key==='GÖ BIZZ'?['Best balance of presentation, comfort, and availability.','Business posture supports client-facing movement.']:['Max comfort + space for VIP, family, multi-stop, or long-distance scenarios.','Elevated awareness aligns with a discreet executive posture.'];
-        $('tierOutput').innerHTML=`<div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:8px;">Recommendation</div><div style="font-size:20px;font-weight:900;color:#f1d06a;">${best.key}</div><div style="color:rgba(255,255,255,.76);font-size:13px;line-height:1.6;margin-top:10px;"><b>Why:</b><br>${why.map(x=>`• ${escapeHtml(x)}`).join('<br>')}</div><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><span class="badge">Alternate: ${scores[1].key}</span><span class="badge">Alternate: ${scores[2].key}</span></div>`;
+      function rationaleFor(best){
+        if(best==='GÖ JET') return ['Optimized for speed and clean point-to-point movement.','Best for local movement with low luggage complexity.','Ideal when the priority is fast dispatch and curb-to-curb efficiency.','Suggested buffer: +10 minutes for curb-to-gate continuity.'];
+        if(best==='GÖ BIZZ') return ['Balanced comfort, professionalism, and availability.','Client-facing tone favors a business-class posture.','Ideal for metro distance with carry-on or 1–2 checked bags.','Suggested buffer: +12 minutes for curb-to-gate continuity.'];
+        return ['Max comfort and space for VIP, family, multi-stop, or long-distance scenarios.','Discreet posture supports elevated awareness and higher-visibility travel.','SUV-class logistics reduce loading friction and movement complexity.','Suggested buffer: +18 minutes for curb-to-gate continuity.'];
       }
-      function resetTier(){ $('tierParty').value='1';$('tierLuggage').value='none';$('tierDistance').value='short';$('tierTone').value='efficient';$('tierSecurity').value='normal';$('tierNotes').value='';$('tierOutput').innerHTML=`<div style="opacity:.8">Enter a scenario and click <b>Get Recommendation</b>.</div>`; }
+      function renderTierResult(){
+        const scores=scoreScenario(), best=scores[0], meta=TIER_META[best.key];
+        const why=rationaleFor(best.key);
+        $('tierOutput').innerHTML=`<div class="tier-result-premium"><div class="tier-result-head"><div class="tier-logo-box"><img src="${meta.img}" alt="${best.key} logo"></div><div><div class="tier-reco-label">Recommended Tier</div><div class="tier-reco-name">${best.key}</div><p style="margin-top:6px;color:rgba(255,255,255,.86);font-size:14px;line-height:1.45;">${meta.sub}</p></div><div class="best-fit">Best Fit</div></div><div class="why-split"><div><div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:8px;">Why:</div><div class="why-list">${why.map(x=>`<div class="why-item"><span class="check-dot">✓</span><span>${escapeHtml(x)}</span></div>`).join('')}</div></div><div class="alt-box"><div class="alt-title">Alternates</div><span class="alt-pill">${scores[1].key}</span><span class="alt-pill">${scores[2].key}</span></div></div></div>`;
+      }
+      function resetTier(){
+        $('tierParty').value='1';$('tierLuggage').value='none';$('tierDistance').value='short';$('tierTone').value='efficient';$('tierSecurity').value='normal';$('tierNotes').value='';
+        renderTierResult();
+      }
       $('tierRecommendBtn').addEventListener('click', renderTierResult); $('tierResetBtn').addEventListener('click', resetTier);
+      renderTierResult();
     })();
 
-    window.addEventListener('load', () => { fillCitySelects(); initMap(); });
+    window.addEventListener('load', () => { fillCitySelects(); initMap(); if($('tsaScenarioSelect')) $('tsaScenarioSelect').addEventListener('change', getTsaWaitTimes); updateTsaScenarioUI('corridor'); });
   </script>
 </body>
 </html>
