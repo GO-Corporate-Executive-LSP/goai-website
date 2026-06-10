@@ -1,31 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>GÖ.AI Kickstarter Pre-Launch</title>
-  <meta name="description" content="GÖ.AI is intelligent coordination built to think ahead — automated travel coordination with embedded risk awareness." />
-
+  <meta name="description" content="GÖ.AI is intelligent movement infrastructure built to think ahead — automated travel coordination with SENTINEL risk intelligence, ETAS execution logic, and AI concierge support." />
   <style>
     :root {
       --black: #050507;
       --charcoal: #0c0f14;
       --gold: #c9a24d;
+      --gold2: #f0d079;
       --red: #8c1d18;
       --white: #f5f2ea;
       --muted: #aaa;
       --line: rgba(201,162,77,.28);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
@@ -35,33 +28,54 @@
         var(--black);
       color: var(--white);
     }
+    .wrap { width: min(1240px, 94%); margin: 0 auto; }
 
-    .wrap {
-      width: min(1240px, 94%);
-      margin: 0 auto;
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(5,5,7,.78);
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-
-    header {
-      padding: 26px 0;
+    .nav-wrap {
+      min-height: 74px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
-
     .logo {
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: .08em;
       color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
     }
-
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a {
+      color: rgba(245,242,234,.82);
+      text-decoration: none;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    nav a:hover { color: var(--gold); }
     .nav-cta {
-      color: var(--white);
+      color: #121212;
       text-decoration: none;
       border: 1px solid var(--line);
       padding: 10px 15px;
       border-radius: 999px;
       font-size: .85rem;
-      background: rgba(255,255,255,.035);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      white-space: nowrap;
     }
 
     .hero {
@@ -70,9 +84,8 @@
       grid-template-columns: .82fr 1.18fr;
       gap: 46px;
       align-items: center;
-      padding: 36px 0 96px;
+      padding: 64px 0 96px;
     }
-
     .badge {
       display: inline-block;
       color: var(--gold);
@@ -85,36 +98,21 @@
       margin-bottom: 20px;
       background: rgba(255,255,255,.035);
     }
-
     h1 {
       font-size: clamp(2.9rem, 6.5vw, 6.7rem);
       line-height: .9;
       letter-spacing: -.075em;
       margin: 0;
     }
-
     .sub {
       margin-top: 24px;
-      color: rgba(245,242,234,.8);
+      color: rgba(245,242,234,.82);
       font-size: clamp(1.05rem, 2vw, 1.38rem);
       line-height: 1.5;
-      max-width: 700px;
+      max-width: 720px;
     }
-
-    .tension {
-      color: var(--muted);
-      margin-top: 16px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
+    .tension { color: var(--muted); margin-top: 16px; font-size: 1rem; line-height: 1.6; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
     .btn {
       padding: 15px 22px;
       border-radius: 12px;
@@ -122,18 +120,8 @@
       text-decoration: none;
       display: inline-block;
     }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #f0d079);
-      color: #121212;
-    }
-
-    .btn-secondary {
-      color: var(--white);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-    }
-
+    .btn-primary { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #121212; }
+    .btn-secondary { color: var(--white); border: 1px solid var(--line); background: rgba(255,255,255,.04); }
     .hero-card {
       border: 1px solid rgba(255,255,255,.08);
       background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
@@ -143,116 +131,40 @@
       transform: scale(1.06);
       transform-origin: center;
     }
+    .hero-card img { width: 100%; max-height: 780px; object-fit: contain; border-radius: 24px; display: block; background: #000; }
+    .caption { text-align: center; color: var(--gold); font-weight: 800; margin: 15px 0 8px; font-size: .96rem; }
 
-    .hero-card img {
-      width: 100%;
-      max-height: 780px;
-      object-fit: contain;
-      border-radius: 24px;
-      display: block;
-      background: #000;
-    }
-
-    .caption {
-      text-align: center;
-      color: var(--gold);
-      font-weight: 800;
-      margin: 15px 0 8px;
-      font-size: .96rem;
-    }
-
-    section {
-      padding: 82px 0;
-    }
-
-    .section-title {
-      font-size: clamp(2.1rem, 4.2vw, 4.2rem);
-      line-height: 1;
-      letter-spacing: -.055em;
-      margin: 0 0 20px;
-    }
-
-    .section-copy {
-      max-width: 840px;
-      color: rgba(245,242,234,.73);
-      line-height: 1.75;
-      font-size: 1.06rem;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: .92fr 1.08fr;
-      gap: 44px;
-      align-items: center;
-    }
-
-    .image-frame {
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 34px 95px rgba(0,0,0,.48);
-      background: #000;
-    }
-
-    .image-frame img,
-    .video-frame video {
-      width: 100%;
-      display: block;
-    }
-
-    .video-frame {
+    section { padding: 82px 0; }
+    .section-title { font-size: clamp(2.1rem, 4.2vw, 4.2rem); line-height: 1; letter-spacing: -.055em; margin: 0 0 20px; }
+    .section-copy { max-width: 860px; color: rgba(245,242,234,.73); line-height: 1.75; font-size: 1.06rem; }
+    .split { display: grid; grid-template-columns: .92fr 1.08fr; gap: 44px; align-items: center; }
+    .image-frame, .video-frame, .youtube-frame {
       border-radius: 28px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,.08);
       background: #000;
       box-shadow: 0 34px 95px rgba(0,0,0,.48);
+    }
+    .image-frame img { width: 100%; display: block; }
+    .video-actions { margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .youtube-frame { margin-top: 30px; aspect-ratio: 16 / 9; }
+    .youtube-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .pillar { padding: 30px; border-radius: 22px; background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.08); }
+    .pillar span { color: var(--gold); font-size: .8rem; letter-spacing: .12em; }
+    .pillar h3 { margin: 12px 0; font-size: 1.38rem; }
+    .pillar p { color: rgba(245,242,234,.68); line-height: 1.65; }
+    .contrast { background: rgba(255,255,255,.035); border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .list { margin-top: 24px; display: grid; gap: 12px; color: rgba(245,242,234,.8); line-height: 1.55; }
+    .score-card {
       margin-top: 30px;
-    }
-
-    .pillars {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 36px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
-
-    .pillar {
-      padding: 30px;
-      border-radius: 22px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .pillar span {
-      color: var(--gold);
-      font-size: .8rem;
-      letter-spacing: .12em;
-    }
-
-    .pillar h3 {
-      margin: 12px 0;
-      font-size: 1.38rem;
-    }
-
-    .pillar p {
-      color: rgba(245,242,234,.68);
-      line-height: 1.65;
-    }
-
-    .contrast {
-      background: rgba(255,255,255,.035);
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .list {
-      margin-top: 24px;
-      display: grid;
-      gap: 12px;
-      color: rgba(245,242,234,.8);
-      line-height: 1.55;
-    }
-
+    .metric { border: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.24); padding: 22px; border-radius: 18px; }
+    .metric strong { display: block; color: var(--gold); font-size: 1.5rem; margin-bottom: 6px; }
+    .metric span { color: rgba(245,242,234,.68); font-size: .9rem; line-height: 1.4; }
     .signup {
       display: grid;
       grid-template-columns: 1fr .9fr;
@@ -265,289 +177,201 @@
       margin-bottom: 96px;
       box-shadow: 0 28px 80px rgba(0,0,0,.35);
     }
-
-    form {
-      display: grid;
-      gap: 13px;
-    }
-
-    label {
-      color: var(--gold);
-      font-size: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-weight: 800;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.45);
-      color: var(--white);
-      font-size: .95rem;
-    }
-
-    button {
-      margin-top: 8px;
-      padding: 16px 22px;
-      border-radius: 12px;
-      border: 0;
-      font-weight: 900;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--gold), #f0d079);
-      color: #121212;
-      font-size: .96rem;
-    }
-
-    .privacy {
-      color: var(--muted);
-      font-size: .78rem;
-      line-height: 1.5;
-    }
-
-    footer {
-      padding: 40px 0 70px;
-      color: var(--muted);
-      font-size: .85rem;
-      text-align: center;
-    }
+    form { display: grid; gap: 13px; }
+    label { color: var(--gold); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
+    input, select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.45); color: var(--white); font-size: .95rem; }
+    button { margin-top: 8px; padding: 16px 22px; border-radius: 12px; border: 0; font-weight: 900; cursor: pointer; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #121212; font-size: .96rem; }
+    .privacy { color: var(--muted); font-size: .78rem; line-height: 1.5; }
+    footer { padding: 40px 0 70px; color: var(--muted); font-size: .85rem; text-align: center; }
 
     @media (max-width: 980px) {
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 28px 0 72px;
-      }
-
-      .hero-card {
-        transform: none;
-      }
-
-      .split,
-      .signup,
-      .pillars {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card img {
-        max-height: none;
-      }
+      .nav-wrap { align-items: flex-start; flex-direction: column; padding: 18px 0; }
+      nav { justify-content: flex-start; gap: 14px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 46px 0 72px; }
+      .hero-card { transform: none; }
+      .split, .signup, .pillars, .score-card { grid-template-columns: 1fr; }
+      .hero-card img { max-height: none; }
     }
-
     @media (max-width: 560px) {
-      .wrap {
-        width: min(100% - 28px, 1240px);
-      }
-
-      header {
-        padding: 20px 0;
-      }
-
-      h1 {
-        font-size: clamp(2.7rem, 15vw, 4.2rem);
-      }
-
-      section {
-        padding: 62px 0;
-      }
-
-      .signup {
-        padding: 28px;
-      }
+      .wrap { width: min(100% - 28px, 1240px); }
+      h1 { font-size: clamp(2.7rem, 15vw, 4.2rem); }
+      section { padding: 62px 0; }
+      .signup { padding: 28px; }
+      nav a { font-size: .8rem; }
     }
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">GÖ.AI</div>
-      <a href="#early-access" class="nav-cta">Join Early Access</a>
-    </header>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <a class="logo" href="/">GÖ.AI</a>
+      <nav aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/sentry">SENTRY</a>
+        <a href="/product-demo">Product Demo</a>
+        <a href="/kickstarter#demo">Demo Reel</a>
+        <a href="/kickstarter#early-access" class="nav-cta">Join Early Access</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
+  <main>
+    <div class="wrap">
       <section class="hero">
         <div>
           <div class="badge">Kickstarter Pre-Launch</div>
-
           <h1>Built to think ahead.</h1>
-
           <p class="sub">
-            GÖ.AI is intelligent coordination for modern travel — unifying automation with real-time risk awareness.
+            GÖ.AI is intelligent movement infrastructure for modern travel — combining automated coordination, predictive movement intelligence, and SENTINEL™ risk awareness.
           </p>
-
           <p class="tension">
-            Plans don’t fail at once. They break quietly — until it matters.
+            Plans don’t fail at once. They break quietly — a delay, a route shift, a missed pickup, a timing gap — until the entire movement is exposed.
           </p>
-
           <div class="cta-row">
             <a href="#early-access" class="btn btn-primary">Join Founding Access</a>
-            <a href="#demo" class="btn btn-secondary">Watch the Demo</a>
+            <a href="#demo" class="btn btn-secondary">Watch the 3:29 Demo</a>
           </div>
         </div>
-
         <div class="hero-card">
           <img src="/assets/sentinel-trip-briefing.jpeg" alt="GÖ.AI SENTINEL trip briefing interface showing trip risk score and travel coordination." />
           <div class="caption">Before you move — GÖ.AI already has.</div>
         </div>
       </section>
-    </main>
-  </div>
-
-  <section class="contrast">
-    <div class="wrap split">
-      <div>
-        <div class="badge">The Problem</div>
-        <h2 class="section-title">The hidden cost of disconnected movement.</h2>
-
-        <p class="section-copy">
-          A delayed flight. A driver who never arrives. A last-minute route change in an unfamiliar city.
-          Each piece works. But nothing works together.
-        </p>
-
-        <p class="section-copy">
-          GÖ.AI is being built to coordinate movement with foresight — bringing travel plans, routing context,
-          alerts, and risk awareness into one structured system.
-        </p>
-      </div>
-
-      <div class="image-frame">
-        <img src="/assets/executive-control-room.jpeg" alt="Executive viewing intelligent travel coordination and risk intelligence overlays." />
-      </div>
     </div>
-  </section>
 
-  <div class="wrap">
-    <section id="demo">
-      <div class="badge">Product Teaser</div>
+    <section class="contrast">
+      <div class="wrap split">
+        <div>
+          <div class="badge">The Problem</div>
+          <h2 class="section-title">The hidden cost of disconnected movement.</h2>
+          <p class="section-copy">
+            A delayed flight. A driver who never arrives. A hotel zone that changes the risk profile. A last-minute route disruption in a city you do not know.
+            Each piece may work alone. But nothing understands the trip as a whole.
+          </p>
+          <p class="section-copy">
+            GÖ.AI is being built to coordinate movement with foresight — bringing itinerary logic, routing context, disruption signals, environmental awareness, and operational decision support into one structured system.
+          </p>
+        </div>
+        <div class="image-frame">
+          <img src="/assets/executive-control-room.jpeg" alt="Executive viewing intelligent travel coordination and risk intelligence overlays." />
+        </div>
+      </div>
+    </section>
 
-      <h2 class="section-title">See the system in motion.</h2>
+    <div class="wrap">
+      <section id="demo">
+        <div class="badge">Full Demo Reel</div>
+        <h2 class="section-title">See SENTINEL™ in motion.</h2>
+        <p class="section-copy">
+          The 3:29 demo shows the larger GÖ.AI concept: preference-based planning, SENTINEL™ intelligence briefings, disruption simulation, ETAS™ movement coordination, and the secure dummy itinerary layer.
+        </p>
+        <div class="youtube-frame">
+          <iframe
+            src="https://www.youtube.com/embed/XhYQ_zQCj54"
+            title="GÖ.AI SENTINEL demo reel"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-actions">
+          <a class="btn btn-primary" href="https://youtu.be/XhYQ_zQCj54" target="_blank" rel="noopener">Open on YouTube</a>
+          <a class="btn btn-secondary" href="/product-demo">Try the Product Demo</a>
+        </div>
+      </section>
 
-      <p class="section-copy">
-        Watch how GÖ.AI moves from preference-based planning to trip coordination, SENTINEL risk scoring,
-        secure itinerary logic, and structured travel control.
-      </p>
+      <section>
+        <div class="badge">Platform Architecture</div>
+        <h2 class="section-title">Three layers. One movement system.</h2>
+        <div class="pillars">
+          <div class="pillar">
+            <span>01</span>
+            <h3>SENTINEL™</h3>
+            <p>Predictive risk intelligence that evaluates trip context, corridor volatility, infrastructure reliability, weather, timing pressure, and movement exposure.</p>
+          </div>
+          <div class="pillar">
+            <span>02</span>
+            <h3>ETAS™</h3>
+            <p>The execution layer coordinating trip components, routing, pickup timing, service logic, itinerary structure, and movement dependencies.</p>
+          </div>
+          <div class="pillar">
+            <span>03</span>
+            <h3>AI Concierge</h3>
+            <p>The user-facing layer that presents recommendations, alerts, preferences, route actions, and travel decisions in a guided experience.</p>
+          </div>
+        </div>
+      </section>
+    </div>
 
-      <div class="video-frame">
-        <video controls poster="/assets/sentinel-trip-briefing.jpeg">
-          <source src="/assets/kickstarter-teaser.mp4" type="video/mp4" />
-          Your browser does not support video playback.
-        </video>
+    <section class="contrast">
+      <div class="wrap">
+        <div class="badge">SENTRY™ Score Logic</div>
+        <h2 class="section-title">Not just where you are going. What you are moving through.</h2>
+        <p class="section-copy">
+          SENTINEL™ is designed to translate changing real-world conditions into a structured movement briefing — giving travelers and operators an early read on disruption, exposure, and timing risk before the trip breaks.
+        </p>
+        <div class="score-card">
+          <div class="metric"><strong>01</strong><span>Corridor Volatility</span></div>
+          <div class="metric"><strong>02</strong><span>Environmental Stability</span></div>
+          <div class="metric"><strong>03</strong><span>Infrastructure Reliability</span></div>
+          <div class="metric"><strong>04</strong><span>Movement Complexity</span></div>
+        </div>
       </div>
     </section>
 
     <section>
-      <div class="badge">Platform Architecture</div>
-
-      <h2 class="section-title">Three layers. One movement system.</h2>
-
-      <div class="pillars">
-        <div class="pillar">
-          <span>01</span>
-          <h3>SENTINEL™</h3>
-          <p>
-            Predictive risk intelligence that evaluates trip context, local conditions, disruption signals,
-            and movement exposure.
-          </p>
-        </div>
-
-        <div class="pillar">
-          <span>02</span>
-          <h3>ETAS™</h3>
-          <p>
-            The execution layer coordinating trip components, routing, timing, service logic,
-            and itinerary structure.
-          </p>
-        </div>
-
-        <div class="pillar">
-          <span>03</span>
-          <h3>AI Concierge</h3>
-          <p>
-            The user interface layer that presents recommendations, alerts, preferences,
-            and trip actions in a guided experience.
-          </p>
+      <div class="wrap">
+        <div class="badge">Why Backers Join</div>
+        <h2 class="section-title">This is not a booking app.</h2>
+        <p class="section-copy">
+          Traditional platforms execute transactions. GÖ.AI coordinates movement. Traditional platforms show options. GÖ.AI helps structure decisions. Traditional platforms react to disruption. GÖ.AI is built to anticipate it.
+        </p>
+        <div class="list">
+          <div>• One structured view of your movement</div>
+          <div>• One system that understands the trip as a whole</div>
+          <div>• One layer of awareness before problems surface</div>
+          <div>• One coordination layer for timing, routing, security, and operational context</div>
         </div>
       </div>
     </section>
-  </div>
 
-  <section class="contrast">
     <div class="wrap">
-      <div class="badge">Why Backers Join</div>
-
-      <h2 class="section-title">This is not a booking app.</h2>
-
-      <p class="section-copy">
-        Traditional platforms execute transactions. GÖ.AI coordinates movement.
-        Traditional platforms show options. GÖ.AI helps structure decisions.
-        Traditional platforms react to disruption. GÖ.AI is built to anticipate it.
-      </p>
-
-      <div class="list">
-        <div>• One structured view of your movement</div>
-        <div>• One system that understands the trip as a whole</div>
-        <div>• One layer of awareness before problems surface</div>
-      </div>
+      <section class="signup" id="early-access">
+        <div>
+          <div class="badge">Founding Access</div>
+          <h2 class="section-title">Get notified before launch.</h2>
+          <p class="section-copy">
+            Join the GÖ.AI Kickstarter pre-launch list for campaign updates, product previews, Founding Member access, and early backer notifications.
+          </p>
+          <p class="section-copy">Backing early is not just access. It is position.</p>
+        </div>
+        <form action="/thanks" method="POST" name="goai-kickstarter" data-netlify="true">
+          <input type="hidden" name="form-name" value="goai-kickstarter" />
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" />
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" required />
+          <label for="interest">What best describes you?</label>
+          <select id="interest" name="interest">
+            <option>Founder / Executive</option>
+            <option>Frequent Business Traveler</option>
+            <option>Security / Operations Professional</option>
+            <option>Investor / Advisor</option>
+            <option>Early Adopter</option>
+          </select>
+          <button type="submit">Request Early Access</button>
+          <p class="privacy">No spam. No public list. You’ll receive launch updates and early-access communication only.</p>
+        </form>
+      </section>
     </div>
-  </section>
+  </main>
 
-  <div class="wrap">
-    <section class="signup" id="early-access">
-      <div>
-        <div class="badge">Founding Access</div>
-
-        <h2 class="section-title">Get notified before launch.</h2>
-
-        <p class="section-copy">
-          Join the GÖ.AI Kickstarter pre-launch list for campaign updates, product previews,
-          Founding Member access, and early backer notifications.
-        </p>
-
-        <p class="section-copy">
-          Backing early is not just access. It is position.
-        </p>
-      </div>
-
-      <form name="goai-kickstarter" method="POST" data-netlify="true" action="/thanks.html">
-        <input type="hidden" name="form-name" value="goai-kickstarter" />
-
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" placeholder="Your name" />
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@email.com" required />
-
-        <label for="interest">What best describes you?</label>
-        <select id="interest" name="interest">
-          <option>Founder / Executive</option>
-          <option>Frequent Business Traveler</option>
-          <option>Security / Operations Professional</option>
-          <option>Investor / Advisor</option>
-          <option>Early Adopter</option>
-        </select>
-
-        <button type="submit">Request Early Access</button>
-
-        <p class="privacy">
-          No spam. No public list. You’ll receive launch updates and early-access communication only.
-        </p>
-      </form>
-    </section>
-  </div>
-
-  <footer>
-    GÖ.AI — Intelligent coordination, built to think ahead.
-  </footer>
+  <footer>GÖ.AI — Intelligent coordination, built to think ahead.</footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.querySelector("form[name='goai-kickstarter']");
       if (!form) return;
-
       form.addEventListener("submit", () => {
         const button = form.querySelector("button");
         if (button) {
