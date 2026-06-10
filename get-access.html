@@ -1,12 +1,27 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>GÖ.AI — Request Early Access</title>
 
-  <meta name="description" content="Request early access to GÖ.AI — business travel, on autopilot.">
-  <link rel="canonical" href="https://goaihq.com/contact.html">
+  <title>GÖ.AI — SENTINEL™ Pilot Cohort</title>
+  <meta name="description" content="Join the SENTINEL™ Pilot Cohort — a strategic co-development program for people helping stress-test predictive movement intelligence before scale.">
+  <link rel="canonical" href="https://goaihq.com/get-access">
+
+  <!-- X / Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SENTINEL™ Pilot Cohort">
+  <meta name="twitter:description" content="Reducing uncertainty before movement begins.">
+  <meta name="twitter:image" content="https://goaihq.com/assets/sentinel-pilot-card.jpg">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SENTINEL™ Pilot Cohort">
+  <meta property="og:description" content="Reducing uncertainty before movement begins.">
+  <meta property="og:image" content="https://goaihq.com/assets/sentinel-pilot-card.jpg">
+  <meta property="og:url" content="https://goaihq.com/get-access">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GÖ.AI">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -14,7 +29,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -33,6 +48,7 @@
     }
 
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -47,18 +63,40 @@
     .wrap{max-width:var(--max);margin:0 auto;padding:28px}
 
     .topbar{
-      display:flex;align-items:center;justify-content:space-between;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
       padding:18px 0 10px;
     }
 
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .dot{
-      width:10px;height:10px;border-radius:999px;background:var(--gold);
-      box-shadow:0 0 24px rgba(212,175,55,.45)
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
     }
 
-    .nav{display:flex;gap:18px}
-    .nav a{color:var(--muted);text-decoration:none}
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:var(--gold);
+      box-shadow:0 0 24px rgba(212,175,55,.45);
+    }
+
+    .nav{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:14px;
+    }
+
     .nav a:hover{color:var(--text)}
 
     .page{padding:58px 0 30px}
@@ -66,13 +104,16 @@
     h1{
       margin:0 0 14px;
       font-size:54px;
+      line-height:1.04;
+      letter-spacing:-1.8px;
     }
 
     .sub{
-      max-width:860px;
+      max-width:900px;
       font-size:18px;
       color:var(--muted);
-      margin:0 0 22px;
+      margin:0 0 18px;
+      line-height:1.72;
     }
 
     .grid{
@@ -80,7 +121,7 @@
       grid-template-columns:1.1fr .9fr;
       gap:22px;
       align-items:start;
-      margin-top:18px;
+      margin-top:26px;
     }
 
     .card{
@@ -90,9 +131,14 @@
       padding:22px;
     }
 
-    label{display:block;font-size:13px;color:var(--muted2);margin-bottom:6px}
+    label{
+      display:block;
+      font-size:13px;
+      color:var(--muted2);
+      margin-bottom:6px;
+    }
 
-    input, textarea{
+    input, textarea, select{
       width:100%;
       background:rgba(0,0,0,.20);
       border:1px solid var(--border);
@@ -101,29 +147,53 @@
       padding:12px;
       font-family:inherit;
       font-size:14px;
+      outline:none;
     }
 
-    textarea{min-height:140px}
+    select option{
+      background:#0b0d12;
+      color:#fff;
+    }
 
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    textarea{min-height:140px;resize:vertical}
 
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .row2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .field{margin-top:12px}
+
+    .cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
 
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 16px;border-radius:14px;
-      font-weight:700;cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:800;
+      cursor:pointer;
       text-decoration:none;
+      font-size:14px;
     }
 
     .btn-primary{
       background:linear-gradient(135deg,var(--gold),var(--gold2));
-      color:#0a0b0e;border:none;
+      color:#0a0b0e;
+      border:none;
     }
 
     .btn-ghost{
       background:rgba(255,255,255,.05);
       color:var(--text);
+      border:1px solid var(--border);
     }
 
     .kicker{
@@ -132,26 +202,34 @@
       letter-spacing:.18em;
       font-size:12px;
       margin-bottom:10px;
+      font-weight:800;
     }
 
-    h2{margin:0 0 10px;font-size:22px}
+    h2{
+      margin:0 0 10px;
+      font-size:24px;
+      letter-spacing:-.6px;
+    }
 
-    .p{margin:0;color:var(--muted);line-height:1.7}
+    .p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+    }
 
-    /* ✅ ALL bullets highlighted */
     .benefits{
       margin-top:14px;
       padding-left:18px;
     }
+
     .benefits li{
       margin:10px 0;
       line-height:1.65;
       color:var(--text);
       font-weight:500;
     }
-    .benefits li::marker{
-      color:var(--text);
-    }
+
+    .benefits li::marker{color:var(--gold2)}
 
     .benefits-close{
       color:var(--muted2);
@@ -173,6 +251,27 @@
       background:#000;
     }
 
+    .poster{
+      margin-top:16px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+    }
+
+    .poster img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+    .note{
+      color:var(--muted2);
+      font-size:13px;
+      line-height:1.6;
+      margin-top:14px;
+    }
+
     .foot{
       border-top:1px solid var(--border);
       padding:22px 0;
@@ -181,10 +280,18 @@
       margin-top:40px;
     }
 
+    .foot a{
+      color:var(--muted2);
+      text-decoration:none;
+    }
+
+    .foot a:hover{color:var(--text)}
+
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
       .row2{grid-template-columns:1fr}
       h1{font-size:42px}
+      .nav{display:none}
     }
   </style>
 </head>
@@ -205,25 +312,57 @@
     </div>
 
     <section class="page">
-      <h1>Request Early Access</h1>
+      <div class="kicker">Strategic Pilot Cohort</div>
+      <h1>Join the SENTINEL™ Pilot Cohort</h1>
+
       <p class="sub">
-        Tell us how you travel for work. We’ll follow up with pilot availability and next steps.
-        If you’re ready now, you can also join the <b>100 for 100 Founders</b> waitlist.
+        Most travel technology focuses on booking.
+      </p>
+
+      <p class="sub">
+        We're interested in what happens after the booking is complete.
+      </p>
+
+      <p class="sub">
+        Flights delay. Corridors become unreliable. Conditions change. Timelines shift.
+      </p>
+
+      <p class="sub">
+        SENTINEL™ is a predictive movement intelligence layer designed to help operators,
+        founders, executive teams, consultants, and frequent travelers reduce uncertainty
+        before movement begins.
+      </p>
+
+      <p class="sub">
+        We're currently inviting a limited number of strategic partners and pilot users to help
+        stress-test the logic before public launch.
       </p>
 
       <div class="grid">
         <!-- LEFT -->
         <div class="card">
 
-          <div class="kicker">Founders Campaign</div>
-          <h2>Founding 100 Member Benefits</h2>
+          <div class="kicker">The Founding 100 Cohort</div>
+          <h2>Co-development, not sales.</h2>
 
           <p class="p">
-            This is more than early access.<br>
-            It’s an opportunity to help build what corporate travel should have been all along.
+            This is not simply early access.
           </p>
 
-          <p class="p" style="margin-top:16px;">As a Founding 100 Member, you receive:</p>
+          <p class="p" style="margin-top:14px;">
+            This is a co-development phase.
+          </p>
+
+          <p class="p" style="margin-top:14px;">
+            We're looking for a small group of founders, operators, consultants, executive assistants,
+            strategic partners, and frequent travelers who deal with real-world movement complexity.
+          </p>
+
+          <p class="p" style="margin-top:14px;">
+            If you help define the edge cases, you help shape the system before it scales.
+          </p>
+
+          <p class="p" style="margin-top:18px;">As a Founding 100 Member, you receive:</p>
 
           <ul class="benefits">
             <li>25% off your first 12 months following public launch</li>
@@ -261,17 +400,30 @@
               </div>
             </div>
 
-            <div style="margin-top:12px">
+            <div class="field">
+              <label>What movement problem should SENTINEL™ understand?</label>
+              <select name="movement-problem" required>
+                <option value="">Select a movement problem</option>
+                <option value="delayed-flight-coordination">Delayed flight coordination</option>
+                <option value="executive-arrival-timing">Executive arrival timing</option>
+                <option value="ground-transport-synchronization">Ground transport synchronization</option>
+                <option value="corridor-instability">Corridor instability</option>
+                <option value="hotel-zone-selection">Hotel zone selection</option>
+                <option value="travel-continuity">Travel continuity</option>
+              </select>
+            </div>
+
+            <div class="field">
               <label>Tell us about your use case</label>
-              <textarea name="usecase" required></textarea>
+              <textarea name="usecase" required placeholder="Describe the real-world timing, travel, security, coordination, or disruption problem you want SENTINEL™ to understand."></textarea>
             </div>
 
             <div class="cta">
               <button class="btn btn-ghost" type="submit">Submit use case</button>
-              <a class="btn btn-primary" href="https://donate.stripe.com/28EdR94X83OkfSV0XjgQE03" target="_blank">
-                Join the waitlist ($100)
+              <a class="btn btn-primary" href="https://donate.stripe.com/28EdR94X83OkfSV0XjgQE03" target="_blank" rel="noopener">
+                Secure a Founding Seat ($100)
               </a>
-              <a class="btn btn-ghost" href="/assets/Funding-Acknowledgement.pdf" target="_blank">
+              <a class="btn btn-ghost" href="/assets/Funding-Acknowledgement.pdf" target="_blank" rel="noopener">
                 View official document (PDF)
               </a>
             </div>
@@ -281,13 +433,16 @@
 
         <!-- RIGHT -->
         <div class="card">
-          <div class="kicker">100 for 100</div>
-          <h2>Campaign Preview</h2>
-          <p class="p">A short visual mark for the Founding 100 campaign.</p>
+          <div class="kicker">Campaign Film</div>
+          <h2>The Contender</h2>
+          <p class="p">
+            A cinematic concept film for the SENTINEL™ thesis: preparation, adaptation,
+            and predictive movement before disruption becomes visible.
+          </p>
 
           <div class="media">
             <video
-              src="/assets/100-100.mp4"
+              src="/assets/contender.mp4"
               autoplay
               muted
               loop
@@ -296,6 +451,15 @@
               controls
             ></video>
           </div>
+
+          <div class="poster">
+            <img src="/assets/sentinel-pilot-card.jpg" alt="SENTINEL Pilot Cohort">
+          </div>
+
+          <p class="note">
+            SENTINEL™ is currently in a focused pilot and co-development phase.
+            Access is intentionally limited to users and partners with real-world movement complexity.
+          </p>
 
         </div>
       </div>
