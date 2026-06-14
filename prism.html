@@ -560,22 +560,29 @@
       </section>
     </main>
     <footer class="foot">
-      © <span id="y"></span> GÖ.AI • GEO PRISM Intelligence Briefing Series
-    </footer>
-  </div>
+  © <span id="y"></span> GÖ.AI • GEO PRISM Intelligence Briefing Series
+</footer>
+
+</div>
+
+<script>
   // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // Glow tracking on video frame
-    const frame = document.getElementById('prismFrame');
-    if (frame) {
-      frame.addEventListener('mousemove', (e) => {
-        const r = frame.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        frame.style.setProperty('--mx', x.toFixed(2) + '%');
-        frame.style.setProperty('--my', y.toFixed(2) + '%');
-      }, { passive:true });
-    }
-  </script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Glow tracking on video frame
+  const frame = document.getElementById('prismFrame');
+
+  if (frame) {
+    frame.addEventListener('mousemove', (e) => {
+      const r = frame.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+
+      frame.style.setProperty('--mx', x.toFixed(2) + '%');
+      frame.style.setProperty('--my', y.toFixed(2) + '%');
+    }, { passive: true });
+  }
+</script>
+
 </body>
 </html>
