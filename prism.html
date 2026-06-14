@@ -519,29 +519,34 @@
           </div>
         </div>
       </section>
-      <section class="block" aria-label="Live X intelligence feed">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Live Intelligence Feed</div>
-            <h2>Dispatches from GÖ.AI on X</h2>
-            <p>
-              Live updates, product thinking, SENTINEL™ positioning, and movement intelligence from the GÖ.AI feed.
-            </p>
-          </div>
-          <a class="btn" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">Follow @GOAIHQ</a>
-        </div>
-        <div class="timeline-shell">
-  <a class="twitter-timeline"
-     data-height="560"
-     data-theme="dark"
-     href="https://twitter.com/GOAIHQ">
-    Posts by GOAIHQ
-  </a>
-  <a class="timeline-fallback" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">
-    Open the live GÖ.AI feed on X →
-  </a>
-</div>
-      </section>
+      <section class="block" aria-label="GÖ.AI on X">
+  <div class="section-head">
+    <div>
+      <div class="kicker">Research & Live Updates</div>
+      <h2>Follow the Conversation on X</h2>
+      <p>
+        A live view into GÖ.AI research, product development, GEO PRISM briefings,
+        and movement intelligence.
+      </p>
+    </div>
+    <a class="btn" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">Follow @GOAIHQ</a>
+  </div>
+
+  <div class="timeline-shell">
+    <a href="https://x.com/GOAIHQ" target="_blank" rel="noopener" aria-label="View GÖ.AI on X">
+      <img
+        src="/assets/x-widget.jpg"
+        alt="GÖ.AI profile on X"
+        style="display:block;width:100%;height:auto;border-radius:18px;"
+      >
+    </a>
+
+    <div class="hero-actions" style="margin-top:18px;">
+      <a class="btn primary" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">View Profile →</a>
+      <a class="btn" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">Read Latest Thread →</a>
+    </div>
+  </div>
+</section>
       <section class="block" aria-label="Get access call to action">
         <div class="cta">
           <div class="kicker">2026 Pilot Cohort</div>
@@ -558,8 +563,8 @@
       © <span id="y"></span> GÖ.AI • GEO PRISM Intelligence Briefing Series
     </footer>
   </div>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  <script>
-    // Year
+
+  // Year
     document.getElementById('y').textContent = new Date().getFullYear();
     // Glow tracking on video frame
     const frame = document.getElementById('prismFrame');
