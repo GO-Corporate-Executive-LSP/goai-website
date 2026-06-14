@@ -4,122 +4,138 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Future of AI Travel Isn't a Chatbot | GEO PRISM Analysis</title>
-<meta name="description" content="Why discovery and continuity are different problems—and why high-trust movement requires timeline-first orchestration.">
-<meta property="og:title" content="The Future of AI Travel Isn't a Chatbot">
-<meta property="og:description" content="Discovery helps people decide where to go. Continuity helps them get there.">
-<meta property="og:image" content="/assets/ai-travel-discovery-hero.jpg">
+<title>The Future of AI Travel Isn't a Chatbot | GEO PRISM Episode 001</title>
+<meta name="description" content="Discovery helps people decide where to go. Continuity helps them get there.">
 <style>
-:root{--bg:#07080b;--bg2:#0b0d12;--panel:rgba(255,255,255,.045);--border:rgba(255,255,255,.10);--text:rgba(255,255,255,.92);--muted:rgba(255,255,255,.64);--gold:#d4af37;--blue:#9ad7ff;--max:1120px}
+:root{--bg:#0b0d12;--panel:#141820;--text:#ececec;--muted:#b7bcc7;--gold:#d4af37;--blue:#9ad7ff;--max:1100px}
 *{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg),var(--bg2))}
-.wrap{max-width:var(--max);margin:auto;padding:28px}
-.progress{position:fixed;top:0;left:0;height:4px;background:var(--gold);width:0;z-index:9999}
-.panel,.toc,.callout{border:1px solid var(--border);background:var(--panel);border-radius:22px;padding:24px}
-.hero img,.figure img{width:100%;border-radius:22px}
-a{color:var(--blue)} .muted{color:var(--muted)}
-.grid{display:grid;grid-template-columns:1fr 300px;gap:24px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.9}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--gold);z-index:999}
+.wrap{max-width:var(--max);margin:auto;padding:32px}
+.back{margin:18px 0 30px}
+.hero{padding:40px 0}
+h1{font-size:56px;line-height:1.05;margin:0 0 12px}
+.subtitle{font-size:24px;color:var(--muted);margin-bottom:18px}
+.meta{color:var(--gold);font-weight:700}
+.toc,.callout,.section-card{background:var(--panel);border-radius:18px;padding:28px;margin:32px 0}
+.toc ol{line-height:2}
+figure{margin:56px 0;text-align:center}
+img{max-width:100%;border-radius:18px}
+figcaption{margin-top:14px;color:var(--muted);font-style:italic}
+h2{margin-top:60px;font-size:34px}
+p{margin:0 0 24px}
+.callout{border-left:5px solid var(--gold)}
+.quote{font-size:22px;font-weight:700;color:#fff}
+.footer-nav{display:flex;justify-content:space-between;margin-top:60px;padding-top:30px;border-top:1px solid #2a2f39}
+@media(max-width:768px){h1{font-size:40px}.subtitle{font-size:20px}}
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
 <div class="wrap">
-<p><a href="/prism.html">← Back to GEO PRISM</a></p>
 
+<p class="back"><a href="/prism.html">← Back to GEO PRISM</a></p>
+
+<section class="hero">
 <h1>The Future of AI Travel Isn't a Chatbot</h1>
-<p class="muted">GEO PRISM Analysis • Product Architecture<br>Episode 002 • June 2026 • Reading Time: 7 Minutes</p>
+<div class="subtitle">Why high-trust movement requires timeline-first orchestration, structured awareness, and continuity under disruption.</div>
+<div class="meta">GEO PRISM Analysis • Product Architecture • Episode 001 • June 2026 • 7 Minute Read</div>
+</section>
 
-<img src="/assets/ai-travel-discovery-hero.jpg" alt="Hero">
+<div class="toc">
+<h3>Table of Contents</h3>
+<ol>
+<li>Executive Summary</li>
+<li>The Rise of AI Travel Discovery</li>
+<li>Discovery and Continuity Are Different Problems</li>
+<li>The Continuity Gap</li>
+<li>The Anti‑Chatbot Thesis</li>
+<li>Why ETAS™ Exists</li>
+<li>Why SENTINEL™ Matters</li>
+<li>From Recommendations to Decisions</li>
+<li>The Next Evolution of Travel Technology</li>
+<li>GÖ.AI Perspective</li>
+</ol>
+</div>
+
+<figure>
+<img src="/assets/ai-travel-discovery-hero.jpg" alt="AI travel discovery">
+<figcaption>Figure 1. Discovery systems excel at helping travelers compare destinations, hotels, flights, and experiences.</figcaption>
+</figure>
+
+<h2>Executive Summary</h2>
+<p>Modern AI travel platforms are becoming remarkably effective at helping travelers discover where they should go. They can compare destinations, recommend hotels, surface experiences, summarize neighborhoods, and help users build itineraries faster than ever before.</p>
+<p>For leisure travel, this is transformative. But discovery is not continuity.</p>
 
 <div class="callout">
-<strong>Discovery helps people decide where to go. Continuity helps them get there.</strong>
+<div class="quote">Discovery helps people decide where to go. Continuity helps them get there.</div>
 </div>
 
-<div class="grid">
-<article>
-<h2 id="summary">Executive Summary</h2>
-<p>Modern AI travel platforms excel at discovery. GÖ.AI is focused on continuity.</p>
+<h2>The Rise of AI Travel Discovery</h2>
+<p>The first wave of AI travel innovation has focused on recommendation engines, itinerary generation, destination research, and conversational assistance. These systems solve a real problem: reducing the friction involved in planning travel.</p>
+<p>They are exceptionally useful for discovery. They help users answer questions such as where to go, where to stay, and what to do.</p>
 
-<div class="figure">
-<img src="/assets/autonomous-timeline-thesis.jpg">
-<p class="muted">Figure 1: Continuity becomes the defining challenge once movement begins.</p>
-</div>
+<figure>
+<img src="/assets/autonomous-timeline-thesis.jpg" alt="Autonomous timeline">
+<figcaption>Figure 2. Once travel begins, continuity becomes a coordination problem rather than a discovery problem.</figcaption>
+</figure>
 
-<h2 id="discovery">The Rise of AI Travel Discovery</h2>
-<p>AI is transforming destination research, itinerary creation, and travel planning.</p>
+<h2>Discovery and Continuity Are Different Problems</h2>
+<p>Discovery answers: “Where should I go?” Continuity answers: “How do I stay on schedule when conditions change?”</p>
+<p>These are fundamentally different categories of intelligence. One operates primarily on preferences. The other operates on operational context.</p>
 
-<h2 id="difference">Discovery and Continuity Are Different Problems</h2>
-<p>Discovery answers where to go. Continuity answers how to stay on schedule when conditions change.</p>
+<figure>
+<img src="/assets/discovery-vs-continuity-diagram.jpg" alt="Discovery versus continuity">
+<figcaption>Figure 3. Recommendation systems optimize choice. Continuity systems preserve execution.</figcaption>
+</figure>
 
-<div class="figure">
-<img src="/assets/discovery-vs-continuity-diagram.jpg">
-<p class="muted">Figure 2: Recommendation systems versus continuity systems.</p>
-</div>
-
-<div class="callout">
-<h3>The Continuity Problem</h3>
-<p>The majority of travel technology focuses on helping travelers make decisions before a trip begins. ETAS™ focuses on preserving continuity after those decisions have already been made.</p>
-</div>
+<h2>The Continuity Gap</h2>
+<p>Business travel is not a collection of bookings. It is a chain of dependencies. Flights affect transfers. Transfers affect arrivals. Arrivals affect meetings. A delay at the beginning can ripple through the entire timeline.</p>
 
 <h2>The Anti‑Chatbot Thesis</h2>
-<p>The future is not about eliminating conversation. It is about reducing the amount of conversation required during disruption.</p>
+<p>The future is not about eliminating conversation. It is about reducing the amount of conversation required when disruption occurs. High‑trust movement requires systems that understand dependencies and preserve continuity automatically.</p>
 
 <h2>Why ETAS™ Exists</h2>
-<p>ETAS™ was designed to help travelers arrive where they have already decided to go.</p>
+<p>ETAS™ was not designed to help travelers discover where they should go. It was designed to help them arrive where they have already decided to go.</p>
+<p>Every disruption becomes an orchestration event: delay detected, timeline recalculated, dependencies validated, continuity preserved.</p>
 
-<div class="callout">
-<h3>Predictive Intelligence vs Preference Intelligence</h3>
-<p>Discovery systems understand preferences. SENTINEL™ understands operational context.</p>
+<div class="section-card">
+<strong>ETAS™ Positioning</strong><br>
+Not a recommendation engine. Not a booking engine. A continuity engine.
 </div>
 
 <h2>Why SENTINEL™ Matters</h2>
-<p>Weather. Infrastructure. Corridor conditions. Environmental risk. Schedule sensitivity.</p>
+<p>Discovery systems largely operate on traveler preferences. SENTINEL™ operates on operational context: weather, infrastructure reliability, corridor conditions, environmental risk, movement dependencies, and schedule sensitivity.</p>
+<p>The objective is not to determine what the traveler wants. The objective is to understand what the environment is likely to do next.</p>
 
 <h2>From Recommendations to Decisions</h2>
-<p>Recommendations help people choose. Decisions help people execute.</p>
+<p>Most travel AI produces recommendations. GÖ.AI is attempting to produce operational decisions.</p>
+<p>Recommendation: Fly into JFK.</p>
+<p>Decision: Flight delay detected. Transfer moved 45 minutes. Arrival buffer preserved. Timeline updated.</p>
 
 <h2>The Next Evolution of Travel Technology</h2>
-<p>The next decade will focus on synchronization.</p>
+<p>The previous decade focused on aggregation. Flights. Hotels. Reservations. The next decade will focus on synchronization. Travel systems will increasingly be judged on their ability to coordinate movement chains rather than individual bookings.</p>
 
 <h2>GÖ.AI Perspective</h2>
-<p>The future of AI travel is not a better chatbot. Discovery helps people decide where to go. Continuity helps them get there.</p>
+<p>The future of AI travel is not a better booking engine. It is not a better recommendation engine. And it is not a better chatbot.</p>
+<p>Those systems solve the discovery problem.</p>
+<p>GÖ.AI is focused on the continuity problem.</p>
+<p>Discovery helps people decide where to go. Continuity helps them get there.</p>
+<p>That distinction is the foundation of ETAS™, SENTINEL™, and the broader GÖ.AI thesis:</p>
 
-<div class="panel">
-<h3>Video Briefing</h3>
-<p>Replace with YouTube embed.</p>
+<div class="callout"><div class="quote">Built to think ahead.</div></div>
+
+<div class="footer-nav">
+<a href="/prism.html">← GEO PRISM Archive</a>
+<a href="/get-access.html">Request Early Access →</a>
 </div>
 
-<div class="panel">
-<h3>Author</h3>
-<p>Dwayne A. Heard II<br>Founder & CEO<br>GÖ.AI</p>
-</div>
-
-<div class="panel">
-<h3>Request Early Access</h3>
-<p><a href="/get-access">Request Early Access →</a></p>
-</div>
-
-<p><a href="/prism.html">← Return to GEO PRISM Archive</a></p>
-</article>
-
-<aside class="toc">
-<h3>Contents</h3>
-<ol>
-<li><a href="#summary">Executive Summary</a></li>
-<li><a href="#discovery">AI Travel Discovery</a></li>
-<li><a href="#difference">Discovery vs Continuity</a></li>
-</ol>
-</aside>
-</div>
 </div>
 <script>
 window.addEventListener('scroll',()=>{
 const h=document.documentElement;
-const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
-document.getElementById('progress').style.width=sc+'%';
+document.getElementById('progress').style.width=((h.scrollTop)/(h.scrollHeight-h.clientHeight)*100)+'%';
 });
 </script>
 </body>
 </html>
-
