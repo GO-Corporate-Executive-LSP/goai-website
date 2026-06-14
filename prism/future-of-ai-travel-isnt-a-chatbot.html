@@ -156,4 +156,30 @@ GEO PRISM Intelligence Briefings Playlist →
 <a class="card" href="/prism/machine-readable-environments">Machine‑Readable Environments</a>
 <a class="card" href="/prism/2026-business-travel-stack">The 2026 Business Travel Stack</a>
 </div>
-</main></div></div></body></html>
+</main>
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const winScroll =
+    document.body.scrollTop ||
+    document.documentElement.scrollTop;
+
+  const height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  const scrolled = (winScroll / height) * 100;
+
+  document.getElementById('reading-progress').style.width =
+    scrolled + '%';
+});
+</script>
+
+<script async
+src="https://platform.x.com/widgets.js"
+charset="utf-8"></script>
+
+</body>
+</html>
