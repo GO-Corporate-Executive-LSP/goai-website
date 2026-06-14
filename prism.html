@@ -2,570 +2,114 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>The GEO PRISM — GÖ.AI</title>
-  <meta name="description" content="The GEO PRISM — Intelligence briefings from GÖ.AI covering movement, infrastructure, continuity, and contextual travel systems.">
-  <link rel="canonical" href="https://goaihq.com/prism.html">
-  <!-- Open Graph -->
-  <meta property="og:title" content="The GEO PRISM — GÖ.AI">
-  <meta property="og:description" content="Intelligence briefings from GÖ.AI covering movement, infrastructure, continuity, and contextual travel systems.">
-  <meta property="og:image" content="https://goaihq.com/assets/og-image.jpg">
-  <meta property="og:url" content="https://goaihq.com/prism.html">
-  <meta property="og:type" content="website">
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The GEO PRISM — GÖ.AI">
-  <meta name="twitter:description" content="Intelligence briefings from GÖ.AI covering movement, infrastructure, continuity, and contextual travel systems.">
-  <meta name="twitter:image" content="https://goaihq.com/assets/og-image.jpg">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="theme-color" content="#0B0D12">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#07080b;
-      --bg2:#0b0d12;
-      --panel:rgba(255,255,255,.045);
-      --panel2:rgba(255,255,255,.025);
-      --border:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.64);
-      --faint:rgba(255,255,255,.46);
-      --gold:#d4af37;
-      --blue:#9ad7ff;
-      --max:1120px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1000px 600px at 20% 10%, rgba(154,215,255,.08), transparent 62%),
-        radial-gradient(900px 520px at 82% 22%, rgba(212,175,55,.11), transparent 62%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
-      overflow-x:hidden;
-    }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.18;
-      background-image:
-        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-      background-size:58px 58px;
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.2) 65%, transparent);
-    }
-    a{color:var(--blue);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:var(--max);margin:0 auto;padding:28px}
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:22px;
-      padding:18px 0 10px;
-      position:relative;
-      z-index:5;
-    }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;color:#fff}
-    .dot{
-      width:10px;height:10px;border-radius:999px;background:var(--gold);
-      box-shadow:0 0 18px rgba(212,175,55,.45)
-    }
-    .nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
-    .nav a{color:var(--muted);font-size:14px;font-weight:600}
-    .nav a:hover{color:var(--text);text-decoration:none}
-    .hero{
-      padding:86px 0 38px;
-      text-align:center;
-      position:relative;
-      color:var(--text);
-      text-decoration:none;
-      transition:transform .18s ease,border-color .18s ease,background .18s ease;
-    }
-    .card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(212,175,55,.36);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.072), rgba(255,255,255,.032)),
-        radial-gradient(420px 220px at 20% 0%, rgba(212,175,55,.14), transparent 62%);
-      text-decoration:none;
-    }
-    .kicker{
-      font-size:12px;
-      letter-spacing:.20em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.55);
-      margin-bottom:14px;
-      font-weight:700;
-    }
-    h1{
-      margin:0 0 14px;
-      font-size:56px;
-      letter-spacing:-1.5px;
-      line-height:1;
-    }
-    .signal-line{
-      margin:0 auto 22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      color:rgba(255,255,255,.78);
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-weight:700;
-    }
-    .signal-line span:not(:last-child)::after{
-      content:"/";
-      color:rgba(212,175,55,.70);
-      margin-left:10px;
-    }
-    .sub{
-      max-width:770px;
-      margin:0 auto 28px;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:15px;
-    }
-    .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:44px;
-      padding:0 18px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.045);
-      color:rgba(255,255,255,.86);
-      font-weight:700;
-      font-size:13px;
-      text-decoration:none;
-      transition:transform .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .btn:hover{transform:translateY(-1px);text-decoration:none;border-color:rgba(212,175,55,.35);background:rgba(212,175,55,.08);color:#fff}
-    .btn.primary{background:linear-gradient(180deg, rgba(212,175,55,.22), rgba(212,175,55,.10));border-color:rgba(212,175,55,.38);color:#fff}
-    .podcast-frame{
-      max-width:920px;
-      margin:32px auto 0;
-      border-radius:26px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:0 30px 90px rgba(0,0,0,.55);
-      position:relative;
-      transform-style:preserve-3d;
-    }
-    .podcast-frame::after{
-      content:"";
-      position:absolute;
-      inset:-60px;
-      background:
-        radial-gradient(500px 300px at var(--mx,50%) var(--my,50%), rgba(212,175,55,.18), transparent 60%),
-        radial-gradient(500px 300px at calc(var(--mx,50%) + 10%) calc(var(--my,50%) - 10%), rgba(154,215,255,.12), transparent 60%);
-      opacity:.55;
-      pointer-events:none;
-      mix-blend-mode:screen;
-      filter:blur(12px);
-    }
-    video{
-      display:block;
-      width:100%;
-      height:auto;
-      aspect-ratio:16/9;
-      background:#000;
-      position:relative;
-      z-index:2;
-    }
-    section.block{padding:64px 0 0}
-    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:20px}
-    .section-head h2{margin:0;font-size:28px;letter-spacing:-.5px}
-    .section-head p{margin:8px 0 0;max-width:650px;color:var(--muted);font-size:14px;line-height:1.7}
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:16px;
-    }
-    .card{
-      min-height:250px;
-      padding:20px;
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)),
-        radial-gradient(420px 220px at 20% 0%, rgba(212,175,55,.10), transparent 62%);
-      box-shadow:0 18px 50px rgba(0,0,0,.26);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      overflow:hidden;
-      position:relative;
-    }
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(154,215,255,.06), transparent 38%);
-      pointer-events:none;
-    }
-    .tag{
-      display:inline-flex;
-      width:max-content;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(212,175,55,.25);
-      color:rgba(212,175,55,.95);
-      background:rgba(212,175,55,.07);
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      position:relative;
-      z-index:2;
-    }
-    .card h3{position:relative;z-index:2;margin:18px 0 10px;font-size:20px;letter-spacing:-.35px;line-height:1.2}
-    .card p{position:relative;z-index:2;margin:0;color:var(--muted);font-size:13px;line-height:1.65}
-    .card .meta{position:relative;z-index:2;margin-top:26px;color:var(--faint);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-    }
-    .panel{
-      border-radius:24px;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, var(--panel), var(--panel2));
-      padding:24px;
-      box-shadow:0 18px 50px rgba(0,0,0,.22);
-    }
-    .panel h3{margin:0 0 12px;font-size:20px;letter-spacing:-.25px}
-    .panel p{margin:0;color:var(--muted);font-size:14px;line-height:1.75}
-    .rhythm{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0,1fr));
-      gap:12px;
-      margin-top:18px;
-    }
-    .step{
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:18px;
-      padding:16px;
-      background:rgba(255,255,255,.028);
-    }
-    .step strong{display:block;color:#fff;font-size:13px;margin-bottom:7px}
-    .step span{display:block;color:var(--muted);font-size:12px;line-height:1.55}
-    .timeline-shell{
-      border-radius:24px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.035);
-      padding:16px;
-      overflow:hidden;
-      min-height:520px;
-    }
-    .timeline-shell iframe{border-radius:16px!important}
-    .timeline-fallback{
-      display:block;
-      margin-top:12px;
-      color:var(--blue);
-      font-size:13px;
-      font-weight:700;
-    }
-    .cta{
-      text-align:center;
-      padding:42px 26px;
-      border-radius:28px;
-      border:1px solid rgba(212,175,55,.22);
-      background:
-        radial-gradient(700px 260px at 50% 0%, rgba(212,175,55,.13), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.022));
-      box-shadow:0 24px 70px rgba(0,0,0,.30);
-    }
-    .cta h2{margin:0 0 12px;font-size:28px;letter-spacing:-.5px}
-    .cta p{margin:0 auto 22px;max-width:660px;color:var(--muted);font-size:14px;line-height:1.75}
-    .foot{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:22px 0 30px;
-      color:rgba(255,255,255,.5);
-      font-size:13px;
-      margin-top:66px;
-      text-align:center;
-    }
-    @media (max-width: 980px){
-      h1{font-size:44px}
-      .hero{padding:70px 0 30px}
-      .cards{grid-template-columns:repeat(2, minmax(0,1fr))}
-      .split{grid-template-columns:1fr}
-      .rhythm{grid-template-columns:1fr 1fr}
-      .section-head{display:block}
-    }
-    @media (max-width: 640px){
-      .wrap{padding:22px}
-      .topbar{align-items:flex-start;flex-direction:column}
-      .nav{justify-content:flex-start;gap:12px}
-      h1{font-size:36px}
-      .hero{padding:54px 0 24px;text-align:left}
-      .signal-line{justify-content:flex-start}
-      .sub{margin-left:0;margin-right:0}
-      .hero-actions{justify-content:flex-start}
-      .podcast-frame{border-radius:18px}
-      .cards{grid-template-columns:1fr}
-      .rhythm{grid-template-columns:1fr}
-    }
-    .distribution-grid{gap:12px}
-    .distribution-card{
-      display:block;
-      color:var(--text);
-      text-decoration:none;
-      transition:transform .18s ease,border-color .18s ease,background .18s ease;
-    }
-    .distribution-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(212,175,55,.36);
-      background:rgba(255,255,255,.055);
-      text-decoration:none;
-    }
-    .distribution-card span{
-      display:block;
-      color:var(--text);
-      font-weight:700;
-      margin-top:8px;
-    }
-    .distribution-card em{
-      display:block;
-      margin-top:8px;
-      color:var(--muted);
-      font-style:normal;
-      line-height:1.55;
-      font-size:13px;
-    }
-    .distribution-card b{
-      display:block;
-      margin-top:12px;
-      color:var(--gold);
-      font-size:13px;
-      font-weight:700;
-    }
-    .founder-note{
-      margin-top:16px!important;
-      font-size:13px!important;
-      color:var(--faint)!important;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Future of AI Travel Isn't a Chatbot | GEO PRISM Episode 001</title>
+<meta name="description" content="Why discovery and continuity are fundamentally different problems—and why the future of travel technology may be timeline-first orchestration rather than conversational booking.">
+<meta property="og:title" content="The Future of AI Travel Isn't a Chatbot | GEO PRISM Episode 001">
+<meta property="og:description" content="Why discovery and continuity are fundamentally different problems—and why the future of travel technology may be timeline-first orchestration rather than conversational booking.">
+<meta property="og:image" content="https://goaihq.com/assets/ai-travel-discovery-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+body{background:#07080b;color:#f5f5f5;font-family:Inter,Arial,sans-serif;line-height:2;margin:0}
+.progress{position:fixed;top:0;left:0;height:3px;background:#d4af37;width:0;z-index:999}
+.wrap{max-width:1200px;margin:auto;padding:40px}
+.layout{display:grid;grid-template-columns:280px 1fr;gap:50px}
+.toc{position:sticky;top:30px;border:1px solid rgba(255,255,255,.1);padding:20px;border-radius:18px;background:#0d1118}
+.toc a{display:block;color:#ddd;padding:8px 0;text-decoration:none}
+.content{max-width:800px}
+h1{font-size:58px;line-height:1.05}
+h2{font-size:42px;margin-top:90px}
+p{margin-bottom:32px;font-size:20px}
+.badge{display:inline-block;border:1px solid #d4af37;padding:8px 12px;border-radius:999px;color:#d4af37}
+.heroimg,img{max-width:100%;border-radius:20px}
+.figure{text-align:center;color:#bdbdbd;font-style:italic;margin:16px 0 60px}
+.callout,.summary,.quote{background:#0d1118;border-radius:20px;padding:24px;margin:40px 0}
+.quote{border-left:4px solid #d4af37;font-size:32px;font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border:1px solid rgba(255,255,255,.1);padding:20px;border-radius:20px;text-decoration:none;color:white}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.toc{position:relative}.cards{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="GÖ.AI Home"><span class="dot"></span> GÖ.AI</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/sentinel">SENTINEL</a>
-        <a href="/product-demo">Product Demo</a>
-        <a href="/get-access">Get Access</a>
-        <a href="/kickstarter">Kickstarter</a>
-        <a href="/prism">PRISM</a>
-        <a href="/about">About</a>
-      </nav>
-    </header>
-    <main>
-      <section class="hero">
-        <div class="kicker">Intelligence Briefing Series</div>
-        <h1>The GEO PRISM</h1>
-        <div class="signal-line" aria-label="GEO PRISM focus areas">
-          <span>Movement</span><span>Infrastructure</span><span>Continuity</span><span>Context</span>
-        </div>
-        <p class="sub">
-          GEO PRISM is the intelligence publishing arm of GÖ.AI: monthly briefings on movement systems,
-          infrastructure reliability, operational continuity, and the architecture behind SENTINEL™ and ETAS™.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#featured">Watch Featured Briefing</a>
-          <a class="btn" href="#archive">View Intelligence Archive</a>
-        </div>
-      </section>
-      <section id="featured" aria-label="Featured briefing video">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Featured Briefing</div>
-            <h2>GEO PRISM Episode</h2>
-            <p>
-              A briefing series focused on intelligent movement, infrastructure and continuity of travel.
-              Drawing inspiration from the optical prism, each episode exists to bring fragmented perspectives into a clearer picture.
-            </p>
-          </div>
-        </div>
-        <div class="podcast-frame" id="prismFrame">
-          <!-- SOUND ENABLED | NO AUTOPLAY | NO MUTED -->
-          <video controls playsinline preload="metadata">
-            <source src="https://goaihq.com/assets/prism-geo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </section>
-      <section id="archive" class="block" aria-label="Intelligence archive">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Intelligence Archive</div>
-            <h2>Latest Briefings</h2>
-            <p>
-              A curated archive of GEO PRISM analysis across SENTINEL™ intelligence, infrastructure briefings,
-              product architecture, operational disruptions, and intelligent movement systems.
-            </p>
-          </div>
-        </div>
-        <div class="cards">
-          <a class="card" href="/prism/future-of-ai-travel-isnt-a-chatbot">
-            <div>
-              <span class="tag">Product Architecture</span>
-              <h3>The Future of AI Travel Isn’t a Chatbot</h3>
-              <p>
-                Why high-trust movement requires timeline-first orchestration, structured awareness,
-                and continuity under disruption.
-              </p>
-            </div>
-            <div class="meta">Episode 001 • June 2026</div>
-          </a>
-          <a class="card" href="/prism/heathrow-outage">
-            <div>
-              <span class="tag">SENTINEL™ Use Case</span>
-              <h3>Heathrow Outage</h3>
-              <p>
-                A primary disruption case study for automated trip adjustment, downstream coordination,
-                and continuity intelligence after travel is booked.
-              </p>
-            </div>
-            <div class="meta">Use Case Briefing • June 2026</div>
-          </a>
-          <a class="card" href="/prism/machine-readable-environments">
-            <div>
-              <span class="tag">Infrastructure Briefing</span>
-              <h3>Machine-Readable Environments</h3>
-              <p>
-                How remote sensing, drone networks, and contextual infrastructure data inform the next layer
-                of predictive movement intelligence.
-              </p>
-            </div>
-            <div class="meta">Briefing • In Development</div>
-          </a>
-          <a class="card" href="/prism/2026-business-travel-stack">
-            <div>
-              <span class="tag">Operator Stack</span>
-              <h3>The 2026 Business Travel Stack</h3>
-              <p>
-                The tools, workflows, and coordination layers needed to keep founders and client-facing teams
-                on schedule across time zones.
-              </p>
-            </div>
-            <div class="meta">Briefing • Coming Next</div>
-          </a>
-        </div>
-      </section>
-      <section class="block" aria-label="GEO PRISM categories and publishing rhythm">
-        <div class="split">
-          <div class="panel">
-            <div class="kicker">Briefing Categories</div>
-            <h3>Four recurring intelligence lanes.</h3>
-            <p>
-              <strong>SENTINEL™ Intelligence</strong> covers disruption, continuity, and protective movement context.<br><br>
-              <strong>Infrastructure Briefings</strong> cover transportation, airports, logistics, autonomy, and mobility systems.<br><br>
-              <strong>GEO PRISM Analysis</strong> covers market shifts, strategic observations, and external case studies.<br><br>
-              <strong>Product Architecture</strong> covers ETAS™, SENTINEL™, timeline orchestration, and escalation logic.
-            </p>
-          </div>
-          <div class="panel">
-            <div class="kicker">Intelligence Distribution Network</div>
-            <h3>Intelligence first. Distributed everywhere.</h3>
-            <p>
-              Every GEO PRISM briefing originates as a website-native intelligence publication and is distributed
-              across the GÖ.AI network. The framework stays consistent as new briefings are released.
-            </p>
-            <div class="rhythm distribution-grid">
-              <a class="step distribution-card" href="/prism">
-                <strong>01 Website</strong>
-                <span>Intelligence Archive</span>
-                <em>Read the complete GEO PRISM briefing, supporting analysis, and historical archive.</em>
-                <b>View Briefing →</b>
-              </a>
-              <a class="step distribution-card" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">
-                <strong>02 X</strong>
-                <span>Narrative Threads</span>
-                <em>Follow real-time discussion, intelligence drops, and briefing summaries as they unfold.</em>
-                <b>View Thread →</b>
-              </a>
-              <a class="step distribution-card" href="https://www.linkedin.com/company/go-ai-hq" target="_blank" rel="noopener">
-                <strong>03 LinkedIn</strong>
-                <span>Executive Briefings</span>
-                <em>Access executive summaries, strategic insights, and professional commentary from GÖ.AI.</em>
-                <b>Read Analysis →</b>
-              </a>
-              <a class="step distribution-card" href="https://www.youtube.com/@GOAIHQ" target="_blank" rel="noopener">
-                <strong>04 YouTube</strong>
-                <span>Video Briefings</span>
-                <em>Watch full GEO PRISM episodes, visual explainers, and intelligence briefings.</em>
-                <b>Watch Episode →</b>
-              </a>
-            </div>
-            <p class="founder-note">
-              Founder commentary and amplification: <a href="https://www.linkedin.com/in/dwayne-heard-93472a2aa/" target="_blank" rel="noopener">Dwayne Heard on LinkedIn</a>.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="block" aria-label="Live X intelligence feed">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Live Intelligence Feed</div>
-            <h2>Dispatches from GÖ.AI on X</h2>
-            <p>
-              Live updates, product thinking, SENTINEL™ positioning, and movement intelligence from the GÖ.AI feed.
-            </p>
-          </div>
-          <a class="btn" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">Follow @GOAIHQ</a>
-        </div>
-        <div class="timeline-shell">
-          <a class="twitter-timeline" href="https://x.com/GOAIHQ">Posts by GOAIHQ</a>
-          <a class="timeline-fallback" href="https://x.com/GOAIHQ" target="_blank" rel="noopener">Open the live GÖ.AI feed on X →</a>
-        </div>
-      </section>
-      <section class="block" aria-label="Get access call to action">
-        <div class="cta">
-          <div class="kicker">2026 Pilot Cohort</div>
-          <h2>Built for continuity under movement.</h2>
-          <p>
-            We’re keeping the 2026 pilot cohorts intentionally small for high-touch onboarding with operators,
-            executive teams, and organizations that depend on continuity under movement.
-          </p>
-          <a class="btn primary" href="/get-access">Request Early Access</a>
-        </div>
-      </section>
-    </main>
-    <footer class="foot">
-      © <span id="y"></span> GÖ.AI • GEO PRISM Intelligence Briefing Series
-    </footer>
-  </div>
-  <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // Glow tracking on video frame
-    const frame = document.getElementById('prismFrame');
-    if (frame) {
-      frame.addEventListener('mousemove', (e) => {
-        const r = frame.getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        frame.style.setProperty('--mx', x.toFixed(2) + '%');
-        frame.style.setProperty('--my', y.toFixed(2) + '%');
-      }, { passive:true });
-    }
-  </script>
-</body>
-</html>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+<div class="layout">
+<aside class="toc">
+<div class="badge">PUBLIC RELEASE</div>
+<h3>Contents</h3>
+<a href="#summary">Executive Summary</a>
+<a href="#discovery">AI Travel Discovery</a>
+<a href="#difference">Discovery vs Continuity</a>
+<a href="#gap">Continuity Gap</a>
+<a href="#etas">Why ETAS™ Exists</a>
+<a href="#sentinel">Why SENTINEL™ Matters</a>
+<a href="#decisions">Recommendations to Decisions</a>
+<a href="#future">Future of Travel</a>
+<a href="#perspective">GÖ.AI Perspective</a>
+</aside>
+<main class="content">
+<p><a href="/prism">← Back to GEO PRISM</a></p>
+<div class="badge">GEO PRISM • PRODUCT ARCHITECTURE • EPISODE 001</div>
+<h1>The Future of AI Travel Isn't a Chatbot</h1>
+<p>Discovery vs Continuity • June 2026 • 7 Minute Read</p>
+
+<img class="heroimg" src="/assets/ai-travel-discovery-hero.jpg">
+<div class="figure">FIGURE 01 — Discovery systems excel at helping travelers compare destinations, hotels, flights, and experiences.</div>
+
+<section id="summary">
+<div class="summary">
+<h2>Executive Summary</h2>
+<ul>
+<li>Discovery and continuity are different problems.</li>
+<li>Travel AI today focuses on discovery.</li>
+<li>ETAS™ focuses on continuity.</li>
+<li>SENTINEL™ focuses on operational context.</li>
+<li>The future is timeline orchestration.</li>
+</ul>
+</div>
+<div class="callout">
+<strong>Watch the Briefing</strong><br>
+<a href="https://www.youtube.com/playlist?list=PLlk5awgHx7qu4kOPIflYIOyvGmpbNTMIx">GEO PRISM YouTube Playlist</a><br><br>
+<em>Prefer reading? Continue below.</em>
+</div>
+<div class="quote">Discovery helps people decide where to go. Continuity helps them get there.</div>
+</section>
+
+<section id="discovery"><h2>The Rise of AI Travel Discovery</h2></section>
+<section id="difference"><h2>Discovery and Continuity Are Different Problems</h2></section>
+<img src="/assets/discovery-vs-continuity-diagram.jpg">
+<div class="figure">FIGURE 03 — Recommendation systems optimize choice. Continuity systems preserve execution.</div>
+
+<section id="gap"><h2>The Continuity Gap</h2></section>
+<section id="etas"><h2>Why ETAS™ Exists</h2></section>
+<div class="callout"><strong>ETAS™ Positioning</strong><br>Not a recommendation engine. Not a booking engine. A continuity engine.</div>
+
+<section id="sentinel"><h2>Why SENTINEL™ Matters</h2></section>
+<div class="quote">Discovery systems understand preferences. SENTINEL™ understands operational context.</div>
+
+<section id="decisions"><h2>From Recommendations to Decisions</h2></section>
+<section id="future"><h2>The Next Evolution of Travel Technology</h2></section>
+
+<section id="perspective">
+<h2>GÖ.AI Perspective</h2>
+<div class="quote">Built to think ahead.</div>
+</section>
+
+<h2>Continue Reading</h2>
+<div class="cards">
+<a class="card" href="/prism/heathrow-outage">Heathrow Outage</a>
+<a class="card" href="/prism/machine-readable-environments">Machine Readable Environments</a>
+<a class="card" href="/prism/2026-business-travel-stack">The 2026 Business Travel Stack</a>
+</div>
+</main>
+</div>
+</div>
+<script>
+window.addEventListener('scroll',()=>{
+const h=document.documentElement;
+const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+document.getElementById('progress').style.width=sc+'%';
+});
+</script>
+</body></html>
