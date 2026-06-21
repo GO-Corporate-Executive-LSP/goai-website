@@ -1,120 +1,163 @@
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GÖ.AI | SENTINEL Executive Briefing V1.7</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GÖ.AI SENTINEL Executive Briefing V1.8</title>
 <style>
-body{margin:0;font-family:Inter,Arial,sans-serif;background:#040b18;color:#fff}
-.container{max-width:1280px;margin:auto;padding:32px}
-.hero{text-align:center;padding:40px 0}
-.badge{display:inline-block;padding:10px 18px;border:1px solid #2563eb;border-radius:999px;color:#60a5fa}
-h1{font-size:64px;max-width:1000px;margin:20px auto}
-.sub{color:#b8c3d9;max-width:900px;margin:auto;line-height:1.6}
-.card{background:linear-gradient(180deg,#071225,#08152d);border:1px solid #16335f;border-radius:24px;padding:28px;margin:18px 0}
+body{margin:0;background:#050816;color:#fff;font-family:Inter,Arial,sans-serif}
+.container{max-width:1280px;margin:auto;padding:24px}
+.hero{text-align:center;padding:60px 20px}
+.card{background:#0f172a;border:1px solid #24324d;border-radius:20px;padding:24px;margin:18px 0}
 .dual{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.btn{display:inline-block;padding:16px 28px;border-radius:12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
-.primary{background:#2563eb;color:#fff}
-.secondary{background:transparent;border:1px solid #3b82f6;color:#fff}
-.receive{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.mini{border:1px solid #16335f;border-radius:18px;padding:24px;text-align:center}
-.skel{height:12px;background:#2b3a56;border-radius:8px;margin:10px 0}
-.formgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-input,select{padding:14px;border-radius:10px;border:1px solid #16335f;background:#071225;color:#fff}
-#results{display:none}
+.btn{padding:14px 24px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;font-weight:700}
+.primary{background:#3b82f6;color:#fff}
+.secondary{background:transparent;color:#fff;border:1px solid #3b82f6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+input,select{width:100%;padding:14px;background:#111827;color:#fff;border:1px solid #24324d;border-radius:12px}
+.preview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.lock{opacity:.55;filter:blur(3px);transition:.5s}
 .metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.metric div{border:1px solid #16335f;padding:16px;border-radius:12px;text-align:center}
-.footer{color:#aab4c7}
-@media(max-width:900px){.dual,.receive,.formgrid,.metric{grid-template-columns:1fr}h1{font-size:42px}}
+.metric div{background:#111827;padding:14px;border-radius:12px;text-align:center}
+#processing,#results,#ctaSection{display:none}
+@media(max-width:900px){.dual,.preview,.metric{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="container">
+
 <div class="hero">
-<div class="badge">SENTRY™ LIVE INTELLIGENCE</div>
-<h1>Travel Is Not A Collection Of Bookings. It's A Chain Of Dependencies.</h1>
-<p class="sub">Generate an intelligence-driven executive briefing that evaluates travel conditions, environmental factors, infrastructure reliability, and coordination complexity before disruption occurs.</p>
+<h1>Travel Is Not A Collection Of Bookings.<br>It's A Chain Of Dependencies.</h1>
+<p>Generate an intelligence-driven executive briefing before disruption occurs.</p>
 </div>
 
 <div class="dual">
 <div class="card" style="text-align:center">
 <h2>Generate Executive Briefing</h2>
 <p>Generate a personalized intelligence briefing based on your travel plans.</p>
-<p><a class="btn primary" href="#generator">Generate Executive Briefing</a></p>
+<a href="#generator" class="btn primary">Generate Executive Briefing</a>
 </div>
+
 <div class="card" style="text-align:center">
 <h2>Explore Enterprise Use Cases</h2>
-<p>Interested in how SENTINEL™ could support your organization? Schedule a 15‑minute Executive Briefing to discuss executive mobility, operational continuity, travel intelligence, and coordination workflows.</p>
-<p><a class="btn secondary" href="https://calendar.app.google/CMZj9shpAYxU2c1C9">Book Executive Briefing</a></p>
+<p>Interested in how SENTINEL™ could support your organization? Schedule a 15‑minute Executive Briefing.</p>
+<a href="https://calendar.app.google/CMZj9shpAYxU2c1C9" class="btn secondary">Book Executive Briefing</a>
 </div>
 </div>
 
 <div class="card">
-<h2 style="text-align:center">What You'll Receive</h2>
-<div class="receive">
-<div class="mini"><h3>SENTRY Score</h3><div class="skel"></div><div class="skel"></div></div>
-<div class="mini"><h3>Corridor Analysis</h3><div class="skel"></div><div class="skel"></div></div>
-<div class="mini"><h3>Infrastructure Reliability</h3><div class="skel"></div><div class="skel"></div></div>
-<div class="mini"><h3>Recommended Actions</h3><div class="skel"></div><div class="skel"></div></div>
+<h2>What You'll Receive</h2>
+<div class="preview">
+<div class="card lock">SENTRY Score</div>
+<div class="card lock">Corridor Analysis</div>
+<div class="card lock">Infrastructure Reliability</div>
+<div class="card lock">Recommended Actions</div>
 </div>
 </div>
 
 <div class="card" id="generator">
-<h2 style="text-align:center">Generate Executive Briefing</h2>
-<div class="formgrid">
+<h2>Generate Executive Briefing</h2>
+<div class="grid">
 <input id="origin" list="cities" placeholder="Origin City">
 <input id="dest" list="cities" placeholder="Destination City">
-<input id="start" type="date">
-<input id="end" type="date">
-<select id="trav"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option><option>4+ Travelers</option></select>
+<input id="depart" type="date">
+<input id="return" type="date">
+<select id="trav"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option></select>
 <select id="purpose"><option>Business</option><option>Executive Travel</option><option>Roadshow</option><option>Conference</option></select>
 </div>
 <datalist id="cities">
-<option>Charlotte, NC, USA</option><option>Washington, DC, USA</option>
-<option>New York, NY, USA</option><option>Atlanta, GA, USA</option>
-<option>London, United Kingdom</option><option>Paris, France</option>
-<option>Tokyo, Japan</option><option>Dubai, UAE</option>
+<option>Charlotte, NC, USA</option>
+<option>Washington, DC, USA</option>
+<option>New York, NY, USA</option>
+<option>Atlanta, GA, USA</option>
+<option>London, UK</option>
+<option>Paris, France</option>
+<option>Tokyo, Japan</option>
+<option>Dubai, UAE</option>
 </datalist>
-<p style="text-align:center;margin-top:24px"><button class="btn primary" onclick="generateBriefing()">Generate Executive Briefing</button></p>
-<p style="text-align:center;color:#9fb0c9">Your inputs are used solely to generate your executive briefing and are never shared.</p>
+<br>
+<button class="btn primary" onclick="generateBriefing()">Generate Executive Briefing</button>
+</div>
+
+<div id="processing" class="card">
+<h2>Generating Intelligence...</h2>
+<p>Analyzing corridor...</p>
+<p>Evaluating weather...</p>
+<p>Assessing infrastructure...</p>
+<p>Calculating SENTRY score...</p>
 </div>
 
 <div id="results" class="card">
-<h2>Executive Briefing Results</h2>
+<h2>Executive Briefing</h2>
 <div class="metric">
 <div><h3>SENTRY</h3><span id="score"></span></div>
 <div><h3>Infrastructure</h3><span id="infra"></span></div>
 <div><h3>Environment</h3><span id="env"></span></div>
-<div><h3>Complexity</h3><span id="comp"></span></div>
+<div><h3>Complexity</h3><span id="complex"></span></div>
 </div>
 <div id="summary"></div>
 <div id="actions"></div>
+
+<hr>
+<h3>Email This Briefing</h3>
+<input placeholder="Email Address">
+<br><br>
+<button class="btn primary">Send Briefing</button>
 </div>
 
-<div class="card footer">
+<div id="ctaSection" class="dual">
+<div class="card">
+<h3>Create Free Account</h3>
+<p>Join the beta and help shape predictive travel intelligence.</p>
+<a class="btn primary" href="https://goaihq.com/beta">Create Free Account</a>
+</div>
+<div class="card">
+<h3>Book Executive Briefing</h3>
+<p>Discuss enterprise use cases and operational continuity workflows.</p>
+<a class="btn secondary" href="https://calendar.app.google/CMZj9shpAYxU2c1C9">Book Executive Briefing</a>
+</div>
+</div>
+
+<div class="card">
 <h2>Why You're Seeing This</h2>
 <p>You may have arrived here after responding to one of our research emails.</p>
 <p>GÖ.AI is conducting research into travel disruption, operational continuity, executive mobility, and coordination challenges that emerge after travel has already been booked.</p>
 </div>
+
 </div>
 
 <script>
 function generateBriefing(){
-const o=document.getElementById('origin').value||'Origin';
-const d=document.getElementById('dest').value||'Destination';
-const p=document.getElementById('purpose').value;
+document.getElementById('processing').style.display='block';
 
-let s=72;if(p==='Executive Travel')s=81;if(p==='Roadshow')s=67;if(p==='Conference')s=70;
-document.getElementById('score').innerText=s;
-document.getElementById('infra').innerText='85%';
-document.getElementById('env').innerText='78%';
-document.getElementById('comp').innerText='66%';
-document.getElementById('summary').innerHTML='<h3>Executive Summary</h3><p>Route: <b>'+o+' → '+d+'</b>. Purpose: '+p+'. Current conditions indicate moderate operational stability. Review weather, airport operations, and ground transport continuity before departure.</p>';
-document.getElementById('actions').innerHTML='<h3>Recommended Actions</h3><ul><li>Arrive 30–45 minutes early.</li><li>Maintain alternate ground transport.</li><li>Monitor weather 24 hours before departure.</li><li>Validate itinerary dependencies.</li></ul>';
+setTimeout(function(){
+let p=document.getElementById('purpose').value;
+let score=72;
+if(p==='Executive Travel') score=82;
+if(p==='Roadshow') score=67;
+if(p==='Conference') score=70;
+
+document.getElementById('score').innerHTML=score;
+document.getElementById('infra').innerHTML='85%';
+document.getElementById('env').innerHTML='78%';
+document.getElementById('complex').innerHTML='66%';
+
+let o=document.getElementById('origin').value;
+let d=document.getElementById('dest').value;
+
+document.getElementById('summary').innerHTML='<h3>Executive Summary</h3><p>Route: <b>'+o+' → '+d+'</b>. Current conditions indicate moderate operational stability. Recommend validating itinerary dependencies, monitoring weather, and maintaining alternate transportation options.</p>';
+
+document.getElementById('actions').innerHTML='<h3>Recommended Actions</h3><ul><li>Arrive 30–45 minutes early.</li><li>Monitor weather 24 hours before departure.</li><li>Maintain secondary transport options.</li><li>Validate downstream itinerary dependencies.</li></ul>';
+
+document.querySelectorAll('.lock').forEach(e=>{e.style.filter='blur(0px)';e.style.opacity='1';});
 document.getElementById('results').style.display='block';
+document.getElementById('ctaSection').style.display='grid';
 document.getElementById('results').scrollIntoView({behavior:'smooth'});
+},1800);
 }
 </script>
+
 </body>
 </html>
