@@ -1,163 +1,267 @@
 
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GÖ.AI SENTINEL Executive Briefing V1.8</title>
+<title>GÖ.AI SENTINEL Executive Briefing V1.9.1</title>
 <style>
-body{margin:0;background:#050816;color:#fff;font-family:Inter,Arial,sans-serif}
+:root{
+  --bg:#050816;--card:#08152d;--card2:#0b1a35;--border:#1f3d73;
+  --text:#ffffff;--muted:#b8c3d9;--blue:#3569f0;--blue2:#60a5fa;--green:#37d399;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#061a35 0%,#050816 45%,#020611 100%);color:var(--text);font-family:Inter,Arial,sans-serif}
 .container{max-width:1280px;margin:auto;padding:24px}
-.hero{text-align:center;padding:60px 20px}
-.card{background:#0f172a;border:1px solid #24324d;border-radius:20px;padding:24px;margin:18px 0}
-.dual{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.btn{padding:14px 24px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;font-weight:700}
-.primary{background:#3b82f6;color:#fff}
+.hero{text-align:center;padding:56px 20px 34px}
+.badge{display:inline-block;padding:12px 24px;border:1px solid var(--blue);border-radius:999px;color:#d8e7ff;box-shadow:0 0 25px rgba(37,99,235,.85);background:rgba(20,68,160,.18);letter-spacing:.03em}
+h1{font-size:clamp(3rem,7vw,5.6rem);line-height:1.05;margin:24px auto;max-width:1050px;letter-spacing:-.045em}
+.sub{max-width:900px;margin:auto;color:var(--muted);line-height:1.55}
+.card{background:linear-gradient(180deg,rgba(8,21,45,.96),rgba(6,16,34,.96));border:1px solid var(--border);border-radius:22px;padding:26px;margin:18px 0;box-shadow:0 0 35px rgba(0,82,255,.08)}
+.dual,.triple,.preview,.metric,.formgrid{display:grid;gap:16px}
+.dual{grid-template-columns:1fr 1fr}
+.triple{grid-template-columns:repeat(3,1fr)}
+.preview{grid-template-columns:repeat(4,1fr)}
+.metric{grid-template-columns:repeat(4,1fr)}
+.formgrid{grid-template-columns:repeat(4,1fr)}
+.btn{display:inline-block;padding:14px 24px;border-radius:12px;border:none;font-weight:800;text-decoration:none;cursor:pointer}
+.primary{background:linear-gradient(90deg,#1768ff,#3b82f6);color:#fff;box-shadow:0 0 18px rgba(37,99,235,.35)}
 .secondary{background:transparent;color:#fff;border:1px solid #3b82f6}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-input,select{width:100%;padding:14px;background:#111827;color:#fff;border:1px solid #24324d;border-radius:12px}
-.preview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.lock{opacity:.55;filter:blur(3px);transition:.5s}
-.metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.metric div{background:#111827;padding:14px;border-radius:12px;text-align:center}
-#processing,#results,#ctaSection{display:none}
-@media(max-width:900px){.dual,.preview,.metric{grid-template-columns:1fr}}
+input,select{width:100%;padding:14px;background:#071225;color:#fff;border:1px solid #243f72;border-radius:12px;outline:none}
+label{display:block;color:#9fb0c9;font-size:.85rem;margin:0 0 6px}
+.lock{opacity:.55;filter:blur(3px);transition:.45s}
+.mini{text-align:center;min-height:130px}
+#processing,#results,#post{display:none}
+.stepbar{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:center;color:#c9d6ee;font-size:.9rem}
+.metric .card{text-align:center;margin:0}
+.bigScore{font-size:3rem;font-weight:900;color:#fff}
+.status{color:#facc15;font-weight:800}
+.footergrid{display:grid;grid-template-columns:1.4fr .6fr;gap:20px;align-items:center}
+.logo{font-size:3rem;font-weight:900;text-align:center}
+@media(max-width:900px){.dual,.triple,.preview,.metric,.formgrid,.stepbar,.footergrid{grid-template-columns:1fr}h1{font-size:3rem}}
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="hero">
-<h1>Travel Is Not A Collection Of Bookings.<br>It's A Chain Of Dependencies.</h1>
-<p>Generate an intelligence-driven executive briefing before disruption occurs.</p>
-</div>
+<section class="hero">
+  <div class="badge">SENTRY™ LIVE INTELLIGENCE</div>
+  <h1>Travel Is Not A Collection Of Bookings. It's A Chain Of Dependencies.</h1>
+  <p class="sub">Generate an intelligence-driven executive briefing that evaluates travel conditions, environmental factors, infrastructure reliability, and coordination complexity before disruption occurs.</p>
+</section>
 
-<div class="dual">
-<div class="card" style="text-align:center">
-<h2>Generate Executive Briefing</h2>
-<p>Generate a personalized intelligence briefing based on your travel plans.</p>
-<a href="#generator" class="btn primary">Generate Executive Briefing</a>
-</div>
+<section class="dual">
+  <div class="card" style="text-align:center">
+    <h2>Generate Executive Briefing</h2>
+    <p class="sub">Generate a personalized intelligence briefing based on your travel plans.</p><br>
+    <a href="#generator" class="btn primary">Generate Executive Briefing →</a>
+  </div>
+  <div class="card" style="text-align:center">
+    <h2>Explore Enterprise Use Cases</h2>
+    <p class="sub">Interested in how SENTINEL™ could support your organization? Schedule a 15-minute Executive Briefing to discuss executive mobility, operational continuity, travel intelligence, and coordination workflows.</p><br>
+    <a href="https://calendar.app.google/CMZj9shpAYxU2c1C9" class="btn secondary">Book Executive Briefing →</a>
+  </div>
+</section>
 
-<div class="card" style="text-align:center">
-<h2>Explore Enterprise Use Cases</h2>
-<p>Interested in how SENTINEL™ could support your organization? Schedule a 15‑minute Executive Briefing.</p>
-<a href="https://calendar.app.google/CMZj9shpAYxU2c1C9" class="btn secondary">Book Executive Briefing</a>
-</div>
-</div>
+<section class="card">
+  <h2 style="text-align:center">What You'll Receive</h2>
+  <div class="preview">
+    <div class="card mini lock">🛡️<h3>SENTRY™ Score</h3><p>████████</p><p>██████</p></div>
+    <div class="card mini lock">🌐<h3>Corridor Analysis</h3><p>████████</p><p>██████</p></div>
+    <div class="card mini lock">🏢<h3>Infrastructure Reliability</h3><p>████████</p><p>██████</p></div>
+    <div class="card mini lock">✅<h3>Recommended Actions</h3><p>████████</p><p>██████</p></div>
+  </div>
+  <p style="text-align:center;color:#9fb0c9">Generate a briefing to reveal intelligence.</p>
+</section>
 
-<div class="card">
-<h2>What You'll Receive</h2>
-<div class="preview">
-<div class="card lock">SENTRY Score</div>
-<div class="card lock">Corridor Analysis</div>
-<div class="card lock">Infrastructure Reliability</div>
-<div class="card lock">Recommended Actions</div>
-</div>
-</div>
+<section class="card" id="generator">
+  <h2 style="text-align:center">Generate Executive Briefing</h2>
+  <div class="formgrid">
+    <div>
+      <label>Origin City / Country</label>
+      <input id="origin" list="cityOptions" placeholder="Search origin city">
+    </div>
+    <div>
+      <label>Destination City / Country</label>
+      <input id="dest" list="cityOptions" placeholder="Search destination city">
+    </div>
+    <div>
+      <label>Start Date</label>
+      <input id="depart" type="date">
+    </div>
+    <div>
+      <label>End Date</label>
+      <input id="returnDate" type="date">
+    </div>
+    <div>
+      <label>Travelers</label>
+      <select id="travelers"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option><option>4+ Travelers</option></select>
+    </div>
+    <div>
+      <label>Trip Purpose</label>
+      <select id="purpose"><option>Business</option><option>Executive Travel</option><option>Roadshow</option><option>Conference</option><option>Personal</option></select>
+    </div>
+  </div>
 
-<div class="card" id="generator">
-<h2>Generate Executive Briefing</h2>
-<div class="grid">
-<input id="origin" list="cities" placeholder="Origin City">
-<input id="dest" list="cities" placeholder="Destination City">
-<input id="depart" type="date">
-<input id="return" type="date">
-<select id="trav"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option></select>
-<select id="purpose"><option>Business</option><option>Executive Travel</option><option>Roadshow</option><option>Conference</option></select>
-</div>
-<datalist id="cities">
-<option>Charlotte, NC, USA</option>
-<option>Washington, DC, USA</option>
-<option>New York, NY, USA</option>
-<option>Atlanta, GA, USA</option>
-<option>London, UK</option>
-<option>Paris, France</option>
-<option>Tokyo, Japan</option>
-<option>Dubai, UAE</option>
-</datalist>
-<br>
-<button class="btn primary" onclick="generateBriefing()">Generate Executive Briefing</button>
-</div>
+  <datalist id="cityOptions">
+    <optgroup label="United States">
+      <option value="Charlotte, North Carolina, USA"></option>
+      <option value="Washington, District of Columbia, USA"></option>
+      <option value="New York, New York, USA"></option>
+      <option value="Atlanta, Georgia, USA"></option>
+      <option value="Chicago, Illinois, USA"></option>
+      <option value="Dallas, Texas, USA"></option>
+      <option value="Los Angeles, California, USA"></option>
+      <option value="San Francisco, California, USA"></option>
+      <option value="Miami, Florida, USA"></option>
+      <option value="Boston, Massachusetts, USA"></option>
+      <option value="Seattle, Washington, USA"></option>
+      <option value="Las Vegas, Nevada, USA"></option>
+    </optgroup>
+    <optgroup label="Canada">
+      <option value="Toronto, Ontario, Canada"></option>
+      <option value="Vancouver, British Columbia, Canada"></option>
+      <option value="Montreal, Quebec, Canada"></option>
+    </optgroup>
+    <optgroup label="United Kingdom">
+      <option value="London, England, United Kingdom"></option>
+      <option value="Manchester, England, United Kingdom"></option>
+      <option value="Edinburgh, Scotland, United Kingdom"></option>
+    </optgroup>
+    <optgroup label="Europe">
+      <option value="Paris, France"></option>
+      <option value="Frankfurt, Germany"></option>
+      <option value="Berlin, Germany"></option>
+      <option value="Amsterdam, Netherlands"></option>
+      <option value="Madrid, Spain"></option>
+      <option value="Rome, Italy"></option>
+      <option value="Zurich, Switzerland"></option>
+    </optgroup>
+    <optgroup label="Middle East">
+      <option value="Dubai, United Arab Emirates"></option>
+      <option value="Abu Dhabi, United Arab Emirates"></option>
+      <option value="Doha, Qatar"></option>
+      <option value="Riyadh, Saudi Arabia"></option>
+    </optgroup>
+    <optgroup label="Asia-Pacific">
+      <option value="Tokyo, Japan"></option>
+      <option value="Singapore"></option>
+      <option value="Hong Kong"></option>
+      <option value="Seoul, South Korea"></option>
+      <option value="Sydney, Australia"></option>
+    </optgroup>
+  </datalist>
 
-<div id="processing" class="card">
-<h2>Generating Intelligence...</h2>
-<p>Analyzing corridor...</p>
-<p>Evaluating weather...</p>
-<p>Assessing infrastructure...</p>
-<p>Calculating SENTRY score...</p>
-</div>
+  <p style="text-align:center;margin-top:24px"><button class="btn primary" onclick="generateBriefing()">Generate Executive Briefing →</button></p>
+  <p style="text-align:center;color:#9fb0c9">Your inputs are used solely to generate your executive briefing and are never shared.</p>
+</section>
 
-<div id="results" class="card">
-<h2>Executive Briefing</h2>
-<div class="metric">
-<div><h3>SENTRY</h3><span id="score"></span></div>
-<div><h3>Infrastructure</h3><span id="infra"></span></div>
-<div><h3>Environment</h3><span id="env"></span></div>
-<div><h3>Complexity</h3><span id="complex"></span></div>
-</div>
-<div id="summary"></div>
-<div id="actions"></div>
+<section id="processing" class="card">
+  <h2 style="text-align:center">Generating Intelligence...</h2>
+  <div class="stepbar">
+    <div>◎<br>Analyzing Travel Corridor</div>
+    <div>☁<br>Evaluating Weather Systems</div>
+    <div>🏢<br>Assessing Infrastructure Stability</div>
+    <div>〽<br>Calculating Movement Complexity</div>
+    <div>📄<br>Generating Executive Briefing</div>
+  </div>
+</section>
 
-<hr>
-<h3>Email This Briefing</h3>
-<input placeholder="Email Address">
-<br><br>
-<button class="btn primary">Send Briefing</button>
-</div>
+<section id="results" class="card">
+  <h2>Executive Briefing Results <span style="color:var(--green);font-size:.8rem">● Completed</span></h2>
+  <div class="metric">
+    <div class="card"><h3>SENTRY™ Score</h3><div class="bigScore" id="score">72</div><div class="status">MODERATE STABILITY</div></div>
+    <div class="card"><h3>Infrastructure Reliability</h3><h2 id="infra">85%</h2><p style="color:var(--green)">High</p></div>
+    <div class="card"><h3>Environmental Stability</h3><h2 id="env">78%</h2><p style="color:#facc15">Moderate</p></div>
+    <div class="card"><h3>Movement Complexity</h3><h2 id="complex">66%</h2><p style="color:#facc15">Moderate</p></div>
+  </div>
+  <div class="dual">
+    <div class="card" id="summary"></div>
+    <div class="card" id="actions"></div>
+  </div>
+</section>
 
-<div id="ctaSection" class="dual">
-<div class="card">
-<h3>Create Free Account</h3>
-<p>Join the beta and help shape predictive travel intelligence.</p>
-<a class="btn primary" href="https://goaihq.com/beta">Create Free Account</a>
-</div>
-<div class="card">
-<h3>Book Executive Briefing</h3>
-<p>Discuss enterprise use cases and operational continuity workflows.</p>
-<a class="btn secondary" href="https://calendar.app.google/CMZj9shpAYxU2c1C9">Book Executive Briefing</a>
-</div>
-</div>
+<section id="post" class="triple">
+  <div class="card">
+    <h3>✉ Email Yourself A Copy</h3>
+    <p>Send this Executive Briefing to your inbox for easy reference and sharing.</p>
+    <input id="email" type="email" placeholder="Enter your email address"><br><br>
+    <button class="btn primary" onclick="emailBriefing()">Email Briefing</button>
+    <p id="emailStatus" style="color:#9fb0c9"></p>
+  </div>
+  <div class="card">
+    <h3>🏢 Explore Enterprise Use Cases</h3>
+    <p>Learn how SENTINEL™ can support executive mobility, risk management, and operational continuity across your organization.</p>
+    <a class="btn primary" href="#enterprise">Explore Use Cases →</a>
+  </div>
+  <div class="card">
+    <h3>📅 Book Executive Briefing</h3>
+    <p>Schedule a 15-minute discussion to explore how SENTINEL™ can support your organization's travel intelligence needs.</p>
+    <a class="btn primary" href="https://calendar.app.google/CMZj9shpAYxU2c1C9">Book Now →</a>
+  </div>
+</section>
 
-<div class="card">
-<h2>Why You're Seeing This</h2>
-<p>You may have arrived here after responding to one of our research emails.</p>
-<p>GÖ.AI is conducting research into travel disruption, operational continuity, executive mobility, and coordination challenges that emerge after travel has already been booked.</p>
-</div>
+<section id="enterprise" class="card">
+  <h2>Explore Enterprise Use Cases</h2>
+  <p>This Executive Briefing demonstrates the type of intelligence GÖ.AI is exploring through SENTINEL™.</p>
+  <p>If you're evaluating travel operations, executive mobility, protective intelligence, or operational continuity initiatives, schedule a 15-minute Executive Briefing to discuss how these concepts may apply within your organization.</p>
+  <ul>
+    <li>Executive Mobility</li>
+    <li>Corporate Travel Programs</li>
+    <li>Operational Continuity</li>
+    <li>Protective Intelligence</li>
+    <li>Roadshow Coordination</li>
+    <li>Travel Disruption Management</li>
+  </ul>
+</section>
+
+<section class="card footergrid">
+  <div>
+    <h2>Why You're Seeing This</h2>
+    <p>You may have arrived here after responding to one of our research emails.</p>
+    <p>GÖ.AI is conducting research into travel disruption, operational continuity, executive mobility, and coordination challenges that emerge after travel has already been booked.</p>
+  </div>
+  <div class="logo">GÖ.AI<br><span style="font-size:1rem;color:#9fb0c9">SENTINEL™ • ETAS™</span></div>
+</section>
 
 </div>
 
 <script>
+function scoreTrip(purpose, travelers){
+  let score = 72;
+  if(purpose === "Executive Travel") score = 82;
+  if(purpose === "Roadshow") score = 67;
+  if(purpose === "Conference") score = 70;
+  if(travelers.includes("4+")) score -= 4;
+  return Math.max(45, Math.min(92, score));
+}
 function generateBriefing(){
-document.getElementById('processing').style.display='block';
+  const origin = document.getElementById('origin').value || 'Charlotte, North Carolina, USA';
+  const dest = document.getElementById('dest').value || 'Washington, District of Columbia, USA';
+  const purpose = document.getElementById('purpose').value;
+  const travelers = document.getElementById('travelers').value;
+  const score = scoreTrip(purpose, travelers);
 
-setTimeout(function(){
-let p=document.getElementById('purpose').value;
-let score=72;
-if(p==='Executive Travel') score=82;
-if(p==='Roadshow') score=67;
-if(p==='Conference') score=70;
+  document.getElementById('processing').style.display='block';
+  document.getElementById('processing').scrollIntoView({behavior:'smooth'});
 
-document.getElementById('score').innerHTML=score;
-document.getElementById('infra').innerHTML='85%';
-document.getElementById('env').innerHTML='78%';
-document.getElementById('complex').innerHTML='66%';
+  setTimeout(()=>{
+    document.getElementById('score').innerText = score;
+    document.getElementById('summary').innerHTML =
+      '<h3>Executive Summary</h3><p><strong>Route:</strong> '+origin+' → '+dest+'</p><p><strong>Purpose:</strong> '+purpose+'</p><p>Current operating conditions suggest moderate disruption potential. Recommend maintaining flexibility around ground transportation timing and reviewing downstream itinerary dependencies before departure.</p>';
+    document.getElementById('actions').innerHTML =
+      '<h3>Recommended Actions</h3><ul><li>Arrive 30–45 minutes earlier than standard planning assumptions.</li><li>Monitor destination weather 24 hours before departure.</li><li>Maintain a secondary ground transportation option.</li><li>Validate meeting times, hotel check-in, and airport arrival buffers.</li></ul>';
 
-let o=document.getElementById('origin').value;
-let d=document.getElementById('dest').value;
-
-document.getElementById('summary').innerHTML='<h3>Executive Summary</h3><p>Route: <b>'+o+' → '+d+'</b>. Current conditions indicate moderate operational stability. Recommend validating itinerary dependencies, monitoring weather, and maintaining alternate transportation options.</p>';
-
-document.getElementById('actions').innerHTML='<h3>Recommended Actions</h3><ul><li>Arrive 30–45 minutes early.</li><li>Monitor weather 24 hours before departure.</li><li>Maintain secondary transport options.</li><li>Validate downstream itinerary dependencies.</li></ul>';
-
-document.querySelectorAll('.lock').forEach(e=>{e.style.filter='blur(0px)';e.style.opacity='1';});
-document.getElementById('results').style.display='block';
-document.getElementById('ctaSection').style.display='grid';
-document.getElementById('results').scrollIntoView({behavior:'smooth'});
-},1800);
+    document.querySelectorAll('.lock').forEach(el=>{el.style.filter='none';el.style.opacity='1';});
+    document.getElementById('results').style.display='block';
+    document.getElementById('post').style.display='grid';
+    document.getElementById('results').scrollIntoView({behavior:'smooth'});
+  },1500);
+}
+function emailBriefing(){
+  const email = document.getElementById('email').value;
+  document.getElementById('emailStatus').innerText = email ? 'Briefing queued for '+email+' (demo mode).' : 'Enter an email address first.';
 }
 </script>
-
 </body>
 </html>
