@@ -15577,7 +15577,237 @@ By preserving a stable architectural core centered on ETAS™, SENTINEL™, the 
 
 ---
 
-# SECTION 26 — DESIGN PHILOSOPHY
+SECTION 26 — DECOY ITINERARY™ & MOVEMENT OBFUSCATION
+
+Component: Executive Security & Privacy Layer
+Supporting Systems: ETAS™, SENTINEL™, SENTRY™, Duffel, Executive Briefing Engine, Shared Travel Timeline
+Classification: Core Security Capability
+Status: MVP+ Architecture
+
+---
+
+Purpose
+
+This section defines the Decoy Itinerary™, a security capability designed to protect the operational movements of travelers whose itineraries may present elevated security, privacy, or operational risks if exposed.
+
+Unlike synthetic demonstration data, the Decoy Itinerary™ is intended for use with real commercial reservations.
+
+The objective is to reduce the likelihood that unauthorized individuals can reconstruct a traveler's actual movements from calendars, forwarded confirmations, screenshots, shared itineraries, or other publicly accessible information.
+
+This capability is particularly valuable for:
+
+- Corporate executives
+- Executive Protection clients
+- Public figures
+- Government personnel
+- High-net-worth individuals
+- Family offices
+- Corporate security teams
+
+---
+
+Architectural Philosophy
+
+Traditional travel platforms maintain a single itinerary.
+
+Reservation
+
+↓
+
+Traveler
+
+↓
+
+Shared Confirmation
+
+GÖ.AI separates operational truth from externally shared information.
+
+Trip Intake
+
+↓
+
+ETAS™
+
+        │
+        ├── Operational Itinerary
+        │        ↓
+        │   SENTINEL™
+        │        ↓
+        │     Duffel
+        │
+        └── Decoy Itinerary™
+                 ↓
+        External Sharing
+
+This separation allows the platform to protect sensitive movement information without affecting operational execution.
+
+---
+
+Operational Definition
+
+Every protected Trip may maintain two independent representations.
+
+Operational Itinerary
+
+The canonical itinerary used internally.
+
+Contains:
+
+- Actual reservations
+- Actual flight numbers
+- Actual hotel
+- Actual transportation
+- Boarding passes
+- Confirmation numbers
+- Operational Timeline
+
+This itinerary is consumed by:
+
+- ETAS™
+- SENTINEL™
+- Duffel
+- Executive Briefings
+- Dynamic Reconfiguration
+
+---
+
+Decoy Itinerary™
+
+A sanitized or obfuscated itinerary intended for controlled external visibility.
+
+Depending on organizational policy, the Decoy Itinerary™ may:
+
+- Conceal exact travel times
+- Delay publication of itinerary details
+- Generalize destinations
+- Replace operational details with placeholders
+- Omit reservation identifiers
+- Hide transportation providers
+
+The Decoy Itinerary™ is never used for booking or operational decision-making.
+
+---
+
+Role of Duffel
+
+Duffel always executes the Operational Itinerary.
+
+Duffel never:
+
+- Books Decoy Itineraries
+- Modifies Decoy Itineraries
+- Stores Decoy reservations
+
+Duffel remains the Commercial Travel Execution Layer.
+
+Movement Obfuscation is governed entirely by ETAS™.
+
+---
+
+Relationship to SENTINEL™
+
+SENTINEL™ reasons exclusively against the Operational Itinerary.
+
+Recommendations are never generated from decoy information.
+
+---
+
+Relationship to Executive Briefings
+
+Executive Briefings may be generated in multiple visibility levels.
+
+Examples:
+
+- Internal Operations Briefing
+- Executive Assistant Briefing
+- Traveler Briefing
+- External Shared Briefing
+
+Each version presents information appropriate to the recipient while preserving operational security.
+
+---
+
+Relationship to the Shared Travel Timeline
+
+The Shared Travel Timeline supports visibility controls.
+
+Examples:
+
+- Internal Timeline
+- Protected Timeline
+- Public Timeline
+
+Each timeline references the same Trip while exposing only authorized information.
+
+---
+
+Security Principles
+
+The Decoy Itinerary™ follows five guiding principles.
+
+Operational Integrity
+
+Real reservations remain unaffected.
+
+---
+
+Least Disclosure
+
+Expose only the information required by the intended audience.
+
+---
+
+Role-Based Visibility
+
+Different users may receive different itinerary views.
+
+---
+
+Synchronization
+
+Operational and decoy representations remain linked to the same Trip while remaining logically distinct.
+
+---
+
+Non-Disruptive
+
+Movement obfuscation must never interfere with commercial booking, traveler notifications, or operational coordination.
+
+---
+
+Future Enhancements
+
+Future versions may support:
+
+- Time-shifted itinerary publication
+- Dynamic itinerary redaction
+- Geographic fuzzing
+- Secure sharing policies
+- Automatic expiration of shared itineraries
+- Executive Protection visibility rules
+- Organization-specific security templates
+
+---
+
+Engineering Notes
+
+The Decoy Itinerary™ is not a demonstration feature.
+
+It is a platform security capability.
+
+Its purpose is to reduce unnecessary exposure of sensitive travel movements while preserving the operational accuracy required for ETAS™, SENTINEL™, SENTRY™, and the Commercial Travel Execution Layer.
+
+The Operational Itinerary remains the single source of truth for all bookings, intelligence, orchestration, and traveler coordination.
+
+The Decoy Itinerary™ exists solely as a controlled representation of that truth, enabling organizations to balance operational effectiveness with privacy and security.
+
+This capability reflects one of GÖ.AI's broader architectural principles:
+
+Not every person should see the same journey—even when they are looking at the same trip.
+
+---
+
+# SECTION 27 — DESIGN PHILOSOPHY
 
 **Component:** GÖ.AI Platform Architecture  
 **Supporting Systems:** ETAS™, SENTINEL™, SENTRY™, Movement Graph™, Executive Briefing Engine, Commercial Travel Execution Layer  
