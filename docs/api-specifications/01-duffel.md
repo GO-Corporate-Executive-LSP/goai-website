@@ -16349,3 +16349,7 @@ It is the philosophy behind SENTINEL™, the purpose of ETAS™, the reasoning e
 **Continuity enables mission success.**
 
 That is the foundation upon which GÖ.AI is built.
+
+---
+
+For canonical terminology, backend module references, object definitions, naming conventions, and engineering standards, see reference/Engineering_Reference_Manual.md.
