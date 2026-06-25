@@ -17563,3 +17563,7 @@ It is the culmination of the platform's philosophy:
 **Modeled movement can be predicted.**
 
 **Predicted movement can be protected.**
+
+---
+
+For canonical terminology, backend module references, object definitions, naming conventions, and engineering standards, see reference/Engineering_Reference_Manual.md.
