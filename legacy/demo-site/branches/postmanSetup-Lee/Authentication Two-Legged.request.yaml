@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{url}}/oauth/token"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "grant_type": "client_credentials",
+        "scope": "public privileged.rides.dispatch offline rides.read"
+    }
+auth:
+  type: basic
+  credentials:
+    username: "{{client_id}}"
+    password: "{{client_secret}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+          const jsonData = JSON.parse(responseBody);
+          pm.environment.set("access_token",jsonData.access_token);
+      } catch (e) {}
+    language: text/javascript
+order: 6000

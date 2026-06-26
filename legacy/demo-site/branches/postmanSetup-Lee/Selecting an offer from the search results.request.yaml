@@ -1,0 +1,46 @@
+$kind: http-request
+description: >-
+  Offers can get stale fairly quickly, and when they do you are no longer able
+  to book them.
+
+
+  To get the latest version of the offer, you can use the offer's `id` using
+  this endpoint
+url: https://api.duffel.com/air/offers/{{OFFER_ID}}
+method: GET
+headers:
+  - key: Accept-Encoding
+    value: gzip
+  - key: Accept
+    value: application/json
+  - key: Duffel-Version
+    value: v2
+    description: https:/duffel.com/docs/api/overview/making-requests/versioning
+scripts:
+  - type: afterResponse
+    code: >-
+      const jsonData = JSON.parse(responseBody);
+
+      pm.collectionVariables.set('OFFER_ID', jsonData.data.id);
+
+      pm.collectionVariables.set("TOTAL_AMOUNT", jsonData.data.total_amount);
+
+      pm.collectionVariables.set("TOTAL_CURRENCY",
+      jsonData.data.total_currency);
+
+
+      const infant = jsonData.data.passengers.find(passenger => passenger.type
+      == "infant_without_seat");
+
+      pm.collectionVariables.set("INFANT_PASSENGER_ID", infant.id);
+
+
+      const adults = jsonData.data.passengers.filter(passenger => passenger.type
+      == "adult");
+
+      pm.collectionVariables.set("ADULT_PASSENGER_ID_1", adults[0].id);
+
+      pm.collectionVariables.set("ADULT_PASSENGER_ID_2", adults[1].id);
+    language: text/javascript
+examples: ./.resources/Selecting an offer from the search results.resources/examples
+order: 2000

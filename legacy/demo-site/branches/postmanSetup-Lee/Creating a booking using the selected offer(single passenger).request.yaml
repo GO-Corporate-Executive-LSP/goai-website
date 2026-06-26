@@ -1,0 +1,56 @@
+$kind: http-request
+description: >-
+  We are finally ready to make a booking using the Duffel API which we call
+  "creating an order".
+
+
+  For this you'll need three things:
+
+  1. The ID of the offer you'd like to book (taken from the previous request you
+  did)
+
+  2. Basic necessary information about the passengers
+
+  3. Payment method and information to confirm the order
+url: https://api.duffel.com/air/orders
+method: POST
+headers:
+  - key: Accept-Encoding
+    value: gzip
+  - key: Accept
+    value: application/json
+  - key: Content-Type
+    value: application/json
+  - key: Duffel-Version
+    value: v2
+    description: https:/duffel.com/docs/api/overview/making-requests/versioning
+body:
+  type: text
+  content: |-
+    {
+        "data": {
+            "selected_offers": [
+                "{{OFFER_ID}}"
+            ],
+            "payments": [
+                {
+                    "type": "balance",
+                    "currency": "{{TOTAL_CURRENCY}}",
+                    "amount": "{{TOTAL_AMOUNT}}"
+                }
+            ],
+            "passengers": [
+                {
+                    "phone_number": "+442080160508",
+                    "email": "tony@example.com",
+                    "born_on": "1980-07-24",
+                    "title": "mr",
+                    "gender": "m",
+                    "family_name": "Stark",
+                    "given_name": "Tony",
+                    "id": "{{PASSENGER_ID}}"
+                }
+            ]
+        }
+    }
+order: 5000

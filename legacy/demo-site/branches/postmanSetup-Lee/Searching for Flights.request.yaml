@@ -1,0 +1,83 @@
+$kind: http-request
+description: >-
+  In the Duffel API you create an offer request in order to search for flights.
+
+
+  For this you'll need the flight itinerary - which should include the
+  origin(s), destination(s) and departure date(s) - and information about the
+  passengers.
+url: https://api.duffel.com/air/offer_requests
+method: POST
+headers:
+  - key: Accept-Encoding
+    value: gzip
+  - key: Accept
+    value: application/json
+  - key: Duffel-Version
+    value: v2
+    description: https:/duffel.com/docs/api/overview/making-requests/versioning
+body:
+  type: json
+  content: |-
+    {
+        "data": {
+            "slices": [
+                {
+                    "origin": "NYC",
+                    "destination": "ATL",
+                    "departure_date": "2024-06-21"
+                },
+                {
+                    "origin": "ATL",
+                    "destination": "NYC",
+                    "departure_date": "2024-07-21"
+                }
+            ],
+            "passengers": [
+                {
+                    "type": "adult"
+                },
+                {
+                    "type": "adult"
+                },
+                {
+                    "age": 1
+                }
+            ],
+            "cabin_class": "business"
+        }
+    }
+scripts:
+  - type: afterResponse
+    code: >-
+      const jsonData = JSON.parse(responseBody);
+
+
+      pm.test("Contains a list of offers", function () {
+          console.log(jsonData.data.offers.length)
+          pm.expect(jsonData.data.offers.length).to.greaterThan(0);
+      });
+
+
+      if (jsonData.data.offers[0]) {
+          pm.collectionVariables.set('OFFER_ID', jsonData.data.offers[0].id);
+          pm.collectionVariables.set("TOTAL_AMOUNT", jsonData.data.offers[0].total_amount);
+          pm.collectionVariables.set("TOTAL_CURRENCY", jsonData.data.offers[0].total_currency);
+      }
+
+
+      const infant = jsonData.data.passengers.find(passenger => passenger.type
+      == null);
+
+      pm.collectionVariables.set("INFANT_PASSENGER_ID", infant.id);
+
+
+      const adults = jsonData.data.passengers.filter(passenger => passenger.type
+      == "adult");
+
+      pm.collectionVariables.set("ADULT_PASSENGER_ID_1", adults[0].id);
+
+      pm.collectionVariables.set("ADULT_PASSENGER_ID_2", adults[1].id);
+    language: text/javascript
+examples: ./.resources/Searching for Flights.resources/examples
+order: 1000

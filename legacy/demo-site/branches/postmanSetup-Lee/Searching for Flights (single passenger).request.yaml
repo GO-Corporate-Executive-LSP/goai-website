@@ -1,0 +1,44 @@
+$kind: http-request
+description: >-
+  In the Duffel API you create an offer request in order to search for flights.
+
+
+  For this you'll need the flight itinerary - which should include the
+  origin(s), destination(s) and departure date(s) - and information about the
+  passengers.
+url: https://api.duffel.com/air/offer_requests
+method: POST
+headers:
+  - key: Accept-Encoding
+    value: gzip
+  - key: Accept
+    value: application/json
+  - key: Duffel-Version
+    value: v2
+    description: https:/duffel.com/docs/api/overview/making-requests/versioning
+body:
+  type: json
+  content: |-
+    {
+        "data": {
+            "slices": [
+                {
+                    "origin": "NYC",
+                    "destination": "ATL",
+                    "departure_date": "2024-06-21"
+                },
+                {
+                    "origin": "ATL",
+                    "destination": "NYC",
+                    "departure_date": "2024-07-21"
+                }
+            ],
+            "passengers": [
+                {
+                    "type": "adult"
+                }
+            ],
+            "cabin_class": "business"
+        }
+    }
+order: 4000
