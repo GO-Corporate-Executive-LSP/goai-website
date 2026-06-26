@@ -1,0 +1,41 @@
+$kind: http-request
+description: <p>Verifies microdeposits on a PaymentIntent object.</p>
+url: "{{baseUrl}}/v1/payment_intents/:intent/verify_microdeposits"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amounts[0]
+      value: <integer>
+      disabled: true
+      description: Two positive integers, in *cents*, equal to the values of the
+        microdeposits sent to the bank account.
+    - key: amounts[1]
+      value: <integer>
+      disabled: true
+      description: Two positive integers, in *cents*, equal to the values of the
+        microdeposits sent to the bank account.
+    - key: client_secret
+      value: <string>
+      disabled: true
+      description: The client secret of the PaymentIntent.
+    - key: descriptor_code
+      value: <string>
+      disabled: true
+      description: A six-character code starting with SM present in the microdeposit
+        sent to the bank account.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 11000

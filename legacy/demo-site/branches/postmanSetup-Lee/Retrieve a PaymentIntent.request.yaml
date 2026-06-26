@@ -1,0 +1,36 @@
+$kind: http-request
+description: >-
+  <p>Retrieves the details of a PaymentIntent that has previously been created.
+  </p>
+
+
+  <p>You can retrieve a PaymentIntent client-side using a publishable key when
+  the <code>client_secret</code> is in the query string. </p>
+
+
+  <p>If you retrieve a PaymentIntent with a publishable key, it only returns a
+  subset of properties. Refer to the <a href="#payment_intent_object">payment
+  intent</a> object reference for more details.</p>
+url: "{{baseUrl}}/v1/payment_intents/:intent"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: client_secret
+    value: <string>
+    disabled: true
+    description: The client secret of the PaymentIntent. We require it if you use a
+      publishable key to retrieve the source.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+order: 4000

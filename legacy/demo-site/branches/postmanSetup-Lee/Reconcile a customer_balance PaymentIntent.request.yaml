@@ -1,0 +1,48 @@
+$kind: http-request
+description: <p>Manually reconcile the remaining amount for a
+  <code>customer_balance</code> PaymentIntent.</p>
+url: "{{baseUrl}}/v1/payment_intents/:intent/apply_customer_balance"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: >-
+        Amount that you intend to apply to this PaymentIntent from the
+        customer’s cash balance.
+
+
+        A positive integer representing how much to charge in the [smallest
+        currency unit](https://stripe.com/docs/currencies#zero-decimal) (for
+        example, 100 cents to charge 1 USD or 100 to charge 100 JPY, a
+        zero-decimal currency).
+
+
+        The maximum amount is the amount of the PaymentIntent.
+
+
+        When you omit the amount, it defaults to the remaining amount requested
+        on the PaymentIntent.
+    - key: currency
+      value: <string>
+      disabled: true
+      description: Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 6000

@@ -1,0 +1,257 @@
+$kind: http-request
+description: >-
+  <p>Creates a PaymentMethod object. Read the <a
+  href="/docs/stripe-js/reference#stripe-create-payment-method">Stripe.js
+  reference</a> to learn how to create PaymentMethods via Stripe.js.</p>
+
+
+  <p>Instead of creating a PaymentMethod directly, we recommend using the <a
+  href="/docs/payments/accept-a-payment">PaymentIntents</a> API to accept a
+  payment immediately or the <a
+  href="/docs/payments/save-and-reuse">SetupIntent</a> API to collect payment
+  method details ahead of a future payment.</p>
+url: "{{baseUrl}}/v1/payment_methods"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: type
+      value: <string>
+      description: (Required) The type of the PaymentMethod. An additional hash is
+        included on the PaymentMethod with a name matching this value. It
+        contains additional information specific to the PaymentMethod type.
+    - key: acss_debit[account_number]
+      value: <string>
+      disabled: true
+      description: If this is an `acss_debit` PaymentMethod, this hash contains
+        details about the ACSS Debit payment method.
+    - key: acss_debit[institution_number]
+      value: <string>
+      disabled: true
+      description: If this is an `acss_debit` PaymentMethod, this hash contains
+        details about the ACSS Debit payment method.
+    - key: acss_debit[transit_number]
+      value: <string>
+      disabled: true
+      description: If this is an `acss_debit` PaymentMethod, this hash contains
+        details about the ACSS Debit payment method.
+    - key: au_becs_debit[account_number]
+      value: <string>
+      disabled: true
+      description: If this is an `au_becs_debit` PaymentMethod, this hash contains
+        details about the bank account.
+    - key: au_becs_debit[bsb_number]
+      value: <string>
+      disabled: true
+      description: If this is an `au_becs_debit` PaymentMethod, this hash contains
+        details about the bank account.
+    - key: bacs_debit[account_number]
+      value: <string>
+      disabled: true
+      description: If this is a `bacs_debit` PaymentMethod, this hash contains details
+        about the Bacs Direct Debit bank account.
+    - key: bacs_debit[sort_code]
+      value: <string>
+      disabled: true
+      description: If this is a `bacs_debit` PaymentMethod, this hash contains details
+        about the Bacs Direct Debit bank account.
+    - key: billing_details[address][city]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][country]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][line1]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][line2]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][state]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[email]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[name]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[phone]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: boleto[tax_id]
+      value: <string>
+      disabled: true
+      description: If this is a `boleto` PaymentMethod, this hash contains details
+        about the Boleto payment method.
+    - key: card[exp_month]
+      value: <integer>
+      disabled: true
+      description: "If this is a `card` PaymentMethod, this hash contains the user's
+        card details. For backwards compatibility, you can alternatively provide
+        a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy
+        Checkout) into the card hash with format `card: {token: \"tok_visa\"}`.
+        When providing a card number, you must meet the requirements for [PCI
+        compliance](https://stripe.com/docs/security#validating-pci-compliance).
+        We strongly recommend using Stripe.js instead of interacting with this
+        API directly."
+    - key: card[exp_year]
+      value: <integer>
+      disabled: true
+      description: "If this is a `card` PaymentMethod, this hash contains the user's
+        card details. For backwards compatibility, you can alternatively provide
+        a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy
+        Checkout) into the card hash with format `card: {token: \"tok_visa\"}`.
+        When providing a card number, you must meet the requirements for [PCI
+        compliance](https://stripe.com/docs/security#validating-pci-compliance).
+        We strongly recommend using Stripe.js instead of interacting with this
+        API directly."
+    - key: card[number]
+      value: <string>
+      disabled: true
+      description: "If this is a `card` PaymentMethod, this hash contains the user's
+        card details. For backwards compatibility, you can alternatively provide
+        a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy
+        Checkout) into the card hash with format `card: {token: \"tok_visa\"}`.
+        When providing a card number, you must meet the requirements for [PCI
+        compliance](https://stripe.com/docs/security#validating-pci-compliance).
+        We strongly recommend using Stripe.js instead of interacting with this
+        API directly."
+    - key: card[cvc]
+      value: <string>
+      disabled: true
+      description: "If this is a `card` PaymentMethod, this hash contains the user's
+        card details. For backwards compatibility, you can alternatively provide
+        a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy
+        Checkout) into the card hash with format `card: {token: \"tok_visa\"}`.
+        When providing a card number, you must meet the requirements for [PCI
+        compliance](https://stripe.com/docs/security#validating-pci-compliance).
+        We strongly recommend using Stripe.js instead of interacting with this
+        API directly."
+    - key: card[networks][preferred]
+      value: <string>
+      disabled: true
+      description: "If this is a `card` PaymentMethod, this hash contains the user's
+        card details. For backwards compatibility, you can alternatively provide
+        a Stripe token (e.g., for Apple Pay, Amex Express Checkout, or legacy
+        Checkout) into the card hash with format `card: {token: \"tok_visa\"}`.
+        When providing a card number, you must meet the requirements for [PCI
+        compliance](https://stripe.com/docs/security#validating-pci-compliance).
+        We strongly recommend using Stripe.js instead of interacting with this
+        API directly."
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The `Customer` to whom the original PaymentMethod is attached.
+    - key: eps[bank]
+      value: <string>
+      disabled: true
+      description: If this is an `eps` PaymentMethod, this hash contains details about
+        the EPS payment method.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: fpx[bank]
+      value: <string>
+      disabled: true
+      description: If this is an `fpx` PaymentMethod, this hash contains details about
+        the FPX payment method.
+    - key: ideal[bank]
+      value: <string>
+      disabled: true
+      description: If this is an `ideal` PaymentMethod, this hash contains details
+        about the iDEAL payment method.
+    - key: klarna[dob][day]
+      value: <integer>
+      disabled: true
+      description: If this is a `klarna` PaymentMethod, this hash contains details
+        about the Klarna payment method.
+    - key: klarna[dob][month]
+      value: <integer>
+      disabled: true
+      description: If this is a `klarna` PaymentMethod, this hash contains details
+        about the Klarna payment method.
+    - key: klarna[dob][year]
+      value: <integer>
+      disabled: true
+      description: If this is a `klarna` PaymentMethod, this hash contains details
+        about the Klarna payment method.
+    - key: p24[bank]
+      value: <string>
+      disabled: true
+      description: If this is a `p24` PaymentMethod, this hash contains details about
+        the P24 payment method.
+    - key: payment_method
+      value: <string>
+      disabled: true
+      description: The PaymentMethod to share.
+    - key: radar_options[session]
+      value: <string>
+      disabled: true
+      description: Options to configure Radar. See [Radar
+        Session](https://stripe.com/docs/radar/radar-session) for more
+        information.
+    - key: sepa_debit[iban]
+      value: <string>
+      disabled: true
+      description: If this is a `sepa_debit` PaymentMethod, this hash contains details
+        about the SEPA debit bank account.
+    - key: sofort[country]
+      value: <string>
+      disabled: true
+      description: If this is a `sofort` PaymentMethod, this hash contains details
+        about the SOFORT payment method.
+    - key: us_bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+    - key: us_bank_account[account_number]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+    - key: us_bank_account[account_type]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+    - key: us_bank_account[financial_connections_account]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+    - key: us_bank_account[routing_number]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+order: 3000

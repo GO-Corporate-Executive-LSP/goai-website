@@ -1,0 +1,82 @@
+$kind: http-request
+description: >-
+  <p>Capture the funds of an existing uncaptured PaymentIntent when its status
+  is <code>requires_capture</code>.</p>
+
+
+  <p>Uncaptured PaymentIntents are cancelled a set number of days (7 by default)
+  after their creation.</p>
+
+
+  <p>Learn more about <a href="/docs/payments/capture-later">separate
+  authorization and capture</a>.</p>
+url: "{{baseUrl}}/v1/payment_intents/:intent/capture"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount_to_capture
+      value: <integer>
+      disabled: true
+      description: The amount to capture from the PaymentIntent, which must be less
+        than or equal to the original amount. Any additional amount is
+        automatically refunded. Defaults to the full `amount_capturable` if it's
+        not provided.
+    - key: application_fee_amount
+      value: <integer>
+      disabled: true
+      description: The amount of the application fee (if any) that will be requested
+        to be applied to the payment and transferred to the application owner's
+        Stripe account. The amount of the application fee collected will be
+        capped at the total payment amount. For more information, see the
+        PaymentIntents [use case for connected
+        accounts](https://stripe.com/docs/payments/connected-accounts).
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: final_capture
+      value: <boolean>
+      disabled: true
+      description: Defaults to `true`. When capturing a PaymentIntent, setting
+        `final_capture` to `false` notifies Stripe to not release the remaining
+        uncaptured funds to make sure that they're captured in future requests.
+        You can only use this setting when
+        [multicapture](https://stripe.com/docs/payments/multicapture) is
+        available for PaymentIntents.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: For card charges, use
+        [statement_descriptor_suffix](https://stripe.com/docs/payments/account/statement-descriptors#dynamic).
+        Otherwise, you can use this value as the complete description of a
+        charge on your customers' statements. It must contain at least one
+        letter and be 1–22 characters long.
+    - key: statement_descriptor_suffix
+      value: <string>
+      disabled: true
+      description: Provides information about a card payment that customers see on
+        their statements. Concatenated with the prefix (shortened descriptor) or
+        statement descriptor that’s set on the account to form the complete
+        statement descriptor. The concatenated descriptor must be 1-22
+        characters long.
+    - key: transfer_data[amount]
+      value: <integer>
+      disabled: true
+      description: >-
+        The parameters that you can use to automatically create a transfer after
+        the payment
+
+        is captured. Learn more about the [use case for connected
+        accounts](https://stripe.com/docs/payments/connected-accounts).
+order: 8000

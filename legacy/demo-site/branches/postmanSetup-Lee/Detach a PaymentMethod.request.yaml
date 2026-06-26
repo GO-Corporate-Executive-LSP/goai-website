@@ -1,0 +1,24 @@
+$kind: http-request
+description: <p>Detaches a PaymentMethod object from a Customer. After a
+  PaymentMethod is detached, it can no longer be used for a payment or
+  re-attached to a Customer.</p>
+url: "{{baseUrl}}/v1/payment_methods/:payment_method/detach"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: payment_method
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 7000

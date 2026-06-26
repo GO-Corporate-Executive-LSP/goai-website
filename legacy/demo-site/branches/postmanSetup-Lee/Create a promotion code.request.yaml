@@ -1,0 +1,65 @@
+$kind: http-request
+description: <p>A promotion code points to a coupon. You can optionally restrict
+  the code to a specific customer, redemption limit, and expiration date.</p>
+url: "{{baseUrl}}/v1/promotion_codes"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: coupon
+      value: <string>
+      description: (Required) The coupon for this promotion code.
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the promotion code is currently active.
+    - key: code
+      value: <string>
+      disabled: true
+      description: The customer-facing code. Regardless of case, this code must be
+        unique across all active promotion codes for a specific customer. If
+        left blank, we will generate one automatically.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The customer that this promotion code can be used by. If not set,
+        the promotion code can be used by all customers.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expires_at
+      value: <unix-time>
+      disabled: true
+      description: The timestamp at which this promotion code will expire. If the
+        coupon has specified a `redeems_by`, then this value cannot be after the
+        coupon's `redeems_by`.
+    - key: max_redemptions
+      value: <integer>
+      disabled: true
+      description: A positive integer specifying the number of times the promotion
+        code can be redeemed. If the coupon has specified a `max_redemptions`,
+        then this value cannot be greater than the coupon's `max_redemptions`.
+    - key: restrictions[currency_options]
+      value: <object>
+      disabled: true
+      description: Settings that restrict the redemption of the promotion code.
+    - key: restrictions[first_time_transaction]
+      value: <boolean>
+      disabled: true
+      description: Settings that restrict the redemption of the promotion code.
+    - key: restrictions[minimum_amount]
+      value: <integer>
+      disabled: true
+      description: Settings that restrict the redemption of the promotion code.
+    - key: restrictions[minimum_amount_currency]
+      value: <string>
+      disabled: true
+      description: Settings that restrict the redemption of the promotion code.
+order: 2000

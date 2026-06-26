@@ -1,8 +1,8 @@
 $kind: http-request
-description: <p>Retrieves the details of an existing product. Supply the unique
-  product ID from either a product creation request or the product list, and
-  Stripe will return the corresponding product information.</p>
-url: "{{baseUrl}}/v1/products/:id"
+description: <p>Retrieves the details of an existing payout. Supply the unique
+  payout ID from either a payout creation request or the payout list. Stripe
+  returns the corresponding payout information.</p>
+url: "{{baseUrl}}/v1/payouts/:payout"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -16,7 +16,7 @@ queryParams:
     disabled: true
     description: Specifies which fields in the response should be expanded.
 pathVariables:
-  - key: id
+  - key: payout
     value: <string>
     description: "(Required) "
-order: 5000
+order: 3000

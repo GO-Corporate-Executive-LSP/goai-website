@@ -1,0 +1,16 @@
+$kind: http-request
+description: <p>Delete a product. Deleting a product is only possible if it has
+  no prices associated with it. Additionally, deleting a product with
+  <code>type=good</code> is only possible if it has no SKUs associated with
+  it.</p>
+url: "{{baseUrl}}/v1/products/:id"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 4000

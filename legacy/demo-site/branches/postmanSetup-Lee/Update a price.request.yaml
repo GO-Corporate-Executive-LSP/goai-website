@@ -1,0 +1,50 @@
+$kind: http-request
+description: <p>Updates the specified price by setting the values of the
+  parameters passed. Any parameters not provided are left unchanged.</p>
+url: "{{baseUrl}}/v1/prices/:price"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: price
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the price can be used for new purchases. Defaults to `true`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: lookup_key
+      value: <string>
+      disabled: true
+      description: A lookup key used to retrieve prices dynamically from a static
+        string. This may be up to 200 characters.
+    - key: nickname
+      value: <string>
+      disabled: true
+      description: A brief description of the price, hidden from customers.
+    - key: tax_behavior
+      value: <string>
+      disabled: true
+      description: Only required if a [default tax
+        behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+        was not provided in the Stripe Tax settings. Specifies whether the price
+        is considered inclusive of taxes or exclusive of taxes. One of
+        `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+        `inclusive` or `exclusive`, it cannot be changed.
+    - key: transfer_lookup_key
+      value: <boolean>
+      disabled: true
+      description: If set to true, will atomically remove the lookup key from the
+        existing price, and assign it to this price.
+order: 5000

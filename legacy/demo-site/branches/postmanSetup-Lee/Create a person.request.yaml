@@ -1,0 +1,314 @@
+$kind: http-request
+description: <p>Creates a new person.</p>
+url: "{{baseUrl}}/v1/accounts/:account/persons"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: additional_tos_acceptances[account][date]
+      value: <unix-time>
+      disabled: true
+      description: Details on the legal guardian's acceptance of the required Stripe
+        agreements.
+    - key: additional_tos_acceptances[account][ip]
+      value: <string>
+      disabled: true
+      description: Details on the legal guardian's acceptance of the required Stripe
+        agreements.
+    - key: additional_tos_acceptances[account][user_agent]
+      value: <string>
+      disabled: true
+      description: Details on the legal guardian's acceptance of the required Stripe
+        agreements.
+    - key: address[city]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address[country]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address[line1]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address[line2]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address[postal_code]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address[state]
+      value: <string>
+      disabled: true
+      description: The person's address.
+    - key: address_kana[city]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[country]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[line1]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[line2]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[postal_code]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[state]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kana[town]
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's address (Japan only).
+    - key: address_kanji[city]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[country]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[line1]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[line2]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[postal_code]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[state]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: address_kanji[town]
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's address (Japan only).
+    - key: dob[day]
+      value: <integer>
+      disabled: true
+      description: The person's date of birth.
+    - key: dob[month]
+      value: <integer>
+      disabled: true
+      description: The person's date of birth.
+    - key: dob[year]
+      value: <integer>
+      disabled: true
+      description: The person's date of birth.
+    - key: documents[company_authorization][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_authorization][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[passport][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[passport][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[visa][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[visa][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: email
+      value: <string>
+      disabled: true
+      description: The person's email address.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: first_name
+      value: <string>
+      disabled: true
+      description: The person's first name.
+    - key: first_name_kana
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's first name (Japan only).
+    - key: first_name_kanji
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's first name (Japan only).
+    - key: full_name_aliases[0]
+      value: <string>
+      disabled: true
+      description: A list of alternate names or aliases that the person is known by.
+    - key: full_name_aliases[1]
+      value: <string>
+      disabled: true
+      description: A list of alternate names or aliases that the person is known by.
+    - key: gender
+      value: <string>
+      disabled: true
+      description: The person's gender (International regulations require either
+        "male" or "female").
+    - key: id_number
+      value: <string>
+      disabled: true
+      description: The person's ID number, as appropriate for their country. For
+        example, a social security number in the U.S., social insurance number
+        in Canada, etc. Instead of the number itself, you can also provide a
+        [PII token provided by
+        Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+    - key: id_number_secondary
+      value: <string>
+      disabled: true
+      description: The person's secondary ID number, as appropriate for their country,
+        will be used for enhanced verification checks. In Thailand, this would
+        be the laser code found on the back of an ID card. Instead of the number
+        itself, you can also provide a [PII token provided by
+        Stripe.js](https://docs.stripe.com/js/tokens/create_token?type=pii).
+    - key: last_name
+      value: <string>
+      disabled: true
+      description: The person's last name.
+    - key: last_name_kana
+      value: <string>
+      disabled: true
+      description: The Kana variation of the person's last name (Japan only).
+    - key: last_name_kanji
+      value: <string>
+      disabled: true
+      description: The Kanji variation of the person's last name (Japan only).
+    - key: maiden_name
+      value: <string>
+      disabled: true
+      description: The person's maiden name.
+    - key: nationality
+      value: <string>
+      disabled: true
+      description: The country where the person is a national. Two-letter country code
+        ([ISO 3166-1
+        alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)), or "XX" if
+        unavailable.
+    - key: person_token
+      value: <string>
+      disabled: true
+      description: A [person token](https://docs.stripe.com/connect/account-tokens),
+        used to securely provide details to the person.
+    - key: phone
+      value: <string>
+      disabled: true
+      description: The person's phone number.
+    - key: political_exposure
+      value: <string>
+      disabled: true
+      description: Indicates if the person or any of their representatives, family
+        members, or other closely related persons, declares that they hold or
+        have held an important public job or function, in any jurisdiction.
+    - key: registered_address[city]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: registered_address[country]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: registered_address[line1]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: registered_address[line2]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: registered_address[postal_code]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: registered_address[state]
+      value: <string>
+      disabled: true
+      description: The person's registered address.
+    - key: relationship[director]
+      value: <boolean>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[executive]
+      value: <boolean>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[legal_guardian]
+      value: <boolean>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[owner]
+      value: <boolean>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[percent_ownership]
+      value: <number>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[representative]
+      value: <boolean>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: relationship[title]
+      value: <string>
+      disabled: true
+      description: The relationship that this person has with the account's legal entity.
+    - key: ssn_last_4
+      value: <string>
+      disabled: true
+      description: The last four digits of the person's Social Security number (U.S. only).
+    - key: verification[additional_document][back]
+      value: <string>
+      disabled: true
+      description: The person's verification status.
+    - key: verification[additional_document][front]
+      value: <string>
+      disabled: true
+      description: The person's verification status.
+    - key: verification[document][back]
+      value: <string>
+      disabled: true
+      description: The person's verification status.
+    - key: verification[document][front]
+      value: <string>
+      disabled: true
+      description: The person's verification status.
+order: 2000

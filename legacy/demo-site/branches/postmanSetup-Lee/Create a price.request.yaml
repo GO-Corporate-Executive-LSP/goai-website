@@ -1,0 +1,229 @@
+$kind: http-request
+description: <p>Creates a new price for an existing product. The price can be
+  recurring or one-time.</p>
+url: "{{baseUrl}}/v1/prices"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: currency
+      value: <string>
+      description: (Required) Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the price can be used for new purchases. Defaults to `true`.
+    - key: billing_scheme
+      value: <string>
+      disabled: true
+      description: Describes how to compute the price per period. Either `per_unit` or
+        `tiered`. `per_unit` indicates that the fixed amount (specified in
+        `unit_amount` or `unit_amount_decimal`) will be charged per unit in
+        `quantity` (for prices with `usage_type=licensed`), or per unit of total
+        usage (for prices with `usage_type=metered`). `tiered` indicates that
+        the unit pricing will be computed using a tiering strategy as defined
+        using the `tiers` and `tiers_mode` attributes.
+    - key: custom_unit_amount[enabled]
+      value: <boolean>
+      disabled: true
+      description: When set, provides configuration for the amount to be adjusted by
+        the customer during Checkout Sessions and Payment Links.
+    - key: custom_unit_amount[maximum]
+      value: <integer>
+      disabled: true
+      description: When set, provides configuration for the amount to be adjusted by
+        the customer during Checkout Sessions and Payment Links.
+    - key: custom_unit_amount[minimum]
+      value: <integer>
+      disabled: true
+      description: When set, provides configuration for the amount to be adjusted by
+        the customer during Checkout Sessions and Payment Links.
+    - key: custom_unit_amount[preset]
+      value: <integer>
+      disabled: true
+      description: When set, provides configuration for the amount to be adjusted by
+        the customer during Checkout Sessions and Payment Links.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: lookup_key
+      value: <string>
+      disabled: true
+      description: A lookup key used to retrieve prices dynamically from a static
+        string. This may be up to 200 characters.
+    - key: nickname
+      value: <string>
+      disabled: true
+      description: A brief description of the price, hidden from customers.
+    - key: product
+      value: <string>
+      disabled: true
+      description: The ID of the product that this price will belong to.
+    - key: product_data[name]
+      value: <string>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[active]
+      value: <boolean>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[id]
+      value: <string>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[metadata]
+      value: <object>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[statement_descriptor]
+      value: <string>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[tax_code]
+      value: <string>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: product_data[unit_label]
+      value: <string>
+      disabled: true
+      description: These fields can be used to create a new product that this price
+        will belong to.
+    - key: recurring[interval]
+      value: <string>
+      disabled: true
+      description: The recurring components of a price such as `interval` and `usage_type`.
+    - key: recurring[aggregate_usage]
+      value: <string>
+      disabled: true
+      description: The recurring components of a price such as `interval` and `usage_type`.
+    - key: recurring[interval_count]
+      value: <integer>
+      disabled: true
+      description: The recurring components of a price such as `interval` and `usage_type`.
+    - key: recurring[meter]
+      value: <string>
+      disabled: true
+      description: The recurring components of a price such as `interval` and `usage_type`.
+    - key: recurring[usage_type]
+      value: <string>
+      disabled: true
+      description: The recurring components of a price such as `interval` and `usage_type`.
+    - key: tax_behavior
+      value: <string>
+      disabled: true
+      description: Only required if a [default tax
+        behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+        was not provided in the Stripe Tax settings. Specifies whether the price
+        is considered inclusive of taxes or exclusive of taxes. One of
+        `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+        `inclusive` or `exclusive`, it cannot be changed.
+    - key: tiers[0][up_to]
+      value: <string>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[0][flat_amount]
+      value: <integer>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[0][flat_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[0][unit_amount]
+      value: <integer>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[0][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[1][up_to]
+      value: <string>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[1][flat_amount]
+      value: <integer>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[1][flat_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[1][unit_amount]
+      value: <integer>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers[1][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Each element represents a pricing tier. This parameter requires
+        `billing_scheme` to be set to `tiered`. See also the documentation for
+        `billing_scheme`.
+    - key: tiers_mode
+      value: <string>
+      disabled: true
+      description: Defines if the tiering price should be `graduated` or `volume`
+        based. In `volume`-based tiering, the maximum quantity within a period
+        determines the per unit price, in `graduated` tiering pricing can
+        successively change as the quantity grows.
+    - key: transfer_lookup_key
+      value: <boolean>
+      disabled: true
+      description: If set to true, will atomically remove the lookup key from the
+        existing price, and assign it to this price.
+    - key: transform_quantity[divide_by]
+      value: <integer>
+      disabled: true
+      description: Apply a transformation to the reported usage or set quantity before
+        computing the billed price. Cannot be combined with `tiers`.
+    - key: transform_quantity[round]
+      value: <string>
+      disabled: true
+      description: Apply a transformation to the reported usage or set quantity before
+        computing the billed price. Cannot be combined with `tiers`.
+    - key: unit_amount
+      value: <integer>
+      disabled: true
+      description: A positive integer in cents (or local equivalent) (or 0 for a free
+        price) representing how much to charge. One of `unit_amount` or
+        `custom_unit_amount` is required, unless `billing_scheme=tiered`.
+    - key: unit_amount_decimal
+      value: <decimal>
+      disabled: true
+      description: Same as `unit_amount`, but accepts a decimal value in cents (or
+        local equivalent) with at most 12 decimal places. Only one of
+        `unit_amount` and `unit_amount_decimal` can be set.
+order: 2000

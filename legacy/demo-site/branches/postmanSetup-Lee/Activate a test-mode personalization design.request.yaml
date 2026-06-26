@@ -1,0 +1,24 @@
+$kind: http-request
+description: <p>Updates the <code>status</code> of the specified testmode
+  personalization design object to <code>active</code>.</p>
+url: "{{baseUrl}}/v1/test_helpers/issuing/personalization_designs/:personalizat\
+  ion_design/activate"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: personalization_design
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000

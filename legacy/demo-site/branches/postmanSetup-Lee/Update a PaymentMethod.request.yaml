@@ -1,0 +1,93 @@
+$kind: http-request
+description: <p>Updates a PaymentMethod object. A PaymentMethod must be attached
+  a customer to be updated.</p>
+url: "{{baseUrl}}/v1/payment_methods/:payment_method"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: payment_method
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: billing_details[address][city]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][country]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][line1]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][line2]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[address][state]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[email]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[name]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: billing_details[phone]
+      value: <string>
+      disabled: true
+      description: Billing information associated with the PaymentMethod that may be
+        used or required by particular types of payment methods.
+    - key: card[exp_month]
+      value: <integer>
+      disabled: true
+      description: If this is a `card` PaymentMethod, this hash contains the user's
+        card details.
+    - key: card[exp_year]
+      value: <integer>
+      disabled: true
+      description: If this is a `card` PaymentMethod, this hash contains the user's
+        card details.
+    - key: card[networks][preferred]
+      value: <string>
+      disabled: true
+      description: If this is a `card` PaymentMethod, this hash contains the user's
+        card details.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: us_bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+    - key: us_bank_account[account_type]
+      value: <string>
+      disabled: true
+      description: If this is an `us_bank_account` PaymentMethod, this hash contains
+        details about the US bank account payment method.
+order: 5000

@@ -1,0 +1,42 @@
+$kind: http-request
+description: >-
+  <p>You can cancel a PaymentIntent object when it’s in one of these statuses:
+  <code>requires_payment_method</code>, <code>requires_capture</code>,
+  <code>requires_confirmation</code>, <code>requires_action</code> or, <a
+  href="/docs/payments/intents">in rare cases</a>, <code>processing</code>. </p>
+
+
+  <p>After it’s canceled, no additional charges are made by the PaymentIntent
+  and any operations on the PaymentIntent fail with an error. For PaymentIntents
+  with a <code>status</code> of <code>requires_capture</code>, the remaining
+  <code>amount_capturable</code> is automatically refunded. </p>
+
+
+  <p>You can’t cancel the PaymentIntent for a Checkout Session. <a
+  href="/docs/api/checkout/sessions/expire">Expire the Checkout Session</a>
+  instead.</p>
+url: "{{baseUrl}}/v1/payment_intents/:intent/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: cancellation_reason
+      value: <string>
+      disabled: true
+      description: "Reason for canceling this PaymentIntent. Possible values are:
+        `duplicate`, `fraudulent`, `requested_by_customer`, or `abandoned`"
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 7000

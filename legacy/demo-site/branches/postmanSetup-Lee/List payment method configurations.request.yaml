@@ -1,8 +1,6 @@
 $kind: http-request
-description: <p>Retrieves the details of an existing product. Supply the unique
-  product ID from either a product creation request or the product list, and
-  Stripe will return the corresponding product information.</p>
-url: "{{baseUrl}}/v1/products/:id"
+description: <p>List payment method configurations</p>
+url: "{{baseUrl}}/v1/payment_method_configurations"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -15,8 +13,4 @@ queryParams:
     value: <string>
     disabled: true
     description: Specifies which fields in the response should be expanded.
-pathVariables:
-  - key: id
-    value: <string>
-    description: "(Required) "
-order: 5000
+order: 1000

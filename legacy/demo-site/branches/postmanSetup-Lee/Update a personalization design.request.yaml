@@ -1,0 +1,57 @@
+$kind: http-request
+description: <p>Updates a card personalization object.</p>
+url: "{{baseUrl}}/v1/issuing/personalization_designs/:personalization_design"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: personalization_design
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: carrier_text[footer_body]
+      value: <string>
+      disabled: true
+      description: Hash containing carrier text, for use with physical bundles that
+        support carrier text.
+    - key: carrier_text[footer_title]
+      value: <string>
+      disabled: true
+      description: Hash containing carrier text, for use with physical bundles that
+        support carrier text.
+    - key: carrier_text[header_body]
+      value: <string>
+      disabled: true
+      description: Hash containing carrier text, for use with physical bundles that
+        support carrier text.
+    - key: carrier_text[header_title]
+      value: <string>
+      disabled: true
+      description: Hash containing carrier text, for use with physical bundles that
+        support carrier text.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: physical_bundle
+      value: <string>
+      disabled: true
+      description: The physical bundle object belonging to this personalization design.
+    - key: preferences[is_default]
+      value: <boolean>
+      disabled: true
+      description: Information on whether this personalization design is used to
+        create cards when one is not specified.
+    - key: transfer_lookup_key
+      value: <boolean>
+      disabled: true
+      description: If set to true, will atomically remove the lookup key from the
+        existing personalization design, and assign it to this personalization
+        design.
+order: 4000

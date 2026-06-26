@@ -1,0 +1,33 @@
+$kind: http-request
+description: <p>Updates the specified promotion code by setting the values of
+  the parameters passed. Most fields are, by design, not editable.</p>
+url: "{{baseUrl}}/v1/promotion_codes/:promotion_code"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: promotion_code
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the promotion code is currently active. A promotion code
+        can only be reactivated when the coupon is still valid and the promotion
+        code is otherwise redeemable.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: restrictions[currency_options]
+      value: <object>
+      disabled: true
+      description: Settings that restrict the redemption of the promotion code.
+order: 4000

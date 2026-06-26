@@ -1,0 +1,92 @@
+$kind: http-request
+description: <p>Updates the specific product by setting the values of the
+  parameters passed. Any parameters not provided will be left unchanged.</p>
+url: "{{baseUrl}}/v1/products/:id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the product is available for purchase.
+    - key: default_price
+      value: <string>
+      disabled: true
+      description: The ID of the [Price](https://stripe.com/docs/api/prices) object
+        that is the default price for this product.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: images[0]
+      value: <string>
+      disabled: true
+      description: A list of up to 8 URLs of images for this product, meant to be
+        displayable to the customer.
+    - key: images[1]
+      value: <string>
+      disabled: true
+      description: A list of up to 8 URLs of images for this product, meant to be
+        displayable to the customer.
+    - key: marketing_features[0][name]
+      value: <string>
+      disabled: true
+      description: A list of up to 15 marketing features for this product. These are
+        displayed in [pricing
+        tables](https://stripe.com/docs/payments/checkout/pricing-table).
+    - key: marketing_features[1][name]
+      value: <string>
+      disabled: true
+      description: A list of up to 15 marketing features for this product. These are
+        displayed in [pricing
+        tables](https://stripe.com/docs/payments/checkout/pricing-table).
+    - key: name
+      value: <string>
+      disabled: true
+      description: The product's name, meant to be displayable to the customer.
+    - key: package_dimensions[height]
+      value: <number>
+      disabled: true
+      description: The dimensions of this product for shipping purposes.
+    - key: package_dimensions[length]
+      value: <number>
+      disabled: true
+      description: The dimensions of this product for shipping purposes.
+    - key: package_dimensions[weight]
+      value: <number>
+      disabled: true
+      description: The dimensions of this product for shipping purposes.
+    - key: package_dimensions[width]
+      value: <number>
+      disabled: true
+      description: The dimensions of this product for shipping purposes.
+    - key: shippable
+      value: <boolean>
+      disabled: true
+      description: Whether this product is shipped (i.e., physical goods).
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: >-
+        An arbitrary string to be displayed on your customer's credit card or
+        bank statement. While most banks display this information consistently,
+        some may display it incorrectly or not at all.
+
+
+        This may be up to 22 characters. The statement description may not
+        include `<`, `>`, `\`, `"`, `'` characters, and will appear on your
+        customer's statement in capital letters. Non-ASCII characters are
+        automatically stripped.
+         It must contain at least one letter. May only be set if `type=service`.
+order: 6000

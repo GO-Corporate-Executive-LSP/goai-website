@@ -1,0 +1,24 @@
+$kind: http-request
+description: <p>You can cancel a previously created payout if its status is
+  <code>pending</code>. Stripe refunds the funds to your available balance. You
+  can’t cancel automatic Stripe payouts.</p>
+url: "{{baseUrl}}/v1/payouts/:payout/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: payout
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000
