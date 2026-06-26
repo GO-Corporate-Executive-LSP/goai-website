@@ -1,0 +1,97 @@
+// src/backend/tripService.jsw
+// Day 9: Added human approval endpoint
+
+import { processTrip } from './etas/processTrip.js';
+import { approveTrip, assessApprovalUrgency } from './etas/approveTrip.js';
+
+/**
+ * Web method: Process trip for review
+ * Called from frontend after user confirms trip details
+ */
+export async function submitTripForReview(tripObject) {
+  try {
+    console.log("Backend received trip:", tripObject);
+    
+    // Call your validation logic
+    const result = processTrip(tripObject);
+    
+    console.log("Backend validation result:", result);
+    
+    return {
+      success: true,
+      data: result
+    };
+    
+  } catch (error) {
+    console.error("Error processing trip:", error);
+    
+    return {
+      success: false,
+      error: error.message,
+      nextState: 'HUMAN_OVERRIDE'
+    };
+  }
+}
+
+/**
+ * Day 9 Web method: Handle human approval decision
+ * Called from frontend approval UI
+ * 
+ * @param {string} tripId - Trip identifier
+ * @param {Object} tripObject - Full trip object
+ * @param {string} decision - "APPROVED" | "NEEDS_ADJUSTMENT" | "ESCALATED"
+ * @param {string} notes - Optional decision notes
+ */
+export async function submitApprovalDecision(tripId, tripObject, decision, notes = "") {
+  try {
+    console.log(`[API] Approval request for trip ${tripId}: ${decision}`);
+    
+    // Assess approval urgency based on SENTINEL context
+    const urgencyAssessment = assessApprovalUrgency(tripObject);
+    console.log(`[API] Approval urgency: ${urgencyAssessment.urgency}`);
+    
+    // Process approval decision
+    const result = approveTrip(tripObject, decision, notes);
+    
+    console.log(`[API] Approval processed: ${result.nextAction}`);
+    
+    return {
+      success: true,
+      data: result,
+      urgency: urgencyAssessment
+    };
+    
+  } catch (error) {
+    console.error("[API] Error processing approval:", error);
+    
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}
+
+/**
+ * Day 9 Web method: Get approval urgency assessment
+ * Called from frontend to determine approval UI emphasis
+ * 
+ * @param {Object} tripObject - Trip to assess
+ */
+export async function getApprovalUrgency(tripObject) {
+  try {
+    const assessment = assessApprovalUrgency(tripObject);
+    
+    return {
+      success: true,
+      data: assessment
+    };
+    
+  } catch (error) {
+    console.error("[API] Error assessing urgency:", error);
+    
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}
