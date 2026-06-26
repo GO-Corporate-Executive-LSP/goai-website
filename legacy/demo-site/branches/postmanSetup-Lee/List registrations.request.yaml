@@ -1,0 +1,348 @@
+$kind: http-request
+description: <p>Creates a new Tax <code>Registration</code> object.</p>
+url: "{{baseUrl}}/v1/tax/registrations"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: country
+      value: <string>
+      description: (Required) Two-letter country code ([ISO 3166-1
+        alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+    - key: country_options[ae][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[at][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[at][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[au][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[be][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[be][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[bg][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[bg][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ca][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ca][province_standard][province]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ch][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[cl][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[co][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[cy][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[cy][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[cz][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[cz][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[de][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[de][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[dk][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[dk][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ee][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ee][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[es][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[es][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[fi][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[fi][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[fr][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[fr][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[gb][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[gr][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[gr][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[hr][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[hr][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[hu][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[hu][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[id][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ie][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ie][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[is][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[it][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[it][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[jp][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[kr][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lt][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lt][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lu][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lu][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lv][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[lv][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[mt][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[mt][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[mx][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[my][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[nl][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[nl][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[no][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[nz][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[pl][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[pl][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[pt][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[pt][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ro][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[ro][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[sa][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[se][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[se][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[sg][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[si][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[si][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[sk][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[sk][standard][place_of_supply_scheme]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[th][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[tr][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[us][state]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[us][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[us][local_amusement_tax][jurisdiction]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[us][local_lease_tax][jurisdiction]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[vn][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: country_options[za][type]
+      value: <string>
+      description: (Required) Specific options for a registration in the specified
+        `country`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expires_at
+      value: <unix-time>
+      disabled: true
+      description: If set, the Tax Registration stops being active at this time. If
+        not set, the Tax Registration will be active indefinitely. Timestamp
+        measured in seconds since the Unix epoch.
+order: 1000

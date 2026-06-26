@@ -1,0 +1,16 @@
+$kind: http-request
+description: <p>Retrieves Tax <code>Settings</code> for a merchant.</p>
+url: "{{baseUrl}}/v1/tax/settings"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+order: 1000

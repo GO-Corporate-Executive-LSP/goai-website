@@ -1,0 +1,51 @@
+$kind: http-request
+description: <p>Updates a <code>Location</code> object by setting the values of
+  the parameters passed. Any parameters not provided will be left unchanged.</p>
+url: "{{baseUrl}}/v1/terminal/locations/:location"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: location
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: address[city]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: address[country]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: address[line1]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: address[line2]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: address[postal_code]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: address[state]
+      value: <string>
+      disabled: true
+      description: The full address of the location.
+    - key: display_name
+      value: <string>
+      disabled: true
+      description: A name for the location.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000

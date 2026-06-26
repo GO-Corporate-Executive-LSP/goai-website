@@ -1,0 +1,13 @@
+$kind: http-request
+description: <p>Deletes an existing account or customer <code>tax_id</code> object.</p>
+url: "{{baseUrl}}/v1/tax_ids/:id"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 7000

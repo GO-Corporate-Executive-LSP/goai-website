@@ -1,0 +1,20 @@
+$kind: http-request
+description: <p>Retrieves a tax rate with the given ID</p>
+url: "{{baseUrl}}/v1/tax_rates/:tax_rate"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: tax_rate
+    value: <string>
+    description: "(Required) "
+order: 3000

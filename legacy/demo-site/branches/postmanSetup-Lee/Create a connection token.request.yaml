@@ -1,0 +1,29 @@
+$kind: http-request
+description: <p>To connect to a reader the Stripe Terminal SDK needs to retrieve
+  a short-lived connection token from Stripe, proxied through your server. On
+  your backend, add an endpoint that creates and returns a connection token.</p>
+url: "{{baseUrl}}/v1/terminal/connection_tokens"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: location
+      value: <string>
+      disabled: true
+      description: The id of the location that this connection token is scoped to. If
+        specified the connection token will only be usable with readers assigned
+        to that location, otherwise the connection token will be usable with all
+        readers. Note that location scoping only applies to internet-connected
+        readers. For more details, see [the docs on scoping connection
+        tokens](https://stripe.com/docs/terminal/fleet/locations#connection-tokens).
+order: 1000

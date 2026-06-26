@@ -1,0 +1,58 @@
+$kind: http-request
+description: <p>Updates an existing tax rate.</p>
+url: "{{baseUrl}}/v1/tax_rates/:tax_rate"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: tax_rate
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Flag determining whether the tax rate is active or inactive
+        (archived). Inactive tax rates cannot be used with new applications or
+        Checkout Sessions, but will still work for subscriptions and invoices
+        that already have it set.
+    - key: country
+      value: <string>
+      disabled: true
+      description: Two-letter country code ([ISO 3166-1
+        alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the tax rate for your internal use
+        only. It will not be visible to your customers.
+    - key: display_name
+      value: <string>
+      disabled: true
+      description: The display name of the tax rate, which will be shown to users.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: jurisdiction
+      value: <string>
+      disabled: true
+      description: The jurisdiction for the tax rate. You can use this label field for
+        tax reporting purposes. It also appears on your customer’s invoice.
+    - key: state
+      value: <string>
+      disabled: true
+      description: '[ISO 3166-2 subdivision
+        code](https://en.wikipedia.org/wiki/ISO_3166-2:US), without country
+        prefix. For example, "NY" for New York, United States.'
+    - key: tax_type
+      value: <string>
+      disabled: true
+      description: The high-level tax type, such as `vat` or `sales_tax`.
+order: 4000

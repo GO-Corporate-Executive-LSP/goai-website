@@ -1,0 +1,316 @@
+$kind: http-request
+description: <p>Creates a new <code>Configuration</code> object.</p>
+url: "{{baseUrl}}/v1/terminal/configurations"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: bbpos_wisepos_e[splashscreen]
+      value: <string>
+      disabled: true
+      description: An object containing device type specific settings for BBPOS
+        WisePOS E readers
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: name
+      value: <string>
+      disabled: true
+      description: Name of the configuration
+    - key: offline[enabled]
+      value: <boolean>
+      disabled: true
+      description: Configurations for collecting transactions offline.
+    - key: tipping[aud][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[aud][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[aud][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[aud][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[aud][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[cad][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[cad][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[cad][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[cad][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[cad][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[chf][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[chf][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[chf][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[chf][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[chf][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[czk][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[czk][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[czk][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[czk][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[czk][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[dkk][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[dkk][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[dkk][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[dkk][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[dkk][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[eur][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[eur][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[eur][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[eur][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[eur][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[gbp][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[gbp][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[gbp][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[gbp][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[gbp][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[hkd][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[hkd][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[hkd][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[hkd][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[hkd][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[myr][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[myr][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[myr][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[myr][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[myr][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nok][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nok][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nok][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nok][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nok][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nzd][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nzd][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nzd][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nzd][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[nzd][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sek][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sek][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sek][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sek][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sek][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sgd][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sgd][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sgd][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sgd][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[sgd][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[usd][fixed_amounts][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[usd][fixed_amounts][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[usd][percentages][0]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[usd][percentages][1]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: tipping[usd][smart_tip_threshold]
+      value: <integer>
+      disabled: true
+      description: Tipping configurations for readers supporting on-reader tips
+    - key: verifone_p400[splashscreen]
+      value: <string>
+      disabled: true
+      description: An object containing device type specific settings for Verifone
+        P400 readers
+order: 2000

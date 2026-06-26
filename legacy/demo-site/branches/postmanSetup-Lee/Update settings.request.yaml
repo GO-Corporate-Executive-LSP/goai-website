@@ -1,0 +1,52 @@
+$kind: http-request
+description: <p>Updates Tax <code>Settings</code> parameters used in tax
+  calculations. All parameters are editable but none can be removed once
+  set.</p>
+url: "{{baseUrl}}/v1/tax/settings"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: defaults[tax_behavior]
+      value: <string>
+      disabled: true
+      description: Default configuration to be used on Stripe Tax calculations.
+    - key: defaults[tax_code]
+      value: <string>
+      disabled: true
+      description: Default configuration to be used on Stripe Tax calculations.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: head_office[address][city]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+    - key: head_office[address][country]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+    - key: head_office[address][line1]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+    - key: head_office[address][line2]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+    - key: head_office[address][postal_code]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+    - key: head_office[address][state]
+      value: <string>
+      disabled: true
+      description: The place where your business is located.
+order: 2000

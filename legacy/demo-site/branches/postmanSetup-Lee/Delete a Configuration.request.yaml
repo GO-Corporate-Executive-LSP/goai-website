@@ -1,0 +1,13 @@
+$kind: http-request
+description: <p>Deletes a <code>Configuration</code> object.</p>
+url: "{{baseUrl}}/v1/terminal/configurations/:configuration"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: configuration
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

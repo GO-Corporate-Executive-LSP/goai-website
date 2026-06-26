@@ -1,0 +1,49 @@
+$kind: http-request
+description: >-
+  <p>Creates a new <code>Location</code> object.
+
+  For further details, including which address fields are required in each
+  country, see the <a href="/docs/terminal/fleet/locations">Manage locations</a>
+  guide.</p>
+url: "{{baseUrl}}/v1/terminal/locations"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: address[country]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: address[city]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: address[line1]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: address[line2]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: address[postal_code]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: address[state]
+      value: <string>
+      description: (Required) The full address of the location.
+    - key: display_name
+      value: <string>
+      description: (Required) A name for the location.
+    - key: configuration_overrides
+      value: <string>
+      disabled: true
+      description: The ID of a configuration that will be used to customize all
+        readers in this location.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

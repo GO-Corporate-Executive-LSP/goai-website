@@ -1,0 +1,27 @@
+$kind: http-request
+description: <p>Creates a Tax <code>Transaction</code> from a calculation.</p>
+url: "{{baseUrl}}/v1/tax/transactions/create_from_calculation"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: calculation
+      value: <string>
+      description: (Required) Tax Calculation ID to be used as input when creating the
+        transaction.
+    - key: reference
+      value: <string>
+      description: (Required) A custom order or sale identifier, such as
+        'myOrder_123'. Must be unique across all transactions, including
+        reversals.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 3000
