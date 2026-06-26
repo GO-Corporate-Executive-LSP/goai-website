@@ -1,0 +1,21 @@
+$kind: http-request
+description: <p>Reverses a ReceivedCredit and creates a CreditReversal object.</p>
+url: "{{baseUrl}}/v1/treasury/credit_reversals"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: received_credit
+      value: <string>
+      description: (Required) The ReceivedCredit to reverse.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

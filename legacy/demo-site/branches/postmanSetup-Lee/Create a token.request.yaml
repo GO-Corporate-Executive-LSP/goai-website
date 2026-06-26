@@ -1,0 +1,819 @@
+$kind: http-request
+description: >-
+  <p>Creates a single-use token that represents a bank account’s details.
+
+  You can use this token with any API method in place of a bank account
+  dictionary. You can only use this token once. To do so, attach it to a <a
+  href="#accounts">Custom account</a>.</p>
+url: "{{baseUrl}}/v1/tokens"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: account[business_type]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kana][town]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][address_kanji][town]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][directors_provided]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][executives_provided]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][export_license_id]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][export_purpose_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][name]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][name_kana]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][name_kanji]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][owners_provided]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][ownership_declaration][date]
+      value: <unix-time>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][ownership_declaration][ip]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][ownership_declaration][user_agent]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][ownership_declaration_shown_and_signed]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][phone]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][registration_number]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][structure]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][tax_id]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][tax_id_registrar]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][vat_id]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][verification][document][back]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[company][verification][document][front]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kana][town]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][address_kanji][town]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][dob][day]
+      value: <integer>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][dob][month]
+      value: <integer>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][dob][year]
+      value: <integer>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][email]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][first_name]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][first_name_kana]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][first_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][full_name_aliases][0]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][full_name_aliases][1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][gender]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][id_number]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][id_number_secondary]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][last_name]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][last_name_kana]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][last_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][maiden_name]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][metadata]
+      value: <object>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][phone]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][political_exposure]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][city]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][country]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][line1]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][line2]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][registered_address][state]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][relationship][director]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][relationship][executive]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][relationship][owner]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][relationship][percent_ownership]
+      value: <number>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][relationship][title]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][ssn_last_4]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][verification][additional_document][back]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][verification][additional_document][front]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][verification][document][back]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[individual][verification][document][front]
+      value: <string>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: account[tos_shown_and_accepted]
+      value: <boolean>
+      disabled: true
+      description: Information for the account this token represents.
+    - key: bank_account[account_number]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[country]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[account_holder_name]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[account_type]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[currency]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[payment_method]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: bank_account[routing_number]
+      value: <string>
+      disabled: true
+      description: The bank account this token will represent.
+    - key: card[exp_month]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[exp_year]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[number]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_city]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_country]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_line1]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_line2]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_state]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[address_zip]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[currency]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[cvc]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[name]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: card[networks][preferred]
+      value: <string>
+      disabled: true
+      description: The card this token will represent. If you also pass in a customer,
+        the card must be the ID of a card belonging to the customer. Otherwise,
+        if you do not pass in a customer, this is a dictionary containing a
+        user's credit card details, with the options described below.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: Create a token for the customer, which is owned by the
+        application's account. You can only use this with an [OAuth access
+        token](https://stripe.com/docs/connect/standard-accounts) or
+        [Stripe-Account header](https://stripe.com/docs/connect/authentication).
+        Learn more about [cloning saved payment
+        methods](https://stripe.com/docs/connect/cloning-saved-payment-methods).
+    - key: cvc_update[cvc]
+      value: <string>
+      disabled: true
+      description: The updated CVC value this token represents.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: person[additional_tos_acceptances][account][date]
+      value: <unix-time>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[additional_tos_acceptances][account][ip]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[additional_tos_acceptances][account][user_agent]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][city]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][country]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][line1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][line2]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address][state]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][city]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][country]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][line1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][line2]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][state]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kana][town]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][city]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][country]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][line1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][line2]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][state]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[address_kanji][town]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[dob][day]
+      value: <integer>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[dob][month]
+      value: <integer>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[dob][year]
+      value: <integer>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][company_authorization][files][0]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][company_authorization][files][1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][passport][files][0]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][passport][files][1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][visa][files][0]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[documents][visa][files][1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[email]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[first_name]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[first_name_kana]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[first_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[full_name_aliases][0]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[full_name_aliases][1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[gender]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[id_number]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[id_number_secondary]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[last_name]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[last_name_kana]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[last_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[maiden_name]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[metadata]
+      value: <object>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[nationality]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[phone]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[political_exposure]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][city]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][country]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][line1]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][line2]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[registered_address][state]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][director]
+      value: <boolean>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][executive]
+      value: <boolean>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][legal_guardian]
+      value: <boolean>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][owner]
+      value: <boolean>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][percent_ownership]
+      value: <number>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][representative]
+      value: <boolean>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[relationship][title]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[ssn_last_4]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[verification][additional_document][back]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[verification][additional_document][front]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[verification][document][back]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: person[verification][document][front]
+      value: <string>
+      disabled: true
+      description: Information for the person this token represents.
+    - key: pii[id_number]
+      value: <string>
+      disabled: true
+      description: The PII this token represents.
+order: 1000

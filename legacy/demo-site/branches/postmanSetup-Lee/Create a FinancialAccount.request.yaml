@@ -1,0 +1,89 @@
+$kind: http-request
+description: <p>Creates a new FinancialAccount. For now, each connected account
+  can only have one FinancialAccount.</p>
+url: "{{baseUrl}}/v1/treasury/financial_accounts"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: supported_currencies[0]
+      value: <string>
+      description: (Required) The currencies the FinancialAccount can hold a balance in.
+    - key: supported_currencies[1]
+      value: <string>
+      description: (Required) The currencies the FinancialAccount can hold a balance in.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: features[card_issuing][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[deposit_insurance][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[financial_addresses][aba][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[inbound_transfers][ach][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[intra_stripe_flows][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[outbound_payments][ach][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[outbound_payments][us_domestic_wire][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[outbound_transfers][ach][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: features[outbound_transfers][us_domestic_wire][requested]
+      value: <boolean>
+      disabled: true
+      description: Encodes whether a FinancialAccount has access to a particular
+        feature. Stripe or the platform can control features via the requested
+        field.
+    - key: platform_restrictions[inbound_flows]
+      value: <string>
+      disabled: true
+      description: The set of functionalities that the platform can restrict on the
+        FinancialAccount.
+    - key: platform_restrictions[outbound_flows]
+      value: <string>
+      disabled: true
+      description: The set of functionalities that the platform can restrict on the
+        FinancialAccount.
+order: 2000

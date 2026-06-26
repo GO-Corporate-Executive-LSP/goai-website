@@ -1,0 +1,29 @@
+$kind: http-request
+name: "Test mode: Fail an InboundTransfer"
+description: <p>Transitions a test mode created InboundTransfer to the
+  <code>failed</code> status. The InboundTransfer must already be in the
+  <code>processing</code> state.</p>
+url: "{{baseUrl}}/v1/test_helpers/treasury/inbound_transfers/:id/fail"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: failure_details[code]
+      value: <string>
+      disabled: true
+      description: Details about a failed InboundTransfer.
+order: 1000

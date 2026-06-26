@@ -1,0 +1,56 @@
+$kind: http-request
+description: >-
+  <p>When you create a new reversal, you must specify a transfer to create it
+  on.</p>
+
+
+  <p>When reversing transfers, you can optionally reverse part of the transfer.
+  You can do so as many times as you wish until the entire transfer has been
+  reversed.</p>
+
+
+  <p>Once entirely reversed, a transfer can’t be reversed again. This method
+  will return an error when called on an already-reversed transfer, or when
+  trying to reverse more money than is left on a transfer.</p>
+url: "{{baseUrl}}/v1/transfers/:id/reversals"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: A positive integer in cents (or local equivalent) representing how
+        much of this transfer to reverse. Can only reverse up to the unreversed
+        amount remaining of the transfer. Partial transfer reversals are only
+        allowed for transfers to Stripe Accounts. Defaults to the entire
+        transfer amount.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string which you can attach to a reversal object. It
+        is displayed alongside the reversal in the Dashboard. This will be unset
+        if you POST an empty value.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: refund_application_fee
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether the application fee should be refunded
+        when reversing this transfer. If a full transfer reversal is given, the
+        full application fee will be refunded. Otherwise, the application fee
+        will be refunded with an amount proportional to the amount of the
+        transfer reversed.
+order: 2000

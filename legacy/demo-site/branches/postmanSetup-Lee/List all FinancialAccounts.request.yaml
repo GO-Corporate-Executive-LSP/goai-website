@@ -1,0 +1,48 @@
+$kind: http-request
+description: <p>Returns a list of FinancialAccounts.</p>
+url: "{{baseUrl}}/v1/treasury/financial_accounts"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: created[gt]
+    value: <integer>
+    disabled: true
+    description: Only return FinancialAccounts that were created during the given
+      date interval.
+  - key: created[gte]
+    value: <integer>
+    disabled: true
+    description: Only return FinancialAccounts that were created during the given
+      date interval.
+  - key: created[lt]
+    value: <integer>
+    disabled: true
+    description: Only return FinancialAccounts that were created during the given
+      date interval.
+  - key: created[lte]
+    value: <integer>
+    disabled: true
+    description: Only return FinancialAccounts that were created during the given
+      date interval.
+  - key: ending_before
+    value: <string>
+    disabled: true
+    description: An object ID cursor for use in pagination.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit ranging from 1 to 100 (defaults to 10).
+  - key: starting_after
+    value: <string>
+    disabled: true
+    description: An object ID cursor for use in pagination.
+order: 1000

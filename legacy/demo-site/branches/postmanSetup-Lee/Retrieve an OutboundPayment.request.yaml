@@ -1,0 +1,22 @@
+$kind: http-request
+description: <p>Retrieves the details of an existing OutboundPayment by passing
+  the unique OutboundPayment ID from either the OutboundPayment creation request
+  or OutboundPayment list.</p>
+url: "{{baseUrl}}/v1/treasury/outbound_payments/:id"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+order: 6000

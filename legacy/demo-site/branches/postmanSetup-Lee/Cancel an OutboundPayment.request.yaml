@@ -1,0 +1,22 @@
+$kind: http-request
+description: <p>Cancel an OutboundPayment.</p>
+url: "{{baseUrl}}/v1/treasury/outbound_payments/:id/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 7000

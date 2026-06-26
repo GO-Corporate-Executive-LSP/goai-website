@@ -1,0 +1,13 @@
+$kind: http-request
+description: <p>Deletes a <code>Reader</code> object.</p>
+url: "{{baseUrl}}/v1/terminal/readers/:reader"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: reader
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

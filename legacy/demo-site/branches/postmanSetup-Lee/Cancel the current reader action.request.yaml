@@ -1,0 +1,22 @@
+$kind: http-request
+description: <p>Cancels the current reader action.</p>
+url: "{{baseUrl}}/v1/terminal/readers/:reader/cancel_action"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: reader
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 6000

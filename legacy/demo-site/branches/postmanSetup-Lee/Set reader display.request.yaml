@@ -1,0 +1,61 @@
+$kind: http-request
+description: <p>Sets reader display to show cart details.</p>
+url: "{{baseUrl}}/v1/terminal/readers/:reader/set_reader_display"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: reader
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: type
+      value: <string>
+      description: (Required) Type
+    - key: cart[currency]
+      value: <string>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][0][amount]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][0][description]
+      value: <string>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][0][quantity]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][1][amount]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][1][description]
+      value: <string>
+      disabled: true
+      description: Cart
+    - key: cart[line_items][1][quantity]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: cart[total]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: cart[tax]
+      value: <integer>
+      disabled: true
+      description: Cart
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 10000

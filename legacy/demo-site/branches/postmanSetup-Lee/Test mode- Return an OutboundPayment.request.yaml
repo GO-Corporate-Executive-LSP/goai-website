@@ -1,0 +1,29 @@
+$kind: http-request
+name: "Test mode: Return an OutboundPayment"
+description: <p>Transitions a test mode created OutboundPayment to the
+  <code>returned</code> status. The OutboundPayment must already be in the
+  <code>processing</code> state.</p>
+url: "{{baseUrl}}/v1/test_helpers/treasury/outbound_payments/:id/return"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: returned_details[code]
+      value: <string>
+      disabled: true
+      description: Optional hash to set the the return code.
+order: 3000

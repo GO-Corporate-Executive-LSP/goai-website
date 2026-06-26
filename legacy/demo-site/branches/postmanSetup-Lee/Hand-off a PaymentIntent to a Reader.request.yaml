@@ -1,0 +1,37 @@
+$kind: http-request
+description: <p>Initiates a payment flow on a Reader.</p>
+url: "{{baseUrl}}/v1/terminal/readers/:reader/process_payment_intent"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: reader
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: payment_intent
+      value: <string>
+      description: (Required) PaymentIntent ID
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: process_config[enable_customer_cancellation]
+      value: <boolean>
+      disabled: true
+      description: Configuration overrides
+    - key: process_config[skip_tipping]
+      value: <boolean>
+      disabled: true
+      description: Configuration overrides
+    - key: process_config[tipping][amount_eligible]
+      value: <integer>
+      disabled: true
+      description: Configuration overrides
+order: 7000

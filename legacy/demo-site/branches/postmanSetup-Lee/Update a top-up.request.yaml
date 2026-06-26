@@ -1,0 +1,28 @@
+$kind: http-request
+description: <p>Updates the metadata of a top-up. Other top-up details are not
+  editable by design.</p>
+url: "{{baseUrl}}/v1/topups/:topup"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: topup
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

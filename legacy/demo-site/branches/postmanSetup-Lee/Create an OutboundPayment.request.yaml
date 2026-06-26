@@ -1,0 +1,149 @@
+$kind: http-request
+description: <p>Creates an OutboundPayment.</p>
+url: "{{baseUrl}}/v1/treasury/outbound_payments"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      description: (Required) Amount (in cents) to be transferred.
+    - key: currency
+      value: <string>
+      description: (Required) Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: financial_account
+      value: <string>
+      description: (Required) The FinancialAccount to pull funds from.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: ID of the customer to whom the OutboundPayment is sent. Must match
+        the Customer attached to the `destination_payment_method` passed in.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users.
+    - key: destination_payment_method
+      value: <string>
+      disabled: true
+      description: The PaymentMethod to use as the payment instrument for the
+        OutboundPayment. Exclusive with `destination_payment_method_data`.
+    - key: destination_payment_method_data[type]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][city]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][country]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][line1]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][line2]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][postal_code]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][address][state]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][email]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][name]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[billing_details][phone]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[financial_account]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[metadata]
+      value: <object>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[us_bank_account][account_holder_type]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[us_bank_account][account_number]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[us_bank_account][account_type]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[us_bank_account][financial_connections_account]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_data[us_bank_account][routing_number]
+      value: <string>
+      disabled: true
+      description: Hash used to generate the PaymentMethod to be used for this
+        OutboundPayment. Exclusive with `destination_payment_method`.
+    - key: destination_payment_method_options[us_bank_account][network]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this OutboundPayment.
+    - key: end_user_details[present]
+      value: <boolean>
+      disabled: true
+      description: End user details.
+    - key: end_user_details[ip_address]
+      value: <string>
+      disabled: true
+      description: End user details.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: The description that appears on the receiving end for this
+        OutboundPayment (for example, bank statement for external bank
+        transfer). Maximum 10 characters for `ach` payments, 140 characters for
+        `us_domestic_wire` payments, or 500 characters for `stripe` network
+        transfers. The default value is "payment".
+order: 5000

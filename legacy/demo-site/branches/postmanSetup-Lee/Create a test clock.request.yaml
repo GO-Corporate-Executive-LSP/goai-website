@@ -1,0 +1,26 @@
+$kind: http-request
+description: <p>Creates a new test clock that can be attached to new customers
+  and quotes.</p>
+url: "{{baseUrl}}/v1/test_helpers/test_clocks"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: frozen_time
+      value: <unix-time>
+      description: (Required) The initial frozen time for this test clock.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: name
+      value: <string>
+      disabled: true
+      description: The name for this test clock.
+order: 2000

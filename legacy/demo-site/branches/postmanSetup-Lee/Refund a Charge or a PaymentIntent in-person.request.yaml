@@ -1,148 +1,25 @@
 $kind: http-request
-description: <p>Creates a AccountSession object that includes a single-use token
-  that the platform can use on their front-end to grant client-side API
-  access.</p>
-url: "{{baseUrl}}/v1/account_sessions"
+description: <p>Initiates a refund on a Reader</p>
+url: "{{baseUrl}}/v1/terminal/readers/:reader/refund_payment"
 method: POST
 headers:
   Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: reader
+    value: <string>
+    description: "(Required) "
 body:
   type: urlencoded
   content:
-    - key: account
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: A positive integer in __cents__ representing how much of this
+        charge to refund.
+    - key: charge
       value: <string>
-      description: (Required) The identifier of the account to create an Account
-        Session for.
-    - key: components[account_management][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[account_management][features][external_account_collection]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[account_onboarding][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[account_onboarding][features][external_account_collection]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[balances][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[balances][features][edit_payout_schedule]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[balances][features][instant_payouts]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[balances][features][standard_payouts]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[documents][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[notification_banner][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[notification_banner][features][external_account_collection]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payment_details][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payment_details][features][capture_payments]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payment_details][features][destination_on_behalf_of_charge_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payment_details][features][dispute_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payment_details][features][refund_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payments][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payments][features][capture_payments]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payments][features][destination_on_behalf_of_charge_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payments][features][dispute_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payments][features][refund_management]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payouts][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payouts][features][edit_payout_schedule]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payouts][features][instant_payouts]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payouts][features][standard_payouts]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
-    - key: components[payouts_list][enabled]
-      value: <boolean>
-      description: (Required) Each key of the dictionary represents an embedded
-        component, and each embedded component maps to its configuration (e.g.
-        whether it has been enabled or not).
+      disabled: true
+      description: ID of the Charge to refund.
     - key: expand[0]
       value: <string>
       disabled: true
@@ -151,4 +28,29 @@ body:
       value: <string>
       disabled: true
       description: Specifies which fields in the response should be expanded.
-order: 1000
+    - key: payment_intent
+      value: <string>
+      disabled: true
+      description: ID of the PaymentIntent to refund.
+    - key: refund_application_fee
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether the application fee should be refunded
+        when refunding this charge. If a full charge refund is given, the full
+        application fee will be refunded. Otherwise, the application fee will be
+        refunded in an amount proportional to the amount of the charge refunded.
+        An application fee can be refunded only by the application that created
+        the charge.
+    - key: refund_payment_config[enable_customer_cancellation]
+      value: <boolean>
+      disabled: true
+      description: Configuration overrides
+    - key: reverse_transfer
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether the transfer should be reversed when
+        refunding this charge. The transfer will be reversed proportionally to
+        the amount being refunded (either the entire or partial amount). A
+        transfer can be reversed only by the application that created the
+        charge.
+order: 9000

@@ -1,0 +1,21 @@
+$kind: http-request
+description: <p>Reverses a ReceivedDebit and creates a DebitReversal object.</p>
+url: "{{baseUrl}}/v1/treasury/debit_reversals"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: received_debit
+      value: <string>
+      description: (Required) The ReceivedDebit to reverse.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000
