@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{url}}/v1/dispatches/{{ride_id}}"
+method: PATCH
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "destination": {
+            "lat": {{new_dest_lat}},
+            "lng": {{new_dest_lng}},
+            "address": "{{new_dest_address}}"
+        },
+        "price_changed_token": "{{price_changed_token}}"
+    }
+order: 6000

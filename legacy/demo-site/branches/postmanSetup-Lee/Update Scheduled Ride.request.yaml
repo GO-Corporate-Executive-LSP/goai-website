@@ -1,0 +1,29 @@
+$kind: http-request
+url: "{{url}}/v1/dispatches/{{ride_id}}"
+method: PATCH
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "origin": {
+            "lat": {{new_origin_lat}},
+            "lng": {{new_origin_lng}},
+            "address": "{{new_origin_address}}"
+        },
+        "destination": {
+            "lat": {{new_dest_lat}},
+            "lng": {{new_dest_lng}},
+            "address": "{{new_dest_address}}"
+        },
+        "scheduled_pickup_range": {
+            "timestamp_ms": {{new_scheduled_timestamp_ms}}
+        },
+        "driver_message": "Update to driver message",
+        "price_changed_token": "{{price_changed_token}}",
+        "ride_notif_recipient_phone_numbers": [
+            "+14155550163"
+        ]
+    }
+order: 5000

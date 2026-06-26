@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{url}}/v1/dispatches/{{ride_id}}/custom-field-values"
+method: PATCH
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "data": {
+            "dealer_name": "12356"
+        }
+    }
+order: 3000

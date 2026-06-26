@@ -1,0 +1,7 @@
+$kind: http-request
+description: Insert rideID into endpoint address
+url: "{{url}}/v1/dispatches/{{ride_id}}"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 7000

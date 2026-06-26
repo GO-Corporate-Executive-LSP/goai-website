@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{url}}/v1/sandbox/rides/{{ride_id}}/lifecycle"
+method: PUT
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "next_pause_state": "pickedUp",
+        "fast_forward_interval": 60
+    }
+order: 3000

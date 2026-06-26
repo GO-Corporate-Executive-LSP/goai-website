@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{url}}/v1/custom-fields"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 1000

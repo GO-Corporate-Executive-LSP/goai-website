@@ -1,0 +1,47 @@
+$kind: http-request
+description: (Optional) Edit Body values
+url: "{{url}}/v1/dispatches"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "ride_type": "{{ride_type}}",
+        "origin": {
+            "lat": {{origin_lat}},
+            "lng": {{origin_lng}},
+            "address": "{{origin_address}}"
+        },
+        "destination": {
+            "lat": {{dest_lat}},
+            "lng": {{dest_lng}},
+            "address": "{{dest_address}}"
+        },
+        "passenger": {
+            "first_name": "John",
+            "last_name": "Smith",
+            "phone_number": "+14805550198"
+        },
+        "driver_message": "Hello driver",
+        "cost_token": "{{cost_token}}",
+        "external_note": "Hello report",
+        "ride_notif_recipient_phone_numbers": [
+            "+14155550165",
+            "+17075550164"
+        ]
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+          const jsonData = JSON.parse(responseBody);
+          if (jsonData.ride_id != null) {
+              pm.environment.set("ride_id", jsonData.ride_id);
+          }
+      } catch (e) {}
+    language: text/javascript
+settings:
+  disabledSystemHeaders: []
+order: 2000

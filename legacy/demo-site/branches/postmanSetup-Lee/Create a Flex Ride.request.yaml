@@ -1,0 +1,54 @@
+$kind: http-request
+url: "{{url}}/v1/flex-requests"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "ride_type": "{{ride_type}}",
+        "passenger": {
+            "first_name": "Jane",
+            "last_name": "Doe",
+            "phone_number": "+17605550178"
+        },
+        "origin": {
+            "lat": {{origin_lat}},
+            "lng": {{origin_lng}},
+            "address": "{{origin_address}}"
+        },
+        "destination": {
+            "lat": {{dest_lat}},
+            "lng": {{dest_lng}},
+            "address": "{{dest_address}}"
+        },
+        "valid_range": {
+            "from_timestamp_ms": {{from_timestamp_ms}},
+            "to_timestamp_ms": {{to_timestamp_ms}}
+        },
+        "driver_message": "Hello driver",
+        "external_note": "Hello report",
+        "ride_notif_recipient_phone_numbers": [
+            "+14155550165",
+            "+17075550164"
+        ]
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      try {
+          const jsonData = JSON.parse(responseBody);
+          pm.environment.set("flex_ride_id", jsonData.flex_ride_id);
+      } catch (e) {}
+    language: text/javascript
+  - type: beforeRequest
+    code: >-
+      pm.environment.set("from_timestamp_ms", Date.now());
+
+      pm.environment.set("to_timestamp_ms", Date.now() + 1000 * 60 * 60 * 24 *
+      2);
+    language: text/javascript
+settings:
+  disabledSystemHeaders: []
+order: 1000

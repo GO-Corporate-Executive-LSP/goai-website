@@ -1,0 +1,34 @@
+$kind: http-request
+url: "{{url}}/v1/cost?start_lat={{origin_lat}}&start_lng={{origin_lng}}&end_lat\
+  ={{dest_lat}}&end_lng={{dest_lng}}&pickup_time_ms={{scheduled_timestamp_ms}}"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+queryParams:
+  start_lat: "{{origin_lat}}"
+  start_lng: "{{origin_lng}}"
+  end_lat: "{{dest_lat}}"
+  end_lng: "{{dest_lng}}"
+  pickup_time_ms: "{{scheduled_timestamp_ms}}"
+scripts:
+  - type: afterResponse
+    code: >
+      try {
+          const jsonData = JSON.parse(responseBody);
+          const cost_estimates = jsonData.cost_estimates;
+
+          let rideType = pm.environment.get("ride_type");
+
+          if (!rideType) {
+              rideType = 'lyft';
+          }
+          
+          if (cost_estimates != null) {
+              const rideTypeEstimate = cost_estimates.find(estimate => estimate.ride_type === rideType);
+              if (rideTypeEstimate && rideTypeEstimate.cost_token) {
+                  pm.environment.set("cost_token", rideTypeEstimate.cost_token);
+              }
+          }
+      } catch (e) {}
+    language: text/javascript
+order: 2000

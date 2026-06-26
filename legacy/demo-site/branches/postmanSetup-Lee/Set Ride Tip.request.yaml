@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{url}}/v1/dispatches/{{ride_id}}/tip"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "tip_amount": 700
+    }
+order: 8000

@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{url}}/v1/sandbox/rides/{{flex_ride_id}}/deactivate"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 2000

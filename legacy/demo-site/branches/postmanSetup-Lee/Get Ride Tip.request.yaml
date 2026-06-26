@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{url}}/v1/dispatches/{{ride_id}}/tip"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+queryParams:
+  - key: ""
+    value: ""
+    disabled: true
+order: 9000

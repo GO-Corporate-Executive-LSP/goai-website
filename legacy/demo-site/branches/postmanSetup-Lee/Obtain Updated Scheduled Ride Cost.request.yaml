@@ -1,0 +1,38 @@
+$kind: http-request
+url: "{{url}}/v1/ride-change-cost/{{ride_id}}"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+body:
+  type: json
+  content: |-
+    {
+        "origin": {
+            "lat": {{new_origin_lat}},
+            "lng": {{new_origin_lng}},
+            "address": "{{new_origin_address}}"
+        },
+        "destination": {
+            "lat": {{new_dest_lat}},
+            "lng": {{new_dest_lng}},
+            "address": "{{new_dest_address}}"
+        },
+        "scheduled_pickup_range": {
+            "timestamp_ms": {{new_scheduled_timestamp_ms}}
+        }
+    }
+scripts:
+  - type: beforeRequest
+    code: pm.environment.set("new_scheduled_timestamp_ms", Date.now() + 1000 * 60 *
+      60 * 2);
+    language: text/javascript
+  - type: afterResponse
+    code: >
+      try {
+          const jsonData = JSON.parse(responseBody);
+          if (jsonData.cost_estimate_token != null) {
+              pm.environment.set("price_changed_token", jsonData.cost_estimate_token);
+          }
+      } catch (e) {}
+    language: text/javascript
+order: 3000

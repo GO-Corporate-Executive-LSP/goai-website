@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{url}}/v1/sandbox/rides/{{ride_id}}/lifecycle"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 5000

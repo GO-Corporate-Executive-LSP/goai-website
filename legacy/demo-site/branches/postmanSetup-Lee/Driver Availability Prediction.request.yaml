@@ -1,0 +1,36 @@
+$kind: http-request
+url: "{{url}}/v1/concierge-driver-availability?origin_address={{origin_address}\
+  }&origin_lat={{origin_lat}}&origin_lng={{origin_lng}}&pickup_time_ms={{schedu\
+  led_timestamp_ms}}&dispatch_type={{dispatch_type}}"
+method: GET
+queryParams:
+  origin_address: "{{origin_address}}"
+  origin_lat: "{{origin_lat}}"
+  origin_lng: "{{origin_lng}}"
+  pickup_time_ms: "{{scheduled_timestamp_ms}}"
+  dispatch_type: "{{dispatch_type}}"
+scripts:
+  - type: beforeRequest
+    code: pm.environment.set("scheduled_timestamp_ms", Date.now() + 1000 * 60 * 15);
+    language: text/javascript
+  - type: afterResponse
+    code: >
+      try {
+          const jsonData = JSON.parse(responseBody);
+          const driver_availability_predictions = jsonData.driver_availability_predictions;
+
+          let rideType = pm.environment.get("ride_type");
+
+          if (!rideType) {
+              rideType = 'lyft';
+          }
+
+          if (driver_availability_predictions != null) {
+              const availabilityPrediction = driver_availability_predictions.find(prediction => prediction.ride_type === rideType);
+              if (availabilityPrediction && availabilityPrediction.driver_availability_token) {
+                  pm.environment.set("driver_availability_token", availabilityPrediction.driver_availability_token);
+              }
+          }
+      } catch (e) {}
+    language: text/javascript
+order: 1000

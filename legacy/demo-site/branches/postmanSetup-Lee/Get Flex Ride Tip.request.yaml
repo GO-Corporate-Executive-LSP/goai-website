@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{url}}/v1/flex-requests/{{flex_ride_id}}/tip"
+method: GET
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 6000

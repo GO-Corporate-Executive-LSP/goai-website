@@ -1,0 +1,7 @@
+$kind: http-request
+description: Add RideID to endpoint address
+url: "{{url}}/v1/dispatches/{{ride_id}}/cancel"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+order: 11000

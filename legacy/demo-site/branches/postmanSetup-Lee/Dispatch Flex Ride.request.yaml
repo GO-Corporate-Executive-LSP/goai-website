@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{url}}/v1/flex-requests/{{flex_ride_id}}/dispatch"
+method: POST
+headers:
+  X-Lyft-Program-Id: "{{account_lyft_id}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      const jsonData = JSON.parse(responseBody);
+      if (jsonData.ride_id) {
+          pm.environment.set("ride_id", jsonData.ride_id);
+      }
+    language: text/javascript
+order: 4000
