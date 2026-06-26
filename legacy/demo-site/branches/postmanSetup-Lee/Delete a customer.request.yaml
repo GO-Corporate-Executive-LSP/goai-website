@@ -1,0 +1,14 @@
+$kind: http-request
+description: <p>Permanently deletes a customer. It cannot be undone. Also
+  immediately cancels any active subscriptions on the customer.</p>
+url: "{{baseUrl}}/v1/customers/:customer"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 4000

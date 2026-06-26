@@ -1,0 +1,26 @@
+$kind: http-request
+description: <p>Changes the settings on a customer’s cash balance.</p>
+url: "{{baseUrl}}/v1/customers/:customer/cash_balance"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: settings[reconciliation_mode]
+      value: <string>
+      disabled: true
+      description: A hash of settings for this cash balance.
+order: 2000

@@ -1,0 +1,32 @@
+$kind: http-request
+description: <p>Creates a customer session object that includes a single-use
+  client secret that you can use on your front-end to grant client-side API
+  access for certain customer resources.</p>
+url: "{{baseUrl}}/v1/customer_sessions"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: components[buy_button][enabled]
+      value: <boolean>
+      description: (Required) Configuration for each component. Exactly 1 component
+        must be enabled.
+    - key: components[pricing_table][enabled]
+      value: <boolean>
+      description: (Required) Configuration for each component. Exactly 1 component
+        must be enabled.
+    - key: customer
+      value: <string>
+      description: (Required) The ID of an existing customer for which to create the
+        customer session.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 1000

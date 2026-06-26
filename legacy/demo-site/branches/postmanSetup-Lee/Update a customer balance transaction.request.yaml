@@ -1,0 +1,31 @@
+$kind: http-request
+description: <p>Most credit balance transaction fields are immutable, but you
+  may update its <code>description</code> and <code>metadata</code>.</p>
+url: "{{baseUrl}}/v1/customers/:customer/balance_transactions/:transaction"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+  - key: transaction
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

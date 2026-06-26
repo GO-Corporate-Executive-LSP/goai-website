@@ -1,0 +1,332 @@
+$kind: http-request
+description: >-
+  <p>Updates the specified customer by setting the values of the parameters
+  passed. Any parameters not provided will be left unchanged. For example, if
+  you pass the <strong>source</strong> parameter, that becomes the customer’s
+  active source (e.g., a card) to be used for all charges in the future. When
+  you update a customer to a new valid card source by passing the
+  <strong>source</strong> parameter: for each of the customer’s current
+  subscriptions, if the subscription bills automatically and is in the
+  <code>past_due</code> state, then the latest open invoice for the subscription
+  with automatic collection enabled will be retried. This retry will not count
+  as an automatic retry, and will not affect the next regularly scheduled
+  payment for the invoice. Changing the <strong>default_source</strong> for a
+  customer will not trigger this behavior.</p>
+
+
+  <p>This request accepts mostly the same arguments as the customer creation
+  call.</p>
+url: "{{baseUrl}}/v1/customers/:customer"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: address[city]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[country]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[line1]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[line2]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[postal_code]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[state]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: balance
+      value: <integer>
+      disabled: true
+      description: An integer amount in cents (or local equivalent) that represents
+        the customer's current balance, which affect the customer's future
+        invoices. A negative amount represents a credit that decreases the
+        amount due on an invoice; a positive amount increases the amount due on
+        an invoice.
+    - key: bank_account[account_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[country]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_name]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[currency]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[object]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[routing_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: card[exp_month]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[exp_year]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[number]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_city]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_country]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line1]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line2]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_state]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_zip]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[cvc]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[metadata]
+      value: <object>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[name]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[object]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: cash_balance[settings][reconciliation_mode]
+      value: <string>
+      disabled: true
+      description: Balance information and default balance settings for this customer.
+    - key: coupon
+      value: <string>
+      disabled: true
+    - key: default_alipay_account
+      value: <string>
+      disabled: true
+      description: ID of Alipay account to make the customer's new default for invoice
+        payments.
+    - key: default_bank_account
+      value: <string>
+      disabled: true
+      description: ID of bank account to make the customer's new default for invoice
+        payments.
+    - key: default_card
+      value: <string>
+      disabled: true
+      description: ID of card to make the customer's new default for invoice payments.
+    - key: default_source
+      value: <string>
+      disabled: true
+      description: |-
+        If you are using payment methods created via the PaymentMethods API, see the [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/update#update_customer-invoice_settings-default_payment_method) parameter.
+
+        Provide the ID of a payment source already attached to this customer to make it this customer's default payment source.
+
+        If you want to add a new payment source and make it the default, see the [source](https://stripe.com/docs/api/customers/update#update_customer-source) property.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string that you can attach to a customer object. It is
+        displayed alongside the customer in the dashboard.
+    - key: email
+      value: <string>
+      disabled: true
+      description: Customer's email address. It's displayed alongside the customer in
+        your dashboard and can be useful for searching and tracking. This may be
+        up to *512 characters*.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: invoice_prefix
+      value: <string>
+      disabled: true
+      description: The prefix for the customer used to generate unique invoice
+        numbers. Must be 3–12 uppercase letters or numbers.
+    - key: invoice_settings[custom_fields][0][name]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][0][value]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][1][name]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][1][value]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[default_payment_method]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[footer]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[rendering_options][amount_tax_display]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: name
+      value: <string>
+      disabled: true
+      description: The customer's full name or business name.
+    - key: next_invoice_sequence
+      value: <integer>
+      disabled: true
+      description: The sequence to be used on the customer's next invoice. Defaults to 1.
+    - key: phone
+      value: <string>
+      disabled: true
+      description: The customer's phone number.
+    - key: preferred_locales[0]
+      value: <string>
+      disabled: true
+      description: Customer's preferred languages, ordered by preference.
+    - key: preferred_locales[1]
+      value: <string>
+      disabled: true
+      description: Customer's preferred languages, ordered by preference.
+    - key: promotion_code
+      value: <string>
+      disabled: true
+      description: The ID of a promotion code to apply to the customer. The customer
+        will have a discount applied on all recurring payments. Charges you
+        create through the API will not have the discount.
+    - key: shipping[address][city]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][country]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][line1]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][line2]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][postal_code]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][state]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[name]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[phone]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: source
+      value: <string>
+      disabled: true
+    - key: tax[ip_address]
+      value: <string>
+      disabled: true
+      description: Tax details about the customer.
+    - key: tax[validate_location]
+      value: <string>
+      disabled: true
+      description: Tax details about the customer.
+    - key: tax_exempt
+      value: <string>
+      disabled: true
+      description: The customer's tax exemption. One of `none`, `exempt`, or `reverse`.
+order: 6000

@@ -1,0 +1,185 @@
+$kind: http-request
+description: <p>Get a preview of a credit note without creating it.</p>
+url: "{{baseUrl}}/v1/credit_notes/preview?invoice=<string>"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: amount
+    value: <integer>
+    disabled: true
+    description: The integer amount in cents (or local equivalent) representing the
+      total amount of the credit note.
+  - key: credit_amount
+    value: <integer>
+    disabled: true
+    description: The integer amount in cents (or local equivalent) representing the
+      amount to credit the customer's balance, which will be automatically
+      applied to their next invoice.
+  - key: effective_at
+    value: <unix-time>
+    disabled: true
+    description: The date when this credit note is in effect. Same as `created`
+      unless overwritten. When defined, this value replaces the system-generated
+      'Date of issue' printed on the credit note PDF.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: invoice
+    value: <string>
+    description: (Required) ID of the invoice.
+  - key: lines[0][type]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][description]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][invoice_line_item]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][quantity]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][0][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][0][tax_rate]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][0][taxable_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][1][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][1][tax_rate]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_amounts][1][taxable_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][unit_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[0][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][type]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][description]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][invoice_line_item]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][quantity]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][0][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][0][tax_rate]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][0][taxable_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][1][amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][1][tax_rate]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_amounts][1][taxable_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][unit_amount]
+    value: <integer>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: lines[1][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: Line items that make up the credit note.
+  - key: memo
+    value: <string>
+    disabled: true
+    description: The credit note's memo appears on the credit note PDF.
+  - key: out_of_band_amount
+    value: <integer>
+    disabled: true
+    description: The integer amount in cents (or local equivalent) representing the
+      amount that is credited outside of Stripe.
+  - key: reason
+    value: <string>
+    disabled: true
+    description: Reason for issuing this credit note, one of `duplicate`,
+      `fraudulent`, `order_change`, or `product_unsatisfactory`
+  - key: refund
+    value: <string>
+    disabled: true
+    description: ID of an existing refund to link this credit note to.
+  - key: refund_amount
+    value: <integer>
+    disabled: true
+    description: The integer amount in cents (or local equivalent) representing the
+      amount to refund. If set, a refund will be created for the charge
+      associated with the invoice.
+  - key: shipping_cost[shipping_rate]
+    value: <string>
+    disabled: true
+    description: When shipping_cost contains the shipping_rate from the invoice, the
+      shipping_cost is included in the credit note.
+order: 2000

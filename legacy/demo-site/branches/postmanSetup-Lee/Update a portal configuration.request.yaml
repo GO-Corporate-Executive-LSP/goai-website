@@ -1,0 +1,130 @@
+$kind: http-request
+description: <p>Updates a configuration that describes the functionality of the
+  customer portal.</p>
+url: "{{baseUrl}}/v1/billing_portal/configurations/:configuration"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: configuration
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the configuration is active and can be used to create
+        portal sessions.
+    - key: business_profile[headline]
+      value: <string>
+      disabled: true
+      description: The business information shown to customers in the portal.
+    - key: business_profile[privacy_policy_url]
+      value: <string>
+      disabled: true
+      description: The business information shown to customers in the portal.
+    - key: business_profile[terms_of_service_url]
+      value: <string>
+      disabled: true
+      description: The business information shown to customers in the portal.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: features[customer_update][allowed_updates][0]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[customer_update][allowed_updates][1]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[customer_update][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[invoice_history][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[payment_method_update][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][cancellation_reason][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][cancellation_reason][options][0]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][cancellation_reason][options][1]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][mode]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_cancel][proration_behavior]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][default_allowed_updates][0]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][default_allowed_updates][1]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][enabled]
+      value: <boolean>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][0][prices][0]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][0][prices][1]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][0][product]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][1][prices][0]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][1][prices][1]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][products][1][product]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: features[subscription_update][proration_behavior]
+      value: <string>
+      disabled: true
+      description: Information about the features available in the portal.
+    - key: login_page[enabled]
+      value: <boolean>
+      disabled: true
+      description: The hosted login page for this configuration. Learn more about the
+        portal login page in our [integration
+        docs](https://stripe.com/docs/billing/subscriptions/integrating-customer-portal#share).
+order: 4000

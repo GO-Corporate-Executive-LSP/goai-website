@@ -1,0 +1,24 @@
+$kind: http-request
+description: <p>Marks a credit note as void. Learn more about <a
+  href="/docs/billing/invoices/credit-notes#voiding">voiding credit
+  notes</a>.</p>
+url: "{{baseUrl}}/v1/credit_notes/:id/void"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 7000

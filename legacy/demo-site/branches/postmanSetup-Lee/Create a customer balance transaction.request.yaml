@@ -1,0 +1,41 @@
+$kind: http-request
+description: <p>Creates an immutable transaction that updates the customer’s
+  credit <a href="/docs/billing/customer/balance">balance</a>.</p>
+url: "{{baseUrl}}/v1/customers/:customer/balance_transactions"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      description: (Required) The integer amount in **cents (or local equivalent)** to
+        apply to the customer's credit balance.
+    - key: currency
+      value: <string>
+      description: (Required) Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+        Specifies the
+        [`invoice_credit_balance`](https://stripe.com/docs/api/customers/object#customer_object-invoice_credit_balance)
+        that this transaction will apply to. If the customer's `currency` is not
+        set, it will be updated to this value.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

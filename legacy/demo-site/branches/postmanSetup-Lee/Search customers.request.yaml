@@ -1,0 +1,44 @@
+$kind: http-request
+description: >-
+  <p>Search for customers you’ve previously created using Stripe’s <a
+  href="/docs/search#search-query-language">Search Query Language</a>.
+
+  Don’t use search in read-after-write flows where strict consistency is
+  necessary. Under normal operating
+
+  conditions, data is searchable in less than a minute. Occasionally,
+  propagation of new or updated data can be up
+
+  to an hour behind during outages. Search functionality is not available to
+  merchants in India.</p>
+url: "{{baseUrl}}/v1/customers/search?query=<string>"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit on the number of objects to be returned. Limit can range
+      between 1 and 100, and the default is 10.
+  - key: page
+    value: <string>
+    disabled: true
+    description: A cursor for pagination across multiple pages of results. Don't
+      include this parameter on the first call. Use the next_page value returned
+      in a previous response to request subsequent results.
+  - key: query
+    value: <string>
+    description: (Required) The search query string. See [search query
+      language](https://stripe.com/docs/search#search-query-language) and the
+      list of supported [query fields for
+      customers](https://stripe.com/docs/search#query-fields-for-customers).
+order: 3000

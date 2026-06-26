@@ -1,0 +1,183 @@
+$kind: http-request
+description: <p>Creates a session of the customer portal.</p>
+url: "{{baseUrl}}/v1/billing_portal/sessions"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: customer
+      value: <string>
+      description: (Required) The ID of an existing customer.
+    - key: configuration
+      value: <string>
+      disabled: true
+      description: The ID of an existing
+        [configuration](https://stripe.com/docs/api/customer_portal/configuration)
+        to use for this session, describing its functionality and features. If
+        not specified, the session uses the default configuration.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: flow_data[type]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[after_completion][type]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[after_completion][hosted_confirmation][custom_message]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[after_completion][redirect][return_url]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_cancel][subscription]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_cancel][retention][coupon_offer][coupon]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_cancel][retention][type]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update][subscription]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][0][id]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][0][price]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][0][quantity]
+      value: <integer>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][1][id]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][1][price]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][items][1][quantity]
+      value: <integer>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][subscription]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: flow_data[subscription_update_confirm][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: Information about a specific flow for the customer to go through.
+        See the
+        [docs](https://stripe.com/docs/customer-management/portal-deep-links) to
+        learn more about using customer portal deep links and flows.
+    - key: locale
+      value: <string>
+      disabled: true
+      description: The IETF language tag of the locale customer portal is displayed
+        in. If blank or auto, the customer’s `preferred_locales` or browser’s
+        locale is used.
+    - key: on_behalf_of
+      value: <string>
+      disabled: true
+      description: The `on_behalf_of` account to use for this session. When specified,
+        only subscriptions and invoices with this `on_behalf_of` account appear
+        in the portal. For more information, see the
+        [docs](https://stripe.com/docs/connect/separate-charges-and-transfers#settlement-merchant).
+        Use the [Accounts
+        API](https://stripe.com/docs/api/accounts/object#account_object-settings-branding)
+        to modify the `on_behalf_of` account's branding settings, which the
+        portal displays.
+    - key: return_url
+      value: <string>
+      disabled: true
+      description: The default URL to redirect customers to when they click on the
+        portal's link to return to your website.
+order: 5000

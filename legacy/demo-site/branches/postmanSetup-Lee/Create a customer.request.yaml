@@ -1,0 +1,205 @@
+$kind: http-request
+description: <p>Creates a new customer object.</p>
+url: "{{baseUrl}}/v1/customers"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: address[city]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[country]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[line1]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[line2]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[postal_code]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: address[state]
+      value: <string>
+      disabled: true
+      description: The customer's address.
+    - key: balance
+      value: <integer>
+      disabled: true
+      description: An integer amount in cents (or local equivalent) that represents
+        the customer's current balance, which affect the customer's future
+        invoices. A negative amount represents a credit that decreases the
+        amount due on an invoice; a positive amount increases the amount due on
+        an invoice.
+    - key: cash_balance[settings][reconciliation_mode]
+      value: <string>
+      disabled: true
+      description: Balance information and default balance settings for this customer.
+    - key: coupon
+      value: <string>
+      disabled: true
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string that you can attach to a customer object. It is
+        displayed alongside the customer in the dashboard.
+    - key: email
+      value: <string>
+      disabled: true
+      description: Customer's email address. It's displayed alongside the customer in
+        your dashboard and can be useful for searching and tracking. This may be
+        up to *512 characters*.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: invoice_prefix
+      value: <string>
+      disabled: true
+      description: The prefix for the customer used to generate unique invoice
+        numbers. Must be 3–12 uppercase letters or numbers.
+    - key: invoice_settings[custom_fields][0][name]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][0][value]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][1][name]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[custom_fields][1][value]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[default_payment_method]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[footer]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: invoice_settings[rendering_options][amount_tax_display]
+      value: <string>
+      disabled: true
+      description: Default invoice settings for this customer.
+    - key: name
+      value: <string>
+      disabled: true
+      description: The customer's full name or business name.
+    - key: next_invoice_sequence
+      value: <integer>
+      disabled: true
+      description: The sequence to be used on the customer's next invoice. Defaults to 1.
+    - key: payment_method
+      value: <string>
+      disabled: true
+    - key: phone
+      value: <string>
+      disabled: true
+      description: The customer's phone number.
+    - key: preferred_locales[0]
+      value: <string>
+      disabled: true
+      description: Customer's preferred languages, ordered by preference.
+    - key: preferred_locales[1]
+      value: <string>
+      disabled: true
+      description: Customer's preferred languages, ordered by preference.
+    - key: promotion_code
+      value: <string>
+      disabled: true
+      description: The ID of a promotion code to apply to the customer. The customer
+        will have a discount applied on all recurring payments. Charges you
+        create through the API will not have the discount.
+    - key: shipping[address][city]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][country]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][line1]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][line2]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][postal_code]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[address][state]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[name]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: shipping[phone]
+      value: <string>
+      disabled: true
+      description: The customer's shipping information. Appears on invoices emailed to
+        this customer.
+    - key: source
+      value: <string>
+      disabled: true
+    - key: tax[ip_address]
+      value: <string>
+      disabled: true
+      description: Tax details about the customer.
+    - key: tax[validate_location]
+      value: <string>
+      disabled: true
+      description: Tax details about the customer.
+    - key: tax_exempt
+      value: <string>
+      disabled: true
+      description: The customer's tax exemption. One of `none`, `exempt`, or `reverse`.
+    - key: tax_id_data[0][type]
+      value: <string>
+      disabled: true
+      description: The customer's tax IDs.
+    - key: tax_id_data[0][value]
+      value: <string>
+      disabled: true
+      description: The customer's tax IDs.
+    - key: tax_id_data[1][type]
+      value: <string>
+      disabled: true
+      description: The customer's tax IDs.
+    - key: tax_id_data[1][value]
+      value: <string>
+      disabled: true
+      description: The customer's tax IDs.
+    - key: test_clock
+      value: <string>
+      disabled: true
+      description: ID of the test clock to attach to the customer.
+order: 2000
