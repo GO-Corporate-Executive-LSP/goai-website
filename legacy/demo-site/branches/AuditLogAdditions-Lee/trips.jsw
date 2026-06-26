@@ -1,0 +1,743 @@
+/**
+ * ETAS Trip Booking API
+ * Endpoints for creating, validating, submitting, and managing trips
+ * 
+ */
+
+import { 
+  saveTrip, 
+  loadTrip, 
+  loadUserTrips,
+  generateTripId, 
+  logAuditEvent,
+  logAuditError,
+  addToAdminQueue 
+} from 'backend/etas/tripDatabase.js';
+
+import { validateTrip } from 'backend/etas/tripValidation.js';
+import { requiresHumanReview } from 'backend/etas/humanReviewRules.js';
+import { canPerformAction, getAllowedActions } from 'backend/etas/rolesPermissions.js';
+import { getUserMessage } from 'backend/etas/humanReviewRules.js';
+import { resolveTierForTrip } from 'backend/etas/tierDefinitions.js';
+
+// ============================================================================
+// ENDPOINT 1: CREATE TRIP
+// ============================================================================
+
+/**
+ * Create a new trip in draft state
+ * 
+ * @param {Object} tripData - Trip data from frontend
+ * @returns {Object} API response with created trip
+ */
+export async function createTrip(tripData) {
+  console.log("\n" + "=".repeat(60));
+  console.log("🆕 API: CREATE TRIP");
+  console.log("=".repeat(60));
+  
+  try {
+    // Validate required field: user_id
+    if (!tripData.user_id) {
+      return {
+        success: false,
+        error: "user_id is required"
+      };
+    }
+    
+    // Generate unique trip ID
+    const tripId = generateTripId();
+    console.log(`📝 Generated trip ID: ${tripId}`);
+    
+    // Create trip object following tripSchema.v1.js
+    // Includes admin context fields from DAY_9_ADMIN_SURFACES.md
+    const now = new Date().toISOString();
+    const trip = {
+      trip_id: tripId,
+      user_id: tripData.user_id,
+      user_email: tripData.user_email || null,
+      
+      // State object (following tripSchema.v1.js)
+      state: {
+        current_state: "draft",
+        previous_state: null,
+        time_in_state: null,
+        state_changed_at: now
+      },
+      
+      // Pickup details
+      pickup: {
+        address: tripData.pickup?.address || "",
+        datetime: tripData.pickup?.datetime || "",
+        timezone: tripData.pickup?.timezone || "America/New_York"
+      },
+      
+      // Dropoff details
+      dropoff: {
+        address: tripData.dropoff?.address || ""
+      },
+      
+      // Return trip (optional)
+      return: {
+        pickup_datetime: tripData.return?.pickup_datetime || "",
+        estimated_home_arrival: tripData.return?.estimated_home_arrival || ""
+      },
+      
+      // Passengers and luggage
+      passengers: tripData.passengers || 1,
+      luggage: tripData.luggage || 0,
+      
+      // Tier (optional in draft, will be resolved later)
+      tier: {
+        name: tripData.tier?.name || "",
+        source: tripData.tier?.source || "",
+        locked: false,  // Not locked in draft
+        vehicle_class: tripData.tier?.vehicle_class || ""
+      },
+      
+      // SENTINEL snapshot (empty initially)
+      sentinel_snapshot: {
+        risk_score: 0,
+        flag: "green",
+        guidance: "",
+        evaluated_at: ""
+      },
+      
+      // Admin context (from DAY_9_ADMIN_SURFACES.md and tripSchema.v1.js)
+      admin_context: {
+        // Approval metadata (empty initially)
+        approval: {
+          status: "",
+          decided_by: "human",
+          decided_at: "",
+          escalation_reason: "",
+          notes: ""
+        },
+        
+        // Automation metadata (empty initially)
+        automation: {
+          eligible: false,
+          evaluated_at: "",
+          evaluated_by: "system",
+          reason: "",
+          explanation: ""
+        },
+        
+        // Execution metadata (empty initially)
+        execution: {
+          status: "",
+          action: "",
+          executed_by: "human",
+          executed_at: "",
+          result: "",
+          notes: ""
+        },
+        
+        // Failure tracking
+        failure: {
+          failure_type: "",
+          failure_reason: ""
+        },
+        
+        // Retry tracking
+        retries: {
+          retry_count: "",
+          last_retry_at: ""
+        },
+        
+        admin_notes: "",
+        last_admin_action: "",
+        last_admin_user: "",
+        created_at: now,
+        updated_at: now
+      },
+      
+      user_notes: tripData.user_notes || null
+    };
+    
+    console.log(`👤 User: ${trip.user_id}`);
+    console.log(`📍 Pickup: ${trip.pickup.address || "(not set)"}`);
+    console.log(`🎯 Dropoff: ${trip.dropoff.address || "(not set)"}`);
+    console.log(`👥 Passengers: ${trip.passengers}`);
+    
+    // Save to database
+    console.log("\n💾 Saving to database...");
+    const savedTrip = await saveTrip(trip);
+    console.log("✅ Trip saved successfully");
+
+    
+  } catch (error) {
+    console.error("❌ Failed to create trip:", error);
+    console.error("Stack trace:", error.stack);
+    logAuditError(trip.trip_id, error, { });
+    return {
+      success: false,
+      error: error.message || "Failed to create trip"
+    };
+  }
+}
+
+// ============================================================================
+// ENDPOINT 2: VALIDATE TRIP
+// ============================================================================
+
+/**
+ * Validate a trip using validation rules
+ * 
+ * @param {string} tripId - Trip ID to validate
+ * @param {Object} context - Validation context (optional)
+ * @returns {Object} Validation result
+ */
+export async function validateTripEndpoint(tripId, context = {}) {
+  console.log("\n" + "=".repeat(60));
+  console.log("✅ API: VALIDATE TRIP");
+  console.log("=".repeat(60));
+  
+  try {
+    // Load trip from database
+    console.log(`📖 Loading trip: ${tripId}`);
+    const trip = await loadTrip(tripId);
+    
+    if (!trip) {
+      return {
+        success: false,
+        error: "Trip not found"
+      };
+    }
+    
+    const currentState = trip.state?.current_state || trip.state || "unknown";
+    console.log(`📍 State: ${currentState}`);
+    console.log(`👤 User: ${trip.user_id}`);
+    
+    // Run Madison's validation (Day 3)
+    console.log("\n🔍 Running validation checks...");
+    const validationResult = await validateTrip(trip, context);
+    
+    console.log(`\n📊 Validation Result: ${validationResult.status}`);
+    
+    const eventData = {
+      tripId: trip.trip_id,
+      fromState: trip.state.previous_state,
+      toState: trip.state.current_state,
+      actor: {
+        actor_id: 'SYSTEM',
+        actor_role: 'SYSTEM',
+        actor_email: null,
+        ipAddress: null,
+      },
+    };
+    if (validationResult.status === "valid") {
+      eventData.fromState = "VALIDATION_CHECK";
+      eventData.toState = "READY_FOR_CONFIRMATION";
+      eventData.event = {
+        event_type: 'validation_passed',
+        event_category: 'SYSTEM_ACTION',
+        outcome: 'SUCCESS',
+      };
+      logAuditEvent(eventData);
+    }
+    else if (validationResult.status === "invalid") {
+      eventData.event = {
+        event_type: 'validation_failed',
+        event_category: 'SYSTEM_ACTION',
+        outcome: 'PARTIAL',
+      };
+      eventData.adminContext = { 
+        notes: `Validation failed with ${validationResult.errors.length} errors.` 
+      };
+      logAuditEvent(eventData);
+    }
+    else if (validationResult.status === "blocked") {
+      eventData.event = {
+        event_type: 'validation_blocked',
+        event_category: 'SYSTEM_ACTION',
+        outcome: 'FAILURE',
+      };
+      eventData.adminContext = { 
+        notes: `Validation failed with ${validationResult.errors.length} errors.` 
+      };
+      logAuditEvent(eventData);
+    }
+
+
+    if (validationResult.errors.length > 0) {
+      console.log(`❌ Errors found: ${validationResult.errors.length}`);
+      validationResult.errors.forEach((error, i) => {
+        console.log(`   ${i + 1}. [${error.code}] ${error.message}`);
+      });
+    }
+    
+    if (validationResult.warnings.length > 0) {
+      console.log(`⚠️  Warnings: ${validationResult.warnings.length}`);
+      validationResult.warnings.forEach((warning, i) => {
+        console.log(`   ${i + 1}. ${warning.message}`);
+      });
+    }
+    
+    console.log("=".repeat(60) + "\n");
+    
+    return {
+      success: true,
+      validation: validationResult,
+      trip: trip  // Return trip for reference
+    };
+    
+  } catch (error) {
+    console.error("❌ Validation failed:", error);
+    
+    return {
+      success: false,
+      error: error.message || "Validation failed"
+    };
+  }
+}
+
+// ============================================================================
+// ENDPOINT 3: SUBMIT TRIP
+// ============================================================================
+
+/**
+ * Submit a validated trip for booking
+ * Determines if human review is needed
+ * 
+ * @param {string} tripId - Trip ID to submit
+ * @returns {Object} Submission result
+ */
+export async function submitTrip(tripId) {
+  console.log("\n" + "=".repeat(60));
+  console.log("🚀 API: SUBMIT TRIP");
+  console.log("=".repeat(60));
+  
+  try {
+    // Load trip
+    console.log(`📖 Loading trip: ${tripId}`);
+    const trip = await loadTrip(tripId);
+    
+    if (!trip) {
+      return {
+        success: false,
+        error: "Trip not found"
+      };
+    }
+    
+    const currentState = trip.state?.current_state || trip.state || "unknown";
+    console.log(`📍 Current state: ${currentState}`);
+    
+    // Validate trip is in correct state
+    if (currentState !== "draft" && currentState !== "needs_adjustment") {
+      console.log(`❌ Cannot submit from ${currentState} state`);
+      return { 
+        success: false, 
+        error: `Cannot submit trip in ${currentState} state. Trip must be in draft or needs_adjustment state.`
+      };
+    }
+    
+    // Run final validation
+    console.log("\n🔍 Running final validation...");
+    const validation = await validateTrip(trip);
+
+    const eventData = {
+      tripId: trip.trip_id,
+      fromState: trip.state.previous_state,
+      toState: trip.state.current_state,
+      actor: {
+        actor_id: 'SYSTEM',
+        actor_role: 'SYSTEM',
+        actor_email: null,
+        ipAddress: null,
+      },
+    };
+    
+    if (validation.status !== "valid") {
+      console.log(`❌ Validation failed: ${validation.status}`);
+      
+      if (validationResult.status === "invalid") {
+        eventData.event = {
+          event_type: 'validation_failed',
+          event_category: 'SYSTEM_ACTION',
+          outcome: 'PARTIAL',
+        };
+        eventData.adminContext = { 
+          notes: `Validation failed with ${validationResult.errors.length} errors.` 
+        };
+        logAuditEvent(eventData);
+      }
+      else if (validationResult.status === "blocked") {
+        eventData.event = {
+          event_type: 'validation_blocked',
+          event_category: 'SYSTEM_ACTION',
+          outcome: 'FAILURE',
+        };
+        eventData.adminContext = { 
+          notes: `Validation failed with ${validationResult.errors.length} errors.` 
+        };
+        logAuditEvent(eventData);
+      }
+      
+      return { 
+        success: false, 
+        error: "Trip validation failed",
+        errors: validation.errors 
+      };
+    }
+    
+    console.log("✅ Validation passed");
+
+    // Log validation passed event
+    eventData.fromState = "VALIDATION_CHECK";
+    eventData.toState = "READY_FOR_CONFIRMATION";
+    eventData.event = {
+      event_type: 'validation_passed',
+      event_category: 'SYSTEM_ACTION',
+      outcome: 'SUCCESS',
+    };
+    logAuditEvent(eventData);
+   
+    
+    // Check if human review required (Day 5)
+    console.log("\n🔍 Checking if human review required...");
+    const reviewCheck = await requiresHumanReview(trip, validation);
+    
+    let nextState;
+    let needsReview = false;
+    const previousState = currentState;
+    const now = new Date().toISOString();
+    
+    if (reviewCheck.requiresReview) {
+      console.log("⚠️  Human review required");
+      console.log(`   Triggers: ${reviewCheck.triggers.map(t => t.code).join(", ")}`);
+      
+      // Transition to pending approval (admin-relevant state from DAY_9)
+      nextState = "pending_approval";
+      trip.state = {
+        current_state: nextState,
+        previous_state: previousState,
+        time_in_state: null,
+        state_changed_at: now
+      };
+      
+      // Update admin context
+      if (!trip.admin_context) {
+        trip.admin_context = {};
+      }
+      if (reviewCheck.triggers[0]?.code) {
+        trip.admin_context.escalation_reason = reviewCheck.autoEscalate ? "Auto-escalated" : null;
+      }
+      
+      // log audit event for submission requiring review
+      eventData.fromState = previousState;
+      eventData.toState = nextState;
+      eventData.event = {
+        event_type: 'approval_required',
+        event_category: 'SYSTEM_ACTION',
+        outcome: 'PENDING',
+      };
+      eventData.adminContext = { 
+        notes: `Trip requires human review before proceeding.`,
+        escalation_reason: reviewCheck.autoEscalate ? "Auto-escalated" : null
+      }; 
+      logAuditEvent(eventData);
+
+      // Add to admin queue (aligned with DAY_9_ADMIN_SURFACES.md)
+      console.log("📋 Adding to admin queue...");
+      await addToAdminQueue(trip);
+      
+      eventData.event = {
+        event_type: 'admin_queue_added',
+        event_category: 'SYSTEM_ACTION',
+        outcome: 'SUCCESS',
+      };
+      logAuditEvent(eventData);
+
+      needsReview = true;
+      
+    } else {
+      console.log("✅ No review required");
+      
+      // Move to submitted state (admin-relevant state from DAY_9)
+      nextState = "submitted";
+      trip.state = {
+        current_state: nextState,
+        previous_state: previousState,
+        time_in_state: null,
+        state_changed_at: now
+      };
+    }
+    
+    // Update admin_context timestamps
+    if (!trip.admin_context) {
+      trip.admin_context = {};
+    }
+    trip.admin_context.updated_at = now;
+    
+    // Save updated trip (includes admin context fields)
+    console.log(`\n💾 Updating trip state: ${previousState} → ${nextState}`);
+    await saveTrip(trip);
+    console.log("✅ Trip updated");
+    console.log("=".repeat(60) + "\n");
+    
+    // log audit event for submission
+    eventData.fromState = previousState;
+    eventData.toState = nextState;
+    eventData.event = {
+      event_type: 'trip_submitted',
+      event_category: 'SYSTEM_ACTION',
+      outcome: 'SUCCESS',
+    };
+    logAuditEvent(eventData);
+
+    return {
+      success: true,
+      trip,
+      needsReview,
+      nextState,
+      nextAction: needsReview ? "WAIT_FOR_APPROVAL" : "READY_FOR_BOOKING",
+      message: needsReview 
+        ? "Your trip is being reviewed" 
+        : "Your trip is ready for booking"
+    };
+    
+  } catch (error) {
+    console.error("❌ Submit failed:", error);
+    console.error("Stack trace:", error.stack);
+    logAuditError(tripId, error, { });
+
+    return {
+      success: false,
+      error: error.message || "Failed to submit trip"
+    };
+  }
+}
+
+// ============================================================================
+// ENDPOINT 4: GET TRIP STATUS
+// ============================================================================
+
+/**
+ * Get trip details with allowed actions for current user
+ * 
+ * @param {string} tripId - Trip ID
+ * @param {string} userId - User requesting trip
+ * @param {string} userRole - User's role (user/admin/system)
+ * @returns {Object} Trip status with allowed actions
+ */
+export async function getTripStatus(tripId, userId, userRole = "user") {
+  console.log("\n" + "=".repeat(60));
+  console.log("📊 API: GET TRIP STATUS");
+  console.log("=".repeat(60));
+  
+  try {
+    console.log(`📖 Loading trip: ${tripId}`);
+    console.log(`👤 Requested by: ${userId} (${userRole})`);
+    
+    const trip = await loadTrip(tripId);
+    
+    if (!trip) {
+      return { 
+        success: false, 
+        error: "Trip not found" 
+      };
+    }
+    
+    // Check if user owns trip (if user role)
+    if (userRole === "user" && trip.user_id !== userId) {
+      console.log("❌ Authorization failed: User does not own trip");
+      logAuditError(tripId, new Error("Unauthorized access attempt"), { notes: `User ${userId} attempted to access trip owned by ${trip.user_id}` });
+
+      return { 
+        success: false, 
+        error: "Not authorized to view this trip" 
+      };
+    }
+    
+    const currentState = trip.state?.current_state || trip.state || "unknown";
+    console.log(`📍 State: ${currentState}`);
+    
+    // Get allowed actions based on role and state (Day 6)
+    const allowedActions = getAllowedActions(userRole, currentState);
+    console.log(`🔐 Allowed actions: ${allowedActions.join(", ")}`);
+    
+    // Get user-friendly message (Day 5)
+    const approvalObj = trip.admin_context?.approval || {};
+    const message = getUserMessage(currentState, approvalObj);
+    
+    console.log("=".repeat(60) + "\n");
+    
+    return {
+      success: true,
+      trip,
+      allowedActions,
+      requiresAction: currentState === "needs_adjustment",
+      message: message.message,
+      messageTitle: message.title
+    };
+    
+  } catch (error) {
+    console.error("❌ Get status failed:", error);
+    logAuditError(tripId, error, { });
+    
+    return {
+      success: false,
+      error: error.message || "Failed to get trip status"
+    };
+  }
+}
+
+// ============================================================================
+// ENDPOINT 5: CANCEL TRIP
+// ============================================================================
+
+/**
+ * Cancel a trip (user or admin action)
+ * 
+ * @param {string} tripId - Trip ID to cancel
+ * @param {string} userId - User cancelling trip
+ * @param {string} userRole - User's role
+ * @param {string} reason - Cancellation reason
+ * @returns {Object} Cancellation result
+ */
+export async function cancelTrip(tripId, userId, userRole = "user", reason = "") {
+  console.log("\n" + "=".repeat(60));
+  console.log("🚫 API: CANCEL TRIP");
+  console.log("=".repeat(60));
+  
+  try {
+    console.log(`📖 Loading trip: ${tripId}`);
+    console.log(`👤 Cancelled by: ${userId} (${userRole})`);
+    
+    const trip = await loadTrip(tripId);
+    
+    if (!trip) {
+      return { 
+        success: false, 
+        error: "Trip not found" 
+      };
+    }
+    
+    const currentState = trip.state?.current_state || trip.state || "unknown";
+    console.log(`📍 Current state: ${currentState}`);
+    
+    // Check permissions (Day 6)
+    console.log("\n🔐 Checking permissions...");
+    const permission = canPerformAction(
+      userRole, 
+      "cancel_trip", 
+      trip, 
+      userId
+    );
+    
+    if (!permission.allowed) {
+      console.log(`❌ Permission denied: ${permission.reason}`);
+      logAuditError(tripId, new Error("Unauthorized cancellation attempt"), { notes: `User ${userId} (${userRole}) attempted to cancel trip in state ${currentState}` });
+
+      return { 
+        success: false, 
+        error: permission.reason 
+      };
+    }
+    
+    console.log("✅ Permission granted");
+    
+    // Store previous state
+    const previousState = currentState;
+    const now = new Date().toISOString();
+    
+    // Update trip (includes admin context fields from DAY_9)
+    console.log("\n💾 Cancelling trip...");
+    trip.state = {
+      current_state: "cancelled",
+      previous_state: previousState,
+      time_in_state: null,
+      state_changed_at: now
+    };
+    
+    // Update admin context if admin cancelled
+    if (!trip.admin_context) {
+      trip.admin_context = {};
+    }
+    if (userRole === "admin") {
+      trip.admin_context.last_admin_action = "cancel";
+      trip.admin_context.last_admin_user = userId;
+      trip.admin_context.admin_notes = reason || "Admin cancelled trip";
+    }
+    trip.admin_context.updated_at = now;
+    
+    await saveTrip(trip);
+    console.log("✅ Trip cancelled");
+    
+    return {
+      success: true,
+      trip,
+      message: "Trip cancelled successfully"
+    };
+
+    const eventData = {
+      tripId: trip.trip_id,
+      fromState: previousState,
+      toState: "CANCELLED",
+      event: {
+        event_type: 'trip_cancelled_by_user',
+        event_category: 'USER_ACTION',
+        outcome: 'SUCCESS',
+      },
+      actor: {
+        actor_id: userId,
+        actor_role: userRole,
+      },
+      adminContext: {
+        notes: reason || "Trip cancelled"
+      },
+    };
+    logAuditEvent(eventData);
+    
+  } catch (error) {
+    console.error("❌ Cancel failed:", error);
+    console.error("Stack trace:", error.stack);
+
+    logAuditError(tripId, error, { notes: `Error during trip cancellation` });
+    return {
+      success: false,
+      error: error.message || "Failed to cancel trip"
+    };
+  }
+}
+
+// ============================================================================
+// HELPER ENDPOINT: GET USER TRIPS
+// ============================================================================
+
+/**
+ * Get all trips for a user
+ * 
+ * @param {string} userId - User ID
+ * @param {number} limit - Maximum number of trips to return
+ * @returns {Object} List of user's trips
+ */
+export async function getUserTrips(userId, limit = 50) {
+  console.log("\n" + "=".repeat(60));
+  console.log("📋 API: GET USER TRIPS");
+  console.log("=".repeat(60));
+  
+  try {
+    console.log(`👤 User: ${userId}`);
+    console.log(`📊 Limit: ${limit}`);
+    
+    const trips = await loadUserTrips(userId, limit);
+    
+    console.log(`✅ Found ${trips.length} trips`);
+    console.log("=".repeat(60) + "\n");
+    
+    return {
+      success: true,
+      trips,
+      count: trips.length
+    };
+    
+  } catch (error) {
+    console.error("❌ Get user trips failed:", error);
+    
+    return {
+      success: false,
+      error: error.message || "Failed to get user trips"
+    };
+  }
+}
