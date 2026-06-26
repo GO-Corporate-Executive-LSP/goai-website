@@ -1,0 +1,32 @@
+$kind: http-request
+description: >-
+  <p>Cancels a Climate order. You can cancel an order within 30 days of
+  creation. Stripe refunds the
+
+  reservation <code>amount_subtotal</code>, but not the <code>amount_fees</code>
+  for user-triggered cancellations. Frontier
+
+  might cancel reservations if suppliers fail to deliver. If Frontier cancels
+  the reservation, Stripe
+
+  provides 90 days advance notice and refunds the <code>amount_total</code>.</p>
+url: "{{baseUrl}}/v1/climate/orders/:order/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: order
+    value: <string>
+    description: (Required) Unique identifier of the order.
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000

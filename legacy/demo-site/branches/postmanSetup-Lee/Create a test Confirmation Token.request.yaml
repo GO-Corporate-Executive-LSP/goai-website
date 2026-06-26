@@ -1,0 +1,207 @@
+$kind: http-request
+description: <p>Creates a test mode Confirmation Token server side for your
+  integration tests.</p>
+url: "{{baseUrl}}/v1/test_helpers/confirmation_tokens"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: payment_method
+      value: <string>
+      disabled: true
+      description: ID of an existing PaymentMethod.
+    - key: payment_method_data[type]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[acss_debit][account_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[acss_debit][institution_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[acss_debit][transit_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[au_becs_debit][account_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[au_becs_debit][bsb_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[bacs_debit][account_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[bacs_debit][sort_code]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][city]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][country]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][line1]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][line2]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][postal_code]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][address][state]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][email]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][name]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[billing_details][phone]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[boleto][tax_id]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[eps][bank]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[fpx][bank]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[ideal][bank]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[klarna][dob][day]
+      value: <integer>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[klarna][dob][month]
+      value: <integer>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[klarna][dob][year]
+      value: <integer>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[metadata]
+      value: <object>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[p24][bank]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[radar_options][session]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[sepa_debit][iban]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[sofort][country]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[us_bank_account][account_holder_type]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[us_bank_account][account_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[us_bank_account][account_type]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[us_bank_account][financial_connections_account]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: payment_method_data[us_bank_account][routing_number]
+      value: <string>
+      disabled: true
+      description: If provided, this hash will be used to create a PaymentMethod.
+    - key: return_url
+      value: <string>
+      disabled: true
+      description: Return URL used to confirm the Intent.
+    - key: setup_future_usage
+      value: <string>
+      disabled: true
+      description: >-
+        Indicates that you intend to make future payments with this
+        ConfirmationToken's payment method.
+
+
+        The presence of this property will [attach the payment
+        method](https://stripe.com/docs/payments/save-during-payment) to the
+        PaymentIntent's Customer, if present, after the PaymentIntent is
+        confirmed and any required actions from the user are complete.
+    - key: shipping[address][city]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[address][country]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[address][line1]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[address][line2]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[address][state]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[name]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+    - key: shipping[phone]
+      value: <string>
+      disabled: true
+      description: Shipping information for this ConfirmationToken.
+order: 2000

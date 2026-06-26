@@ -1,0 +1,28 @@
+$kind: http-request
+description: <p>Updates the specified order by setting the values of the
+  parameters passed.</p>
+url: "{{baseUrl}}/v1/climate/orders/:order"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: order
+    value: <string>
+    description: (Required) Unique identifier of the order.
+body:
+  type: urlencoded
+  content:
+    - key: beneficiary[public_name]
+      value: <string>
+      disabled: true
+      description: Publicly sharable reference for the end beneficiary of carbon
+        removal. Assumed to be the Stripe account if not set.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000
