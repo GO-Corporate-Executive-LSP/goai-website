@@ -1,45 +1,115 @@
-# Git Integration & Wix CLI <img align="left" src="https://user-images.githubusercontent.com/89579857/185785022-cab37bf5-26be-4f11-85f0-1fac63c07d3b.png">
+# The Backend Code Folder
 
-This repo is part of Git Integration & Wix CLI, a set of tools that allows you to write, test, and publish code for your Wix site locally on your computer. 
+This folder contains the backend code files for your site. These files correspond to the ones found in the [**Backend**](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#backend) section of the **Public & Backend** 
+![image](https://user-images.githubusercontent.com/89579857/184862813-e55cdd98-b723-4d64-b73c-593eb9af21c7.png) tab in the Velo sidebar. Add the following files to this folder to include them in your site:
++ [**Web Modules:**](https://support.wix.com/en/article/velo-web-modules-calling-backend-code-from-the-frontend)  
+  These are files that allow you to expose functions in your site's backend that you can run in your frontend code. These files require a `.jsw` file extension.
+  >**Note:**  
+  >You can't change [web module permissions](https://support.wix.com/en/article/velo-about-web-module-permissions) in Wix editors when using Git Integration & Wix CLI. Instead, use the [permissions.json](#permissionsjson) file to set function permissions.
 
-Connect your site to GitHub, develop in your favorite IDE, test your code in real time, and publish your site from the command line.
++ **data.js**  
+  A file for [adding data hooks](https://support.wix.com/en/article/velo-using-data-hooks) to your site's collections.
 
-## Set up this repository in your IDE
-This repo is connected to a Wix site. That site tracks this repo's default branch. Any code committed and pushed to that branch from your local IDE appears on the site.
++ **routers.js**  
+  A file for implementing [routing and sitemap](https://support.wix.com/en/article/velo-about-routers#routing-code) functionality for your site.
 
-Before getting started, make sure you have the following things installed:
-* [Git](https://git-scm.com/download)
-* [Node](https://nodejs.org/en/download/), version 14.8 or later.
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://yarnpkg.com/getting-started/install)
-* An SSH key [added to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
++ **events.js**  
+  A file for implementing your site's [backend event handlers](https://support.wix.com/en/article/velo-backend-events). 
 
-To set up your local environment and start coding locally, do the following:
++ **http-functions.js**  
+  A file for implementing [HTTP endpoints](https://www.wix.com/velo/reference/wix-http-functions/introduction) that are exposed on your site.
 
-1. Open your terminal and navigate to where you want to store the repo.
-1. Clone the repo by running `git clone <your-repository-url>`.
-1. Navigate to the repo's directory by running `cd <directory-name>`.
-1. Install the repo's dependencies by running `npm install` or `yarn install`.
-1. Install the Wix CLI by running `npm install -g @wix/cli` or `yarn global add @wix/cli`.  
-   Once you've installed the CLI globally, you can use it with any Wix site's repo.
++ **jobs.config**  
+  A file for [scheduling recurring jobs](https://support.wix.com/en/article/velo-scheduling-recurring-jobs). Jobs consist of other backend code that's run at regular intervals.
+  
++ **General backend files**  
+  JavaScript code files. You can import code from these files into any other backend file on your site. These files require a `.js` file extension.
 
-For more information, see [Setting up Git Integration & Wix CLI](https://support.wix.com/en/article/velo-setting-up-git-integration-wix-cli-beta).
-
-## Write Velo code in your IDE
-Once your repo is set up, you can write code in it as you would in any other non-Wix project. The repo's file structure matches the [public](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#public), [backend](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#backend), and [page code](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#page-code) sections in Editor X.
+Use the following syntax to import code from backend files: 
+```js 
+import { myFunctionName } from 'backend/myFileName';
+```  
+Trying to import from the relative path in your site's repo doesn't work.
 
 Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
 
-## Test your code with the Local Editor
-The Local Editor allows you test changes made to your site in real time. The code in your local IDE is synced with the Local Editor, so you can test your changes before committing them to your repo. You can also change the site design in the Local Editor and sync it with your IDE.
+## permissions.json
+This file defines [permissions](https://support.wix.com/en/article/velo-about-web-module-permissions) for the functions in your web module files. The file contains a key, `"web-methods"`, whose value is an object that can contain keys named after the web module files in your `backend` folder. Name these keys with the following syntax: `"backend/{path to file}myFile.jsw"`. The value for each file name key is an object that can contain keys named after the functions in that file. Each function key has a value with the following format:
+```js
+"backend/myFile.jsw": {
+  "siteOwner" : {
+    "invoke" : // Boolean
+  },
+  "siteMember" : {
+    "invoke" : // Boolean
+  },
+  "anonymous" : {
+    "invoke" : // Boolean
+  }  
+}
+```
+These values reflect the different levels of web module function permissions. You can set them using the following options:
+| |`siteOwner`|`siteMember`|`anonymous`|
+|-|-----------|------------|-----------|
+|Owner-only access| `true` | `false` | `false`|
+|Site member access| `true` | `true` | `false`|
+|Anyone can access| `true` | `true`| `true`|
 
-Start the Local Editor by navigating to this repo's directory in your terminal and running `wix dev`.
+The `"web-methods"` object must also contain a `"*"` key. The value for this key defines the default permissions that are applied to any function whose permissions you don't set manually.
 
-For more information, see [Working with the Local Editor](https://support.wix.com/en/article/velo-working-with-the-local-editor-beta).
+Here is an example `permissions.json` file for a site with a backend file called `helperFunctions.jsw`. The file's functions are called `calculate`, `fetchData`, and `syncWithServer`. In this case anyone can call `calculate`, site members can call `syncWithServer`, and only site owners can call `fetchData`.
 
-## Preview and publish with the Wix CLI
-The Wix CLI is a tool that allows you to work with your site locally from your computer's terminal. You can use it to build a preview version of your site and publish it. You can also use the CLI to install [approved npm packages](https://support.wix.com/en/article/velo-working-with-npm-packages) to your site.
-
-Learn more about [working with the Wix CLI](https://support.wix.com/en/article/velo-working-with-the-wix-cli-beta).
-
-## Invite contributors to work with you
-Git Integration & Wix CLI extends Editor X's [concurrent editing](https://support.wix.com/en/article/editor-x-about-concurrent-editing) capabilities. Invite other developers as collaborators on your [site](https://support.wix.com/en/article/inviting-people-to-contribute-to-your-site) and your [GitHub repo](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository). Multiple developers can work on a site's code at once.
+```json
+{
+  "web-methods": {
+    "*": {
+      "*": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": true
+        },
+        "anonymous": {
+          "invoke": true
+        }
+      }
+    },
+    "backend/helperFunctions.jsw": {
+      "calculate": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": true
+        },
+        "anonymous": {
+          "invoke": true
+        }
+      },
+      "fetchData": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": false
+        },
+        "anonymous": {
+          "invoke": false
+        }
+      },
+      "syncWithServer": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": true
+        },
+        "anonymous": {
+          "invoke": false
+        }
+      }
+    }
+  }
+}
+```
