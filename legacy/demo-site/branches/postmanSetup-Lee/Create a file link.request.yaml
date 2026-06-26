@@ -1,0 +1,30 @@
+$kind: http-request
+description: <p>Creates a new file link object.</p>
+url: "{{baseUrl}}/v1/file_links"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: file
+      value: <string>
+      description: "(Required) The ID of the file. The file's `purpose` must be one of
+        the following: `business_icon`, `business_logo`, `customer_signature`,
+        `dispute_evidence`, `finance_report_run`,
+        `identity_document_downloadable`, `pci_document`, `selfie`,
+        `sigma_scheduled_query`, `tax_document_user_upload`, or
+        `terminal_reader_splashscreen`."
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expires_at
+      value: <unix-time>
+      disabled: true
+      description: The link isn't usable after this future timestamp.
+order: 2000

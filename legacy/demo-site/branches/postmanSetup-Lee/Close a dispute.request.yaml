@@ -1,0 +1,29 @@
+$kind: http-request
+description: >-
+  <p>Closing the dispute for a charge indicates that you do not have any
+  evidence to submit and are essentially dismissing the dispute, acknowledging
+  it as lost.</p>
+
+
+  <p>The status of the dispute will change from <code>needs_response</code> to
+  <code>lost</code>. <em>Closing a dispute is irreversible</em>.</p>
+url: "{{baseUrl}}/v1/disputes/:dispute/close"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: dispute
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

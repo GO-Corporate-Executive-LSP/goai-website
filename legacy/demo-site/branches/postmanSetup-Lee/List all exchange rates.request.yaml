@@ -1,0 +1,40 @@
+$kind: http-request
+description: <p>Returns a list of objects that contain the rates at which
+  foreign currencies are converted to one another. Only shows the currencies for
+  which Stripe supports.</p>
+url: "{{baseUrl}}/v1/exchange_rates"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: ending_before
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `ending_before` is the currency
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, starting with the exchange rate for
+      currency X your subsequent call can include `ending_before=obj_bar` in
+      order to fetch the previous page of the list.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit on the number of objects to be returned. Limit can range
+      between 1 and total number of supported payout currencies, and the default
+      is the max.
+  - key: starting_after
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `starting_after` is the currency
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, ending with the exchange rate for
+      currency X, your subsequent call can include `starting_after=X` in order
+      to fetch the next page of the list.
+order: 1000

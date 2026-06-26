@@ -1,0 +1,31 @@
+$kind: http-request
+description: <p>Subscribes to periodic refreshes of data associated with a
+  Financial Connections <code>Account</code>.</p>
+url: "{{baseUrl}}/v1/financial_connections/accounts/:account/subscribe"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: features[0]
+      value: <string>
+      description: (Required) The list of account features to which you would like to
+        subscribe.
+    - key: features[1]
+      value: <string>
+      description: (Required) The list of account features to which you would like to
+        subscribe.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000

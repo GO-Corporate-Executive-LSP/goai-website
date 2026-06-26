@@ -1,0 +1,52 @@
+$kind: http-request
+description: <p>Creates a ForwardingRequest object.</p>
+url: "{{baseUrl}}/v1/forwarding/requests"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: payment_method
+      value: <string>
+      description: (Required) The PaymentMethod to insert into the forwarded request.
+        Forwarding previously consumed PaymentMethods is allowed.
+    - key: replacements[0]
+      value: <string>
+      description: (Required) The field kinds to be replaced in the forwarded request.
+    - key: replacements[1]
+      value: <string>
+      description: (Required) The field kinds to be replaced in the forwarded request.
+    - key: url
+      value: <string>
+      description: (Required) The destination URL for the forwarded request. Must be
+        supported by the config.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: request[body]
+      value: <string>
+      disabled: true
+      description: The request body and headers to be sent to the destination endpoint.
+    - key: request[headers][0][name]
+      value: <string>
+      disabled: true
+      description: The request body and headers to be sent to the destination endpoint.
+    - key: request[headers][0][value]
+      value: <string>
+      disabled: true
+      description: The request body and headers to be sent to the destination endpoint.
+    - key: request[headers][1][name]
+      value: <string>
+      disabled: true
+      description: The request body and headers to be sent to the destination endpoint.
+    - key: request[headers][1][value]
+      value: <string>
+      disabled: true
+      description: The request body and headers to be sent to the destination endpoint.
+order: 2000

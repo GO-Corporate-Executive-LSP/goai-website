@@ -1,6 +1,6 @@
 $kind: http-request
-description: <p>Retrieves the details of a Financial Connections <code>Session</code></p>
-url: "{{baseUrl}}/v1/financial_connections/sessions/:session"
+description: <p>Retrieves the details of an Financial Connections <code>Account</code>.</p>
+url: "{{baseUrl}}/v1/financial_connections/accounts/:account"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -14,7 +14,7 @@ queryParams:
     disabled: true
     description: Specifies which fields in the response should be expanded.
 pathVariables:
-  - key: session
+  - key: account
     value: <string>
     description: "(Required) "
 order: 2000

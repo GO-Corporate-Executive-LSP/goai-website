@@ -1,0 +1,32 @@
+$kind: http-request
+description: <p>Update a feature’s metadata or permanently deactivate it.</p>
+url: "{{baseUrl}}/v1/entitlements/features/:id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Inactive features cannot be attached to new products and will not
+        be returned from the features list endpoint.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: name
+      value: <string>
+      disabled: true
+      description: The feature's name, for your own purpose, not meant to be
+        displayable to the customer.
+order: 4000

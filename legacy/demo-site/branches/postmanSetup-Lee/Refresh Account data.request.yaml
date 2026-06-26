@@ -1,0 +1,29 @@
+$kind: http-request
+description: <p>Refreshes the data associated with a Financial Connections
+  <code>Account</code>.</p>
+url: "{{baseUrl}}/v1/financial_connections/accounts/:account/refresh"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: features[0]
+      value: <string>
+      description: (Required) The list of account features that you would like to refresh.
+    - key: features[1]
+      value: <string>
+      description: (Required) The list of account features that you would like to refresh.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

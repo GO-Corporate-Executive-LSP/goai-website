@@ -1,0 +1,13 @@
+$kind: http-request
+description: <p>Removes the currently applied discount on a customer.</p>
+url: "{{baseUrl}}/v1/customers/:customer/discount"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 1000

@@ -1,0 +1,51 @@
+$kind: http-request
+description: <p>Lists all ForwardingRequest objects.</p>
+url: "{{baseUrl}}/v1/forwarding/requests"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: created[gt]
+    value: <integer>
+    disabled: true
+    description: Similar to other List endpoints, filters results based on created
+      timestamp. You can pass gt, gte, lt, and lte timestamp values.
+  - key: created[gte]
+    value: <integer>
+    disabled: true
+    description: Similar to other List endpoints, filters results based on created
+      timestamp. You can pass gt, gte, lt, and lte timestamp values.
+  - key: created[lt]
+    value: <integer>
+    disabled: true
+    description: Similar to other List endpoints, filters results based on created
+      timestamp. You can pass gt, gte, lt, and lte timestamp values.
+  - key: created[lte]
+    value: <integer>
+    disabled: true
+    description: Similar to other List endpoints, filters results based on created
+      timestamp. You can pass gt, gte, lt, and lte timestamp values.
+  - key: ending_before
+    value: <string>
+    disabled: true
+    description: A pagination cursor to fetch the previous page of the list. The
+      value must be a ForwardingRequest ID.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit on the number of objects to be returned. Limit can range
+      between 1 and 100, and the default is 10.
+  - key: starting_after
+    value: <string>
+    disabled: true
+    description: A pagination cursor to fetch the next page of the list. The value
+      must be a ForwardingRequest ID.
+order: 1000

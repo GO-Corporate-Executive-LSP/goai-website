@@ -1,0 +1,26 @@
+$kind: http-request
+description: <p>Creates a feature</p>
+url: "{{baseUrl}}/v1/entitlements/features"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: lookup_key
+      value: <string>
+      description: (Required) A unique key you provide as your own system identifier.
+        This may be up to 80 characters.
+    - key: name
+      value: <string>
+      description: (Required) The feature's name, for your own purpose, not meant to
+        be displayable to the customer.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

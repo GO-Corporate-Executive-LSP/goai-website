@@ -1,6 +1,9 @@
 $kind: http-request
-description: <p>Retrieves the details of a Financial Connections <code>Session</code></p>
-url: "{{baseUrl}}/v1/financial_connections/sessions/:session"
+description: <p>Retrieves the details of an existing file object. After you
+  supply a unique file ID, Stripe returns the corresponding file object. Learn
+  how to <a href="/docs/file-upload#download-file-contents">access file
+  contents</a>.</p>
+url: "{{baseUrl}}/v1/files/:file"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -14,7 +17,7 @@ queryParams:
     disabled: true
     description: Specifies which fields in the response should be expanded.
 pathVariables:
-  - key: session
+  - key: file
     value: <string>
     description: "(Required) "
-order: 2000
+order: 3000

@@ -1,6 +1,6 @@
 $kind: http-request
-description: <p>Retrieves the details of a Financial Connections <code>Session</code></p>
-url: "{{baseUrl}}/v1/financial_connections/sessions/:session"
+description: <p>Retrieves the dispute with the given ID.</p>
+url: "{{baseUrl}}/v1/disputes/:dispute"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -14,7 +14,7 @@ queryParams:
     disabled: true
     description: Specifies which fields in the response should be expanded.
 pathVariables:
-  - key: session
+  - key: dispute
     value: <string>
     description: "(Required) "
 order: 2000

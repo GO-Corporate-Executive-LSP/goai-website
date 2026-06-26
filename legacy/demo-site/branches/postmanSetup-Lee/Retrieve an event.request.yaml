@@ -1,6 +1,7 @@
 $kind: http-request
-description: <p>Retrieves the details of a Financial Connections <code>Session</code></p>
-url: "{{baseUrl}}/v1/financial_connections/sessions/:session"
+description: <p>Retrieves the details of an event. Supply the unique identifier
+  of the event, which you might have received in a webhook.</p>
+url: "{{baseUrl}}/v1/events/:id"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -14,7 +15,7 @@ queryParams:
     disabled: true
     description: Specifies which fields in the response should be expanded.
 pathVariables:
-  - key: session
+  - key: id
     value: <string>
     description: "(Required) "
 order: 2000

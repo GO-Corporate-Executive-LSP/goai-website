@@ -1,0 +1,202 @@
+$kind: http-request
+description: >-
+  <p>When you get a dispute, contacting your customer is always the best first
+  step. If that doesn’t work, you can submit evidence to help us resolve the
+  dispute in your favor. You can do this in your <a
+  href="https://dashboard.stripe.com/disputes">dashboard</a>, but if you prefer,
+  you can use the API to submit evidence programmatically.</p>
+
+
+  <p>Depending on your dispute type, different evidence fields will give you a
+  better chance of winning your dispute. To figure out which evidence fields to
+  provide, see our <a href="/docs/disputes/categories">guide to dispute
+  types</a>.</p>
+url: "{{baseUrl}}/v1/disputes/:dispute"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: dispute
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: evidence[access_activity_log]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[billing_address]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[cancellation_policy]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[cancellation_policy_disclosure]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[cancellation_rebuttal]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[customer_communication]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[customer_email_address]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[customer_name]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[customer_purchase_ip]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[customer_signature]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[duplicate_charge_documentation]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[duplicate_charge_explanation]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[duplicate_charge_id]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[product_description]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[receipt]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[refund_policy]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[refund_policy_disclosure]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[refund_refusal_explanation]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[service_date]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[service_documentation]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[shipping_address]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[shipping_carrier]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[shipping_date]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[shipping_documentation]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[shipping_tracking_number]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[uncategorized_file]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: evidence[uncategorized_text]
+      value: <string>
+      disabled: true
+      description: Evidence to upload, to respond to a dispute. Updating any field in
+        the hash will submit all fields in the hash for review. The combined
+        character count of all fields is limited to 150,000.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: submit
+      value: <boolean>
+      disabled: true
+      description: Whether to immediately submit evidence to the bank. If `false`,
+        evidence is staged on the dispute. Staged evidence is visible in the API
+        and Dashboard, and can be submitted to the bank by making another
+        request with this attribute set to `true` (the default).
+order: 3000
