@@ -1,0 +1,39 @@
+$kind: http-request
+description: <p>Updates an existing Account Capability. Request or remove a
+  capability by updating its <code>requested</code> parameter.</p>
+url: "{{baseUrl}}/v1/accounts/:account/capabilities/:capability"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+  - key: capability
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: requested
+      value: <boolean>
+      disabled: true
+      description: >-
+        To request a new capability for an account, pass true. There can be a
+        delay before the requested capability becomes active. If the capability
+        has any activation requirements, the response includes them in the
+        `requirements` arrays.
+
+
+        If a capability isn't permanent, you can remove it from the account by
+        passing false. Most capabilities are permanent after they've been
+        requested. Attempting to remove a permanent capability returns an error.
+order: 9000

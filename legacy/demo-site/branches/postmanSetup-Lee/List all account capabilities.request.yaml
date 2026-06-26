@@ -1,0 +1,22 @@
+$kind: http-request
+description: <p>Returns a list of capabilities associated with the account. The
+  capabilities are returned sorted by creation date, with the most recent
+  capability appearing first.</p>
+url: "{{baseUrl}}/v1/accounts/:account/capabilities"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+order: 7000

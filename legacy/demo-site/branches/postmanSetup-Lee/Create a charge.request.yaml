@@ -1,0 +1,269 @@
+$kind: http-request
+description: >-
+  <p>This method is no longer recommended—use the <a
+  href="/docs/api/payment_intents">Payment Intents API</a>
+
+  to initiate a new payment instead. Confirmation of the PaymentIntent creates
+  the <code>Charge</code>
+
+  object used to request payment.</p>
+url: "{{baseUrl}}/v1/charges"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      description: (Required) Amount intended to be collected by this payment. A
+        positive integer representing how much to charge in the [smallest
+        currency unit](https://stripe.com/docs/currencies#zero-decimal) (e.g.,
+        100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal
+        currency). The minimum amount is $0.50 US or [equivalent in charge
+        currency](https://stripe.com/docs/currencies#minimum-and-maximum-charge-amounts).
+        The amount value supports up to eight digits (e.g., a value of 99999999
+        for a USD charge of $999,999.99).
+    - key: currency
+      value: <string>
+      description: (Required) Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: application_fee
+      value: <integer>
+      disabled: true
+    - key: application_fee_amount
+      value: <integer>
+      disabled: true
+      description: A fee in cents (or local equivalent) that will be applied to the
+        charge and transferred to the application owner's Stripe account. The
+        request must be made with an OAuth key or the `Stripe-Account` header in
+        order to take an application fee. For more information, see the
+        application fees
+        [documentation](https://stripe.com/docs/connect/direct-charges#collect-fees).
+    - key: capture
+      value: <boolean>
+      disabled: true
+      description: Whether to immediately capture the charge. Defaults to `true`. When
+        `false`, the charge issues an authorization (or pre-authorization), and
+        will need to be [captured](https://stripe.com/docs/api#capture_charge)
+        later. Uncaptured charges expire after a set number of days (7 by
+        default). For more information, see the [authorizing charges and
+        settling later](https://stripe.com/docs/charges/placing-a-hold)
+        documentation.
+    - key: card[exp_month]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[exp_year]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[number]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_city]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_country]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line1]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line2]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_state]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_zip]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[cvc]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[metadata]
+      value: <object>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[name]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[object]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The ID of an existing customer that will be charged in this request.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string which you can attach to a `Charge` object. It
+        is displayed when in the web interface alongside the charge. Note that
+        if you use Stripe to send automatic email receipts to your customers,
+        your receipt emails will include the `description` of the charge(s) that
+        they are describing.
+    - key: destination[account]
+      value: <string>
+      disabled: true
+    - key: destination[amount]
+      value: <integer>
+      disabled: true
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: on_behalf_of
+      value: <string>
+      disabled: true
+      description: The Stripe account ID for which these funds are intended.
+        Automatically set if you use the `destination` parameter. For details,
+        see [Creating Separate Charges and
+        Transfers](https://stripe.com/docs/connect/separate-charges-and-transfers#settlement-merchant).
+    - key: radar_options[session]
+      value: <string>
+      disabled: true
+      description: Options to configure Radar. See [Radar
+        Session](https://stripe.com/docs/radar/radar-session) for more
+        information.
+    - key: receipt_email
+      value: <string>
+      disabled: true
+      description: The email address to which this charge's
+        [receipt](https://stripe.com/docs/dashboard/receipts) will be sent. The
+        receipt will not be sent until the charge is paid, and no receipts will
+        be sent for test mode charges. If this charge is for a
+        [Customer](https://stripe.com/docs/api/customers/object), the email
+        address specified here will override the customer's email address. If
+        `receipt_email` is specified for a charge in live mode, a receipt will
+        be sent regardless of your [email
+        settings](https://dashboard.stripe.com/account/emails).
+    - key: shipping[address][city]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][country]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][line1]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][line2]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][state]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[name]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[carrier]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[phone]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[tracking_number]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: source
+      value: <string>
+      disabled: true
+      description: A payment source to be charged. This can be the ID of a
+        [card](https://stripe.com/docs/api#cards) (i.e., credit or debit card),
+        a [bank account](https://stripe.com/docs/api#bank_accounts), a
+        [source](https://stripe.com/docs/api#sources), a
+        [token](https://stripe.com/docs/api#tokens), or a [connected
+        account](https://stripe.com/docs/connect/account-debits#charging-a-connected-account).
+        For certain sources---namely,
+        [cards](https://stripe.com/docs/api#cards), [bank
+        accounts](https://stripe.com/docs/api#bank_accounts), and attached
+        [sources](https://stripe.com/docs/api#sources)---you must also pass the
+        ID of the associated customer.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: For card charges, use `statement_descriptor_suffix` instead.
+        Otherwise, you can use this value as the complete description of a
+        charge on your customers’ statements. Must contain at least one letter,
+        maximum 22 characters.
+    - key: statement_descriptor_suffix
+      value: <string>
+      disabled: true
+      description: Provides information about the charge that customers see on their
+        statements. Concatenated with the prefix (shortened descriptor) or
+        statement descriptor that’s set on the account to form the complete
+        statement descriptor. Maximum 22 characters for the concatenated
+        descriptor.
+    - key: transfer_data[destination]
+      value: <string>
+      disabled: true
+      description: An optional dictionary including the account to automatically
+        transfer to as part of a destination charge. [See the Connect
+        documentation](https://stripe.com/docs/connect/destination-charges) for
+        details.
+    - key: transfer_data[amount]
+      value: <integer>
+      disabled: true
+      description: An optional dictionary including the account to automatically
+        transfer to as part of a destination charge. [See the Connect
+        documentation](https://stripe.com/docs/connect/destination-charges) for
+        details.
+    - key: transfer_group
+      value: <string>
+      disabled: true
+      description: A string that identifies this transaction as part of a group. For
+        details, see [Grouping
+        transactions](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options).
+order: 2000

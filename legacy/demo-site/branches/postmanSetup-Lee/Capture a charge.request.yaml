@@ -1,0 +1,83 @@
+$kind: http-request
+description: >-
+  <p>Capture the payment of an existing, uncaptured charge that was created with
+  the <code>capture</code> option set to false.</p>
+
+
+  <p>Uncaptured payments expire a set number of days after they are created (<a
+  href="/docs/charges/placing-a-hold">7 by default</a>), after which they are
+  marked as refunded and capture attempts will fail.</p>
+
+
+  <p>Don’t use this method to capture a PaymentIntent-initiated charge. Use <a
+  href="/docs/api/payment_intents/capture">Capture a PaymentIntent</a>.</p>
+url: "{{baseUrl}}/v1/charges/:charge/capture"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: charge
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: The amount to capture, which must be less than or equal to the
+        original amount. Any additional amount will be automatically refunded.
+    - key: application_fee
+      value: <integer>
+      disabled: true
+      description: An application fee to add on to this charge.
+    - key: application_fee_amount
+      value: <integer>
+      disabled: true
+      description: An application fee amount to add on to this charge, which must be
+        less than or equal to the original amount.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: receipt_email
+      value: <string>
+      disabled: true
+      description: The email address to send this charge's receipt to. This will
+        override the previously-specified email address for this charge, if one
+        was set. Receipts will not be sent in test mode.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: For card charges, use `statement_descriptor_suffix` instead.
+        Otherwise, you can use this value as the complete description of a
+        charge on your customers’ statements. Must contain at least one letter,
+        maximum 22 characters.
+    - key: statement_descriptor_suffix
+      value: <string>
+      disabled: true
+      description: Provides information about the charge that customers see on their
+        statements. Concatenated with the prefix (shortened descriptor) or
+        statement descriptor that’s set on the account to form the complete
+        statement descriptor. Maximum 22 characters for the concatenated
+        descriptor.
+    - key: transfer_data[amount]
+      value: <integer>
+      disabled: true
+      description: An optional dictionary including the account to automatically
+        transfer to as part of a destination charge. [See the Connect
+        documentation](https://stripe.com/docs/connect/destination-charges) for
+        details.
+    - key: transfer_group
+      value: <string>
+      disabled: true
+      description: A string that identifies this transaction as part of a group.
+        `transfer_group` may only be provided if it has not been set. See the
+        [Connect
+        documentation](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options)
+        for details.
+order: 6000

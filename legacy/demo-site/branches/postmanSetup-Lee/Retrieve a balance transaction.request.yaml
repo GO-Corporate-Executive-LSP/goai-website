@@ -1,0 +1,25 @@
+$kind: http-request
+description: >-
+  <p>Retrieves the balance transaction with the given ID.</p>
+
+
+  <p>Note that this endpoint previously used the path
+  <code>/v1/balance/history/:id</code>.</p>
+url: "{{baseUrl}}/v1/balance_transactions/:id"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: id
+    value: <string>
+    description: "(Required) "
+order: 2000

@@ -1,0 +1,30 @@
+$kind: http-request
+description: <p>Creates a billing meter event adjustment</p>
+url: "{{baseUrl}}/v1/billing/meter_event_adjustments"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: event_name
+      value: <string>
+      description: (Required) The name of the meter event. Corresponds with the
+        `event_name` field on a meter.
+    - key: type
+      value: <string>
+      description: (Required) Specifies whether to cancel a single event or a range of
+        events for a time period. Time period cancellation is not supported yet.
+    - key: cancel[identifier]
+      value: <string>
+      disabled: true
+      description: Specifies which event to cancel.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 1000

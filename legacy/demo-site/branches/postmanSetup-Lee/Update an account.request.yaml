@@ -1,0 +1,1438 @@
+$kind: http-request
+description: >-
+  <p>Updates a <a href="/docs/connect/accounts">connected account</a> by setting
+  the values of the parameters passed. Any parameters not provided are
+
+  left unchanged.</p>
+
+
+  <p>For Custom accounts, you can update any information on the account. For
+  other accounts, you can update all information until that
+
+  account has started to go through Connect Onboarding. Once you create an <a
+  href="/docs/api/account_links">Account Link</a> or <a
+  href="/docs/api/account_sessions">Account Session</a>,
+
+  some properties can only be changed or updated for Custom accounts.</p>
+
+
+  <p>To update your own account, use the <a
+  href="https://dashboard.stripe.com/settings/account">Dashboard</a>. Refer to
+  our
+
+  <a href="/docs/connect/updating-accounts">Connect</a> documentation to learn
+  more about updating accounts.</p>
+url: "{{baseUrl}}/v1/accounts/:account"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: account_token
+      value: <string>
+      disabled: true
+      description: An [account
+        token](https://stripe.com/docs/api#create_account_token), used to
+        securely provide details to the account.
+    - key: business_profile[annual_revenue][amount]
+      value: <integer>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[annual_revenue][currency]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[annual_revenue][fiscal_year_end]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[estimated_worker_count]
+      value: <integer>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[mcc]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[monthly_estimated_revenue][amount]
+      value: <integer>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[monthly_estimated_revenue][currency]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[name]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[product_description]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][city]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][country]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][line1]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][line2]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][postal_code]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_address][state]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_email]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_phone]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[support_url]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_profile[url]
+      value: <string>
+      disabled: true
+      description: Business information about the account.
+    - key: business_type
+      value: <string>
+      disabled: true
+      description: The business type. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: capabilities[acss_debit_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[affirm_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[afterpay_clearpay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[amazon_pay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[au_becs_debit_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[bacs_debit_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[bancontact_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[bank_transfer_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[blik_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[boleto_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[card_issuing][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[card_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[cartes_bancaires_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[cashapp_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[eps_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[fpx_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[giropay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[grabpay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[ideal_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[india_international_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[jcb_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[klarna_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[konbini_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[legacy_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[link_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[mobilepay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[oxxo_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[p24_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[paynow_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[promptpay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[revolut_pay_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[sepa_debit_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[sofort_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[swish_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[tax_reporting_us_1099_k][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[tax_reporting_us_1099_misc][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[transfers][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[treasury][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[us_bank_account_ach_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: capabilities[zip_payments][requested]
+      value: <boolean>
+      disabled: true
+      description: Each key of the dictionary represents a capability, and each
+        capability maps to its settings (e.g. whether it has been requested or
+        not). Each capability will be inactive until you have provided its
+        specific requirements and Stripe has verified them. An account may have
+        some of its requested capabilities be active and some be inactive.
+    - key: company[address][city]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address][country]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address][line1]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address][line2]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address][state]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][city]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][country]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][line1]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][line2]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][state]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kana][town]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][city]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][country]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][line1]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][line2]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][state]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[address_kanji][town]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[directors_provided]
+      value: <boolean>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[executives_provided]
+      value: <boolean>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[export_license_id]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[export_purpose_code]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[name]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[name_kana]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[name_kanji]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[owners_provided]
+      value: <boolean>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[ownership_declaration][date]
+      value: <unix-time>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[ownership_declaration][ip]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[ownership_declaration][user_agent]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[phone]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[registration_number]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[structure]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[tax_id]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[tax_id_registrar]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[vat_id]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[verification][document][back]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: company[verification][document][front]
+      value: <string>
+      disabled: true
+      description: Information about the company or business. This field is available
+        for any `business_type`. Once you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: default_currency
+      value: <string>
+      disabled: true
+      description: Three-letter ISO currency code representing the default currency
+        for the account. This must be a currency that [Stripe supports in the
+        account's country](https://docs.stripe.com/payouts).
+    - key: documents[bank_account_ownership_verification][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[bank_account_ownership_verification][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_license][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_license][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_memorandum_of_association][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_memorandum_of_association][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_ministerial_decree][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_ministerial_decree][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_registration_verification][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_registration_verification][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_tax_id_verification][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[company_tax_id_verification][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[proof_of_registration][files][0]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: documents[proof_of_registration][files][1]
+      value: <string>
+      disabled: true
+      description: Documents that may be submitted to satisfy various informational
+        requests.
+    - key: email
+      value: <string>
+      disabled: true
+      description: The email address of the account holder. This is only to make the
+        account easier to identify to you. Stripe only emails Custom accounts
+        with your consent.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: external_account
+      value: <string>
+      disabled: true
+      description: A card or bank account to attach to the account for receiving
+        [payouts](https://docs.stripe.com/connect/bank-debit-card-payouts) (you
+        won’t be able to use it for top-ups). You can provide either a token,
+        like the ones returned by [Stripe.js](https://docs.stripe.com/js), or a
+        dictionary, as documented in the `external_account` parameter for [bank
+        account](https://docs.stripe.com/api#account_create_bank_account)
+        creation. <br><br>By default, providing an external account sets it as
+        the new default external account for its currency, and deletes the old
+        default if one exists. To add additional external accounts without
+        replacing the existing default for the currency, use the [bank
+        account](https://docs.stripe.com/api#account_create_bank_account) or
+        [card creation](https://docs.stripe.com/api#account_create_card) APIs.
+        After you create an [Account
+        Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][city]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][country]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][line1]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][line2]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address][state]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][city]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][country]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][line1]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][line2]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][state]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kana][town]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][city]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][country]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][line1]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][line2]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][state]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[address_kanji][town]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[dob][day]
+      value: <integer>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[dob][month]
+      value: <integer>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[dob][year]
+      value: <integer>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[email]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[first_name]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[first_name_kana]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[first_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[full_name_aliases][0]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[full_name_aliases][1]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[gender]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[id_number]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[id_number_secondary]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[last_name]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[last_name_kana]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[last_name_kanji]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[maiden_name]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[metadata]
+      value: <object>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[phone]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[political_exposure]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][city]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][country]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][line1]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][line2]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[registered_address][state]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[relationship][director]
+      value: <boolean>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[relationship][executive]
+      value: <boolean>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[relationship][owner]
+      value: <boolean>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[relationship][percent_ownership]
+      value: <number>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[relationship][title]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[ssn_last_4]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[verification][additional_document][back]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[verification][additional_document][front]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[verification][document][back]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: individual[verification][document][front]
+      value: <string>
+      disabled: true
+      description: Information about the person represented by the account. This field
+        is null unless `business_type` is set to `individual`. Once you create
+        an [Account Link](https://docs.stripe.com/api/account_links) or [Account
+        Session](https://docs.stripe.com/api/account_sessions), this property
+        can only be updated for Custom accounts.
+    - key: settings[bacs_debit_payments][display_name]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[branding][icon]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[branding][logo]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[branding][primary_color]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[branding][secondary_color]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_issuing][tos_acceptance][date]
+      value: <unix-time>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_issuing][tos_acceptance][ip]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_issuing][tos_acceptance][user_agent]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_payments][decline_on][avs_failure]
+      value: <boolean>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_payments][decline_on][cvc_failure]
+      value: <boolean>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_payments][statement_descriptor_prefix]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_payments][statement_descriptor_prefix_kana]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[card_payments][statement_descriptor_prefix_kanji]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[invoices][default_account_tax_ids][0]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[invoices][default_account_tax_ids][1]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payments][statement_descriptor]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payments][statement_descriptor_kana]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payments][statement_descriptor_kanji]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][debit_negative_balances]
+      value: <boolean>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][schedule][delay_days]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][schedule][interval]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][schedule][monthly_anchor]
+      value: <integer>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][schedule][weekly_anchor]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[payouts][statement_descriptor]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[treasury][tos_acceptance][date]
+      value: <unix-time>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[treasury][tos_acceptance][ip]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: settings[treasury][tos_acceptance][user_agent]
+      value: <string>
+      disabled: true
+      description: Options for customizing how the account functions within Stripe.
+    - key: tos_acceptance[date]
+      value: <unix-time>
+      disabled: true
+      description: Details on the account's acceptance of the [Stripe Services
+        Agreement](https://docs.stripe.com/connect/updating-accounts#tos-acceptance)
+        This property can only be updated for Custom accounts.
+    - key: tos_acceptance[ip]
+      value: <string>
+      disabled: true
+      description: Details on the account's acceptance of the [Stripe Services
+        Agreement](https://docs.stripe.com/connect/updating-accounts#tos-acceptance)
+        This property can only be updated for Custom accounts.
+    - key: tos_acceptance[service_agreement]
+      value: <string>
+      disabled: true
+      description: Details on the account's acceptance of the [Stripe Services
+        Agreement](https://docs.stripe.com/connect/updating-accounts#tos-acceptance)
+        This property can only be updated for Custom accounts.
+    - key: tos_acceptance[user_agent]
+      value: <string>
+      disabled: true
+      description: Details on the account's acceptance of the [Stripe Services
+        Agreement](https://docs.stripe.com/connect/updating-accounts#tos-acceptance)
+        This property can only be updated for Custom accounts.
+order: 6000

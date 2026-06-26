@@ -1,0 +1,93 @@
+$kind: http-request
+description: <p>Create an external account for a given account.</p>
+url: "{{baseUrl}}/v1/accounts/:account/external_accounts"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: bank_account[account_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[country]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_name]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_type]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[currency]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[documents][bank_account_ownership_verification][files][0]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[documents][bank_account_ownership_verification][files][1]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[object]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[routing_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: default_for_currency
+      value: <boolean>
+      disabled: true
+      description: When set to true, or if this is the first external account added in
+        this currency, this account becomes the default external account for its
+        currency.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: external_account
+      value: <string>
+      disabled: true
+      description: Please refer to full [documentation](https://stripe.com/docs/api)
+        instead.
+order: 11000

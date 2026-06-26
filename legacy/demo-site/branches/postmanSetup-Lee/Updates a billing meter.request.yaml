@@ -1,0 +1,26 @@
+$kind: http-request
+description: <p>Updates a billing meter</p>
+url: "{{baseUrl}}/v1/billing/meters/:id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: id
+    value: <string>
+    description: (Required) Unique identifier for the object.
+body:
+  type: urlencoded
+  content:
+    - key: display_name
+      value: <string>
+      disabled: true
+      description: The meter's name.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

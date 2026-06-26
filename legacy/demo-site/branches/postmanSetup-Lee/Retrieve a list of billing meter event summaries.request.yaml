@@ -1,0 +1,59 @@
+$kind: http-request
+description: <p>Retrieve a list of billing meter event summaries.</p>
+url: "{{baseUrl}}/v1/billing/meters/:id/event_summaries?customer=<string>&end_t\
+  ime=<unix-time>&start_time=<unix-time>"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: customer
+    value: <string>
+    description: (Required) The customer for which to fetch event summaries.
+  - key: end_time
+    value: <unix-time>
+    description: (Required) The timestamp from when to stop aggregating usage events
+      (exclusive).
+  - key: ending_before
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `ending_before` is an object ID
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, starting with `obj_bar`, your subsequent
+      call can include `ending_before=obj_bar` in order to fetch the previous
+      page of the list.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit on the number of objects to be returned. Limit can range
+      between 1 and 100, and the default is 10.
+  - key: start_time
+    value: <unix-time>
+    description: (Required) The timestamp from when to start aggregating usage
+      events (inclusive).
+  - key: starting_after
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `starting_after` is an object ID
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, ending with `obj_foo`, your subsequent
+      call can include `starting_after=obj_foo` in order to fetch the next page
+      of the list.
+  - key: value_grouping_window
+    value: <string>
+    disabled: true
+    description: Specifies what granularity to use when generating event summaries.
+      If not specified, a single event summary would be returned for the
+      specified time range.
+pathVariables:
+  - key: id
+    value: <string>
+    description: (Required) Unique identifier for the object.
+order: 1000

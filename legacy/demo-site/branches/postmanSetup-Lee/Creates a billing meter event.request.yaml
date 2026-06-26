@@ -1,0 +1,33 @@
+$kind: http-request
+description: <p>Creates a billing meter event</p>
+url: "{{baseUrl}}/v1/billing/meter_events"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: event_name
+      value: <string>
+      description: (Required) The name of the meter event. Corresponds with the
+        `event_name` field on a meter.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: identifier
+      value: <string>
+      disabled: true
+      description: A unique identifier for the event. If not provided, one will be
+        generated. We recommend using a globally unique identifier for this.
+        We'll enforce uniqueness within a rolling 24 hour period.
+    - key: timestamp
+      value: <unix-time>
+      disabled: true
+      description: The time of the event. Measured in seconds since the Unix epoch.
+        Defaults to current timestamp if not specified.
+order: 1000

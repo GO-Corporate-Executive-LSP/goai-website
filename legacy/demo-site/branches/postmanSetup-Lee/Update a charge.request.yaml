@@ -1,0 +1,110 @@
+$kind: http-request
+description: <p>Updates the specified charge by setting the values of the
+  parameters passed. Any parameters not provided will be left unchanged.</p>
+url: "{{baseUrl}}/v1/charges/:charge"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: charge
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The ID of an existing customer that will be associated with this
+        request. This field may only be updated if there is no existing
+        associated customer with this charge.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string which you can attach to a charge object. It is
+        displayed when in the web interface alongside the charge. Note that if
+        you use Stripe to send automatic email receipts to your customers, your
+        receipt emails will include the `description` of the charge(s) that they
+        are describing.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: fraud_details[user_report]
+      value: <string>
+      disabled: true
+      description: A set of key-value pairs you can attach to a charge giving
+        information about its riskiness. If you believe a charge is fraudulent,
+        include a `user_report` key with a value of `fraudulent`. If you believe
+        a charge is safe, include a `user_report` key with a value of `safe`.
+        Stripe will use the information you send to improve our fraud detection
+        algorithms.
+    - key: receipt_email
+      value: <string>
+      disabled: true
+      description: This is the email address that the receipt for this charge will be
+        sent to. If this field is updated, then a new email receipt will be sent
+        to the updated address.
+    - key: shipping[address][city]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][country]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][line1]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][line2]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[address][state]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[name]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[carrier]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[phone]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: shipping[tracking_number]
+      value: <string>
+      disabled: true
+      description: Shipping information for the charge. Helps prevent fraud on charges
+        for physical goods.
+    - key: transfer_group
+      value: <string>
+      disabled: true
+      description: A string that identifies this transaction as part of a group.
+        `transfer_group` may only be provided if it has not been set. See the
+        [Connect
+        documentation](https://stripe.com/docs/connect/separate-charges-and-transfers#transfer-options)
+        for details.
+order: 5000

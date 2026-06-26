@@ -1,0 +1,29 @@
+$kind: http-request
+description: >-
+  <p>Creates a single-use login link for an Express account to access their
+  Stripe dashboard.</p>
+
+
+  <p><strong>You may only create login links for <a
+  href="/docs/connect/express-accounts">Express accounts</a> connected to your
+  platform</strong>.</p>
+url: "{{baseUrl}}/v1/accounts/:account/login_links"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 15000

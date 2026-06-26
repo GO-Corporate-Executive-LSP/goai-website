@@ -1,0 +1,16 @@
+$kind: http-request
+description: <p>Delete a specified external account for a given account.</p>
+url: "{{baseUrl}}/v1/accounts/:account/external_accounts/:id"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 12000

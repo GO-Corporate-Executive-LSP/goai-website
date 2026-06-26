@@ -1,0 +1,33 @@
+$kind: http-request
+description: >-
+  <p>With <a href="/docs/connect">Connect</a>, you may flag accounts as
+  suspicious.</p>
+
+
+  <p>Test-mode Custom and Express accounts can be rejected at any time. Accounts
+  created using live-mode keys may only be rejected once all balances are
+  zero.</p>
+url: "{{baseUrl}}/v1/accounts/:account/reject"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: account
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: reason
+      value: <string>
+      description: (Required) The reason for rejecting the account. Can be `fraud`,
+        `terms_of_service`, or `other`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 16000

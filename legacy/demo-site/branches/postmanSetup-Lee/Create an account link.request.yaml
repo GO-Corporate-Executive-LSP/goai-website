@@ -1,0 +1,54 @@
+$kind: http-request
+description: <p>Creates an AccountLink object that includes a single-use Stripe
+  URL that the platform can redirect their user to in order to take them through
+  the Connect Onboarding flow.</p>
+url: "{{baseUrl}}/v1/account_links"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: refresh_url
+      value: <string>
+      description: (Required) The URL the user will be redirected to if the account
+        link is expired, has been previously-visited, or is otherwise invalid.
+        The URL you specify should attempt to generate a new account link with
+        the same parameters used to create the original account link, then
+        redirect the user to the new account link's URL so they can continue
+        with Connect Onboarding. If a new account link cannot be generated or
+        the redirect fails you should display a useful error to the user.
+    - key: return_url
+      value: <string>
+      description: (Required) The URL that the user will be redirected to upon leaving
+        or completing the linked flow.
+    - key: account
+      value: <string>
+      description: (Required) The identifier of the account to create an account link for.
+    - key: type
+      value: <string>
+      description: (Required) The type of account link the user is requesting.
+        Possible values are `account_onboarding` or `account_update`.
+    - key: collect
+      value: <string>
+      disabled: true
+      description: The collect parameter is deprecated. Use `collection_options` instead.
+    - key: collection_options[fields]
+      value: <string>
+      disabled: true
+      description: Specifies the requirements that Stripe collects from connected
+        accounts in the Connect Onboarding flow.
+    - key: collection_options[future_requirements]
+      value: <string>
+      disabled: true
+      description: Specifies the requirements that Stripe collects from connected
+        accounts in the Connect Onboarding flow.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 1000
