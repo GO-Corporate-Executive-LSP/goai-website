@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETAS Trip Flow Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .demo-controls {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .scenario-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .scenario-btn {
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .scenario-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .scenario-btn:active {
+            transform: translateY(0);
+        }
+        
+        .flow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 8px;
+            border-left: 4px solid #cbd5e0;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-step.active {
+            opacity: 1;
+            border-left-color: #667eea;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .flow-step.complete {
+            opacity: 1;
+            border-left-color: #48bb78;
+            background: linear-gradient(90deg, rgba(72, 187, 120, 0.1) 0%, transparent 100%);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #cbd5e0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .flow-step.active .step-number {
+            background: #667eea;
+            animation: pulse 2s infinite;
+        }
+        
+        .flow-step.complete .step-number {
+            background: #48bb78;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        .step-status {
+            margin-left: auto;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .status-pending {
+            background: #edf2f7;
+            color: #718096;
+        }
+        
+        .status-active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .status-complete {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .console-output {
+            background: #1a202c;
+            border-radius: 12px;
+            padding: 20px;
+            color: #a0aec0;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .console-output::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .console-output::-webkit-scrollbar-track {
+            background: #2d3748;
+            border-radius: 4px;
+        }
+        
+        .console-output::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 4px;
+        }
+        
+        .console-line {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .console-info { color: #63b3ed; }
+        .console-success { color: #48bb78; }
+        .console-warning { color: #f6ad55; }
+        .console-error { color: #fc8181; }
+        .console-data { color: #9f7aea; }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .instructions {
+            background: #fffbeb;
+            border-left: 4px solid #f6ad55;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions strong {
+            color: #744210;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 ETAS Trip Flow Demo</h1>
+            <p>End-to-End Trip Lifecycle Demonstration</p>
+        </div>
+        
+        <div class="demo-controls">
+            <div class="instructions">
+                <strong>Instructions:</strong> Open your browser's Developer Console (F12 or Cmd+Option+I) to see detailed logs. Click any scenario below to watch a trip flow through the system.
+            </div>
+            
+            <div class="scenario-buttons">
+                <button class="scenario-btn" onclick="runScenario('happy-path')">
+                    ✅ Happy Path Trip
+                </button>
+                <button class="scenario-btn" onclick="runScenario('validation-failure')">
+                    ⚠️ Validation Failure
+                </button>
+                <button class="scenario-btn" onclick="runScenario('payment-retry')">
+                    🔄 Payment Retry
+                </button>
+                <button class="scenario-btn" onclick="runScenario('sentinel-review')">
+                    🟠 SENTINEL Review
+                </button>
+                <button class="scenario-btn" onclick="runScenario('admin-rejection')">
+                    ❌ Admin Rejection
+                </button>
+            </div>
+        </div>
+        
+        <div class="flow-diagram">
+            <h2 style="margin-bottom: 25px; color: #2d3748;">System Flow</h2>
+            
+            <div class="flow-step" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">User Intent</div>
+                    <div class="step-description">User submits trip request with destination, time, passengers</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+            
+            <div class="flow-step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Validation</div>
+                    <div class="step-description">System validates fields, tier capacity, booking window</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+            
+            <div class="flow-step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">SENTINEL Enrichment</div>
+                    <div class="step-description">Risk assessment, anomaly detection, confidence scoring</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+            
+            <div class="flow-step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Approval Logic</div>
+                    <div class="step-description">Auto-approve or route to admin based on triggers</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+            
+            <div class="flow-step" data-step="5">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Execution Handoff</div>
+                    <div class="step-description">Send to Lee for payment processing and dispatch</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+            
+            <div class="flow-step" data-step="6">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="step-title">Audit Logging</div>
+                    <div class="step-description">Record all decisions, state changes, timestamps</div>
+                </div>
+                <span class="step-status status-pending">Pending</span>
+            </div>
+        </div>
+        
+        <div class="console-output" id="console-output">
+            <div class="console-line console-info">Ready to run demo. Click a scenario above to begin...</div>
+        </div>
+    </div>
+    
+    <script>
+        // Mock data for scenarios
+        const scenarios = {
+            'happy-path': {
+                name: 'Happy Path Trip',
+                trip: {
+                    trip_id: 'TRP_001',
+                    user_id: 'USR_123',
+                    destination: 'LAX Airport',
+                    pickup_time: '2026-01-20T14:00:00Z',
+                    passengers: 2,
+                    luggage: 1,
+                    tier: 'BASIC'
+                },
+                steps: [
+                    { step: 1, status: 'complete', log: 'User submitted trip request', data: true },
+                    { step: 2, status: 'complete', log: 'Validation PASSED - All fields valid', data: { outcome: 'VALID', errors: [] } },
+                    { step: 3, status: 'complete', log: 'SENTINEL assessment: GREEN (95% confidence)', data: { flag: 'green', confidence: 0.95, anomalies: [] } },
+                    { step: 4, status: 'complete', log: 'AUTO-APPROVED (no triggers)', data: { decision: 'auto_approve', reason: 'green_flag_no_anomalies' } },
+                    { step: 5, status: 'complete', log: 'Handed off to Lee for execution', data: { execution_ready: true } },
+                    { step: 6, status: 'complete', log: 'Audit trail: draft → validated → approved → booked', data: { final_state: 'booked' } }
+                ]
+            },
+            'validation-failure': {
+                name: 'Validation Failure',
+                trip: {
+                    trip_id: 'TRP_002',
+                    user_id: 'USR_456',
+                    destination: 'LAX Airport',
+                    pickup_time: '2026-01-15T09:00:00Z',
+                    passengers: 7,
+                    luggage: 1,
+                    tier: 'BASIC'
+                },
+                steps: [
+                    { step: 1, status: 'complete', log: 'User submitted trip request', data: true },
+                    { step: 2, status: 'complete', log: 'Validation FAILED', data: { 
+                        outcome: 'INVALID', 
+                        errors: [
+                            { field: 'pickup_time', message: 'Pickup must be at least 2 hours in advance' },
+                            { field: 'tier', message: 'BASIC tier supports up to 4 passengers' }
+                        ] 
+                    }},
+                    { step: 3, status: 'skipped', log: 'SENTINEL not run (validation failed)', data: null },
+                    { step: 4, status: 'skipped', log: 'Approval skipped (validation failed)', data: null },
+                    { step: 5, status: 'skipped', log: 'Execution skipped (validation failed)', data: null },
+                    { step: 6, status: 'complete', log: 'Audit trail: draft → (validation_failed) → draft', data: { final_state: 'draft', user_message: 'Please review the highlighted fields' } }
+                ]
+            },
+            'payment-retry': {
+                name: 'Payment Failure with Retry',
+                trip: {
+                    trip_id: 'TRP_003',
+                    user_id: 'USR_789',
+                    destination: 'JFK Airport',
+                    pickup_time: '2026-01-20T10:00:00Z',
+                    passengers: 4,
+                    luggage: 3,
+                    tier: 'CORPORATE'
+                },
+                steps: [
+                    { step: 1, status: 'complete', log: 'User submitted trip request', data: true },
+                    { step: 2, status: 'complete', log: 'Validation PASSED', data: { outcome: 'VALID' } },
+                    { step: 3, status: 'complete', log: 'SENTINEL assessment: GREEN (92% confidence)', data: { flag: 'green', confidence: 0.92 } },
+                    { step: 4, status: 'complete', log: 'AUTO-APPROVED', data: { decision: 'auto_approve' } },
+                    { step: 5, status: 'complete', log: 'Execution attempt #1: Payment FAILED (timeout)', data: { 
+                        failure_type: 'PAYMENT_FAILURE',
+                        retry_strategy: 'SHORT_BACKOFF',
+                        next_retry: '30s'
+                    }},
+                    { step: 5, status: 'complete', log: 'Execution attempt #2: Payment SUCCESS', data: { 
+                        transaction_id: 'txn_xyz789',
+                        provider_confirmed: true
+                    }},
+                    { step: 6, status: 'complete', log: 'Audit trail: Retry logged, final state: booked', data: { 
+                        final_state: 'booked',
+                        retry_count: 1,
+                        user_message: 'Your trip is confirmed (user never knew about retry)'
+                    }}
+                ]
+            },
+            'sentinel-review': {
+                name: 'SENTINEL Orange Flag - Manual Review',
+                trip: {
+                    trip_id: 'TRP_004',
+                    user_id: 'USR_NEW_101',
+                    destination: 'Unknown Street Address',
+                    pickup_time: '2026-01-20T02:00:00Z',
+                    passengers: 1,
+                    tier: 'EXECUTIVE'
+                },
+                steps: [
+                    { step: 1, status: 'complete', log: 'User submitted trip request', data: true },
+                    { step: 2, status: 'complete', log: 'Validation PASSED (fields technically valid)', data: { outcome: 'VALID' } },
+                    { step: 3, status: 'complete', log: 'SENTINEL assessment: ORANGE (55% confidence)', data: { 
+                        flag: 'orange',
+                        confidence: 0.55,
+                        anomalies: ['new_user', 'unusual_destination', 'late_night', 'high_tier']
+                    }},
+                    { step: 4, status: 'complete', log: 'MANUAL REVIEW REQUIRED (SENTINEL orange + multiple anomalies)', data: { 
+                        decision: 'requires_approval',
+                        reason: 'sentinel_orange_multiple_anomalies',
+                        queue_priority: 'HIGH'
+                    }},
+                    { step: 4, status: 'complete', log: 'Admin reviewed and APPROVED (verified user via phone)', data: { 
+                        admin_id: 'admin@example.com',
+                        decision: 'APPROVED',
+                        notes: 'Verified user identity via phone. Legitimate booking.'
+                    }},
+                    { step: 5, status: 'complete', log: 'Handed off to Lee for execution', data: { execution_ready: true } },
+                    { step: 6, status: 'complete', log: 'Audit trail: Complete approval path logged', data: { 
+                        final_state: 'booked',
+                        approval_time: '8 minutes',
+                        user_message: 'Your trip is confirmed (calm messaging, no mention of review)'
+                    }}
+                ]
+            },
+            'admin-rejection': {
+                name: 'Admin Rejection',
+                trip: {
+                    trip_id: 'TRP_005',
+                    user_id: 'USR_456',
+                    destination: 'Restricted Military Base',
+                    pickup_time: '2026-01-20T15:00:00Z',
+                    passengers: 6,
+                    tier: 'CORPORATE'
+                },
+                steps: [
+                    { step: 1, status: 'complete', log: 'User submitted trip request', data: true },
+                    { step: 2, status: 'complete', log: 'Validation: BLOCKED (restricted destination)', data: { 
+                        outcome: 'BLOCKED',
+                        reason: 'destination_restricted'
+                    }},
+                    { step: 3, status: 'complete', log: 'SENTINEL assessment: YELLOW (65% confidence)', data: { 
+                        flag: 'yellow',
+                        confidence: 0.65
+                    }},
+                    { step: 4, status: 'complete', log: 'MANUAL REVIEW REQUIRED (validation BLOCKED)', data: { 
+                        decision: 'requires_approval',
+                        reason: 'validation_blocked',
+                        queue_priority: 'HIGH'
+                    }},
+                    { step: 4, status: 'complete', log: 'Admin REJECTED trip', data: { 
+                        admin_id: 'admin@example.com',
+                        decision: 'REJECTED',
+                        notes: 'Cannot service this destination per company policy'
+                    }},
+                    { step: 5, status: 'skipped', log: 'Execution skipped (trip rejected)', data: null },
+                    { step: 6, status: 'complete', log: 'Audit trail: Complete rejection path logged', data: { 
+                        final_state: 'cancelled',
+                        user_message: 'We couldn\'t complete your booking. Please contact support.'
+                    }}
+                ]
+            }
+        };
+        
+        let currentScenario = null;
+        let stepIndex = 0;
+        
+        function resetFlow() {
+            document.querySelectorAll('.flow-step').forEach(step => {
+                step.classList.remove('active', 'complete');
+                step.querySelector('.step-status').textContent = 'Pending';
+                step.querySelector('.step-status').className = 'step-status status-pending';
+            });
+            
+            const consoleOutput = document.getElementById('console-output');
+            consoleOutput.innerHTML = '';
+        }
+        
+        function addConsoleLog(message, type = 'info', data = null) {
+            const consoleOutput = document.getElementById('console-output');
+            const line = document.createElement('div');
+            line.className = `console-line console-${type}`;
+            
+            const timestamp = new Date().toLocaleTimeString();
+            line.textContent = `[${timestamp}] ${message}`;
+            
+            if (data) {
+                const dataLine = document.createElement('div');
+                dataLine.className = 'console-line console-data';
+                dataLine.textContent = `   └─ ${JSON.stringify(data, null, 2).split('\n').join('\n      ')}`;
+                consoleOutput.appendChild(line);
+                consoleOutput.appendChild(dataLine);
+            } else {
+                consoleOutput.appendChild(line);
+            }
+            
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            
+            // Also log to actual console
+            console.log(`%c${message}`, `color: ${type === 'success' ? '#48bb78' : type === 'error' ? '#fc8181' : type === 'warning' ? '#f6ad55' : '#63b3ed'}`, data || '');
+        }
+        
+        function updateFlowStep(stepNum, status) {
+            const step = document.querySelector(`[data-step="${stepNum}"]`);
+            if (!step) return;
+            
+            step.classList.remove('active', 'complete');
+            const statusEl = step.querySelector('.step-status');
+            
+            if (status === 'active') {
+                step.classList.add('active');
+                statusEl.textContent = 'Processing...';
+                statusEl.className = 'step-status status-active';
+            } else if (status === 'complete') {
+                step.classList.add('complete');
+                statusEl.textContent = 'Complete';
+                statusEl.className = 'step-status status-complete';
+            } else if (status === 'skipped') {
+                step.classList.add('complete');
+                statusEl.textContent = 'Skipped';
+                statusEl.className = 'step-status status-pending';
+            }
+        }
+        
+        async function runScenario(scenarioKey) {
+            currentScenario = scenarios[scenarioKey];
+            stepIndex = 0;
+            
+            resetFlow();
+            
+            addConsoleLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
+            addConsoleLog(`Starting Scenario: ${currentScenario.name}`, 'info');
+            addConsoleLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'info');
+            addConsoleLog(`Trip Data:`, 'info', currentScenario.trip);
+            addConsoleLog(``, 'info');
+            
+            for (const stepData of currentScenario.steps) {
+                await processStep(stepData);
+            }
+            
+            addConsoleLog(``, 'info');
+            addConsoleLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'success');
+            addConsoleLog(`Scenario Complete: ${currentScenario.name}`, 'success');
+            addConsoleLog(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`, 'success');
+        }
+        
+        async function processStep(stepData) {
+            updateFlowStep(stepData.step, 'active');
+            
+            await sleep(800); // Pause for visual effect
+            
+            const logType = stepData.status === 'skipped' ? 'warning' : 
+                           stepData.log.includes('FAILED') || stepData.log.includes('REJECTED') ? 'warning' :
+                           stepData.log.includes('SUCCESS') || stepData.log.includes('APPROVED') ? 'success' : 'info';
+            
+            addConsoleLog(`Step ${stepData.step}: ${stepData.log}`, logType, stepData.data);
+            
+            updateFlowStep(stepData.step, stepData.status);
+            
+            await sleep(400);
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        // Auto-run happy path on load
+        window.addEventListener('load', () => {
+            setTimeout(() => runScenario('happy-path'), 500);
+        });
+    </script>
+</body>
+</html>

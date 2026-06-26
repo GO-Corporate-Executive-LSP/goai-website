@@ -1,0 +1,89 @@
+name: Concierge API Environment
+values:
+  - key: url
+    value: 'https://api-sandbox.lyft.net'
+    enabled: true
+  - key: client_id
+    value: ''
+    enabled: true
+  - key: client_secret
+    value: ''
+    enabled: true
+  - key: access_token
+    value: ''
+    enabled: true
+  - key: ride_type
+    value: lyft
+    enabled: true
+  - key: origin_lat
+    value: '33.947234'
+    enabled: true
+  - key: origin_lng
+    value: '-118.398325'
+    enabled: true
+  - key: origin_address
+    value: '1 World Way, Los Angeles, CA 90045, USA'
+    enabled: true
+  - key: dest_lat
+    value: '33.987511'
+    enabled: true
+  - key: dest_lng
+    value: '-118.3113088'
+    enabled: true
+  - key: dest_address
+    value: '1830 W Slauson Ave, Los Angeles, CA 90047, USA'
+    enabled: true
+  - key: new_origin_lat
+    value: '34.0375295'
+    enabled: true
+  - key: new_origin_lng
+    value: '-118.4752363'
+    enabled: true
+  - key: new_origin_address
+    value: '2800 Wilshire Blvd, Santa Monica, CA 90403, United States'
+    enabled: true
+  - key: new_dest_lat
+    value: '34.0702904'
+    enabled: true
+  - key: new_dest_lng
+    value: '-118.3840262'
+    enabled: true
+  - key: new_dest_address
+    value: '265 N Robertson Blvd, Beverly Hills, CA 90211, USA'
+    enabled: true
+  - key: ride_id
+    value: ''
+    enabled: true
+  - key: flex_ride_id
+    value: ''
+    enabled: true
+  - key: from_timestamp_ms
+    value: ''
+    enabled: true
+  - key: to_timestamp_ms
+    value: ''
+    enabled: true
+  - key: scheduled_timestamp_ms
+    value: ''
+    enabled: true
+  - key: new_scheduled_timestamp_ms
+    value: ''
+    enabled: true
+  - key: account_lyft_id
+    value: ''
+    enabled: true
+  - key: cost_token
+    value: ''
+    enabled: true
+  - key: price_changed_token
+    value: ''
+    enabled: true
+  - key: dispatch_type
+    value: scheduled
+    enabled: true
+  - key: driver_availability_token
+    value: ''
+    enabled: true
+  - key: venue_type
+    value: pickup
+    enabled: true

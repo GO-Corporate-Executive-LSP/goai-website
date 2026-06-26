@@ -1,0 +1,5 @@
+name: Stripe Environment Template
+values:
+  - key: secret_key
+    value: '<replace with your Stripe secret test mode key, i.e. sk_test_XXX>'
+    enabled: true
