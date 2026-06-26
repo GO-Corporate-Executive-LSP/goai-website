@@ -1,0 +1,16 @@
+$kind: http-request
+description: <p>Permanently deletes a one-off invoice draft. This cannot be
+  undone. Attempts to delete invoices that are no longer in a draft state will
+  fail; once an invoice has been finalized or if an invoice is for a
+  subscription, it must be <a href="#void_invoice">voided</a>.</p>
+url: "{{baseUrl}}/v1/invoices/:invoice"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoice
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 6000

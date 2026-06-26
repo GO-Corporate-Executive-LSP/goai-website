@@ -1,0 +1,91 @@
+$kind: http-request
+description: >-
+  <p>Creates a VerificationSession object.</p>
+
+
+  <p>After the VerificationSession is created, display a verification modal
+  using the session <code>client_secret</code> or send your users to the
+  session’s <code>url</code>.</p>
+
+
+  <p>If your API key is in test mode, verification checks won’t actually
+  process, though everything else will occur as if in live mode.</p>
+
+
+  <p>Related guide: <a href="/docs/identity/verify-identity-documents">Verify
+  your users’ identity documents</a></p>
+url: "{{baseUrl}}/v1/identity/verification_sessions"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: client_reference_id
+      value: <string>
+      disabled: true
+      description: A string to reference this user. This can be a customer ID, a
+        session ID, or similar, and can be used to reconcile this verification
+        with your internal systems.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: options[document][allowed_types][0]
+      value: <string>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][allowed_types][1]
+      value: <string>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_id_number]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_live_capture]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_matching_selfie]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[email][require_verification]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[phone][require_verification]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: provided_details[email]
+      value: <string>
+      disabled: true
+      description: Details provided about the user being verified. These details may
+        be shown to the user.
+    - key: provided_details[phone]
+      value: <string>
+      disabled: true
+      description: Details provided about the user being verified. These details may
+        be shown to the user.
+    - key: return_url
+      value: <string>
+      disabled: true
+      description: The URL that the user will be redirected to upon completing the
+        verification flow.
+    - key: type
+      value: <string>
+      disabled: true
+      description: The type of [verification
+        check](https://stripe.com/docs/identity/verification-checks) to be
+        performed.
+    - key: verification_flow
+      value: <string>
+      disabled: true
+      description: The ID of a Verification Flow from the Dashboard.
+order: 4000

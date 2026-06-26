@@ -1,0 +1,24 @@
+$kind: http-request
+description: <p>Updates the specified Issuing <code>Authorization</code> object
+  by setting the values of the parameters passed. Any parameters not provided
+  will be left unchanged.</p>
+url: "{{baseUrl}}/v1/issuing/authorizations/:authorization"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: authorization
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 3000

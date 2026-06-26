@@ -1,0 +1,15 @@
+$kind: http-request
+description: <p>Deletes an invoice item, removing it from an invoice. Deleting
+  invoice items is only possible when they’re not attached to invoices, or if
+  it’s attached to a draft invoice.</p>
+url: "{{baseUrl}}/v1/invoiceitems/:invoiceitem"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoiceitem
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

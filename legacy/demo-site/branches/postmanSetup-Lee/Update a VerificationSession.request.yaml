@@ -1,0 +1,73 @@
+$kind: http-request
+description: >-
+  <p>Updates a VerificationSession object.</p>
+
+
+  <p>When the session status is <code>requires_input</code>, you can use this
+  method to update the
+
+  verification check and options.</p>
+url: "{{baseUrl}}/v1/identity/verification_sessions/:session"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: session
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: options[document][allowed_types][0]
+      value: <string>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][allowed_types][1]
+      value: <string>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_id_number]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_live_capture]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[document][require_matching_selfie]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[email][require_verification]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: options[phone][require_verification]
+      value: <boolean>
+      disabled: true
+      description: A set of options for the session’s verification checks.
+    - key: provided_details[email]
+      value: <string>
+      disabled: true
+      description: Details provided about the user being verified. These details may
+        be shown to the user.
+    - key: provided_details[phone]
+      value: <string>
+      disabled: true
+      description: Details provided about the user being verified. These details may
+        be shown to the user.
+    - key: type
+      value: <string>
+      disabled: true
+      description: The type of [verification
+        check](https://stripe.com/docs/identity/verification-checks) to be
+        performed.
+order: 6000

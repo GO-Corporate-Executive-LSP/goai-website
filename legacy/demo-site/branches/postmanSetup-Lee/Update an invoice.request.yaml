@@ -1,0 +1,416 @@
+$kind: http-request
+description: >-
+  <p>Draft invoices are fully editable. Once an invoice is <a
+  href="/docs/billing/invoices/workflow#finalized">finalized</a>,
+
+  monetary values, as well as <code>collection_method</code>, become
+  uneditable.</p>
+
+
+  <p>If you would like to stop the Stripe Billing engine from automatically
+  finalizing, reattempting payments on,
+
+  sending reminders for, or <a
+  href="/docs/billing/invoices/reconciliation">automatically reconciling</a>
+  invoices, pass
+
+  <code>auto_advance=false</code>.</p>
+url: "{{baseUrl}}/v1/invoices/:invoice"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoice
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: account_tax_ids[0]
+      value: <string>
+      disabled: true
+      description: The account tax IDs associated with the invoice. Only editable when
+        the invoice is a draft.
+    - key: account_tax_ids[1]
+      value: <string>
+      disabled: true
+      description: The account tax IDs associated with the invoice. Only editable when
+        the invoice is a draft.
+    - key: application_fee_amount
+      value: <integer>
+      disabled: true
+      description: A fee in cents (or local equivalent) that will be applied to the
+        invoice and transferred to the application owner's Stripe account. The
+        request must be made with an OAuth key or the Stripe-Account header in
+        order to take an application fee. For more information, see the
+        application fees
+        [documentation](https://stripe.com/docs/billing/invoices/connect#collecting-fees).
+    - key: auto_advance
+      value: <boolean>
+      disabled: true
+      description: Controls whether Stripe performs [automatic
+        collection](https://stripe.com/docs/invoicing/integration/automatic-advancement-collection)
+        of the invoice.
+    - key: automatic_tax[enabled]
+      value: <boolean>
+      disabled: true
+      description: Settings for automatic tax lookup for this invoice.
+    - key: automatic_tax[liability][type]
+      value: <string>
+      disabled: true
+      description: Settings for automatic tax lookup for this invoice.
+    - key: automatic_tax[liability][account]
+      value: <string>
+      disabled: true
+      description: Settings for automatic tax lookup for this invoice.
+    - key: collection_method
+      value: <string>
+      disabled: true
+      description: Either `charge_automatically` or `send_invoice`. This field can be
+        updated only on `draft` invoices.
+    - key: custom_fields[0][name]
+      value: <string>
+      disabled: true
+      description: A list of up to 4 custom fields to be displayed on the invoice. If
+        a value for `custom_fields` is specified, the list specified will
+        replace the existing custom field list on this invoice. Pass an empty
+        string to remove previously-defined fields.
+    - key: custom_fields[0][value]
+      value: <string>
+      disabled: true
+      description: A list of up to 4 custom fields to be displayed on the invoice. If
+        a value for `custom_fields` is specified, the list specified will
+        replace the existing custom field list on this invoice. Pass an empty
+        string to remove previously-defined fields.
+    - key: custom_fields[1][name]
+      value: <string>
+      disabled: true
+      description: A list of up to 4 custom fields to be displayed on the invoice. If
+        a value for `custom_fields` is specified, the list specified will
+        replace the existing custom field list on this invoice. Pass an empty
+        string to remove previously-defined fields.
+    - key: custom_fields[1][value]
+      value: <string>
+      disabled: true
+      description: A list of up to 4 custom fields to be displayed on the invoice. If
+        a value for `custom_fields` is specified, the list specified will
+        replace the existing custom field list on this invoice. Pass an empty
+        string to remove previously-defined fields.
+    - key: days_until_due
+      value: <integer>
+      disabled: true
+      description: The number of days from which the invoice is created until it is
+        due. Only valid for invoices where `collection_method=send_invoice`.
+        This field can only be updated on `draft` invoices.
+    - key: default_payment_method
+      value: <string>
+      disabled: true
+      description: ID of the default payment method for the invoice. It must belong to
+        the customer associated with the invoice. If not set, defaults to the
+        subscription's default payment method, if any, or to the default payment
+        method in the customer's invoice settings.
+    - key: default_tax_rates[0]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any line item that does not have
+        `tax_rates` set. Pass an empty string to remove previously-defined tax
+        rates.
+    - key: default_tax_rates[1]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any line item that does not have
+        `tax_rates` set. Pass an empty string to remove previously-defined tax
+        rates.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users. Referenced as 'memo' in the Dashboard.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The discounts that will apply to the invoice. Pass an empty string
+        to remove previously-defined discounts.
+    - key: due_date
+      value: <unix-time>
+      disabled: true
+      description: The date on which payment for this invoice is due. Only valid for
+        invoices where `collection_method=send_invoice`. This field can only be
+        updated on `draft` invoices.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: footer
+      value: <string>
+      disabled: true
+      description: Footer to be displayed on the invoice.
+    - key: issuer[type]
+      value: <string>
+      disabled: true
+      description: The connected account that issues the invoice. The invoice is
+        presented with the branding and support information of the specified
+        account.
+    - key: issuer[account]
+      value: <string>
+      disabled: true
+      description: The connected account that issues the invoice. The invoice is
+        presented with the branding and support information of the specified
+        account.
+    - key: payment_settings[default_mandate]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][acss_debit][mandate_options][transaction_type]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][acss_debit][verification_method]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][bancontact][preferred_language]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][card][installments][enabled]
+      value: <boolean>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][card][installments][plan][count]
+      value: <integer>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][card][installments][plan][interval]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][card][installments][plan][type]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][card][request_three_d_secure]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][customer_balance][bank_transfer][eu_bank_transfer][country]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][customer_balance][bank_transfer][type]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][customer_balance][funding_type]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][permissions][0]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][permissions][1]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][prefetch][0]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][prefetch][1]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_options][us_bank_account][verification_method]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_types][0]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: payment_settings[payment_method_types][1]
+      value: <string>
+      disabled: true
+      description: Configuration settings for the PaymentIntent that is generated when
+        the invoice is finalized.
+    - key: rendering[amount_tax_display]
+      value: <string>
+      disabled: true
+      description: The rendering-related settings that control how the invoice is
+        displayed on customer-facing surfaces such as PDF and Hosted Invoice
+        Page.
+    - key: rendering[pdf][page_size]
+      value: <string>
+      disabled: true
+      description: The rendering-related settings that control how the invoice is
+        displayed on customer-facing surfaces such as PDF and Hosted Invoice
+        Page.
+    - key: shipping_cost[shipping_rate]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][display_name]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][delivery_estimate][maximum][unit]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][delivery_estimate][maximum][value]
+      value: <integer>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][delivery_estimate][minimum][unit]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][delivery_estimate][minimum][value]
+      value: <integer>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][fixed_amount][amount]
+      value: <integer>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][fixed_amount][currency]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][fixed_amount][currency_options]
+      value: <object>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][metadata]
+      value: <object>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][tax_code]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_cost[shipping_rate_data][type]
+      value: <string>
+      disabled: true
+      description: Settings for the cost of shipping for this invoice.
+    - key: shipping_details[address][city]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[address][country]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[address][line1]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[address][line2]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[address][state]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[name]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: shipping_details[phone]
+      value: <string>
+      disabled: true
+      description: Shipping details for the invoice. The Invoice PDF will use the
+        `shipping_details` value if it is set, otherwise the PDF will render the
+        shipping address from the customer.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: Extra information about a charge for the customer's credit card
+        statement. It must contain at least one letter. If not specified and
+        this invoice is part of a subscription, the default
+        `statement_descriptor` will be set to the first subscription item's
+        product's `statement_descriptor`.
+    - key: transfer_data[destination]
+      value: <string>
+      disabled: true
+      description: If specified, the funds from the invoice will be transferred to the
+        destination and the ID of the resulting transfer will be found on the
+        invoice's charge. This will be unset if you POST an empty value.
+    - key: transfer_data[amount]
+      value: <integer>
+      disabled: true
+      description: If specified, the funds from the invoice will be transferred to the
+        destination and the ID of the resulting transfer will be found on the
+        invoice's charge. This will be unset if you POST an empty value.
+order: 8000

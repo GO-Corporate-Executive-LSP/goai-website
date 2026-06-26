@@ -1,0 +1,34 @@
+$kind: http-request
+description: >-
+  <p>Mark a finalized invoice as void. This cannot be undone. Voiding an invoice
+  is similar to <a href="#delete_invoice">deletion</a>, however it only applies
+  to finalized invoices and maintains a papertrail where the invoice can still
+  be found.</p>
+
+
+  <p>Consult with local regulations to determine whether and how an invoice
+  might be amended, canceled, or voided in the jurisdiction you’re doing
+  business in. You might need to <a href="#create_invoice">issue another
+  invoice</a> or <a href="#create_credit_note">credit note</a> instead. Stripe
+  recommends that you consult with your legal counsel for advice specific to
+  your business.</p>
+url: "{{baseUrl}}/v1/invoices/:invoice/void"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoice
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 15000

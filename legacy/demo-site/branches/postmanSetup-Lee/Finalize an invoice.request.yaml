@@ -1,0 +1,31 @@
+$kind: http-request
+description: <p>Stripe automatically finalizes drafts before sending and
+  attempting payment on invoices. However, if you’d like to finalize a draft
+  invoice manually, you can do so using this method.</p>
+url: "{{baseUrl}}/v1/invoices/:invoice/finalize"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoice
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: auto_advance
+      value: <boolean>
+      disabled: true
+      description: Controls whether Stripe performs [automatic
+        collection](https://stripe.com/docs/invoicing/integration/automatic-advancement-collection)
+        of the invoice. If `false`, the invoice's state doesn't automatically
+        advance without an explicit action.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 9000

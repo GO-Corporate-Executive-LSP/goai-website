@@ -1,32 +1,32 @@
 $kind: http-request
-description: <p>Returns a list of Issuing <code>Dispute</code> objects. The
-  objects are sorted in descending order by creation date, with the most
-  recently created object appearing first.</p>
-url: "{{baseUrl}}/v1/issuing/disputes"
+description: <p>Returns a list of Issuing <code>Card</code> objects. The objects
+  are sorted in descending order by creation date, with the most recently
+  created object appearing first.</p>
+url: "{{baseUrl}}/v1/issuing/cards"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
 queryParams:
+  - key: cardholder
+    value: <string>
+    disabled: true
+    description: Only return cards belonging to the Cardholder with the provided ID.
   - key: created[gt]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return cards that were issued during the given date interval.
   - key: created[gte]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return cards that were issued during the given date interval.
   - key: created[lt]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return cards that were issued during the given date interval.
   - key: created[lte]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return cards that were issued during the given date interval.
   - key: ending_before
     value: <string>
     disabled: true
@@ -35,6 +35,14 @@ queryParams:
       request and receive 100 objects, starting with `obj_bar`, your subsequent
       call can include `ending_before=obj_bar` in order to fetch the previous
       page of the list.
+  - key: exp_month
+    value: <integer>
+    disabled: true
+    description: Only return cards that have the given expiration month.
+  - key: exp_year
+    value: <integer>
+    disabled: true
+    description: Only return cards that have the given expiration year.
   - key: expand[0]
     value: <string>
     disabled: true
@@ -43,11 +51,18 @@ queryParams:
     value: <string>
     disabled: true
     description: Specifies which fields in the response should be expanded.
+  - key: last4
+    value: <string>
+    disabled: true
+    description: Only return cards that have the given last four digits.
   - key: limit
     value: <integer>
     disabled: true
     description: A limit on the number of objects to be returned. Limit can range
       between 1 and 100, and the default is 10.
+  - key: personalization_design
+    value: <string>
+    disabled: true
   - key: starting_after
     value: <string>
     disabled: true
@@ -59,9 +74,10 @@ queryParams:
   - key: status
     value: <string>
     disabled: true
-    description: Select Issuing disputes with the given status.
-  - key: transaction
+    description: Only return cards that have the given status. One of `active`,
+      `inactive`, or `canceled`.
+  - key: type
     value: <string>
     disabled: true
-    description: Select the Issuing dispute for the given transaction.
+    description: Only return cards that have the given type. One of `virtual` or `physical`.
 order: 1000

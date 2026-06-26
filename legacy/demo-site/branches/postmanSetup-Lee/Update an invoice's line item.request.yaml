@@ -1,0 +1,404 @@
+$kind: http-request
+description: >-
+  <p>Updates an invoice’s line item. Some fields, such as
+  <code>tax_amounts</code>, only live on the invoice line item,
+
+  so they can only be updated through this endpoint. Other fields, such as
+  <code>amount</code>, live on both the invoice
+
+  item and the invoice line item, so updates on this endpoint will propagate to
+  the invoice item as well.
+
+  Updating an invoice’s line item is only possible before the invoice is
+  finalized.</p>
+url: "{{baseUrl}}/v1/invoices/:invoice/lines/:line_item_id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: invoice
+    value: <string>
+    description: (Required) Invoice ID of line item
+  - key: line_item_id
+    value: <string>
+    description: (Required) Invoice line item ID
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: The integer amount in cents (or local equivalent) of the charge to
+        be applied to the upcoming invoice. If you want to apply a credit to the
+        customer's account, pass a negative amount.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string which you can attach to the invoice item. The
+        description is displayed in the invoice for easy tracking.
+    - key: discountable
+      value: <boolean>
+      disabled: true
+      description: Controls whether discounts apply to this line item. Defaults to
+        false for prorations or negative line items, and true for all other line
+        items. Cannot be set to true for prorations.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons, promotion codes & existing discounts which apply to
+        the line item. Item discounts are applied before invoice discounts. Pass
+        an empty string to remove previously-defined discounts.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: period[end]
+      value: <unix-time>
+      disabled: true
+      description: The period associated with this invoice item. When set to different
+        values, the period will be rendered on the invoice. If you have [Stripe
+        Revenue Recognition](https://stripe.com/docs/revenue-recognition)
+        enabled, the period will be used to recognize and defer revenue. See the
+        [Revenue Recognition
+        documentation](https://stripe.com/docs/revenue-recognition/methodology/subscriptions-and-invoicing)
+        for details.
+    - key: period[start]
+      value: <unix-time>
+      disabled: true
+      description: The period associated with this invoice item. When set to different
+        values, the period will be rendered on the invoice. If you have [Stripe
+        Revenue Recognition](https://stripe.com/docs/revenue-recognition)
+        enabled, the period will be used to recognize and defer revenue. See the
+        [Revenue Recognition
+        documentation](https://stripe.com/docs/revenue-recognition/methodology/subscriptions-and-invoicing)
+        for details.
+    - key: price
+      value: <string>
+      disabled: true
+      description: The ID of the price object.
+    - key: price_data[currency]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][name]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][description]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][images][0]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][images][1]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][metadata]
+      value: <object>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product_data][tax_code]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[tax_behavior]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount]
+      value: <integer>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: quantity
+      value: <integer>
+      disabled: true
+      description: Non-negative integer. The quantity of units for the line item.
+    - key: tax_amounts[0][amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][display_name]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][inclusive]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][percentage]
+      value: <number>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][country]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][description]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][jurisdiction]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][state]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][tax_rate_data][tax_type]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[0][taxable_amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][display_name]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][inclusive]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][percentage]
+      value: <number>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][country]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][description]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][jurisdiction]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][state]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][tax_rate_data][tax_type]
+      value: <string>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_amounts[1][taxable_amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 10 tax amounts for this line item. This can be
+        useful if you calculate taxes on your own or use a third-party to
+        calculate them. You cannot set tax amounts if any line item has
+        [tax_rates](https://stripe.com/docs/api/invoices/line_item#invoice_line_item_object-tax_rates)
+        or if the invoice has
+        [default_tax_rates](https://stripe.com/docs/api/invoices/object#invoice_object-default_tax_rates)
+        or uses [automatic tax](https://stripe.com/docs/tax/invoicing). Pass an
+        empty string to remove previously defined tax amounts.
+    - key: tax_rates[0]
+      value: <string>
+      disabled: true
+      description: The tax rates which apply to the line item. When set, the
+        `default_tax_rates` on the invoice do not apply to this line item. Pass
+        an empty string to remove previously-defined tax rates.
+    - key: tax_rates[1]
+      value: <string>
+      disabled: true
+      description: The tax rates which apply to the line item. When set, the
+        `default_tax_rates` on the invoice do not apply to this line item. Pass
+        an empty string to remove previously-defined tax rates.
+order: 11000

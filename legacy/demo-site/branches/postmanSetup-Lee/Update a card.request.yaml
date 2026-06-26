@@ -1,0 +1,139 @@
+$kind: http-request
+description: <p>Updates the specified Issuing <code>Card</code> object by
+  setting the values of the parameters passed. Any parameters not provided will
+  be left unchanged.</p>
+url: "{{baseUrl}}/v1/issuing/cards/:card"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: card
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: cancellation_reason
+      value: <string>
+      disabled: true
+      description: Reason why the `status` of this card is `canceled`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: personalization_design
+      value: <string>
+      disabled: true
+    - key: pin[encrypted_number]
+      value: <string>
+      disabled: true
+      description: The desired new PIN for this card.
+    - key: spending_controls[allowed_categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_merchant_countries][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_merchant_countries][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_merchant_countries][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_merchant_countries][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][amount]
+      value: <integer>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][interval]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][amount]
+      value: <integer>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][interval]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending for this card. Refer to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: status
+      value: <string>
+      disabled: true
+      description: Dictates whether authorizations can be approved on this card. May
+        be blocked from activating cards depending on past-due Cardholder
+        requirements. Defaults to `inactive`. If this card is being canceled
+        because it was lost or stolen, this information should be provided as
+        `cancellation_reason`.
+order: 4000

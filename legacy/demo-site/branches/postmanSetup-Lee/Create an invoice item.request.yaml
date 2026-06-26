@@ -1,0 +1,179 @@
+$kind: http-request
+description: <p>Creates an item to be added to a draft invoice (up to 250 items
+  per invoice). If no invoice is specified, the item will be on the next invoice
+  created for the customer specified.</p>
+url: "{{baseUrl}}/v1/invoiceitems"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: customer
+      value: <string>
+      description: (Required) The ID of the customer who will be billed when this
+        invoice item is billed.
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: The integer amount in cents (or local equivalent) of the charge to
+        be applied to the upcoming invoice. Passing in a negative `amount` will
+        reduce the `amount_due` on the invoice.
+    - key: currency
+      value: <string>
+      disabled: true
+      description: Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string which you can attach to the invoice item. The
+        description is displayed in the invoice for easy tracking.
+    - key: discountable
+      value: <boolean>
+      disabled: true
+      description: Controls whether discounts apply to this invoice item. Defaults to
+        false for prorations or negative invoice items, and true for all other
+        invoice items.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons and promotion codes to redeem into discounts for the
+        invoice item or invoice line item.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: invoice
+      value: <string>
+      disabled: true
+      description: The ID of an existing invoice to add this invoice item to. When
+        left blank, the invoice item will be added to the next upcoming
+        scheduled invoice. This is useful when adding invoice items in response
+        to an invoice.created webhook. You can only add invoice items to draft
+        invoices and there is a maximum of 250 items per invoice.
+    - key: period[end]
+      value: <unix-time>
+      disabled: true
+      description: The period associated with this invoice item. When set to different
+        values, the period will be rendered on the invoice. If you have [Stripe
+        Revenue Recognition](https://stripe.com/docs/revenue-recognition)
+        enabled, the period will be used to recognize and defer revenue. See the
+        [Revenue Recognition
+        documentation](https://stripe.com/docs/revenue-recognition/methodology/subscriptions-and-invoicing)
+        for details.
+    - key: period[start]
+      value: <unix-time>
+      disabled: true
+      description: The period associated with this invoice item. When set to different
+        values, the period will be rendered on the invoice. If you have [Stripe
+        Revenue Recognition](https://stripe.com/docs/revenue-recognition)
+        enabled, the period will be used to recognize and defer revenue. See the
+        [Revenue Recognition
+        documentation](https://stripe.com/docs/revenue-recognition/methodology/subscriptions-and-invoicing)
+        for details.
+    - key: price
+      value: <string>
+      disabled: true
+      description: The ID of the price object.
+    - key: price_data[currency]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[tax_behavior]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount]
+      value: <integer>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: quantity
+      value: <integer>
+      disabled: true
+      description: Non-negative integer. The quantity of units for the invoice item.
+    - key: subscription
+      value: <string>
+      disabled: true
+      description: The ID of a subscription to add this invoice item to. When left
+        blank, the invoice item will be be added to the next upcoming scheduled
+        invoice. When set, scheduled invoices for subscriptions other than the
+        specified subscription will ignore the invoice item. Use this when you
+        want to express that an invoice item has been accrued within the context
+        of a particular subscription.
+    - key: tax_behavior
+      value: <string>
+      disabled: true
+      description: Only required if a [default tax
+        behavior](https://stripe.com/docs/tax/products-prices-tax-categories-tax-behavior#setting-a-default-tax-behavior-(recommended))
+        was not provided in the Stripe Tax settings. Specifies whether the price
+        is considered inclusive of taxes or exclusive of taxes. One of
+        `inclusive`, `exclusive`, or `unspecified`. Once specified as either
+        `inclusive` or `exclusive`, it cannot be changed.
+    - key: tax_rates[0]
+      value: <string>
+      disabled: true
+      description: The tax rates which apply to the invoice item. When set, the
+        `default_tax_rates` on the invoice do not apply to this invoice item.
+    - key: tax_rates[1]
+      value: <string>
+      disabled: true
+      description: The tax rates which apply to the invoice item. When set, the
+        `default_tax_rates` on the invoice do not apply to this invoice item.
+    - key: unit_amount
+      value: <integer>
+      disabled: true
+      description: The integer unit amount in cents (or local equivalent) of the
+        charge to be applied to the upcoming invoice. This `unit_amount` will be
+        multiplied by the quantity to get the full amount. Passing in a negative
+        `unit_amount` will reduce the `amount_due` on the invoice.
+    - key: unit_amount_decimal
+      value: <decimal>
+      disabled: true
+      description: Same as `unit_amount`, but accepts a decimal value in cents (or
+        local equivalent) with at most 12 decimal places. Only one of
+        `unit_amount` and `unit_amount_decimal` can be set.
+order: 2000

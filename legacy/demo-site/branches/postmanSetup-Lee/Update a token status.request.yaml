@@ -1,0 +1,26 @@
+$kind: http-request
+description: <p>Attempts to update the specified Issuing <code>Token</code>
+  object to the status specified.</p>
+url: "{{baseUrl}}/v1/issuing/tokens/:token"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: token
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: status
+      value: <string>
+      description: (Required) Specifies which status the token should be updated to.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 3000

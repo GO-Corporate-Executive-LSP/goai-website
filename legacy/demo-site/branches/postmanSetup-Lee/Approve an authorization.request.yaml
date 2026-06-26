@@ -1,0 +1,32 @@
+$kind: http-request
+description: |-
+  <p>[Deprecated] Approves a pending Issuing <code>Authorization</code> object. This request should be made within the timeout window of the <a href="/docs/issuing/controls/real-time-authorizations">real-time authorization</a> flow. 
+  This method is deprecated. Instead, <a href="/docs/issuing/controls/real-time-authorizations#authorization-handling">respond directly to the webhook request to approve an authorization</a>.</p>
+url: "{{baseUrl}}/v1/issuing/authorizations/:authorization/approve"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: authorization
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: If the authorization's `pending_request.is_amount_controllable`
+        property is `true`, you may provide this value to control how much to
+        hold for the authorization. Must be positive (use
+        [`decline`](https://stripe.com/docs/api/issuing/authorizations/decline)
+        to decline an authorization request).
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

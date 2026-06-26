@@ -1,0 +1,189 @@
+$kind: http-request
+description: <p>Capture a test-mode authorization.</p>
+url: "{{baseUrl}}/v1/test_helpers/issuing/authorizations/:authorization/capture"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: authorization
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: capture_amount
+      value: <integer>
+      disabled: true
+      description: The amount to capture from the authorization. If not provided, the
+        full amount of the authorization will be captured. This amount is in the
+        authorization currency and in the [smallest currency
+        unit](https://stripe.com/docs/currencies#zero-decimal).
+    - key: close_authorization
+      value: <boolean>
+      disabled: true
+      description: Whether to close the authorization after capture. Defaults to true.
+        Set to false to enable multi-capture flows.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: purchase_details[flight][departure_at]
+      value: <unix-time>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][passenger_name]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][refundable]
+      value: <boolean>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][arrival_airport_code]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][carrier]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][departure_airport_code]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][flight_number]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][service_class]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][0][stopover_allowed]
+      value: <boolean>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][arrival_airport_code]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][carrier]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][departure_airport_code]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][flight_number]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][service_class]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][segments][1][stopover_allowed]
+      value: <boolean>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[flight][travel_agency]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[fuel][type]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[fuel][unit]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[fuel][unit_cost_decimal]
+      value: <decimal>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[fuel][volume_decimal]
+      value: <decimal>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[lodging][check_in_at]
+      value: <unix-time>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[lodging][nights]
+      value: <integer>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][0][description]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][0][quantity]
+      value: <decimal>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][0][total]
+      value: <integer>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][0][unit_cost]
+      value: <integer>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][1][description]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][1][quantity]
+      value: <decimal>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][1][total]
+      value: <integer>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[receipt][1][unit_cost]
+      value: <integer>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+    - key: purchase_details[reference]
+      value: <string>
+      disabled: true
+      description: Additional purchase information that is optionally provided by the
+        merchant.
+order: 7000

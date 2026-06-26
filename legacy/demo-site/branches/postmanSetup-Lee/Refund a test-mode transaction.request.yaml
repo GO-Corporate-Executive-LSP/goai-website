@@ -1,0 +1,29 @@
+$kind: http-request
+description: <p>Refund a test-mode Transaction.</p>
+url: "{{baseUrl}}/v1/test_helpers/issuing/transactions/:transaction/refund"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: transaction
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: refund_amount
+      value: <integer>
+      disabled: true
+      description: The total amount to attempt to refund. This amount is in the
+        provided currency, or defaults to the cards currency, and in the
+        [smallest currency
+        unit](https://stripe.com/docs/currencies#zero-decimal).
+order: 6000

@@ -1,0 +1,240 @@
+$kind: http-request
+description: <p>Updates the specified Issuing <code>Cardholder</code> object by
+  setting the values of the parameters passed. Any parameters not provided will
+  be left unchanged.</p>
+url: "{{baseUrl}}/v1/issuing/cardholders/:cardholder"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: cardholder
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: billing[address][city]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: billing[address][country]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: billing[address][line1]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: billing[address][postal_code]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: billing[address][line2]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: billing[address][state]
+      value: <string>
+      disabled: true
+      description: The cardholder's billing address.
+    - key: company[tax_id]
+      value: <string>
+      disabled: true
+      description: Additional information about a `company` cardholder.
+    - key: email
+      value: <string>
+      disabled: true
+      description: The cardholder's email address.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: individual[card_issuing][user_terms_acceptance][date]
+      value: <unix-time>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[card_issuing][user_terms_acceptance][ip]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[card_issuing][user_terms_acceptance][user_agent]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[dob][day]
+      value: <integer>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[dob][month]
+      value: <integer>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[dob][year]
+      value: <integer>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[first_name]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[last_name]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[verification][document][back]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: individual[verification][document][front]
+      value: <string>
+      disabled: true
+      description: Additional information about an `individual` cardholder.
+    - key: phone_number
+      value: <string>
+      disabled: true
+      description: The cardholder's phone number. This is required for all cardholders
+        who will be creating EU cards. See the [3D Secure
+        documentation](https://stripe.com/docs/issuing/3d-secure) for more
+        details.
+    - key: preferred_locales[0]
+      value: <string>
+      disabled: true
+      description: >-
+        The cardholder’s preferred locales (languages), ordered by preference.
+        Locales can be `de`, `en`, `es`, `fr`, or `it`.
+         This changes the language of the [3D Secure flow](https://stripe.com/docs/issuing/3d-secure) and one-time password messages sent to the cardholder.
+    - key: preferred_locales[1]
+      value: <string>
+      disabled: true
+      description: >-
+        The cardholder’s preferred locales (languages), ordered by preference.
+        Locales can be `de`, `en`, `es`, `fr`, or `it`.
+         This changes the language of the [3D Secure flow](https://stripe.com/docs/issuing/3d-secure) and one-time password messages sent to the cardholder.
+    - key: spending_controls[allowed_categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_merchant_countries][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[allowed_merchant_countries][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_merchant_countries][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[blocked_merchant_countries][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][amount]
+      value: <integer>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][interval]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][0][categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][amount]
+      value: <integer>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][interval]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][categories][0]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits][1][categories][1]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: spending_controls[spending_limits_currency]
+      value: <string>
+      disabled: true
+      description: Rules that control spending across this cardholder's cards. Refer
+        to our
+        [documentation](https://stripe.com/docs/issuing/controls/spending-controls)
+        for more details.
+    - key: status
+      value: <string>
+      disabled: true
+      description: Specifies whether to permit authorizations on this cardholder's cards.
+order: 4000

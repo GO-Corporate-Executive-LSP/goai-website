@@ -1,8 +1,8 @@
 $kind: http-request
-description: <p>Returns a list of Issuing <code>Dispute</code> objects. The
-  objects are sorted in descending order by creation date, with the most
-  recently created object appearing first.</p>
-url: "{{baseUrl}}/v1/issuing/disputes"
+description: <p>Returns a list of your invoice items. Invoice items are returned
+  sorted by creation date, with the most recently created invoice items
+  appearing first.</p>
+url: "{{baseUrl}}/v1/invoiceitems"
 method: GET
 headers:
   Content-Type: application/x-www-form-urlencoded
@@ -10,23 +10,24 @@ queryParams:
   - key: created[gt]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return invoice items that were created during the given date interval.
   - key: created[gte]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return invoice items that were created during the given date interval.
   - key: created[lt]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return invoice items that were created during the given date interval.
   - key: created[lte]
     value: <integer>
     disabled: true
-    description: Only return Issuing disputes that were created during the given
-      date interval.
+    description: Only return invoice items that were created during the given date interval.
+  - key: customer
+    value: <string>
+    disabled: true
+    description: The identifier of the customer whose invoice items to return. If
+      none is provided, all invoice items will be returned.
   - key: ending_before
     value: <string>
     disabled: true
@@ -43,11 +44,23 @@ queryParams:
     value: <string>
     disabled: true
     description: Specifies which fields in the response should be expanded.
+  - key: invoice
+    value: <string>
+    disabled: true
+    description: Only return invoice items belonging to this invoice. If none is
+      provided, all invoice items will be returned. If specifying an invoice, no
+      customer identifier is needed.
   - key: limit
     value: <integer>
     disabled: true
     description: A limit on the number of objects to be returned. Limit can range
       between 1 and 100, and the default is 10.
+  - key: pending
+    value: <boolean>
+    disabled: true
+    description: Set to `true` to only show pending invoice items, which are not yet
+      attached to any invoices. Set to `false` to only show invoice items
+      already attached to invoices. If unspecified, no filter is applied.
   - key: starting_after
     value: <string>
     disabled: true
@@ -56,12 +69,4 @@ queryParams:
       request and receive 100 objects, ending with `obj_foo`, your subsequent
       call can include `starting_after=obj_foo` in order to fetch the next page
       of the list.
-  - key: status
-    value: <string>
-    disabled: true
-    description: Select Issuing disputes with the given status.
-  - key: transaction
-    value: <string>
-    disabled: true
-    description: Select the Issuing dispute for the given transaction.
 order: 1000

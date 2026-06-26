@@ -1,0 +1,715 @@
+$kind: http-request
+description: <p>When retrieving an upcoming invoice, you’ll get a
+  <strong>lines</strong> property containing the total count of line items and
+  the first handful of those items. There is also a URL where you can retrieve
+  the full (paginated) list of line items.</p>
+url: "{{baseUrl}}/v1/invoices/upcoming/lines"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: automatic_tax[enabled]
+    value: <boolean>
+    disabled: true
+    description: Settings for automatic tax lookup for this invoice preview.
+  - key: automatic_tax[liability][type]
+    value: <string>
+    disabled: true
+    description: Settings for automatic tax lookup for this invoice preview.
+  - key: automatic_tax[liability][account]
+    value: <string>
+    disabled: true
+    description: Settings for automatic tax lookup for this invoice preview.
+  - key: coupon
+    value: <string>
+    disabled: true
+    description: The ID of the coupon to apply to this phase of the subscription
+      schedule. This field has been deprecated and will be removed in a future
+      API version. Use `discounts` instead.
+  - key: currency
+    value: <string>
+    disabled: true
+    description: The currency to preview this invoice in. Defaults to that of
+      `customer` if not specified.
+  - key: customer
+    value: <string>
+    disabled: true
+    description: The identifier of the customer whose upcoming invoice you'd like to
+      retrieve. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][city]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][country]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][line1]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][line2]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][postal_code]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[address][state]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][city]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][country]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][line1]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][line2]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][postal_code]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][address][state]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][name]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[shipping][phone]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax][ip_address]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax_exempt]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax_ids][0][type]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax_ids][0][value]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax_ids][1][type]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: customer_details[tax_ids][1][value]
+    value: <string>
+    disabled: true
+    description: Details about the customer you want to invoice or overrides for an
+      existing customer. If `automatic_tax` is enabled then one of `customer`,
+      `customer_details`, `subscription`, or `schedule` must be set.
+  - key: discounts[0][coupon]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: discounts[0][discount]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: discounts[0][promotion_code]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: discounts[1][coupon]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: discounts[1][discount]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: discounts[1][promotion_code]
+    value: <string>
+    disabled: true
+    description: The coupons to redeem into discounts for the invoice preview. If
+      not specified, inherits the discount from the subscription or customer.
+      This works for both coupons directly applied to an invoice and coupons
+      applied to a subscription. Pass an empty string to avoid inheriting any
+      discounts.
+  - key: ending_before
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `ending_before` is an object ID
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, starting with `obj_bar`, your subsequent
+      call can include `ending_before=obj_bar` in order to fetch the previous
+      page of the list.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: invoice_items[0][amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][currency]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][description]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discountable]
+    value: <boolean>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][0][coupon]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][0][discount]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][0][promotion_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][1][coupon]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][1][discount]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][discounts][1][promotion_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][invoiceitem]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][metadata]
+    value: <object>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][period][end]
+    value: <unix-time>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][period][start]
+    value: <unix-time>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price_data][currency]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price_data][product]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price_data][tax_behavior]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price_data][unit_amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][price_data][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][quantity]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][tax_behavior]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][tax_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][unit_amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[0][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][currency]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][description]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discountable]
+    value: <boolean>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][0][coupon]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][0][discount]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][0][promotion_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][1][coupon]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][1][discount]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][discounts][1][promotion_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][invoiceitem]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][metadata]
+    value: <object>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][period][end]
+    value: <unix-time>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][period][start]
+    value: <unix-time>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price_data][currency]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price_data][product]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price_data][tax_behavior]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price_data][unit_amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][price_data][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][quantity]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][tax_behavior]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][tax_code]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][unit_amount]
+    value: <integer>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: invoice_items[1][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: List of invoice items to add or update in the upcoming invoice preview.
+  - key: issuer[type]
+    value: <string>
+    disabled: true
+    description: The connected account that issues the invoice. The invoice is
+      presented with the branding and support information of the specified
+      account.
+  - key: issuer[account]
+    value: <string>
+    disabled: true
+    description: The connected account that issues the invoice. The invoice is
+      presented with the branding and support information of the specified
+      account.
+  - key: limit
+    value: <integer>
+    disabled: true
+    description: A limit on the number of objects to be returned. Limit can range
+      between 1 and 100, and the default is 10.
+  - key: schedule
+    value: <string>
+    disabled: true
+    description: The identifier of the schedule whose upcoming invoice you'd like to
+      retrieve. Cannot be used with subscription or subscription fields.
+  - key: starting_after
+    value: <string>
+    disabled: true
+    description: A cursor for use in pagination. `starting_after` is an object ID
+      that defines your place in the list. For instance, if you make a list
+      request and receive 100 objects, ending with `obj_foo`, your subsequent
+      call can include `starting_after=obj_foo` in order to fetch the next page
+      of the list.
+  - key: subscription
+    value: <string>
+    disabled: true
+    description: The identifier of the subscription for which you'd like to retrieve
+      the upcoming invoice. If not provided, but a `subscription_items` is
+      provided, you will preview creating a subscription with those items. If
+      neither `subscription` nor `subscription_items` is provided, you will
+      retrieve the next upcoming invoice from among the customer's
+      subscriptions.
+  - key: subscription_cancel_at_period_end
+    value: <boolean>
+    disabled: true
+    description: Boolean indicating whether this subscription should cancel at the
+      end of the current period.
+  - key: subscription_cancel_now
+    value: <boolean>
+    disabled: true
+    description: This simulates the subscription being canceled or expired immediately.
+  - key: subscription_default_tax_rates[0]
+    value: <string>
+    disabled: true
+    description: If provided, the invoice returned will preview updating or creating
+      a subscription with these default tax rates. The default tax rates will
+      apply to any line item that does not have `tax_rates` set.
+  - key: subscription_default_tax_rates[1]
+    value: <string>
+    disabled: true
+    description: If provided, the invoice returned will preview updating or creating
+      a subscription with these default tax rates. The default tax rates will
+      apply to any line item that does not have `tax_rates` set.
+  - key: subscription_items[0][billing_thresholds][usage_gte]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][clear_usage]
+    value: <boolean>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][deleted]
+    value: <boolean>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][0][coupon]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][0][discount]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][0][promotion_code]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][1][coupon]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][1][discount]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][discounts][1][promotion_code]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][id]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][metadata]
+    value: <object>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][currency]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][product]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][recurring][interval]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][recurring][interval_count]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][tax_behavior]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][unit_amount]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][price_data][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][quantity]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[0][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][billing_thresholds][usage_gte]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][clear_usage]
+    value: <boolean>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][deleted]
+    value: <boolean>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][0][coupon]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][0][discount]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][0][promotion_code]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][1][coupon]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][1][discount]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][discounts][1][promotion_code]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][id]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][metadata]
+    value: <object>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][currency]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][product]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][recurring][interval]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][recurring][interval_count]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][tax_behavior]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][unit_amount]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][price_data][unit_amount_decimal]
+    value: <decimal>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][quantity]
+    value: <integer>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][tax_rates][0]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_items[1][tax_rates][1]
+    value: <string>
+    disabled: true
+    description: A list of up to 20 subscription items, each with an attached price.
+  - key: subscription_proration_behavior
+    value: <string>
+    disabled: true
+    description: Determines how to handle
+      [prorations](https://stripe.com/docs/billing/subscriptions/prorations)
+      when the billing cycle changes (e.g., when switching plans, resetting
+      `billing_cycle_anchor=now`, or starting a trial), or if an item's
+      `quantity` changes. The default value is `create_prorations`.
+  - key: subscription_proration_date
+    value: <unix-time>
+    disabled: true
+    description: If previewing an update to a subscription, and doing proration,
+      `subscription_proration_date` forces the proration to be calculated as
+      though the update was done at the specified time. The time given must be
+      within the current subscription period and within the current phase of the
+      schedule backing this subscription, if the schedule exists. If set,
+      `subscription`, and one of `subscription_items`, or
+      `subscription_trial_end` are required. Also,
+      `subscription_proration_behavior` cannot be set to 'none'.
+  - key: subscription_resume_at
+    value: <string>
+    disabled: true
+    description: For paused subscriptions, setting `subscription_resume_at` to `now`
+      will preview the invoice that will be generated if the subscription is
+      resumed.
+  - key: subscription_start_date
+    value: <unix-time>
+    disabled: true
+    description: Date a subscription is intended to start (can be future or past).
+  - key: subscription_trial_from_plan
+    value: <boolean>
+    disabled: true
+    description: Indicates if a plan's `trial_period_days` should be applied to the
+      subscription. Setting `subscription_trial_end` per subscription is
+      preferred, and this defaults to `false`. Setting this flag to `true`
+      together with `subscription_trial_end` is not allowed. See [Using trial
+      periods on
+      subscriptions](https://stripe.com/docs/billing/subscriptions/trials) to
+      learn more.
+order: 5000
