@@ -1,0 +1,36 @@
+$kind: http-request
+description: <p>Cancels a subscription schedule and its associated subscription
+  immediately (if the subscription schedule has an active subscription). A
+  subscription schedule can only be canceled if its status is
+  <code>not_started</code> or <code>active</code>.</p>
+url: "{{baseUrl}}/v1/subscription_schedules/:schedule/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: schedule
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: invoice_now
+      value: <boolean>
+      disabled: true
+      description: If the subscription schedule is `active`, indicates if a final
+        invoice will be generated that contains any un-invoiced metered usage
+        and new/pending proration invoice items. Defaults to `true`.
+    - key: prorate
+      value: <boolean>
+      disabled: true
+      description: If the subscription schedule is `active`, indicates if the
+        cancellation should be prorated. Defaults to `true`.
+order: 5000

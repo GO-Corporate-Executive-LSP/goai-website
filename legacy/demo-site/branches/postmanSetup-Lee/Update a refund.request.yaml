@@ -1,0 +1,27 @@
+$kind: http-request
+description: >-
+  <p>Updates the refund that you specify by setting the values of the passed
+  parameters. Any parameters that you don’t provide remain unchanged.</p>
+
+
+  <p>This request only accepts <code>metadata</code> as an argument.</p>
+url: "{{baseUrl}}/v1/refunds/:refund"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: refund
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 4000

@@ -1,0 +1,26 @@
+$kind: http-request
+description: >-
+  <p>Retrieves the details of an early fraud warning that has previously been
+  created. </p>
+
+
+  <p>Please refer to the <a href="#early_fraud_warning_object">early fraud
+  warning</a> object reference for more details.</p>
+url: "{{baseUrl}}/v1/radar/early_fraud_warnings/:early_fraud_warning"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: early_fraud_warning
+    value: <string>
+    description: "(Required) "
+order: 2000

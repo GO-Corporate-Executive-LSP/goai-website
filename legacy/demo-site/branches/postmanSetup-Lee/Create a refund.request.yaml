@@ -1,0 +1,96 @@
+$kind: http-request
+description: >-
+  <p>When you create a new refund, you must specify a Charge or a PaymentIntent
+  object on which to create it.</p>
+
+
+  <p>Creating a new refund will refund a charge that has previously been created
+  but not yet refunded.
+
+  Funds will be refunded to the credit or debit card that was originally
+  charged.</p>
+
+
+  <p>You can optionally refund only part of a charge.
+
+  You can do so multiple times, until the entire charge has been refunded.</p>
+
+
+  <p>Once entirely refunded, a charge can’t be refunded again.
+
+  This method will raise an error when called on an already-refunded charge,
+
+  or when trying to refund more money than is left on a charge.</p>
+url: "{{baseUrl}}/v1/refunds"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: amount
+      value: <integer>
+      disabled: true
+    - key: charge
+      value: <string>
+      disabled: true
+      description: The identifier of the charge to refund.
+    - key: currency
+      value: <string>
+      disabled: true
+      description: Three-letter [ISO currency
+        code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
+        Must be a [supported currency](https://stripe.com/docs/currencies).
+    - key: customer
+      value: <string>
+      disabled: true
+      description: Customer whose customer balance to refund from.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: instructions_email
+      value: <string>
+      disabled: true
+      description: For payment methods without native refund support (e.g., Konbini,
+        PromptPay), use this email from the customer to receive refund
+        instructions.
+    - key: origin
+      value: <string>
+      disabled: true
+      description: Origin of the refund
+    - key: payment_intent
+      value: <string>
+      disabled: true
+      description: The identifier of the PaymentIntent to refund.
+    - key: reason
+      value: <string>
+      disabled: true
+      description: String indicating the reason for the refund. If set, possible
+        values are `duplicate`, `fraudulent`, and `requested_by_customer`. If
+        you believe the charge to be fraudulent, specifying `fraudulent` as the
+        reason will add the associated card and email to your [block
+        lists](https://stripe.com/docs/radar/lists), and will also help us
+        improve our fraud detection algorithms.
+    - key: refund_application_fee
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether the application fee should be refunded
+        when refunding this charge. If a full charge refund is given, the full
+        application fee will be refunded. Otherwise, the application fee will be
+        refunded in an amount proportional to the amount of the charge refunded.
+        An application fee can be refunded only by the application that created
+        the charge.
+    - key: reverse_transfer
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether the transfer should be reversed when
+        refunding this charge. The transfer will be reversed proportionally to
+        the amount being refunded (either the entire or partial
+        amount).<br><br>A transfer can be reversed only by the application that
+        created the charge.
+order: 2000

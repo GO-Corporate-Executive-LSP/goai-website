@@ -1,0 +1,15 @@
+$kind: http-request
+description: <p>Deletes a <code>ValueList</code> object, also deleting any items
+  contained within the value list. To be deleted, a value list must not be
+  referenced in any rules.</p>
+url: "{{baseUrl}}/v1/radar/value_lists/:value_list"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: value_list
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

@@ -1,0 +1,321 @@
+$kind: http-request
+description: <p>Creates a new source object.</p>
+url: "{{baseUrl}}/v1/sources"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: type
+      value: <string>
+      description: (Required) The `type` of the source to create. Required unless
+        `customer` and `original_source` are specified (see the [Cloning card
+        Sources](https://stripe.com/docs/sources/connect#cloning-card-sources)
+        guide)
+    - key: amount
+      value: <integer>
+      disabled: true
+      description: Amount associated with the source. This is the amount for which the
+        source will be chargeable once ready. Required for `single_use` sources.
+        Not supported for `receiver` type sources, where charge amount may not
+        be specified until funds land.
+    - key: currency
+      value: <string>
+      disabled: true
+      description: Three-letter [ISO code for the
+        currency](https://stripe.com/docs/currencies) associated with the
+        source. This is the currency for which the source will be chargeable
+        once ready.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The `Customer` to whom the original source is attached to. Must be
+        set when the original source is not a `Source` (e.g., `Card`).
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: flow
+      value: <string>
+      disabled: true
+      description: The authentication `flow` of the source to create. `flow` is one of
+        `redirect`, `receiver`, `code_verification`, `none`. It is generally
+        inferred unless a type supports multiple flows.
+    - key: mandate[acceptance][status]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][date]
+      value: <unix-time>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][ip]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][offline][contact_email]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][online][date]
+      value: <unix-time>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][online][ip]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][online][user_agent]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][type]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[acceptance][user_agent]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[amount]
+      value: <integer>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[currency]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[interval]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: mandate[notification_method]
+      value: <string>
+      disabled: true
+      description: Information about a mandate possibility attached to a source object
+        (generally for bank debits) as well as its acceptance status.
+    - key: original_source
+      value: <string>
+      disabled: true
+      description: The source to share.
+    - key: owner[address][city]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[address][country]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[address][line1]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[address][line2]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[address][state]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[email]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[name]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: owner[phone]
+      value: <string>
+      disabled: true
+      description: Information about the owner of the payment instrument that may be
+        used or required by particular source types.
+    - key: receiver[refund_attributes_method]
+      value: <string>
+      disabled: true
+      description: Optional parameters for the receiver flow. Can be set only if the
+        source is a receiver (`flow` is `receiver`).
+    - key: redirect[return_url]
+      value: <string>
+      disabled: true
+      description: Parameters required for the redirect flow. Required if the source
+        is authenticated by a redirect (`flow` is `redirect`).
+    - key: source_order[items][0][amount]
+      value: <integer>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][0][currency]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][0][description]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][0][parent]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][0][quantity]
+      value: <integer>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][0][type]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][amount]
+      value: <integer>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][currency]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][description]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][parent]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][quantity]
+      value: <integer>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[items][1][type]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][line1]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][city]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][country]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][line2]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][postal_code]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][address][state]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][carrier]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][name]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][phone]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: source_order[shipping][tracking_number]
+      value: <string>
+      disabled: true
+      description: Information about the items and shipping associated with the
+        source. Required for transactional credit (for example Klarna) sources
+        before you can charge it.
+    - key: statement_descriptor
+      value: <string>
+      disabled: true
+      description: An arbitrary string to be displayed on your customer's statement.
+        As an example, if your website is `RunClub` and the item you're charging
+        for is a race ticket, you may want to specify a `statement_descriptor`
+        of `RunClub 5K race ticket.` While many payment types will display this
+        information, some may not display it at all.
+    - key: token
+      value: <string>
+      disabled: true
+      description: An optional token used to create the source. When passed, token
+        properties will override source parameters.
+    - key: usage
+      value: <string>
+      disabled: true
+order: 7000

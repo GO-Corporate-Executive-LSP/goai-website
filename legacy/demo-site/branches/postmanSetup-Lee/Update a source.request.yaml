@@ -1,0 +1,97 @@
+$kind: http-request
+description: <p>Update a specified source for a given customer.</p>
+url: "{{baseUrl}}/v1/customers/:customer/sources/:id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: account_holder_name
+      value: <string>
+      disabled: true
+      description: The name of the person or business that owns the bank account.
+    - key: account_holder_type
+      value: <string>
+      disabled: true
+      description: The type of entity that holds the account. This can be either
+        `individual` or `company`.
+    - key: address_city
+      value: <string>
+      disabled: true
+      description: City/District/Suburb/Town/Village.
+    - key: address_country
+      value: <string>
+      disabled: true
+      description: Billing address country, if provided when creating card.
+    - key: address_line1
+      value: <string>
+      disabled: true
+      description: Address line 1 (Street address/PO Box/Company name).
+    - key: address_line2
+      value: <string>
+      disabled: true
+      description: Address line 2 (Apartment/Suite/Unit/Building).
+    - key: address_state
+      value: <string>
+      disabled: true
+      description: State/County/Province/Region.
+    - key: address_zip
+      value: <string>
+      disabled: true
+      description: ZIP or postal code.
+    - key: exp_month
+      value: <string>
+      disabled: true
+      description: Two digit number representing the card’s expiration month.
+    - key: exp_year
+      value: <string>
+      disabled: true
+      description: Four digit number representing the card’s expiration year.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: name
+      value: <string>
+      disabled: true
+      description: Cardholder name.
+    - key: owner[address][city]
+      value: <string>
+      disabled: true
+    - key: owner[address][country]
+      value: <string>
+      disabled: true
+    - key: owner[address][line1]
+      value: <string>
+      disabled: true
+    - key: owner[address][line2]
+      value: <string>
+      disabled: true
+    - key: owner[address][postal_code]
+      value: <string>
+      disabled: true
+    - key: owner[address][state]
+      value: <string>
+      disabled: true
+    - key: owner[email]
+      value: <string>
+      disabled: true
+    - key: owner[name]
+      value: <string>
+      disabled: true
+    - key: owner[phone]
+      value: <string>
+      disabled: true
+order: 5000

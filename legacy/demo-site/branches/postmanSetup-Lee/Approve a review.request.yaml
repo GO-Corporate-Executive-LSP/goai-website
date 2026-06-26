@@ -1,0 +1,23 @@
+$kind: http-request
+description: <p>Approves a <code>Review</code> object, closing it and removing
+  it from the list of reviews.</p>
+url: "{{baseUrl}}/v1/reviews/:review/approve"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: review
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 3000

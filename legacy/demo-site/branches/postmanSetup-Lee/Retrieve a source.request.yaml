@@ -1,0 +1,27 @@
+$kind: http-request
+description: <p>Retrieves an existing source object. Supply the unique source ID
+  from a source creation request and Stripe will return the corresponding
+  up-to-date source object information.</p>
+url: "{{baseUrl}}/v1/sources/:source"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: client_secret
+    value: <string>
+    disabled: true
+    description: The client secret of the source. Required if a publishable key is
+      used to retrieve the source.
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: source
+    value: <string>
+    description: "(Required) "
+order: 8000

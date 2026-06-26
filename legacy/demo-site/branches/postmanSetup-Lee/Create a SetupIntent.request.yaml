@@ -1,0 +1,544 @@
+$kind: http-request
+description: >-
+  <p>Creates a SetupIntent object.</p>
+
+
+  <p>After you create the SetupIntent, attach a payment method and <a
+  href="/docs/api/setup_intents/confirm">confirm</a>
+
+  it to collect any required permissions to charge the payment method later.</p>
+url: "{{baseUrl}}/v1/setup_intents"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: attach_to_self
+      value: <boolean>
+      disabled: true
+      description: >-
+        If present, the SetupIntent's payment method will be attached to the
+        in-context Stripe Account.
+
+
+        It can only be used for this Stripe Account’s own money movement flows
+        like InboundTransfer and OutboundTransfers. It cannot be set to true
+        when setting up a PaymentMethod for a Customer, and defaults to false
+        when attaching a PaymentMethod to a Customer.
+    - key: automatic_payment_methods[enabled]
+      value: <boolean>
+      disabled: true
+      description: When you enable this parameter, this SetupIntent accepts payment
+        methods that you enable in the Dashboard and that are compatible with
+        its other parameters.
+    - key: automatic_payment_methods[allow_redirects]
+      value: <string>
+      disabled: true
+      description: When you enable this parameter, this SetupIntent accepts payment
+        methods that you enable in the Dashboard and that are compatible with
+        its other parameters.
+    - key: confirm
+      value: <boolean>
+      disabled: true
+      description: Set to `true` to attempt to confirm this SetupIntent immediately.
+        This parameter defaults to `false`. If a card is the attached payment
+        method, you can provide a `return_url` in case further authentication is
+        necessary.
+    - key: confirmation_token
+      value: <string>
+      disabled: true
+      description: >-
+        ID of the ConfirmationToken used to confirm this SetupIntent.
+
+
+        If the provided ConfirmationToken contains properties that are also
+        being provided in this request, such as `payment_method`, then the
+        values in this request will take precedence.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: >-
+        ID of the Customer this SetupIntent belongs to, if one exists.
+
+
+        If present, the SetupIntent's payment method will be attached to the
+        Customer on successful setup. Payment methods attached to other
+        Customers cannot be used with this SetupIntent.
+    - key: description
+      value: <string>
+      disabled: true
+      description: An arbitrary string attached to the object. Often useful for
+        displaying to users.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: flow_directions[0]
+      value: <string>
+      disabled: true
+      description: >-
+        Indicates the directions of money movement for which this payment method
+        is intended to be used.
+
+
+        Include `inbound` if you intend to use the payment method as the origin
+        to pull funds from. Include `outbound` if you intend to use the payment
+        method as the destination to send funds to. You can include both if you
+        intend to use the payment method for both purposes.
+    - key: flow_directions[1]
+      value: <string>
+      disabled: true
+      description: >-
+        Indicates the directions of money movement for which this payment method
+        is intended to be used.
+
+
+        Include `inbound` if you intend to use the payment method as the origin
+        to pull funds from. Include `outbound` if you intend to use the payment
+        method as the destination to send funds to. You can include both if you
+        intend to use the payment method for both purposes.
+    - key: mandate_data[customer_acceptance][type]
+      value: <string>
+      disabled: true
+      description: This hash contains details about the mandate to create. This
+        parameter can only be used with
+        [`confirm=true`](https://stripe.com/docs/api/setup_intents/create#create_setup_intent-confirm).
+    - key: mandate_data[customer_acceptance][accepted_at]
+      value: <unix-time>
+      disabled: true
+      description: This hash contains details about the mandate to create. This
+        parameter can only be used with
+        [`confirm=true`](https://stripe.com/docs/api/setup_intents/create#create_setup_intent-confirm).
+    - key: mandate_data[customer_acceptance][online][ip_address]
+      value: <string>
+      disabled: true
+      description: This hash contains details about the mandate to create. This
+        parameter can only be used with
+        [`confirm=true`](https://stripe.com/docs/api/setup_intents/create#create_setup_intent-confirm).
+    - key: mandate_data[customer_acceptance][online][user_agent]
+      value: <string>
+      disabled: true
+      description: This hash contains details about the mandate to create. This
+        parameter can only be used with
+        [`confirm=true`](https://stripe.com/docs/api/setup_intents/create#create_setup_intent-confirm).
+    - key: on_behalf_of
+      value: <string>
+      disabled: true
+      description: The Stripe account ID created for this SetupIntent.
+    - key: payment_method
+      value: <string>
+      disabled: true
+      description: ID of the payment method (a PaymentMethod, Card, or saved Source
+        object) to attach to this SetupIntent.
+    - key: payment_method_configuration
+      value: <string>
+      disabled: true
+      description: The ID of the payment method configuration to use with this SetupIntent.
+    - key: payment_method_data[type]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[acss_debit][account_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[acss_debit][institution_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[acss_debit][transit_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[au_becs_debit][account_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[au_becs_debit][bsb_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[bacs_debit][account_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[bacs_debit][sort_code]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][city]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][country]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][line1]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][line2]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][postal_code]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][address][state]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][email]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][name]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[billing_details][phone]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[boleto][tax_id]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[eps][bank]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[fpx][bank]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[ideal][bank]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[klarna][dob][day]
+      value: <integer>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[klarna][dob][month]
+      value: <integer>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[klarna][dob][year]
+      value: <integer>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[metadata]
+      value: <object>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[p24][bank]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[radar_options][session]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[sepa_debit][iban]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[sofort][country]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[us_bank_account][account_holder_type]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[us_bank_account][account_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[us_bank_account][account_type]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[us_bank_account][financial_connections_account]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_data[us_bank_account][routing_number]
+      value: <string>
+      disabled: true
+      description: |-
+        When included, this hash creates a PaymentMethod that is set as the [`payment_method`](https://stripe.com/docs/api/setup_intents/object#setup_intent_object-payment_method)
+        value in the SetupIntent.
+    - key: payment_method_options[acss_debit][currency]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][custom_mandate_url]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][default_for][0]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][default_for][1]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][interval_description]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][payment_schedule]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][mandate_options][transaction_type]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[acss_debit][verification_method]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][amount]
+      value: <integer>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][amount_type]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][currency]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][interval]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][reference]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][start_date]
+      value: <unix-time>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][description]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][end_date]
+      value: <unix-time>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][interval_count]
+      value: <integer>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][supported_types][0]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][mandate_options][supported_types][1]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][network]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][request_three_d_secure]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][ares_trans_status]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][cryptogram]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][electronic_commerce_indicator]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][network_options][cartes_bancaires][cb_avalgo]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][network_options][cartes_bancaires][cb_exemption]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][network_options][cartes_bancaires][cb_score]
+      value: <integer>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][requestor_challenge_indicator]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][transaction_id]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[card][three_d_secure][version]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[paypal][billing_agreement_id]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][financial_connections][permissions][0]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][financial_connections][permissions][1]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][financial_connections][prefetch][0]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][financial_connections][prefetch][1]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][financial_connections][return_url]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][mandate_options][collection_method]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][networks][requested][0]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][networks][requested][1]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_options[us_bank_account][verification_method]
+      value: <string>
+      disabled: true
+      description: Payment method-specific configuration for this SetupIntent.
+    - key: payment_method_types[0]
+      value: <string>
+      disabled: true
+      description: The list of payment method types (for example, card) that this
+        SetupIntent can use. If you don't provide this, it defaults to ["card"].
+    - key: payment_method_types[1]
+      value: <string>
+      disabled: true
+      description: The list of payment method types (for example, card) that this
+        SetupIntent can use. If you don't provide this, it defaults to ["card"].
+    - key: return_url
+      value: <string>
+      disabled: true
+      description: The URL to redirect your customer back to after they authenticate
+        or cancel their payment on the payment method's app or site. To redirect
+        to a mobile application, you can alternatively supply an application URI
+        scheme. This parameter can only be used with
+        [`confirm=true`](https://stripe.com/docs/api/setup_intents/create#create_setup_intent-confirm).
+    - key: single_use[amount]
+      value: <integer>
+      disabled: true
+      description: If you populate this hash, this SetupIntent generates a
+        `single_use` mandate after successful completion.
+    - key: single_use[currency]
+      value: <string>
+      disabled: true
+      description: If you populate this hash, this SetupIntent generates a
+        `single_use` mandate after successful completion.
+    - key: usage
+      value: <string>
+      disabled: true
+      description: Indicates how the payment method is intended to be used in the
+        future. If not provided, this value defaults to `off_session`.
+    - key: use_stripe_sdk
+      value: <boolean>
+      disabled: true
+      description: Set to `true` when confirming server-side and using Stripe.js, iOS,
+        or Android client-side SDKs to handle the next actions.
+order: 2000

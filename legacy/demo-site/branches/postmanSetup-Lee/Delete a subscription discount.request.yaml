@@ -1,0 +1,13 @@
+$kind: http-request
+description: <p>Removes the currently applied discount on a subscription.</p>
+url: "{{baseUrl}}/v1/subscriptions/:subscription_exposed_id/discount"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: subscription_exposed_id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 7000

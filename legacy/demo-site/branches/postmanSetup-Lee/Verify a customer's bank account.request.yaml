@@ -1,0 +1,35 @@
+$kind: http-request
+description: <p>Verify a specified bank account for a given customer.</p>
+url: "{{baseUrl}}/v1/customers/:customer/sources/:id/verify"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: amounts[0]
+      value: <integer>
+      disabled: true
+      description: Two positive integers, in *cents*, equal to the values of the
+        microdeposits sent to the bank account.
+    - key: amounts[1]
+      value: <integer>
+      disabled: true
+      description: Two positive integers, in *cents*, equal to the values of the
+        microdeposits sent to the bank account.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 6000

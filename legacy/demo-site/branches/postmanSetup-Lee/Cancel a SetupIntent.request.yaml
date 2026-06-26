@@ -1,0 +1,34 @@
+$kind: http-request
+description: >-
+  <p>You can cancel a SetupIntent object when it’s in one of these statuses:
+  <code>requires_payment_method</code>, <code>requires_confirmation</code>, or
+  <code>requires_action</code>. </p>
+
+
+  <p>After you cancel it, setup is abandoned and any operations on the
+  SetupIntent fail with an error.</p>
+url: "{{baseUrl}}/v1/setup_intents/:intent/cancel"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: intent
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: cancellation_reason
+      value: <string>
+      disabled: true
+      description: "Reason for canceling this SetupIntent. Possible values are:
+        `abandoned`, `requested_by_customer`, or `duplicate`"
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 5000

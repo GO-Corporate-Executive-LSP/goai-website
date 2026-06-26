@@ -1,0 +1,62 @@
+$kind: http-request
+description: >-
+  <p>Creates a usage record for a specified subscription item and date, and
+  fills it with a quantity.</p>
+
+
+  <p>Usage records provide <code>quantity</code> information that Stripe uses to
+  track how much a customer is using your service. With usage information and
+  the pricing model set up by the <a
+  href="https://stripe.com/docs/billing/subscriptions/metered-billing">metered
+  billing</a> plan, Stripe helps you send accurate invoices to your
+  customers.</p>
+
+
+  <p>The default calculation for usage is to add up all the
+  <code>quantity</code> values of the usage records within a billing period. You
+  can change this default behavior with the billing plan’s
+  <code>aggregate_usage</code> <a
+  href="/docs/api/plans/create#create_plan-aggregate_usage">parameter</a>. When
+  there is more than one usage record with the same timestamp, Stripe adds the
+  <code>quantity</code> values together. In most cases, this is the desired
+  resolution, however, you can change this behavior with the <code>action</code>
+  parameter.</p>
+
+
+  <p>The default pricing model for metered billing is <a
+  href="/docs/api/plans/object#plan_object-billing_scheme">per-unit pricing</a>.
+  For finer granularity, you can configure metered billing to have a <a
+  href="https://stripe.com/docs/billing/subscriptions/tiers">tiered pricing</a>
+  model.</p>
+url: "{{baseUrl}}/v1/subscription_items/:subscription_item/usage_records"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: subscription_item
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: quantity
+      value: <integer>
+      description: (Required) The usage quantity for the specified timestamp.
+    - key: action
+      value: <string>
+      disabled: true
+      description: Valid values are `increment` (default) or `set`. When using
+        `increment` the specified `quantity` will be added to the usage at the
+        specified timestamp. The `set` action will overwrite the usage quantity
+        at that timestamp. If the subscription has [billing
+        thresholds](https://stripe.com/docs/api/subscriptions/object#subscription_object-billing_thresholds),
+        `increment` is the only allowed value.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 7000

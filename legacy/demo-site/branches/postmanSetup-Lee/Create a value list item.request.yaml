@@ -1,0 +1,27 @@
+$kind: http-request
+description: <p>Creates a new <code>ValueListItem</code> object, which is added
+  to the specified parent value list.</p>
+url: "{{baseUrl}}/v1/radar/value_list_items"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: value
+      value: <string>
+      description: (Required) The value of the item (whose type must match the type of
+        the parent value list).
+    - key: value_list
+      value: <string>
+      description: (Required) The identifier of the value list which the created item
+        will be added to.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

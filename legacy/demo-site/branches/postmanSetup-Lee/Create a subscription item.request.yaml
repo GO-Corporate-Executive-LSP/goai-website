@@ -1,0 +1,139 @@
+$kind: http-request
+description: <p>Adds a new item to an existing subscription. No existing items
+  will be changed or replaced.</p>
+url: "{{baseUrl}}/v1/subscription_items"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: subscription
+      value: <string>
+      description: (Required) The identifier of the subscription to modify.
+    - key: billing_thresholds[usage_gte]
+      value: <integer>
+      disabled: true
+      description: Define thresholds at which an invoice will be sent, and the
+        subscription advanced to a new billing period. When updating, pass an
+        empty string to remove previously-defined thresholds.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription item.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: payment_behavior
+      value: <string>
+      disabled: true
+      description: |-
+        Use `allow_incomplete` to transition the subscription to `status=past_due` if a payment is required but cannot be paid. This allows you to manage scenarios where additional user actions are needed to pay a subscription's invoice. For example, SCA regulation may require 3DS authentication to complete payment. See the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication) for Billing to learn more. This is the default behavior.
+
+        Use `default_incomplete` to transition the subscription to `status=past_due` when payment is required and await explicit confirmation of the invoice's payment intent. This allows simpler management of scenarios where additional user actions are needed to pay a subscription’s invoice. Such as failed payments, [SCA regulation](https://stripe.com/docs/billing/migration/strong-customer-authentication), or collecting a mandate for a bank debit payment method.
+
+        Use `pending_if_incomplete` to update the subscription using [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates). When you use `pending_if_incomplete` you can only pass the parameters [supported by pending updates](https://stripe.com/docs/billing/pending-updates-reference#supported-attributes).
+
+        Use `error_if_incomplete` if you want Stripe to return an HTTP 402 status code if a subscription's invoice cannot be paid. For example, if a payment method requires 3DS authentication due to SCA regulation and further user action is needed, this parameter does not update the subscription and returns an error instead. This was the default behavior for API versions prior to 2019-03-14. See the [changelog](https://stripe.com/docs/upgrades#2019-03-14) to learn more.
+    - key: price
+      value: <string>
+      disabled: true
+      description: The ID of the price object.
+    - key: price_data[currency]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[product]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[recurring][interval]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[recurring][interval_count]
+      value: <integer>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[tax_behavior]
+      value: <string>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount]
+      value: <integer>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: price_data[unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: Data used to generate a new
+        [Price](https://stripe.com/docs/api/prices) object inline.
+    - key: proration_behavior
+      value: <string>
+      disabled: true
+      description: Determines how to handle
+        [prorations](https://stripe.com/docs/billing/subscriptions/prorations)
+        when the billing cycle changes (e.g., when switching plans, resetting
+        `billing_cycle_anchor=now`, or starting a trial), or if an item's
+        `quantity` changes. The default value is `create_prorations`.
+    - key: proration_date
+      value: <unix-time>
+      disabled: true
+      description: If set, the proration will be calculated as though the subscription
+        was updated at the given time. This can be used to apply the same
+        proration that was previewed with the [upcoming
+        invoice](https://stripe.com/docs/api#retrieve_customer_invoice)
+        endpoint.
+    - key: quantity
+      value: <integer>
+      disabled: true
+      description: The quantity you'd like to apply to the subscription item you're
+        creating.
+    - key: tax_rates[0]
+      value: <string>
+      disabled: true
+      description: A list of [Tax Rate](https://stripe.com/docs/api/tax_rates) ids.
+        These Tax Rates will override the
+        [`default_tax_rates`](https://stripe.com/docs/api/subscriptions/create#create_subscription-default_tax_rates)
+        on the Subscription. When updating, pass an empty string to remove
+        previously-defined tax rates.
+    - key: tax_rates[1]
+      value: <string>
+      disabled: true
+      description: A list of [Tax Rate](https://stripe.com/docs/api/tax_rates) ids.
+        These Tax Rates will override the
+        [`default_tax_rates`](https://stripe.com/docs/api/subscriptions/create#create_subscription-default_tax_rates)
+        on the Subscription. When updating, pass an empty string to remove
+        previously-defined tax rates.
+order: 2000

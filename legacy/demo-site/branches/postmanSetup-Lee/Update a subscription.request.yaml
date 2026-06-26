@@ -1,0 +1,760 @@
+$kind: http-request
+description: >-
+  <p>Updates an existing subscription to match the specified parameters.
+
+  When changing prices or quantities, we optionally prorate the price we charge
+  next month to make up for any price changes.
+
+  To preview how the proration is calculated, use the <a
+  href="/docs/api/invoices/upcoming">upcoming invoice</a> endpoint.</p>
+
+
+  <p>By default, we prorate subscription changes. For example, if a customer
+  signs up on May 1 for a <currency>100</currency> price, they’ll be billed
+  <currency>100</currency> immediately. If on May 15 they switch to a
+  <currency>200</currency> price, then on June 1 they’ll be billed
+  <currency>250</currency> (<currency>200</currency> for a renewal of her
+  subscription, plus a <currency>50</currency> prorating adjustment for half of
+  the previous month’s <currency>100</currency> difference). Similarly, a
+  downgrade generates a credit that is applied to the next invoice. We also
+  prorate when you make quantity changes.</p>
+
+
+  <p>Switching prices does not normally change the billing date or generate an
+  immediate charge unless:</p>
+
+
+  <ul>
+
+  <li>The billing interval is changed (for example, from monthly to
+  yearly).</li>
+
+  <li>The subscription moves from free to paid, or paid to free.</li>
+
+  <li>A trial starts or ends.</li>
+
+  </ul>
+
+
+  <p>In these cases, we apply a credit for the unused time on the previous
+  price, immediately charge the customer using the new price, and reset the
+  billing date.</p>
+
+
+  <p>If you want to charge for an upgrade immediately, pass
+  <code>proration_behavior</code> as <code>always_invoice</code> to create
+  prorations, automatically invoice the customer for those proration
+  adjustments, and attempt to collect payment. If you pass
+  <code>create_prorations</code>, the prorations are created but not
+  automatically invoiced. If you want to bill the customer for the prorations
+  before the subscription’s renewal date, you need to manually <a
+  href="/docs/api/invoices/create">invoice the customer</a>.</p>
+
+
+  <p>If you don’t want to prorate, set the <code>proration_behavior</code>
+  option to <code>none</code>. With this option, the customer is billed
+  <currency>100</currency> on May 1 and <currency>200</currency> on June 1.
+  Similarly, if you set <code>proration_behavior</code> to <code>none</code>
+  when switching between different billing intervals (for example, from monthly
+  to yearly), we don’t generate any credits for the old subscription’s unused
+  time. We still reset the billing date and bill immediately for the new
+  subscription.</p>
+
+
+  <p>Updating the quantity on a subscription many times in an hour may result in
+  <a href="/docs/rate-limits">rate limiting</a>. If you need to bill for a
+  frequently changing quantity, consider integrating <a
+  href="/docs/billing/subscriptions/usage-based">usage-based billing</a>
+  instead.</p>
+url: "{{baseUrl}}/v1/subscriptions/:subscription_exposed_id"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: subscription_exposed_id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: add_invoice_items[0][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[0][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: add_invoice_items[1][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of prices and quantities that will generate invoice items
+        appended to the next invoice for this subscription. You may pass up to
+        20 items.
+    - key: automatic_tax[enabled]
+      value: <boolean>
+      disabled: true
+      description: Automatic tax settings for this subscription. We recommend you only
+        include this parameter when the existing value is being changed.
+    - key: automatic_tax[liability][type]
+      value: <string>
+      disabled: true
+      description: Automatic tax settings for this subscription. We recommend you only
+        include this parameter when the existing value is being changed.
+    - key: automatic_tax[liability][account]
+      value: <string>
+      disabled: true
+      description: Automatic tax settings for this subscription. We recommend you only
+        include this parameter when the existing value is being changed.
+    - key: billing_cycle_anchor
+      value: <string>
+      disabled: true
+      description: Either `now` or `unchanged`. Setting the value to `now` resets the
+        subscription's billing cycle anchor to the current time (in UTC). For
+        more information, see the billing cycle
+        [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle).
+    - key: billing_thresholds[amount_gte]
+      value: <integer>
+      disabled: true
+      description: Define thresholds at which an invoice will be sent, and the
+        subscription advanced to a new billing period. Pass an empty string to
+        remove previously-defined thresholds.
+    - key: billing_thresholds[reset_billing_cycle_anchor]
+      value: <boolean>
+      disabled: true
+      description: Define thresholds at which an invoice will be sent, and the
+        subscription advanced to a new billing period. Pass an empty string to
+        remove previously-defined thresholds.
+    - key: cancel_at_period_end
+      value: <boolean>
+      disabled: true
+      description: Boolean indicating whether this subscription should cancel at the
+        end of the current period.
+    - key: cancellation_details[comment]
+      value: <string>
+      disabled: true
+      description: Details about why this subscription was cancelled
+    - key: cancellation_details[feedback]
+      value: <string>
+      disabled: true
+      description: Details about why this subscription was cancelled
+    - key: collection_method
+      value: <string>
+      disabled: true
+      description: Either `charge_automatically`, or `send_invoice`. When charging
+        automatically, Stripe will attempt to pay this subscription at the end
+        of the cycle using the default source attached to the customer. When
+        sending an invoice, Stripe will email your customer an invoice with
+        payment instructions and mark the subscription as `active`. Defaults to
+        `charge_automatically`.
+    - key: coupon
+      value: <string>
+      disabled: true
+      description: The ID of the coupon to apply to this subscription. A coupon
+        applied to a subscription will only affect invoices created for that
+        particular subscription. This field has been deprecated and will be
+        removed in a future API version. Use `discounts` instead.
+    - key: days_until_due
+      value: <integer>
+      disabled: true
+      description: Number of days a customer has to pay invoices generated by this
+        subscription. Valid only for subscriptions where `collection_method` is
+        set to `send_invoice`.
+    - key: default_payment_method
+      value: <string>
+      disabled: true
+      description: ID of the default payment method for the subscription. It must
+        belong to the customer associated with the subscription. This takes
+        precedence over `default_source`. If neither are set, invoices will use
+        the customer's
+        [invoice_settings.default_payment_method](https://stripe.com/docs/api/customers/object#customer_object-invoice_settings-default_payment_method)
+        or
+        [default_source](https://stripe.com/docs/api/customers/object#customer_object-default_source).
+    - key: default_tax_rates[0]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any subscription item that does
+        not have `tax_rates` set. Invoices created will have their
+        `default_tax_rates` populated from the subscription. Pass an empty
+        string to remove previously-defined tax rates.
+    - key: default_tax_rates[1]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any subscription item that does
+        not have `tax_rates` set. Invoices created will have their
+        `default_tax_rates` populated from the subscription. Pass an empty
+        string to remove previously-defined tax rates.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The coupons to redeem into discounts for the subscription. If not
+        specified or empty, inherits the discount from the subscription's
+        customer.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: invoice_settings[account_tax_ids][0]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: invoice_settings[account_tax_ids][1]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: invoice_settings[issuer][type]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: invoice_settings[issuer][account]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: items[0][billing_thresholds][usage_gte]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][clear_usage]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][deleted]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][id]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][metadata]
+      value: <object>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][recurring][interval]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][recurring][interval_count]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[0][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][billing_thresholds][usage_gte]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][clear_usage]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][deleted]
+      value: <boolean>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][id]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][metadata]
+      value: <object>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][recurring][interval]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][recurring][interval_count]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: items[1][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of up to 20 subscription items, each with an attached price.
+    - key: off_session
+      value: <boolean>
+      disabled: true
+      description: Indicates if a customer is on or off-session while an invoice
+        payment is attempted.
+    - key: pause_collection[behavior]
+      value: <string>
+      disabled: true
+      description: If specified, payment collection for this subscription will be
+        paused. Note that the subscription status will be unchanged and will not
+        be updated to `paused`. Learn more about [pausing
+        collection](/billing/subscriptions/pause-payment).
+    - key: pause_collection[resumes_at]
+      value: <unix-time>
+      disabled: true
+      description: If specified, payment collection for this subscription will be
+        paused. Note that the subscription status will be unchanged and will not
+        be updated to `paused`. Learn more about [pausing
+        collection](/billing/subscriptions/pause-payment).
+    - key: payment_behavior
+      value: <string>
+      disabled: true
+      description: |-
+        Use `allow_incomplete` to transition the subscription to `status=past_due` if a payment is required but cannot be paid. This allows you to manage scenarios where additional user actions are needed to pay a subscription's invoice. For example, SCA regulation may require 3DS authentication to complete payment. See the [SCA Migration Guide](https://stripe.com/docs/billing/migration/strong-customer-authentication) for Billing to learn more. This is the default behavior.
+
+        Use `default_incomplete` to transition the subscription to `status=past_due` when payment is required and await explicit confirmation of the invoice's payment intent. This allows simpler management of scenarios where additional user actions are needed to pay a subscription’s invoice. Such as failed payments, [SCA regulation](https://stripe.com/docs/billing/migration/strong-customer-authentication), or collecting a mandate for a bank debit payment method.
+
+        Use `pending_if_incomplete` to update the subscription using [pending updates](https://stripe.com/docs/billing/subscriptions/pending-updates). When you use `pending_if_incomplete` you can only pass the parameters [supported by pending updates](https://stripe.com/docs/billing/pending-updates-reference#supported-attributes).
+
+        Use `error_if_incomplete` if you want Stripe to return an HTTP 402 status code if a subscription's invoice cannot be paid. For example, if a payment method requires 3DS authentication due to SCA regulation and further user action is needed, this parameter does not update the subscription and returns an error instead. This was the default behavior for API versions prior to 2019-03-14. See the [changelog](https://stripe.com/docs/upgrades#2019-03-14) to learn more.
+    - key: payment_settings[payment_method_options][acss_debit][mandate_options][transaction_type]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][acss_debit][verification_method]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][bancontact][preferred_language]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][card][mandate_options][amount]
+      value: <integer>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][card][mandate_options][amount_type]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][card][mandate_options][description]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][card][network]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][card][request_three_d_secure]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][customer_balance][bank_transfer][eu_bank_transfer][country]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][customer_balance][bank_transfer][type]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][customer_balance][funding_type]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][permissions][0]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][permissions][1]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][prefetch][0]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][us_bank_account][financial_connections][prefetch][1]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_options][us_bank_account][verification_method]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_types][0]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[payment_method_types][1]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: payment_settings[save_default_payment_method]
+      value: <string>
+      disabled: true
+      description: Payment settings to pass to invoices created by the subscription.
+    - key: pending_invoice_item_interval[interval]
+      value: <string>
+      disabled: true
+      description: Specifies an interval for how often to bill for any pending invoice
+        items. It is analogous to calling [Create an
+        invoice](https://stripe.com/docs/api#create_invoice) for the given
+        subscription at the specified interval.
+    - key: pending_invoice_item_interval[interval_count]
+      value: <integer>
+      disabled: true
+      description: Specifies an interval for how often to bill for any pending invoice
+        items. It is analogous to calling [Create an
+        invoice](https://stripe.com/docs/api#create_invoice) for the given
+        subscription at the specified interval.
+    - key: promotion_code
+      value: <string>
+      disabled: true
+      description: The promotion code to apply to this subscription. A promotion code
+        applied to a subscription will only affect invoices created for that
+        particular subscription.
+    - key: proration_behavior
+      value: <string>
+      disabled: true
+      description: Determines how to handle
+        [prorations](https://stripe.com/docs/billing/subscriptions/prorations)
+        when the billing cycle changes (e.g., when switching plans, resetting
+        `billing_cycle_anchor=now`, or starting a trial), or if an item's
+        `quantity` changes. The default value is `create_prorations`.
+    - key: proration_date
+      value: <unix-time>
+      disabled: true
+      description: If set, the proration will be calculated as though the subscription
+        was updated at the given time. This can be used to apply exactly the
+        same proration that was previewed with [upcoming
+        invoice](https://stripe.com/docs/api#upcoming_invoice) endpoint. It can
+        also be used to implement custom proration logic, such as prorating by
+        day instead of by second, by providing the time that you wish to use for
+        proration calculations.
+    - key: transfer_data[destination]
+      value: <string>
+      disabled: true
+      description: If specified, the funds from the subscription's invoices will be
+        transferred to the destination and the ID of the resulting transfers
+        will be found on the resulting charges. This will be unset if you POST
+        an empty value.
+    - key: transfer_data[amount_percent]
+      value: <number>
+      disabled: true
+      description: If specified, the funds from the subscription's invoices will be
+        transferred to the destination and the ID of the resulting transfers
+        will be found on the resulting charges. This will be unset if you POST
+        an empty value.
+    - key: trial_from_plan
+      value: <boolean>
+      disabled: true
+      description: Indicates if a plan's `trial_period_days` should be applied to the
+        subscription. Setting `trial_end` per subscription is preferred, and
+        this defaults to `false`. Setting this flag to `true` together with
+        `trial_end` is not allowed. See [Using trial periods on
+        subscriptions](https://stripe.com/docs/billing/subscriptions/trials) to
+        learn more.
+    - key: trial_settings[end_behavior][missing_payment_method]
+      value: <string>
+      disabled: true
+      description: Settings related to subscription trials.
+order: 6000

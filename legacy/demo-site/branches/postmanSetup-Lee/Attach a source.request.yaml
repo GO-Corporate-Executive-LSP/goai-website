@@ -1,0 +1,149 @@
+$kind: http-request
+description: >-
+  <p>When you create a new credit card, you must specify a customer or recipient
+  on which to create it.</p>
+
+
+  <p>If the card’s owner has no default card, then the new card will become the
+  default.
+
+  However, if the owner already has a default, then it will not change.
+
+  To change the default, you should <a href="/docs/api#update_customer">update
+  the customer</a> to have a new <code>default_source</code>.</p>
+url: "{{baseUrl}}/v1/customers/:customer/sources"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: source
+      value: <string>
+      description: (Required) Please refer to full
+        [documentation](https://stripe.com/docs/api) instead.
+    - key: alipay_account
+      value: <string>
+      disabled: true
+      description: A token returned by [Stripe.js](https://stripe.com/docs/js)
+        representing the user’s Alipay account details.
+    - key: bank_account[account_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[country]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_name]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[account_holder_type]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[currency]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[object]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: bank_account[routing_number]
+      value: <string>
+      disabled: true
+      description: Either a token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js), or a dictionary containing a
+        user's bank account details.
+    - key: card[exp_month]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[exp_year]
+      value: <integer>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[number]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_city]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_country]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line1]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_line2]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_state]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[address_zip]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[cvc]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[metadata]
+      value: <object>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[name]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: card[object]
+      value: <string>
+      disabled: true
+      description: A token, like the ones returned by
+        [Stripe.js](https://stripe.com/docs/js).
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000

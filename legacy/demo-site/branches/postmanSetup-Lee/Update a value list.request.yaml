@@ -1,0 +1,32 @@
+$kind: http-request
+description: <p>Updates a <code>ValueList</code> object by setting the values of
+  the parameters passed. Any parameters not provided will be left unchanged.
+  Note that <code>item_type</code> is immutable.</p>
+url: "{{baseUrl}}/v1/radar/value_lists/:value_list"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: value_list
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: alias
+      value: <string>
+      disabled: true
+      description: The name of the value list for use in rules.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: name
+      value: <string>
+      disabled: true
+      description: The human-readable name of the value list.
+order: 5000

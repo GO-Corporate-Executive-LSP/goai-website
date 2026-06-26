@@ -1,0 +1,32 @@
+$kind: http-request
+description: <p>Creates a new <code>ValueList</code> object, which can then be
+  referenced in rules.</p>
+url: "{{baseUrl}}/v1/radar/value_lists"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: alias
+      value: <string>
+      description: (Required) The name of the value list for use in rules.
+    - key: name
+      value: <string>
+      description: (Required) The human-readable name of the value list.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: item_type
+      value: <string>
+      disabled: true
+      description: Type of the items in the value list. One of `card_fingerprint`,
+        `us_bank_account_fingerprint`, `sepa_debit_fingerprint`, `card_bin`,
+        `email`, `ip_address`, `country`, `string`, `case_sensitive_string`, or
+        `customer_id`. Use `string` if the item type is unknown or mixed.
+order: 2000

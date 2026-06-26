@@ -1,0 +1,22 @@
+$kind: http-request
+description: <p>Retrieves the details of an existing subscription schedule. You
+  only need to supply the unique subscription schedule identifier that was
+  returned upon subscription schedule creation.</p>
+url: "{{baseUrl}}/v1/subscription_schedules/:schedule"
+method: GET
+headers:
+  Content-Type: application/x-www-form-urlencoded
+queryParams:
+  - key: expand[0]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+  - key: expand[1]
+    value: <string>
+    disabled: true
+    description: Specifies which fields in the response should be expanded.
+pathVariables:
+  - key: schedule
+    value: <string>
+    description: "(Required) "
+order: 3000

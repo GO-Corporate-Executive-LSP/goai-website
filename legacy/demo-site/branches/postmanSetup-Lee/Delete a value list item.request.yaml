@@ -1,0 +1,14 @@
+$kind: http-request
+description: <p>Deletes a <code>ValueListItem</code> object, removing it from
+  its parent value list.</p>
+url: "{{baseUrl}}/v1/radar/value_list_items/:item"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: item
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

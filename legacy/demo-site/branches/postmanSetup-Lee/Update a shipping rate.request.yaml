@@ -1,0 +1,37 @@
+$kind: http-request
+description: <p>Updates an existing shipping rate object.</p>
+url: "{{baseUrl}}/v1/shipping_rates/:shipping_rate_token"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: shipping_rate_token
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: active
+      value: <boolean>
+      disabled: true
+      description: Whether the shipping rate can be used for new purchases. Defaults
+        to `true`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: fixed_amount[currency_options]
+      value: <object>
+      disabled: true
+      description: Describes a fixed amount to charge for shipping. Must be present if
+        type is `fixed_amount`.
+    - key: tax_behavior
+      value: <string>
+      disabled: true
+      description: Specifies whether the rate is considered inclusive of taxes or
+        exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.
+order: 4000

@@ -1,0 +1,98 @@
+$kind: http-request
+description: <p>Creates a new object and begin running the report. (Certain
+  report types require a <a
+  href="https://stripe.com/docs/keys#test-live-modes">live-mode API
+  key</a>.)</p>
+url: "{{baseUrl}}/v1/reporting/report_runs"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: report_type
+      value: <string>
+      description: (Required) The ID of the [report
+        type](https://stripe.com/docs/reporting/statements/api#report-types) to
+        run, such as `"balance.summary.1"`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: parameters[columns][0]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[columns][1]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[connected_account]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[currency]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[interval_end]
+      value: <unix-time>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[interval_start]
+      value: <unix-time>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[payout]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[reporting_category]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+    - key: parameters[timezone]
+      value: <string>
+      disabled: true
+      description: Parameters specifying how the report should be run. Different
+        Report Types have different required and optional parameters, listed in
+        the [API Access to
+        Reports](https://stripe.com/docs/reporting/statements/api)
+        documentation.
+order: 2000

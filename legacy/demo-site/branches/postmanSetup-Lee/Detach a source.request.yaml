@@ -1,0 +1,25 @@
+$kind: http-request
+description: <p>Delete a specified source for a given customer.</p>
+url: "{{baseUrl}}/v1/customers/:customer/sources/:id"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: customer
+    value: <string>
+    description: "(Required) "
+  - key: id
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 3000

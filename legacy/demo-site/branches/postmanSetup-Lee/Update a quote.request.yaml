@@ -1,0 +1,371 @@
+$kind: http-request
+description: <p>A quote models prices and services for a customer.</p>
+url: "{{baseUrl}}/v1/quotes/:quote"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: quote
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: automatic_tax[enabled]
+      value: <boolean>
+      disabled: true
+      description: Settings for automatic tax lookup for this quote and resulting
+        invoices and subscriptions.
+    - key: automatic_tax[liability][type]
+      value: <string>
+      disabled: true
+      description: Settings for automatic tax lookup for this quote and resulting
+        invoices and subscriptions.
+    - key: automatic_tax[liability][account]
+      value: <string>
+      disabled: true
+      description: Settings for automatic tax lookup for this quote and resulting
+        invoices and subscriptions.
+    - key: collection_method
+      value: <string>
+      disabled: true
+      description: Either `charge_automatically`, or `send_invoice`. When charging
+        automatically, Stripe will attempt to pay invoices at the end of the
+        subscription cycle or at invoice finalization using the default payment
+        method attached to the subscription or customer. When sending an
+        invoice, Stripe will email your customer an invoice with payment
+        instructions and mark the subscription as `active`. Defaults to
+        `charge_automatically`.
+    - key: customer
+      value: <string>
+      disabled: true
+      description: The customer for which this quote belongs to. A customer is
+        required before finalizing the quote. Once specified, it cannot be
+        changed.
+    - key: default_tax_rates[0]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any line item that does not have
+        `tax_rates` set.
+    - key: default_tax_rates[1]
+      value: <string>
+      disabled: true
+      description: The tax rates that will apply to any line item that does not have
+        `tax_rates` set.
+    - key: discounts[0][coupon]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: discounts[0][discount]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: discounts[0][promotion_code]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: discounts[1][coupon]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: discounts[1][discount]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: discounts[1][promotion_code]
+      value: <string>
+      disabled: true
+      description: The discounts applied to the quote. You can only set up to one discount.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expires_at
+      value: <unix-time>
+      disabled: true
+      description: A future timestamp on which the quote will be canceled if in `open`
+        or `draft` status. Measured in seconds since the Unix epoch.
+    - key: invoice_settings[days_until_due]
+      value: <integer>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: invoice_settings[issuer][type]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: invoice_settings[issuer][account]
+      value: <string>
+      disabled: true
+      description: All invoices will be billed using the specified settings.
+    - key: line_items[0][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][id]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][recurring][interval]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][recurring][interval_count]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[0][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][0][coupon]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][0][discount]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][0][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][1][coupon]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][1][discount]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][discounts][1][promotion_code]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][id]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][currency]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][product]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][recurring][interval]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][recurring][interval_count]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][tax_behavior]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][unit_amount]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][price_data][unit_amount_decimal]
+      value: <decimal>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][quantity]
+      value: <integer>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][tax_rates][0]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: line_items[1][tax_rates][1]
+      value: <string>
+      disabled: true
+      description: A list of line items the customer is being quoted for. Each line
+        item includes information about the product, the quantity, and the
+        resulting cost.
+    - key: subscription_data[description]
+      value: <string>
+      disabled: true
+      description: When creating a subscription or subscription schedule, the
+        specified configuration data will be used. There must be at least one
+        line item with a recurring price for a subscription or subscription
+        schedule to be created. A subscription schedule is created if
+        `subscription_data[effective_date]` is present and in the future,
+        otherwise a subscription is created.
+    - key: subscription_data[effective_date]
+      value: <string>
+      disabled: true
+      description: When creating a subscription or subscription schedule, the
+        specified configuration data will be used. There must be at least one
+        line item with a recurring price for a subscription or subscription
+        schedule to be created. A subscription schedule is created if
+        `subscription_data[effective_date]` is present and in the future,
+        otherwise a subscription is created.
+    - key: subscription_data[metadata]
+      value: <object>
+      disabled: true
+      description: When creating a subscription or subscription schedule, the
+        specified configuration data will be used. There must be at least one
+        line item with a recurring price for a subscription or subscription
+        schedule to be created. A subscription schedule is created if
+        `subscription_data[effective_date]` is present and in the future,
+        otherwise a subscription is created.
+    - key: subscription_data[trial_period_days]
+      value: <integer>
+      disabled: true
+      description: When creating a subscription or subscription schedule, the
+        specified configuration data will be used. There must be at least one
+        line item with a recurring price for a subscription or subscription
+        schedule to be created. A subscription schedule is created if
+        `subscription_data[effective_date]` is present and in the future,
+        otherwise a subscription is created.
+    - key: transfer_data[destination]
+      value: <string>
+      disabled: true
+      description: The data with which to automatically create a Transfer for each of
+        the invoices.
+    - key: transfer_data[amount]
+      value: <integer>
+      disabled: true
+      description: The data with which to automatically create a Transfer for each of
+        the invoices.
+    - key: transfer_data[amount_percent]
+      value: <number>
+      disabled: true
+      description: The data with which to automatically create a Transfer for each of
+        the invoices.
+order: 4000
