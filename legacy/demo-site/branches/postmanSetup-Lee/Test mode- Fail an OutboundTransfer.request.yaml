@@ -1,0 +1,26 @@
+$kind: http-request
+name: "Test mode: Fail an OutboundTransfer"
+description: <p>Transitions a test mode created OutboundTransfer to the
+  <code>failed</code> status. The OutboundTransfer must already be in the
+  <code>processing</code> state.</p>
+url: "{{baseUrl}}/v1/test_helpers/treasury/outbound_transfers/:outbound_transfe\
+  r/fail"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: outbound_transfer
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 1000

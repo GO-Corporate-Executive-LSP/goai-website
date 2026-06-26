@@ -1,0 +1,15 @@
+$kind: http-request
+description: <p>You can also delete webhook endpoints via the <a
+  href="https://dashboard.stripe.com/account/webhooks">webhook endpoint
+  management</a> page of the Stripe dashboard.</p>
+url: "{{baseUrl}}/v1/webhook_endpoints/:webhook_endpoint"
+method: DELETE
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: webhook_endpoint
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+order: 3000

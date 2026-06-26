@@ -1,0 +1,43 @@
+$kind: http-request
+description: <p>Updates the webhook endpoint. You may edit the <code>url</code>,
+  the list of <code>enabled_events</code>, and the status of your endpoint.</p>
+url: "{{baseUrl}}/v1/webhook_endpoints/:webhook_endpoint"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+pathVariables:
+  - key: webhook_endpoint
+    value: <string>
+    description: "(Required) "
+body:
+  type: urlencoded
+  content:
+    - key: disabled
+      value: <boolean>
+      disabled: true
+      description: Disable the webhook endpoint if set to true.
+    - key: enabled_events[0]
+      value: <string>
+      disabled: true
+      description: The list of events to enable for this endpoint. You may specify
+        `['*']` to enable all events, except those that require explicit
+        selection.
+    - key: enabled_events[1]
+      value: <string>
+      disabled: true
+      description: The list of events to enable for this endpoint. You may specify
+        `['*']` to enable all events, except those that require explicit
+        selection.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: url
+      value: <string>
+      disabled: true
+      description: The URL of the webhook endpoint.
+order: 5000

@@ -1,0 +1,49 @@
+$kind: http-request
+description: <p>A webhook endpoint must have a <code>url</code> and a list of
+  <code>enabled_events</code>. You may optionally specify the Boolean
+  <code>connect</code> parameter. If set to true, then a Connect webhook
+  endpoint that notifies the specified <code>url</code> about events from all
+  connected accounts is created; otherwise an account webhook endpoint that
+  notifies the specified <code>url</code> only about events from your account is
+  created. You can also create webhook endpoints in the <a
+  href="https://dashboard.stripe.com/account/webhooks">webhooks settings</a>
+  section of the Dashboard.</p>
+url: "{{baseUrl}}/v1/webhook_endpoints"
+method: POST
+headers:
+  Content-Type: application/x-www-form-urlencoded
+body:
+  type: urlencoded
+  content:
+    - key: enabled_events[0]
+      value: <string>
+      description: (Required) The list of events to enable for this endpoint. You may
+        specify `['*']` to enable all events, except those that require explicit
+        selection.
+    - key: enabled_events[1]
+      value: <string>
+      description: (Required) The list of events to enable for this endpoint. You may
+        specify `['*']` to enable all events, except those that require explicit
+        selection.
+    - key: url
+      value: <string>
+      description: (Required) The URL of the webhook endpoint.
+    - key: api_version
+      value: <string>
+      disabled: true
+      description: Events sent to this endpoint will be generated with this Stripe
+        Version instead of your account's default Stripe Version.
+    - key: connect
+      value: <boolean>
+      disabled: true
+      description: Whether this endpoint should receive events from connected accounts
+        (`true`), or from your account (`false`). Defaults to `false`.
+    - key: expand[0]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+    - key: expand[1]
+      value: <string>
+      disabled: true
+      description: Specifies which fields in the response should be expanded.
+order: 2000
