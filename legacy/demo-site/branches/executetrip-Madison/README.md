@@ -1,180 +1,21 @@
-# Day 9 Testing Guide
+# The Page Code Folder
 
-## Quick Start Testing
+This folder contains code files for each of the pages on your site as well as the [masterpage.js](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#global-site) file. The code you add to these files runs when visitors open pages on your site. These files correspond to the ones found in the [**Main Pages**](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#main-pages) section of the **Page Code** ![image](https://user-images.githubusercontent.com/89579857/184645988-6d4ee6d3-34ab-45bc-b914-5779a7de0cad.png) tab in the Velo sidebar.
 
-### Option 1: Browser Console Testing (Easiest)
+When you add a page to your site in a Wix editor in your browser, a code file for that page gets added to your repo. The name of the file has 2 components: the name of the page that you define when you create it, and an internal ID string. The sections are separated by a period. 
 
-1. Open the **AI Concierge** page in your Wix editor
-2. Click **Preview** to run the page
-3. Open browser developer console (F12)
-4. The page will automatically run test scenarios
-5. Look for "Trip ready for approval" message
-6. Run approval tests:
+![image](https://user-images.githubusercontent.com/89579857/188305074-6e2ee718-13b8-435d-9c75-bcb126f35718.png)
 
-```javascript
-// Test approval decision
-testApprove()
+When you [add a dynamic page](https://support.wix.com/en/article/content-manager-about-dynamic-pages#adding-dynamic-pages) to your site 2 code files are added to the site's repo corresponding to the dynamic list and dynamic item pages.
 
-// Test adjustment request
-testAdjustment()
+When you open a page's code file, you see the same sample code that appears in these code files in Wix editors in your browser.  
 
-// Test escalation
-testEscalate()
-```
+![image](https://user-images.githubusercontent.com/89579857/184646571-1e14f166-2b86-4f21-bf57-83468251bca8.png)
 
-### Option 2: Automated Test Suite
+When you delete a page in a Wix editor in your browser, the page's corresponding code file is deleted from your repo.
 
-Run the complete test suite:
+> **Note:**
+> * You can't create new code files for pages from your IDE. To add a file, create a new page for your site in a Wix editor in your browser, and [sync](https://support.wix.com/en/article/velo-working-with-the-local-editor-beta#sync-design-changes-to-your-ide) your site with your local IDE.
+> * Do not rename code files for pages. Wix uses these file names to associate the files with the appropriate pages on your site. If you rename a file, your code is ignored and a new code file is created for the page.
 
-```javascript
-import { runAllApprovalTests } from 'backend/etas/__tests__/testApprovalScenarios';
-runAllApprovalTests();
-```
-
-This will test all three scenarios automatically:
-- ✅ Low risk approval
-- 🟡 Medium risk escalation  
-- ✏️ Adjustment needed
-
----
-
-## What to Look For
-
-### ✅ Successful Approval
-- Trip state changes to "approved"
-- Approval metadata populated:
-  - status: "APPROVED"
-  - decidedBy: "human"
-  - decidedAt: [timestamp]
-  - notes: [your notes]
-- Console shows: "Trip approved and ready for execution"
-- No execution happens (Day 9 - review only)
-
-### ✏️ Adjustment Request
-- Trip state returns to "draft"
-- Approval metadata shows "NEEDS_ADJUSTMENT"
-- Console shows: "Trip returned to conversation"
-- User can modify trip details
-
-### 🧍 Escalation
-- Trip state changes to "escalated"
-- Approval metadata shows "ESCALATED"
-- Console shows: "Trip escalated to concierge"
-- Concierge path displayed
-
----
-
-## Backend Logs
-
-Check backend logs for audit trail:
-
-```
-[APPROVAL] Trip test-001 - Decision: APPROVED
-[APPROVAL] SENTINEL Risk: LOW
-[APPROVAL] Decided at: 2025-12-26T...
-[APPROVAL] Notes: Low risk trip, approved for execution
-[APPROVAL] New state: approved
-```
-
----
-
-## Testing Scenarios
-
-### Scenario 1: Low Risk Trip
-- **Time:** 2:30 PM (daytime)
-- **Expected SENTINEL:** LOW risk
-- **Expected Action:** Approve smoothly
-- **Expected State:** approved
-
-### Scenario 2: Medium Risk Trip  
-- **Time:** 11:30 PM (late night)
-- **Expected SENTINEL:** MEDIUM risk
-- **Expected Action:** Escalate or approve with caution
-- **Expected State:** escalated or approved
-
-### Scenario 3: Adjustment Needed
-- **Any trip:** Valid but needs changes
-- **Expected Action:** Request adjustment
-- **Expected State:** draft
-
----
-
-## Manual Testing Steps
-
-1. **Submit a trip for review:**
-   ```javascript
-   submitTripForReview(tripObject)
-   ```
-
-2. **Wait for validation:**
-   - Should show "valid" status
-   - Trip state becomes "review"
-   - SENTINEL context displayed
-
-3. **Display approval UI:**
-   - Automatically shown when trip reaches review state
-   - Shows trip summary
-   - Shows SENTINEL risk context
-   - Shows approval options
-
-4. **Make approval decision:**
-   ```javascript
-   // Choose one:
-   handleApprove(trip, "notes")
-   handleRequestAdjustment(trip, "notes")
-   handleEscalate(trip, "notes")
-   ```
-
-5. **Verify response:**
-   - Check trip state changed correctly
-   - Check approval metadata populated
-   - Check audit logs in console
-   - Verify no execution happened
-
----
-
-## Troubleshooting
-
-### "Trip must be in review state"
-- Trip hasn't been validated yet
-- Run `submitTripForReview()` first
-
-### "Invalid decision"
-- Must be: "APPROVED", "NEEDS_ADJUSTMENT", or "ESCALATED"
-- Check spelling and case
-
-### No SENTINEL data
-- This is OK - SENTINEL is optional
-- System works without it
-- Approval urgency defaults to "STANDARD"
-
-### Backend not responding
-- Check backend/tripService.jsw is deployed
-- Check backend logs for errors
-- Verify import paths are correct
-
----
-
-## Success Criteria
-
-✅ Trip can be approved  
-✅ Trip can be returned for adjustment  
-✅ Trip can be escalated  
-✅ SENTINEL context displays (when available)  
-✅ Approval metadata is recorded  
-✅ Audit trail is logged  
-✅ No execution happens (Day 9)  
-
----
-
-## Next Steps After Testing
-
-Once all tests pass:
-
-```bash
-git add .
-git commit -m "Day 9: add human approval loop before execution"
-git push
-```
-
-Then proceed to Day 10 or next milestone!
+Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
