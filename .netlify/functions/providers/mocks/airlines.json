@@ -1,1 +1,47 @@
-
+[
+  {
+    "id": "aln_000001",
+    "iata_code": "DL",
+    "icao_code": "DAL",
+    "name": "Delta Air Lines",
+    "callsign": "DELTA",
+    "country": "United States",
+    "alliance": "SkyTeam"
+  },
+  {
+    "id": "aln_000002",
+    "iata_code": "AA",
+    "icao_code": "AAL",
+    "name": "American Airlines",
+    "callsign": "AMERICAN",
+    "country": "United States",
+    "alliance": "oneworld"
+  },
+  {
+    "id": "aln_000003",
+    "iata_code": "UA",
+    "icao_code": "UAL",
+    "name": "United Airlines",
+    "callsign": "UNITED",
+    "country": "United States",
+    "alliance": "Star Alliance"
+  },
+  {
+    "id": "aln_000004",
+    "iata_code": "BA",
+    "icao_code": "BAW",
+    "name": "British Airways",
+    "callsign": "SPEEDBIRD",
+    "country": "United Kingdom",
+    "alliance": "oneworld"
+  },
+  {
+    "id": "aln_000005",
+    "iata_code": "LH",
+    "icao_code": "DLH",
+    "name": "Lufthansa",
+    "callsign": "LUFTHANSA",
+    "country": "Germany",
+    "alliance": "Star Alliance"
+  }
+]
