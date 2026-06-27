@@ -228,31 +228,42 @@ The relationship between SENTINEL™ and ETAS™ is continuous rather than seque
 Traveler Input
         │
         ▼
+
 Canonical Trip Object
         │
         ▼
+
 SENTINEL™
-──────────────────────────
+
+────────────────────────
+
 Analyze
 Correlate
 Predict
 Simulate
 Score
 Recommend
-──────────────────────────
+
+────────────────────────
+
         │
 Approved Recommendation
         │
         ▼
 ETAS™
-──────────────────────────
+
+
+────────────────────────
+
 Coordinate
 Book
 Modify
 Notify
 Synchronize
 Monitor
-──────────────────────────
+
+────────────────────────
+
         │
 Execution Results
         │
@@ -262,7 +273,9 @@ Traveler Dashboard
         ▼
 Updated Trip State
         │
-        └──────────────► Returns to SENTINEL™
+        └──────────────► 
+        Returns to SENTINEL™
+        
 
 Every successful execution produces a new operational state.
 
