@@ -71,10 +71,10 @@ The Face
 SENTINEL™
 (The Brain)
 
-Predicts
-Analyzes
-Simulates
-Recommends
+* Predicts
+* Analyzes
+* Simulates
+* Recommends
 
         │
 
@@ -85,10 +85,10 @@ Approved Recommendations
 ETAS™
 (The Nervous System)
 
-Coordinates
-Executes
-Synchronizes
-Monitors
+* Coordinates
+* Executes
+* Synchronizes
+* Monitors
 
         │
 
@@ -96,12 +96,12 @@ Monitors
 
 Commercial Provider Ecosystem
 
-Flights
-Hotels
-Ground Transportation
-Calendar
-Notifications
-Enterprise Systems
+* Flights
+* Hotels
+* Ground Transportation
+* Calendar
+* Notifications
+* Enterprise Systems
 
         │
 
