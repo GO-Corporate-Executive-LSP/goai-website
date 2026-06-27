@@ -1,1 +1,64 @@
-
+[
+  {
+    "id": "pas_000001",
+    "type": "adult",
+    "given_name": "Dwayne",
+    "family_name": "Heard",
+    "born_on": "1986-04-18",
+    "email": "dwayne@example.com",
+    "phone_number": "+17045550101",
+    "loyalty_program": {
+      "airline": "DL",
+      "number": "DL123456789"
+    }
+  },
+  {
+    "id": "pas_000002",
+    "type": "adult",
+    "given_name": "Sarah",
+    "family_name": "Johnson",
+    "born_on": "1990-09-12",
+    "email": "sarah@example.com",
+    "phone_number": "+17045550102",
+    "loyalty_program": {
+      "airline": "AA",
+      "number": "AA987654321"
+    }
+  },
+  {
+    "id": "pas_000003",
+    "type": "child",
+    "given_name": "Michael",
+    "family_name": "Johnson",
+    "born_on": "2015-06-03",
+    "email": null,
+    "phone_number": null,
+    "loyalty_program": null
+  },
+  {
+    "id": "pas_000004",
+    "type": "adult",
+    "given_name": "Emily",
+    "family_name": "Davis",
+    "born_on": "1984-01-27",
+    "email": "emily@example.com",
+    "phone_number": "+17045550103",
+    "loyalty_program": {
+      "airline": "UA",
+      "number": "UA246810121"
+    }
+  },
+  {
+    "id": "pas_000005",
+    "type": "adult",
+    "given_name": "James",
+    "family_name": "Wilson",
+    "born_on": "1979-11-05",
+    "email": "james@example.com",
+    "phone_number": "+17045550104",
+    "loyalty_program": {
+      "airline": "BA",
+      "number": "BA135791357"
+    }
+  }
+]
