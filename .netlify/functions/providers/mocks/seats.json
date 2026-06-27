@@ -1,1 +1,60 @@
-
+[
+  {
+    "id": "seat_000001",
+    "passenger_id": "pas_000001",
+    "number": "3A",
+    "cabin_class": "business",
+    "characteristics": [
+      "window",
+      "extra_legroom"
+    ],
+    "total_amount": "75.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "seat_000002",
+    "passenger_id": "pas_000002",
+    "number": "14C",
+    "cabin_class": "premium_economy",
+    "characteristics": [
+      "aisle"
+    ],
+    "total_amount": "35.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "seat_000003",
+    "passenger_id": "pas_000003",
+    "number": "22B",
+    "cabin_class": "economy",
+    "characteristics": [
+      "middle"
+    ],
+    "total_amount": "0.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "seat_000004",
+    "passenger_id": "pas_000004",
+    "number": "11D",
+    "cabin_class": "economy",
+    "characteristics": [
+      "aisle",
+      "exit_row",
+      "extra_legroom"
+    ],
+    "total_amount": "55.00",
+    "total_currency": "EUR"
+  },
+  {
+    "id": "seat_000005",
+    "passenger_id": "pas_000005",
+    "number": "1K",
+    "cabin_class": "first",
+    "characteristics": [
+      "window"
+    ],
+    "total_amount": "0.00",
+    "total_currency": "EUR"
+  }
+]
