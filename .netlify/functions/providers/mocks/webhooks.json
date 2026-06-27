@@ -1,1 +1,58 @@
-
+[
+  {
+    "id": "wh_000001",
+    "type": "order.created",
+    "created_at": "2026-07-01T14:30:00Z",
+    "data": {
+      "order_id": "ord_000001",
+      "booking_reference": "GOAI001",
+      "status": "confirmed",
+      "provider": "Duffel"
+    }
+  },
+  {
+    "id": "wh_000002",
+    "type": "order.updated",
+    "created_at": "2026-07-02T09:15:00Z",
+    "data": {
+      "order_id": "ord_000002",
+      "booking_reference": "GOAI002",
+      "status": "ticketed",
+      "provider": "Duffel"
+    }
+  },
+  {
+    "id": "wh_000003",
+    "type": "order.changed",
+    "created_at": "2026-07-03T18:45:00Z",
+    "data": {
+      "order_id": "ord_000003",
+      "booking_reference": "GOAI003",
+      "status": "changed",
+      "provider": "Duffel"
+    }
+  },
+  {
+    "id": "wh_000004",
+    "type": "order.cancelled",
+    "created_at": "2026-07-04T11:20:00Z",
+    "data": {
+      "order_id": "ord_000004",
+      "booking_reference": "GOAI004",
+      "status": "cancelled",
+      "provider": "Duffel"
+    }
+  },
+  {
+    "id": "wh_000005",
+    "type": "order.failed",
+    "created_at": "2026-07-05T16:10:00Z",
+    "data": {
+      "order_id": "ord_000005",
+      "booking_reference": "GOAI005",
+      "status": "failed",
+      "provider": "Duffel",
+      "reason": "Payment authorization declined."
+    }
+  }
+]
