@@ -56,14 +56,12 @@ Relationship to the Platform
 Within the GÖ.AI platform, ETAS™ occupies the execution layer.
 
 Traveler
-
         │
 
         ▼
 
 The Face
 (Conversational AI / User Experience)
-
         │
 
         ▼
@@ -75,7 +73,6 @@ SENTINEL™
 * Analyzes
 * Simulates
 * Recommends
-
         │
 
 Approved Recommendations
@@ -89,7 +86,6 @@ ETAS™
 * Executes
 * Synchronizes
 * Monitors
-
         │
 
         ▼
@@ -102,7 +98,6 @@ Commercial Provider Ecosystem
 * Calendar
 * Notifications
 * Enterprise Systems
-
         │
 
         ▼
