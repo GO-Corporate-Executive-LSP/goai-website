@@ -1,1 +1,57 @@
-
+[
+  {
+    "id": "pay_000001",
+    "provider": "Duffel",
+    "type": "card",
+    "status": "paid",
+    "amount": "2849.00",
+    "currency": "USD",
+    "payment_intent": "pi_000001",
+    "transaction_id": "txn_000001",
+    "created_at": "2026-07-01T14:31:12Z"
+  },
+  {
+    "id": "pay_000002",
+    "provider": "Duffel",
+    "type": "card",
+    "status": "pending",
+    "amount": "3198.00",
+    "currency": "USD",
+    "payment_intent": "pi_000002",
+    "transaction_id": "txn_000002",
+    "created_at": "2026-07-02T09:16:45Z"
+  },
+  {
+    "id": "pay_000003",
+    "provider": "Duffel",
+    "type": "card",
+    "status": "authorized",
+    "amount": "4675.00",
+    "currency": "USD",
+    "payment_intent": "pi_000003",
+    "transaction_id": "txn_000003",
+    "created_at": "2026-07-03T18:46:20Z"
+  },
+  {
+    "id": "pay_000004",
+    "provider": "Duffel",
+    "type": "card",
+    "status": "refunded",
+    "amount": "975.00",
+    "currency": "GBP",
+    "payment_intent": "pi_000004",
+    "transaction_id": "txn_000004",
+    "created_at": "2026-07-04T11:25:03Z"
+  },
+  {
+    "id": "pay_000005",
+    "provider": "Duffel",
+    "type": "card",
+    "status": "failed",
+    "amount": "8920.00",
+    "currency": "EUR",
+    "payment_intent": "pi_000005",
+    "transaction_id": "txn_000005",
+    "created_at": "2026-07-05T16:11:58Z"
+  }
+]
