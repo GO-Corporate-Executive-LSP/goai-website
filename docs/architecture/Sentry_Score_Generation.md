@@ -23,9 +23,11 @@ zip-geocode.js
 Latitude / Longitude
         │
         ▼
+        
 ────────────────────────────────────────────
 CATEGORY INTELLIGENCE MODULES
 ────────────────────────────────────────────
+
 
 weather.js
 │
@@ -92,9 +94,11 @@ embassies.js
 
 hospitals.js
 
+
 ────────────────────────────────────────────
         │
         ▼
+        
 SENTINEL™ Lite
 (Intelligence Aggregation Layer)
         │
