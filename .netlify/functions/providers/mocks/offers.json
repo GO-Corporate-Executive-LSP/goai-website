@@ -1,1 +1,67 @@
-
+[
+  {
+    "id": "off_000001",
+    "owner": "Delta Air Lines",
+    "origin": "CLT",
+    "destination": "LHR",
+    "departure_date": "2026-09-15",
+    "return_date": "2026-09-22",
+    "cabin_class": "business",
+    "passengers": 1,
+    "total_amount": "2849.00",
+    "total_currency": "USD",
+    "expires_at": "2026-08-01T18:00:00Z"
+  },
+  {
+    "id": "off_000002",
+    "owner": "American Airlines",
+    "origin": "JFK",
+    "destination": "CDG",
+    "departure_date": "2026-10-04",
+    "return_date": "2026-10-12",
+    "cabin_class": "premium_economy",
+    "passengers": 2,
+    "total_amount": "3198.00",
+    "total_currency": "USD",
+    "expires_at": "2026-08-05T18:00:00Z"
+  },
+  {
+    "id": "off_000003",
+    "owner": "United Airlines",
+    "origin": "LAX",
+    "destination": "SIN",
+    "departure_date": "2026-11-08",
+    "return_date": "2026-11-20",
+    "cabin_class": "business",
+    "passengers": 1,
+    "total_amount": "4675.00",
+    "total_currency": "USD",
+    "expires_at": "2026-08-10T18:00:00Z"
+  },
+  {
+    "id": "off_000004",
+    "owner": "British Airways",
+    "origin": "LHR",
+    "destination": "JFK",
+    "departure_date": "2026-09-30",
+    "return_date": "2026-10-07",
+    "cabin_class": "economy",
+    "passengers": 1,
+    "total_amount": "975.00",
+    "total_currency": "GBP",
+    "expires_at": "2026-08-03T18:00:00Z"
+  },
+  {
+    "id": "off_000005",
+    "owner": "Lufthansa",
+    "origin": "FRA",
+    "destination": "CLT",
+    "departure_date": "2026-12-02",
+    "return_date": "2026-12-15",
+    "cabin_class": "first",
+    "passengers": 2,
+    "total_amount": "8920.00",
+    "total_currency": "EUR",
+    "expires_at": "2026-08-15T18:00:00Z"
+  }
+]
