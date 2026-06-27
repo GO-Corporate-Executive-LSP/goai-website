@@ -1,1 +1,72 @@
-
+[
+  {
+    "id": "htl_000001",
+    "name": "Charlotte Executive Hotel",
+    "city": "Charlotte",
+    "country": "United States",
+    "star_rating": 4,
+    "check_in_time": "15:00",
+    "check_out_time": "11:00",
+    "airport_shuttle": true,
+    "latitude": 35.2271,
+    "longitude": -80.8431,
+    "total_amount": "189.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "htl_000002",
+    "name": "Heathrow Airport Hotel",
+    "city": "London",
+    "country": "United Kingdom",
+    "star_rating": 4,
+    "check_in_time": "14:00",
+    "check_out_time": "11:00",
+    "airport_shuttle": true,
+    "latitude": 51.4706,
+    "longitude": -0.4619,
+    "total_amount": "245.00",
+    "total_currency": "GBP"
+  },
+  {
+    "id": "htl_000003",
+    "name": "Marina Bay Executive Suites",
+    "city": "Singapore",
+    "country": "Singapore",
+    "star_rating": 5,
+    "check_in_time": "15:00",
+    "check_out_time": "12:00",
+    "airport_shuttle": false,
+    "latitude": 1.2834,
+    "longitude": 103.8607,
+    "total_amount": "365.00",
+    "total_currency": "SGD"
+  },
+  {
+    "id": "htl_000004",
+    "name": "Paris Business Grand Hotel",
+    "city": "Paris",
+    "country": "France",
+    "star_rating": 5,
+    "check_in_time": "15:00",
+    "check_out_time": "12:00",
+    "airport_shuttle": true,
+    "latitude": 48.8566,
+    "longitude": 2.3522,
+    "total_amount": "315.00",
+    "total_currency": "EUR"
+  },
+  {
+    "id": "htl_000005",
+    "name": "Downtown Executive Suites",
+    "city": "New York",
+    "country": "United States",
+    "star_rating": 4,
+    "check_in_time": "15:00",
+    "check_out_time": "11:00",
+    "airport_shuttle": false,
+    "latitude": 40.7580,
+    "longitude": -73.9855,
+    "total_amount": "429.00",
+    "total_currency": "USD"
+  }
+]
