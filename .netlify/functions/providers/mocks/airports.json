@@ -1,1 +1,57 @@
-
+[
+  {
+    "id": "apt_000001",
+    "iata_code": "CLT",
+    "icao_code": "KCLT",
+    "name": "Charlotte Douglas International Airport",
+    "city": "Charlotte",
+    "country": "United States",
+    "timezone": "America/New_York",
+    "latitude": 35.2144,
+    "longitude": -80.9473
+  },
+  {
+    "id": "apt_000002",
+    "iata_code": "JFK",
+    "icao_code": "KJFK",
+    "name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "country": "United States",
+    "timezone": "America/New_York",
+    "latitude": 40.6413,
+    "longitude": -73.7781
+  },
+  {
+    "id": "apt_000003",
+    "iata_code": "LHR",
+    "icao_code": "EGLL",
+    "name": "London Heathrow Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "timezone": "Europe/London",
+    "latitude": 51.4700,
+    "longitude": -0.4543
+  },
+  {
+    "id": "apt_000004",
+    "iata_code": "CDG",
+    "icao_code": "LFPG",
+    "name": "Paris Charles de Gaulle Airport",
+    "city": "Paris",
+    "country": "France",
+    "timezone": "Europe/Paris",
+    "latitude": 49.0097,
+    "longitude": 2.5479
+  },
+  {
+    "id": "apt_000005",
+    "iata_code": "SIN",
+    "icao_code": "WSSS",
+    "name": "Singapore Changi Airport",
+    "city": "Singapore",
+    "country": "Singapore",
+    "timezone": "Asia/Singapore",
+    "latitude": 1.3644,
+    "longitude": 103.9915
+  }
+]
