@@ -1,66 +1,84 @@
 GÖ.AI Duffel Provider Adapter
 
-Enterprise-grade Duffel API integration for the GÖ.AI platform.
+Enterprise-grade integration between Duffel and the GÖ.AI backend.
 
-The Duffel Provider Adapter serves as the booking and airline commerce layer for ETAS™ (Enhanced Travel Automation Suite) and provides the execution capabilities that enable SENTINEL™ to preserve traveler continuity.
+The Duffel Provider Adapter provides ETAS™ with airline commerce capabilities including flight offers, bookings, passengers, payments, hotels, ancillaries, and webhooks while presenting a normalized interface to the remainder of the platform.
 
 ---
 
-Purpose
+Table of Contents
 
-This adapter abstracts the Duffel API behind a consistent interface so that the remainder of the GÖ.AI backend never communicates directly with provider-specific endpoints.
+- Overview
+- Architecture
+- Directory Structure
+- Components
+- Features
+- Testing
+- Design Principles
+- ETAS™ Integration
+- SENTINEL™ Integration
+- Future Roadmap
+- Version
+- License
 
-Responsibilities include:
+---
 
-- Flight offer search
-- Order management
-- Passenger management
-- Payments
-- Airport lookup
-- Airline lookup
-- Baggage services
-- Seat services
-- Hotel search
-- Webhook processing
+Overview
 
-All provider responses are normalized into GÖ.AI's canonical data structures before being returned to ETAS™.
+The Duffel Provider Adapter isolates all communication with the Duffel API.
+
+Rather than allowing ETAS™ or SENTINEL™ to communicate directly with Duffel, every request flows through this adapter where data is:
+
+- Validated
+- Retrieved
+- Normalized
+- Returned using GÖ.AI data structures
+
+This allows the rest of the platform to remain provider-independent.
 
 ---
 
 Architecture
 
-SENTINEL™
+                    SENTINEL™
 
-        │
+                         │
 
-        ▼
+                         ▼
 
-ETAS™
+                      ETAS™
 
-        │
+                         │
 
-        ▼
+                         ▼
 
-Duffel Provider Adapter
+             Duffel Provider Adapter
 
-        │
+                         │
 
-        ▼
+                         ▼
 
-Duffel API
+                   Duffel REST API
 
-The provider adapter is intentionally isolated from business logic.
+The adapter executes provider operations only.
 
-It retrieves, validates, normalizes, and returns provider data.
-
-All orchestration decisions remain inside ETAS™ and SENTINEL™.
+Business intelligence, orchestration, continuity planning, and autonomous decision-making remain inside SENTINEL™ and ETAS™.
 
 ---
 
-Folder Structure
+Directory Structure
 
 duffel/
 
+├── client.js
+├── config.js
+├── constants.js
+├── errors.js
+├── normalize.js
+├── validators.js
+├── types.js
+├── index.js
+│
 ├── offers.js
 ├── orders.js
 ├── passengers.js
@@ -71,34 +89,95 @@ duffel/
 ├── seats.js
 ├── hotels.js
 ├── webhooks.js
-
-├── client.js
-├── config.js
-├── constants.js
-├── validators.js
-├── normalize.js
-├── errors.js
-├── types.js
-├── index.js
-
+│
 ├── jest.config.js
 ├── jest.setup.js
-
-├── __tests__/
+│
 ├── __mocks__/
+│   ├── airlines.json
+│   ├── airports.json
+│   ├── baggage.json
+│   ├── hotels.json
+│   ├── offers.json
+│   ├── orders.json
+│   ├── passengers.json
+│   ├── payments.json
+│   ├── seats.json
+│   ├── webhooks.json
+│   └── client.js
+│
+├── __tests__/
+│   ├── offers.test.js
+│   ├── orders.test.js
+│   ├── passengers.test.js
+│   ├── payments.test.js
+│   ├── airports.test.js
+│   ├── airlines.test.js
+│   ├── baggage.test.js
+│   ├── seats.test.js
+│   ├── hotels.test.js
+│   └── webhooks.test.js
+│
+├── CHANGELOG.md
+└── README.md
 
-├── README.md
-└── CHANGELOG.md
+---
+
+Components
+
+Core Infrastructure
+
+- client.js
+- config.js
+- constants.js
+- errors.js
+- normalize.js
+- validators.js
+- types.js
+- index.js
+
+These files provide the shared infrastructure used throughout the adapter.
+
+---
+
+Flight Commerce
+
+- offers.js
+- orders.js
+- passengers.js
+- payments.js
+
+Responsible for searching, booking, retrieving, and managing airline reservations.
+
+---
+
+Travel Resources
+
+- airports.js
+- airlines.js
+- baggage.js
+- seats.js
+- hotels.js
+
+Provides lookup and ancillary services used during booking and itinerary management.
+
+---
+
+Event Processing
+
+- webhooks.js
+
+Processes inbound Duffel events and converts them into normalized platform events.
 
 ---
 
 Features
 
-Flights
+Flight Offers
 
-- Search offers
-- Normalize offers
-- Retrieve offer details
+- Offer search
+- Offer normalization
+- Pricing retrieval
 
 Orders
 
@@ -109,7 +188,7 @@ Orders
 Passengers
 
 - Passenger retrieval
-- Passenger helpers
+- Passenger normalization
 
 Payments
 
@@ -123,18 +202,18 @@ Airports
 
 Airlines
 
-- Airline search
 - Airline lookup
+- Airline search
 
 Baggage
 
 - Baggage retrieval
-- Ancillary normalization
+- Ancillary services
 
 Seats
 
 - Seat retrieval
-- Seat helpers
+- Seat information
 
 Hotels
 
@@ -152,19 +231,19 @@ Webhooks
 
 Testing
 
-The adapter includes a complete Jest test suite.
+The Duffel Provider Adapter includes a complete Jest test suite.
 
 Coverage includes:
 
 - Successful requests
-- Validation
+- Validation failures
 - Response normalization
 - Provider failures
-- Retry behavior
+- Retry scenarios
 - Edge cases
 - Future capability placeholders
 
-Execute tests:
+Execute all tests:
 
 npm test
 
@@ -172,46 +251,61 @@ npm test
 
 Design Principles
 
-The adapter follows several engineering principles:
+The adapter follows several engineering principles.
 
-- Provider isolation
-- Single responsibility
+- Provider abstraction
+- Canonical Trip Object compatibility
+- Modular architecture
 - Defensive validation
 - Standardized errors
 - Response normalization
-- Modular architecture
 - Enterprise documentation
-- Comprehensive automated testing
+- Automated regression testing
 
 ---
+
+ETAS™ Integration
+
+ETAS™ uses the Duffel Provider Adapter as its execution engine.
+
+User Request
+
+      │
+
+      ▼
 
 ETAS™
 
-The Duffel adapter provides execution capabilities for ETAS™, including:
+      │
 
-- Flight booking
-- Order management
-- Passenger coordination
-- Hotel retrieval
-- Airline information
-- Airport information
-- Ancillary services
+      ▼
 
-ETAS™ determines what actions to perform.
+Duffel Adapter
 
-The Duffel adapter performs how those actions are executed.
+      │
+
+      ▼
+
+Duffel API
+
+ETAS™ determines what should happen.
+
+The adapter determines how Duffel executes those operations.
 
 ---
 
-SENTINEL™
+SENTINEL™ Integration
 
-SENTINEL™ consumes normalized provider data to power:
+SENTINEL™ consumes normalized provider data generated by the adapter.
 
-- Continuity analysis
-- Disruption detection
-- Risk assessment
-- Recommendation generation
-- Autonomous itinerary coordination
+Future continuity workflows include:
+
+- Automatic rebooking
+- Hotel continuity
+- Airport recommendations
+- Disruption recovery
+- Executive travel coordination
+- Autonomous itinerary preservation
 
 The provider adapter intentionally contains no business intelligence.
 
@@ -222,20 +316,20 @@ Future Roadmap
 Planned capabilities include:
 
 - Automatic rebooking
-- Hotel continuity
+- Hotel extensions
+- Airport hotel recommendations
 - Ground transportation integration
 - Multi-provider orchestration
 - Executive travel workflows
-- Corporate travel policies
+- Corporate travel policy enforcement
+- SENTRY™ continuity scoring
 - Autonomous itinerary recovery
-- SENTRY™ scoring
-- Enterprise continuity intelligence
 
 ---
 
 Version
 
-Current Version:
+Current Version
 
 1.0.0
 
@@ -243,6 +337,6 @@ Current Version:
 
 License
 
-Copyright © 2026 GÖ.AI.
+Copyright © 2026 GÖ.AI
 
-All rights reserved.
+All Rights Reserved.
