@@ -229,32 +229,27 @@ Canonical Trip Object
         ▼
 
 SENTINEL™
-
-────────────────────────
-Analyze
-Correlate
-Predict
-Simulate
-Score
-Recommend
-────────────────────────
-
+─────────────────────────
+* Analyze
+* Correlate
+* Predict
+* Simulate
+* Score
+* Recommend
+─────────────────────────
         │
 Approved Recommendation
         │
         ▼
 ETAS™
-
-
-────────────────────────
-Coordinate
-Book
-Modify
-Notify
-Synchronize
-Monitor
-────────────────────────
-
+─────────────────────────
+* Coordinate
+* Book
+* Modify
+* Notify
+* Synchronize
+* Monitor
+─────────────────────────
         │
 Execution Results
         │
