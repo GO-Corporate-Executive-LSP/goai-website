@@ -151,3 +151,5230 @@ ETAS™ is the operational execution layer of GÖ.AI.
 **SENTINEL™ determines what should happen.**
 
 **ETAS™ ensures that it happens.**
+
+---
+
+# 2. Relationship to SENTINEL™
+
+## Overview
+
+SENTINEL™ and ETAS™ are complementary systems that together form the operational core of the GÖ.AI platform.
+
+While they work in continuous coordination, they serve fundamentally different purposes.
+
+**SENTINEL™ is the intelligence engine.**
+
+**ETAS™ is the execution engine.**
+
+SENTINEL™ is responsible for understanding the travel environment, identifying risks, simulating possible outcomes, and recommending the optimal course of action.
+
+ETAS™ is responsible for transforming those approved recommendations into coordinated actions across the travel ecosystem.
+
+Neither system replaces the other.
+
+Together, they create an intelligent travel continuity platform capable of predicting disruption, recommending mitigation strategies, and autonomously executing approved decisions.
+
+---
+
+## Separation of Responsibilities
+
+### SENTINEL™
+
+Primary responsibilities include:
+
+- Collecting real-time intelligence.
+- Monitoring the Intelligence Layers.
+- Building the Movement Graph™.
+- Correlating travel dependencies.
+- Predicting disruptions.
+- Running Twin Trip simulations.
+- Calculating the SENTRY™ Score.
+- Generating recommendations.
+- Producing Executive Briefings.
+- Continuously reassessing traveler risk.
+
+SENTINEL™ **does not** make reservations or communicate directly with commercial travel providers.
+
+---
+
+### ETAS™
+
+Primary responsibilities include:
+
+- Receiving approved recommendations.
+- Executing provider workflows.
+- Coordinating bookings.
+- Modifying itineraries.
+- Synchronizing calendars.
+- Managing notifications.
+- Monitoring execution progress.
+- Recovering from provider failures.
+- Returning execution status to the traveler.
+
+ETAS™ **does not** calculate risk scores or determine travel strategy.
+
+---
+
+## Information Flow
+
+The relationship between SENTINEL™ and ETAS™ is continuous rather than sequential.
+
+```text
+Traveler Input
+      │
+      ▼
+Canonical Trip Object
+      │
+      ▼
+SENTINEL™
+──────────────────────────────
+Analyze
+Correlate
+Predict
+Simulate
+Score
+Recommend
+──────────────────────────────
+      │
+Approved Recommendation
+      │
+      ▼
+ETAS™
+──────────────────────────────
+Coordinate
+Book
+Modify
+Notify
+Synchronize
+Monitor
+──────────────────────────────
+      │
+Execution Results
+      │
+      ▼
+Traveler Dashboard
+      │
+      ▼
+Updated Canonical Trip Object
+      │
+      └──────────────► Return to SENTINEL™
+```
+
+Every successful execution produces a new operational state.
+
+That updated state becomes additional intelligence for SENTINEL™, allowing continuous reassessment throughout the travel lifecycle.
+
+---
+
+## Continuous Intelligence Loop
+
+Unlike traditional booking platforms, GÖ.AI does not stop after a reservation has been made.
+
+Instead, SENTINEL™ and ETAS™ operate as a continuous feedback loop.
+
+```text
+Monitor
+   │
+   ▼
+Predict
+   │
+   ▼
+Recommend
+   │
+   ▼
+Approve
+   │
+   ▼
+Execute
+   │
+   ▼
+Verify
+   │
+   ▼
+Monitor Again
+```
+
+This cycle continues until the trip has been completed.
+
+---
+
+## Traveler Approval
+
+SENTINEL™ may generate multiple recommendations.
+
+Examples include:
+
+- Leave earlier.
+- Select an alternate airport.
+- Rebook a flight.
+- Delay a meeting.
+- Change hotels.
+- Use alternate ground transportation.
+
+Recommendations requiring traveler authorization are presented through the Conversational AI interface.
+
+Once approved, ETAS™ assumes responsibility for execution.
+
+Enterprise deployments may configure approval workflows that include:
+
+- Traveler approval.
+- Executive assistant approval.
+- Corporate travel manager approval.
+- Automated approval thresholds.
+
+---
+
+## Canonical Trip Object
+
+The Canonical Trip Object serves as the contract between SENTINEL™ and ETAS™.
+
+SENTINEL™ enriches the object with intelligence.
+
+ETAS™ enriches the object with execution status.
+
+Neither system creates competing versions of the trip.
+
+There is always a single authoritative Canonical Trip Object representing the traveler's current operational state.
+
+---
+
+## Engineering Principles
+
+The relationship between SENTINEL™ and ETAS™ is governed by the following principles:
+
+- Intelligence precedes execution.
+- Execution validates intelligence.
+- Every execution updates the Canonical Trip Object.
+- Every updated object is re-evaluated by SENTINEL™.
+- Provider logic remains isolated from intelligence logic.
+- Intelligence and execution communicate through well-defined interfaces.
+- Both systems remain independently testable.
+
+---
+
+## AI Coding Guidance
+
+When implementing integrations between SENTINEL™ and ETAS™:
+
+- Never duplicate business logic across both systems.
+- Maintain a clear separation between intelligence processing and execution.
+- Pass information through the Canonical Trip Object rather than direct system dependencies.
+- Preserve the continuous intelligence loop.
+- Design interfaces that allow either system to evolve independently without breaking the other.
+
+The strength of GÖ.AI lies not in either engine individually, but in the continuous interaction between predictive intelligence and coordinated execution.
+
+---
+
+# 3. AI Concierge
+
+## Overview
+
+The AI Concierge is the primary human interface to the GÖ.AI platform.
+
+Rather than asking travelers to complete static forms, the AI Concierge conducts a natural conversation that collects, validates, and organizes travel information into a Canonical Trip Object.
+
+The objective is to make travel coordination feel like speaking with an experienced executive travel coordinator rather than interacting with booking software.
+
+The AI Concierge represents **The Face** of GÖ.AI.
+
+---
+
+## Purpose
+
+The AI Concierge exists to reduce friction between traveler intent and operational execution.
+
+It accomplishes this by:
+
+- Understanding natural language.
+- Asking intelligent follow-up questions.
+- Clarifying ambiguous information.
+- Remembering previous responses.
+- Identifying missing information.
+- Building the Canonical Trip Object incrementally.
+- Preparing the trip for SENTINEL™ intelligence processing.
+
+The Concierge collects information.
+
+It does not make execution decisions.
+
+---
+
+## Responsibilities
+
+The AI Concierge is responsible for:
+
+- Conversational interaction.
+- Natural language understanding.
+- Traveler identity confirmation.
+- Trip information collection.
+- Multi-city itinerary collection.
+- Traveler preference collection.
+- Clarifying incomplete requests.
+- Maintaining conversational context.
+- Updating the Canonical Trip Object.
+- Initiating validation.
+
+The AI Concierge is **not** responsible for:
+
+- Intelligence analysis.
+- Risk scoring.
+- Twin Trip simulation.
+- Provider orchestration.
+- Booking execution.
+- Payment processing.
+
+---
+
+## Conversation Philosophy
+
+The traveler should never feel as though they are completing a questionnaire.
+
+Instead, every interaction should resemble a conversation with an experienced executive assistant.
+
+The AI Concierge should:
+
+- Ask only necessary questions.
+- Avoid repetitive requests.
+- Adapt based on previous answers.
+- Understand conversational context.
+- Minimize typing.
+- Reduce cognitive load.
+- Speak naturally.
+
+Conversation should always be goal-oriented.
+
+---
+
+## Information Collection
+
+Typical information gathered includes:
+
+### Traveler
+
+- Name
+- Organization
+- Membership tier
+- Preferences
+
+### Itinerary
+
+- Origin
+- Destination
+- Departure
+- Return
+- Multi-city routing
+
+### Travel Requirements
+
+- Passengers
+- Luggage
+- Seating preferences
+- Hotel preferences
+- Ground transportation
+- Calendar events
+
+### Operational Context
+
+- Meetings
+- Deadlines
+- Executive briefings
+- Time sensitivity
+- Special requirements
+
+---
+
+## Canonical Trip Object
+
+Every traveler response updates the Canonical Trip Object.
+
+The object evolves throughout the conversation until sufficient information exists for validation.
+
+The Canonical Trip Object becomes the single source of truth shared across:
+
+- SENTINEL™
+- ETAS™
+- Provider Adapters
+- Traveler Dashboard
+- Audit System
+
+---
+
+## Validation Handoff
+
+Once sufficient information has been collected:
+
+```text
+Conversation
+      │
+      ▼
+Canonical Trip Object
+      │
+      ▼
+Trip Validation
+      │
+      ▼
+SENTINEL™
+```
+
+The AI Concierge waits for validation before continuing.
+
+If validation fails, the Concierge asks targeted follow-up questions to resolve missing or conflicting information.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established conversational patterns through:
+
+- AI-Concierge-Madison
+- conversationflow-Madison
+- tripschema-Madison
+- validatetrip-Madison
+- tripvalidation-Madison
+
+These implementations demonstrated effective conversational workflows and business logic.
+
+Future implementations should preserve these successful interaction patterns while conforming to the canonical architecture.
+
+---
+
+## Engineering Principles
+
+The AI Concierge should always be:
+
+- Conversational.
+- Context-aware.
+- Patient.
+- Predictable.
+- Transparent.
+- Helpful.
+- Efficient.
+
+Business logic belongs in the backend.
+
+Conversation belongs in the frontend.
+
+---
+
+## AI Coding Guidance
+
+When implementing the AI Concierge:
+
+- Study the legacy conversation flows before writing code.
+- Preserve successful conversational patterns.
+- Keep conversation logic separate from business logic.
+- Continuously update the Canonical Trip Object during the conversation.
+- Never perform provider operations directly from the frontend.
+- Pass validated Canonical Trip Objects to SENTINEL™ for intelligence processing.
+
+The AI Concierge is not a chatbot.
+
+It is the conversational gateway to an autonomous travel intelligence platform.
+
+---
+
+# 4. Conversation Engine
+
+## Overview
+
+The Conversation Engine is the intelligence layer that powers the AI Concierge.
+
+Its responsibility is to transform natural language into structured, validated travel information while maintaining conversational context throughout the traveler journey.
+
+Rather than following a rigid script, the Conversation Engine dynamically adapts to the traveler's responses, determines what information is still required, asks intelligent follow-up questions, and incrementally builds the Canonical Trip Object.
+
+The Conversation Engine bridges human communication and machine understanding.
+
+---
+
+## Purpose
+
+The Conversation Engine exists to eliminate the friction traditionally associated with travel booking.
+
+Instead of presenting long forms and requiring travelers to think in terms of fields and inputs, the Conversation Engine allows them to communicate naturally.
+
+Its objectives are to:
+
+- Understand traveler intent.
+- Maintain conversational context.
+- Extract structured information.
+- Identify missing information.
+- Ask intelligent follow-up questions.
+- Continuously enrich the Canonical Trip Object.
+- Prepare the trip for validation.
+
+---
+
+## Responsibilities
+
+The Conversation Engine is responsible for:
+
+- Natural language understanding.
+- Intent recognition.
+- Entity extraction.
+- Context management.
+- Multi-turn conversations.
+- Dynamic follow-up questioning.
+- Canonical Trip Object enrichment.
+- Confidence scoring for extracted information.
+- Conversation memory throughout a session.
+
+The Conversation Engine is **not** responsible for:
+
+- Risk analysis.
+- Disruption prediction.
+- Provider execution.
+- Business rule enforcement.
+- Payment processing.
+
+---
+
+## Conversational Workflow
+
+Every conversation follows a dynamic lifecycle.
+
+```text
+Traveler Intent
+      │
+      ▼
+Intent Detection
+      │
+      ▼
+Entity Extraction
+      │
+      ▼
+Conversation Context
+      │
+      ▼
+Missing Information Detection
+      │
+      ▼
+Follow-up Question
+      │
+      ▼
+Traveler Response
+      │
+      ▼
+Canonical Trip Object Update
+      │
+      ▼
+Validation Check
+      │
+      ▼
+Complete?
+   ┌──┴──┐
+ No      Yes
+ │        │
+ ▼        ▼
+Continue  SENTINEL™
+Conversation
+```
+
+The conversation continues only until sufficient information has been collected.
+
+No unnecessary questions should be asked.
+
+---
+
+## Context Awareness
+
+The Conversation Engine should remember information already provided by the traveler.
+
+Examples include:
+
+- Previously mentioned airports.
+- Preferred airline.
+- Hotel preferences.
+- Loyalty programs.
+- Calendar commitments.
+- Return travel.
+- Multiple passengers.
+- Conversation corrections.
+
+The traveler should never need to repeat information that has already been understood.
+
+---
+
+## Intelligent Follow-Up Questions
+
+Questions should always be contextual.
+
+**Example 1**
+
+**Traveler:**
+
+> "I need to be in London Monday morning."
+
+**Follow-up:**
+
+> "Which airport will you be departing from?"
+
+---
+
+**Example 2**
+
+**Traveler:**
+
+> "I'm traveling with my assistant."
+
+**Follow-up:**
+
+> "Will your assistant require the same flight itinerary?"
+
+---
+
+**Example 3**
+
+**Traveler:**
+
+> "Book me the best option."
+
+**Follow-up:**
+
+> "Would you prefer the fastest itinerary, the lowest cost, or the least disruption risk?"
+
+Questions should gather only the information required to confidently build the Canonical Trip Object.
+
+---
+
+## Canonical Trip Object Integration
+
+Every confirmed response updates the Canonical Trip Object.
+
+The Conversation Engine never creates multiple competing versions of the trip.
+
+Instead, it continuously enriches a single authoritative object until it is ready for validation.
+
+---
+
+## Relationship to SENTINEL™
+
+The Conversation Engine prepares information.
+
+SENTINEL™ interprets that information.
+
+Only after the Canonical Trip Object satisfies validation requirements should it be submitted to SENTINEL™ for intelligence processing.
+
+---
+
+## Relationship to Legacy Engineering
+
+The Conversation Engine builds upon the engineering concepts developed within:
+
+- conversationflow-Madison
+- AI-Concierge-Madison
+- tripschema-Madison
+- validatetrip-Madison
+
+These legacy implementations demonstrated conversational sequencing, follow-up logic, and structured trip construction.
+
+Future implementations should modernize these concepts while preserving their proven interaction patterns.
+
+---
+
+## Engineering Principles
+
+The Conversation Engine should always be:
+
+- Natural.
+- Context-aware.
+- Goal-oriented.
+- Adaptive.
+- Efficient.
+- Explainable.
+- Human-centered.
+
+Conversation should always feel collaborative rather than transactional.
+
+---
+
+## AI Coding Guidance
+
+When implementing the Conversation Engine:
+
+- Separate conversation logic from business logic.
+- Maintain conversation state independently from UI components.
+- Update the Canonical Trip Object continuously.
+- Generate follow-up questions dynamically based on missing information.
+- Preserve conversational context throughout the session.
+- Study the legacy conversation implementations before creating new dialogue flows.
+
+The Conversation Engine exists to transform human intent into structured operational intelligence while making the traveler feel understood—not interrogated.
+
+
+--
+
+# 5. Canonical Trip Object
+
+## Overview
+
+The **Canonical Trip Object (CTO)** is the authoritative digital representation of a traveler's journey.
+
+It serves as the single source of truth shared across every major component of the GÖ.AI platform.
+
+Rather than maintaining separate versions of a trip for the frontend, intelligence engine, orchestration engine, or provider integrations, GÖ.AI maintains one continuously evolving Canonical Trip Object that is enriched throughout the travel lifecycle.
+
+Every decision, recommendation, execution, and status update references this object.
+
+---
+
+## Purpose
+
+The Canonical Trip Object exists to provide a consistent, structured, and deterministic representation of a trip.
+
+It enables:
+
+- Consistent communication between platform components.
+- Elimination of duplicate data structures.
+- Predictable state management.
+- Reliable provider orchestration.
+- Complete auditability.
+- Continuous intelligence enrichment.
+
+The Canonical Trip Object is the operational heartbeat of GÖ.AI.
+
+---
+
+## Lifecycle
+
+The Canonical Trip Object evolves continuously.
+
+```text
+Traveler Conversation
+        │
+        ▼
+Trip Intake
+        │
+        ▼
+Conversation Engine
+        │
+        ▼
+Canonical Trip Object (Draft)
+        │
+        ▼
+Validation
+        │
+        ▼
+SENTINEL™ Intelligence
+        │
+        ▼
+Recommendations
+        │
+        ▼
+Traveler Approval
+        │
+        ▼
+ETAS™ Execution
+        │
+        ▼
+Provider Responses
+        │
+        ▼
+Continuous Monitoring
+        │
+        ▼
+Trip Complete
+```
+
+The object is never discarded.
+
+It simply becomes richer over time.
+
+---
+
+## Core Responsibilities
+
+The Canonical Trip Object is responsible for representing:
+
+### Traveler
+
+- Traveler identity
+- Organization
+- Membership tier
+- Preferences
+
+### Itinerary
+
+- Origin
+- Destination
+- Multi-city routing
+- Departure
+- Return
+- Alternate itineraries
+
+### Operational Context
+
+- Meetings
+- Calendar events
+- Time sensitivity
+- Executive briefing
+- Special requirements
+
+### Intelligence
+
+Added by SENTINEL™
+
+Including:
+
+- SENTRY™ Score
+- Intelligence Layer outputs
+- Risk indicators
+- Twin Trip simulations
+- Recommendations
+- Confidence scores
+
+### Execution
+
+Added by ETAS™
+
+Including:
+
+- Booking status
+- Provider confirmations
+- Payment status
+- Execution state
+- Retry history
+- Notification history
+
+### Audit
+
+Maintains:
+
+- State transitions
+- Execution timestamps
+- Decision history
+- User approvals
+- Administrative actions
+
+---
+
+## Ownership
+
+Different platform components enrich the Canonical Trip Object, but no component owns an independent copy.
+
+| Component | Responsibility |
+|-----------|----------------|
+| AI Concierge | Creates and enriches traveler information |
+| Conversation Engine | Extracts structured information |
+| Validation Pipeline | Validates object integrity |
+| SENTINEL™ | Adds intelligence and recommendations |
+| Traveler | Approves recommendations |
+| ETAS™ | Executes approved actions |
+| Provider Adapters | Return execution results |
+| Audit Engine | Records operational history |
+
+Every component contributes to the same object.
+
+---
+
+## Design Principles
+
+The Canonical Trip Object follows these principles:
+
+- Single source of truth.
+- Immutable identifiers.
+- Deterministic state transitions.
+- Incremental enrichment.
+- Provider independence.
+- Complete traceability.
+- Continuous synchronization.
+
+No platform component should create competing trip models.
+
+---
+
+## Relationship to SENTINEL™
+
+SENTINEL™ consumes the Canonical Trip Object as its primary intelligence input.
+
+It returns:
+
+- Risk assessments
+- Twin Trip simulations
+- SENTRY™ Scores
+- Executive Briefings
+- Recommendations
+
+These outputs become part of the Canonical Trip Object.
+
+---
+
+## Relationship to ETAS™
+
+ETAS™ receives the enriched Canonical Trip Object after traveler approval.
+
+It adds:
+
+- Booking confirmations
+- Provider identifiers
+- Execution status
+- Retry information
+- Notifications
+- Completion status
+
+The object continuously reflects the current operational state of the journey.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP introduced the concept of a structured Trip Object through:
+
+- tripschema-Madison
+- tripvalidation-Madison
+- validatetrip-Madison
+- processtrip-Madison
+- executetrip-Madison
+
+The Canonical Trip Object expands these concepts into a platform-wide operational model while preserving the deterministic validation and state-management principles established during the original engineering effort.
+
+---
+
+## Engineering Principles
+
+Every module within GÖ.AI should operate against the Canonical Trip Object rather than creating its own internal representation.
+
+If new information becomes available, enrich the existing object.
+
+Do not duplicate it.
+
+The Canonical Trip Object should remain the single operational contract between:
+
+- The Face
+- The Brain
+- The Nervous System
+
+---
+
+## AI Coding Guidance
+
+When implementing backend or frontend modules:
+
+- Always read from the Canonical Trip Object.
+- Never create competing trip schemas.
+- Extend the object through well-defined interfaces.
+- Preserve backward compatibility where possible.
+- Maintain deterministic state transitions.
+- Treat the Canonical Trip Object as the central contract shared across the entire platform.
+
+The Canonical Trip Object is the foundation upon which every intelligent and operational capability of GÖ.AI is built.
+
+---
+
+# 6. Validation Pipeline
+
+## Overview
+
+The Validation Pipeline ensures that every Canonical Trip Object entering the GÖ.AI platform is complete, internally consistent, operationally feasible, and ready for intelligence processing.
+
+It serves as the quality assurance layer between the AI Concierge and SENTINEL™.
+
+No Canonical Trip Object should enter the intelligence pipeline until it has successfully passed validation.
+
+The Validation Pipeline protects the platform from incomplete, ambiguous, conflicting, or invalid travel requests.
+
+---
+
+## Purpose
+
+The Validation Pipeline exists to:
+
+- Verify traveler input.
+- Ensure required information is present.
+- Detect conflicting data.
+- Prevent invalid state transitions.
+- Enforce deterministic business rules.
+- Produce actionable feedback for the AI Concierge.
+- Guarantee that SENTINEL™ receives reliable input.
+
+Validation improves intelligence quality.
+
+Poor input produces poor recommendations.
+
+---
+
+## Position Within the Platform
+
+```text
+Traveler
+    │
+    ▼
+AI Concierge
+    │
+    ▼
+Conversation Engine
+    │
+    ▼
+Canonical Trip Object
+    │
+    ▼
+Validation Pipeline
+    │
+    ▼
+VALID?
+ ┌──┴─────────┐
+ │            │
+ ▼            ▼
+No           Yes
+ │            │
+ ▼            ▼
+AI Concierge  SENTINEL™
+Ask Follow-up
+Questions
+```
+
+If validation fails, the workflow returns to the AI Concierge rather than continuing into the intelligence pipeline.
+
+---
+
+## Validation Layers
+
+The Validation Pipeline consists of three sequential layers.
+
+### Layer 1 — Field Validation
+
+Confirms that individual data elements are valid.
+
+Examples include:
+
+- Required fields
+- Airport codes
+- Date formats
+- Passenger counts
+- Membership tiers
+- Contact information
+
+---
+
+### Layer 2 — Trip Validation
+
+Confirms that the trip makes operational sense.
+
+Examples include:
+
+- Departure before return
+- Multi-city sequence integrity
+- Passenger and luggage constraints
+- Meeting schedules
+- Calendar conflicts
+- Duplicate destinations
+
+---
+
+### Layer 3 — System Validation
+
+Confirms that the platform can safely continue processing.
+
+Examples include:
+
+- Valid state transitions
+- Required identifiers
+- Organization permissions
+- Traveler authorization
+- Provider readiness
+
+---
+
+## Validation Outcomes
+
+Every validation produces one of three deterministic outcomes.
+
+### VALID
+
+The Canonical Trip Object satisfies every required rule.
+
+Processing continues automatically to SENTINEL™.
+
+---
+
+### INVALID
+
+Information is incomplete or correctable.
+
+The AI Concierge receives structured feedback and continues the conversation with targeted follow-up questions.
+
+The traveler is never exposed to technical validation errors.
+
+---
+
+### BLOCKED
+
+The request cannot continue without administrative or system intervention.
+
+Examples include:
+
+- Restricted destinations
+- Unauthorized organization actions
+- Invalid system state
+- Missing system identifiers
+
+BLOCKED requests are routed according to organizational policy.
+
+---
+
+## AI Concierge Integration
+
+Validation is conversational.
+
+If required information is missing, the traveler should never receive an error page.
+
+Instead, the AI Concierge asks intelligent follow-up questions until the Canonical Trip Object becomes valid.
+
+**Example**
+
+**Traveler:**
+
+> "Book me a flight to London."
+
+Validation detects missing information.
+
+**AI Concierge:**
+
+> "Certainly. Which airport would you like to depart from?"
+
+Validation drives conversation—not frustration.
+
+---
+
+## Relationship to SENTINEL™
+
+SENTINEL™ only receives Canonical Trip Objects that have passed validation.
+
+This guarantees:
+
+- Consistent intelligence processing.
+- Reliable Twin Trip simulations.
+- Meaningful SENTRY™ Scores.
+- Trustworthy recommendations.
+
+Validation improves intelligence accuracy.
+
+---
+
+## Relationship to Legacy Engineering
+
+The Validation Pipeline builds directly upon the engineering work completed during the original MVP.
+
+Legacy branches include:
+
+- validatetrip-Madison
+- tripvalidation-Madison
+- tripschema-Madison
+- processtrip-Madison
+
+These implementations established deterministic validation outcomes, business-rule enforcement, and state-aware validation that remain foundational to the current architecture.
+
+---
+
+## Engineering Principles
+
+The Validation Pipeline should always be:
+
+- Deterministic.
+- Explainable.
+- Predictable.
+- Recoverable.
+- User-friendly.
+- Independent of provider APIs.
+
+Validation should identify problems.
+
+Conversation should resolve them.
+
+---
+
+## AI Coding Guidance
+
+When implementing the Validation Pipeline:
+
+- Validate the Canonical Trip Object—not UI fields.
+- Keep validation logic independent of frontend components.
+- Return structured validation results.
+- Support **VALID**, **INVALID**, and **BLOCKED** outcomes.
+- Preserve deterministic behavior.
+- Allow the AI Concierge to resolve **INVALID** outcomes conversationally.
+- Never allow invalid Canonical Trip Objects to enter SENTINEL™.
+
+The Validation Pipeline protects the integrity of every intelligence and orchestration decision made by the GÖ.AI platform.
+
+---
+
+# 7. Intelligence Enrichment
+
+## Overview
+
+Intelligence Enrichment is the process by which **SENTINEL™** transforms a validated Canonical Trip Object into an operationally intelligent travel plan.
+
+Once the Validation Pipeline confirms that the Canonical Trip Object is complete and internally consistent, SENTINEL™ begins enriching the trip with real-time intelligence gathered from multiple internal and external sources.
+
+The objective is not simply to understand the traveler's itinerary—it is to understand everything that could influence the successful execution of that itinerary.
+
+Intelligence Enrichment is the first stage of predictive travel continuity.
+
+---
+
+## Purpose
+
+The purpose of Intelligence Enrichment is to provide the situational awareness required to make informed, proactive travel decisions.
+
+Rather than reacting to disruptions after they occur, SENTINEL™ continuously evaluates the operational environment surrounding the traveler and enriches the Canonical Trip Object with intelligence that supports prediction, simulation, and recommendation generation.
+
+---
+
+## Inputs
+
+Intelligence Enrichment begins with a validated Canonical Trip Object containing information such as:
+
+- Traveler profile
+- Itinerary
+- Calendar events
+- Meeting schedules
+- Transportation requirements
+- Membership tier
+- Organizational context
+
+This object becomes the foundation upon which intelligence is layered.
+
+---
+
+## Intelligence Sources
+
+SENTINEL™ enriches the Canonical Trip Object by correlating information across the platform's Intelligence Layers.
+
+These include:
+
+### Environmental Intelligence
+
+- Weather
+- Storm systems
+- Flooding
+- Wildfire activity
+- Extreme temperatures
+
+### Flight Intelligence
+
+- Flight schedules
+- Delays
+- Cancellations
+- Gate changes
+- Aircraft routing
+- Airport operations
+
+### Movement Intelligence
+
+- Traffic congestion
+- Ground transportation
+- Road closures
+- Public transit
+- Estimated travel times
+
+### Schedule Intelligence
+
+- Calendar dependencies
+- Meeting conflicts
+- Hotel check-in windows
+- Boarding times
+- Critical milestones
+
+### Infrastructure Intelligence
+
+- Airport outages
+- Rail disruptions
+- Ferry interruptions
+- Border delays
+- Communications outages
+
+### Event Intelligence
+
+- Sporting events
+- Concerts
+- Festivals
+- Conventions
+- Political events
+- Large public gatherings
+
+### Safety & Security Intelligence
+
+- Crime
+- Civil unrest
+- Demonstrations
+- Government advisories
+- Executive protection considerations
+- Regional security alerts
+
+### Organizational Intelligence
+
+- Corporate travel policy
+- Membership tier
+- Approval requirements
+- Organization-specific rules
+
+### Traveler Intelligence
+
+- Previous travel history
+- Preferences
+- Loyalty programs
+- Accessibility requirements
+- Executive priorities
+
+---
+
+## Enrichment Process
+
+The enrichment workflow follows a deterministic sequence.
+
+```text
+Validated Canonical Trip Object
+        │
+        ▼
+Collect Intelligence
+        │
+        ▼
+Normalize Data
+        │
+        ▼
+Correlate Events
+        │
+        ▼
+Detect Dependencies
+        │
+        ▼
+Identify Risks
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+Twin Trip Simulation
+```
+
+Every enrichment cycle produces a more complete understanding of the traveler's operational environment.
+
+---
+
+## Continuous Enrichment
+
+Intelligence Enrichment is not performed once.
+
+It continues throughout the lifecycle of the trip.
+
+Whenever new intelligence becomes available, SENTINEL™ reassesses:
+
+- Traveler impact.
+- Schedule impact.
+- Operational risk.
+- Dependency chains.
+- Recommendation priority.
+
+The Canonical Trip Object remains continuously synchronized with the latest operational picture.
+
+---
+
+## Relationship to Twin Trip Simulation
+
+Once enrichment is complete, the updated Canonical Trip Object becomes the input for Twin Trip Simulation.
+
+Because the object now contains real-world operational intelligence, SENTINEL™ can simulate:
+
+- Expected itinerary.
+- Probable disruptions.
+- Alternate travel paths.
+- Recovery options.
+- Continuity outcomes.
+
+Simulation is only as effective as the intelligence available.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original ETAS implementation introduced structured validation and deterministic execution.
+
+The current architecture extends those concepts by introducing an intelligence layer before orchestration.
+
+This represents the evolution from:
+
+```text
+Travel Automation
+        │
+        ▼
+Travel Intelligence
+        │
+        ▼
+Travel Continuity
+```
+
+Legacy engineering should be reused where appropriate for validation and workflow sequencing, while Intelligence Enrichment remains a new canonical capability of SENTINEL™.
+
+---
+
+## Engineering Principles
+
+Intelligence Enrichment should always be:
+
+- Continuous.
+- Real-time.
+- Explainable.
+- Source-aware.
+- Provider-independent.
+- Modular.
+- Extensible.
+
+Every intelligence source should enrich the Canonical Trip Object without creating competing representations of the trip.
+
+---
+
+## AI Coding Guidance
+
+When implementing Intelligence Enrichment:
+
+- Treat the Canonical Trip Object as the single intelligence container.
+- Design each Intelligence Layer as an independent enrichment module.
+- Normalize external provider data before adding it to the Canonical Trip Object.
+- Record data provenance for every enrichment.
+- Never overwrite existing information without maintaining version history.
+- Ensure the enrichment pipeline remains asynchronous, modular, and independently testable.
+
+Intelligence Enrichment is the bridge between validated traveler intent and predictive operational awareness.
+
+It is the process that transforms a travel itinerary into an intelligent, continuously monitored mission.
+
+---
+
+# 8. Twin Trip Simulation
+
+## Overview
+
+Twin Trip Simulation is one of the core intelligence capabilities of **SENTINEL™**.
+
+Its purpose is to create a dynamic digital twin of the traveler's itinerary and continuously compare the **planned journey** against one or more **simulated future journeys** based on real-time intelligence.
+
+Rather than waiting for disruptions to occur, Twin Trip Simulation projects probable outcomes before they happen, allowing GÖ.AI to recommend proactive adjustments that preserve traveler continuity.
+
+This capability transforms GÖ.AI from a reactive travel platform into a predictive travel intelligence system.
+
+---
+
+## Purpose
+
+Twin Trip Simulation exists to answer a single operational question:
+
+> **"If the traveler continues with the current plan, what is most likely to happen?"**
+
+If the predicted outcome is unacceptable, SENTINEL™ generates one or more alternate journeys that improve the probability of mission success.
+
+---
+
+## Inputs
+
+Twin Trip Simulation receives an enriched Canonical Trip Object containing:
+
+- Traveler profile
+- Complete itinerary
+- Intelligence Layer outputs
+- Environmental conditions
+- Transportation status
+- Calendar dependencies
+- Organizational constraints
+- Operational priorities
+
+The simulation operates on the most current operational picture available.
+
+---
+
+## Simulation Process
+
+The simulation engine evaluates both the existing itinerary and multiple alternative scenarios.
+
+```text
+Validated Canonical Trip Object
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Current Trip Model
+        │
+        ▼
+Predictive Simulation
+        │
+        ▼
+Generate Alternate Trips
+        │
+        ▼
+Compare Outcomes
+        │
+        ▼
+Rank Alternatives
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+SENTRY™ Score
+```
+
+Each simulated journey represents a complete operational plan rather than a single recommendation.
+
+---
+
+## Simulation Objectives
+
+Twin Trip Simulation evaluates:
+
+- Arrival probability
+- Delay probability
+- Missed connection risk
+- Meeting success probability
+- Ground transportation availability
+- Hotel continuity
+- Schedule preservation
+- Operational resilience
+- Traveler convenience
+- Estimated recovery time
+
+The objective is not necessarily the fastest trip.
+
+The objective is the journey most likely to accomplish the traveler's mission.
+
+---
+
+## Types of Simulations
+
+SENTINEL™ may generate multiple simulation models.
+
+### Baseline Simulation
+
+The original itinerary without intervention.
+
+---
+
+### Optimized Simulation
+
+Adjustments designed to improve continuity while minimizing traveler disruption.
+
+---
+
+### Contingency Simulation
+
+Alternative travel plans prepared if predicted conditions deteriorate.
+
+---
+
+### Emergency Recovery Simulation
+
+Rapid recovery options following major disruptions such as:
+
+- Airport closures
+- Severe weather
+- Infrastructure failures
+- Geopolitical events
+- Transportation outages
+
+---
+
+## Decision Support
+
+Twin Trip Simulation does not automatically change a traveler's itinerary.
+
+Instead, it produces operational intelligence including:
+
+- Predicted outcome
+- Confidence level
+- Risk comparison
+- Recommended actions
+- Expected improvement
+- Trade-offs between options
+
+These recommendations are presented to the traveler through the AI Concierge and Executive Briefing.
+
+Approved recommendations are then passed to ETAS™ for execution.
+
+---
+
+## Continuous Simulation
+
+Simulation is not performed once.
+
+SENTINEL™ continuously reruns simulations whenever:
+
+- Intelligence changes
+- Provider status changes
+- Traveler decisions change
+- Environmental conditions evolve
+- New disruptions emerge
+
+Every significant operational change may produce a new optimal journey.
+
+---
+
+## Relationship to the SENTRY™ Score
+
+Twin Trip Simulation produces the operational comparisons used to calculate the SENTRY™ Score.
+
+Each simulated itinerary contributes to understanding:
+
+- Continuity risk
+- Mission success probability
+- Disruption severity
+- Operational confidence
+
+The SENTRY™ Score summarizes these findings into a single decision-support metric.
+
+---
+
+## Relationship to ETAS™
+
+Twin Trip Simulation ends with recommendations.
+
+Execution begins only after:
+
+- Traveler approval
+- Organizational approval
+- Policy-based automatic approval
+
+Once approved, ETAS™ receives the selected itinerary and coordinates the required provider actions.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original ETAS MVP demonstrated deterministic workflow execution through structured trip processing and validation.
+
+Twin Trip Simulation extends that foundation by introducing predictive decision support before execution.
+
+Rather than executing only the requested itinerary, GÖ.AI now evaluates multiple possible futures before selecting the optimal operational path.
+
+This represents the evolution from automation to autonomous travel intelligence.
+
+---
+
+## Engineering Principles
+
+Twin Trip Simulation should always be:
+
+- Predictive.
+- Explainable.
+- Deterministic.
+- Continuously updated.
+- Intelligence-driven.
+- Traveler-centered.
+- Provider-independent.
+
+Every recommendation should be traceable to the intelligence that produced it.
+
+---
+
+## AI Coding Guidance
+
+When implementing Twin Trip Simulation:
+
+- Treat the Canonical Trip Object as the simulation input.
+- Generate multiple complete itinerary models rather than isolated recommendations.
+- Keep simulation logic independent of provider APIs.
+- Record assumptions and confidence levels for every simulation.
+- Preserve explainability so travelers understand why recommendations were generated.
+- Continuously rerun simulations when the operational environment changes.
+
+Twin Trip Simulation is the capability that allows GÖ.AI to think ahead.
+
+Rather than reacting to disruption, it evaluates multiple possible futures, identifies the path with the highest probability of mission success, and prepares ETAS™ to execute that plan when authorized.
+
+---
+
+# 9. SENTRY™ Score
+
+## Overview
+
+The **SENTRY™ Score** is GÖ.AI's proprietary operational risk and travel continuity metric.
+
+It represents the current health of a travel itinerary by combining intelligence gathered across multiple sources into a single, understandable score that helps travelers, enterprises, and ETAS™ make informed decisions.
+
+Unlike traditional travel alerts that report isolated events, the SENTRY™ Score measures the **combined operational impact** those events have on the traveler's ability to successfully complete their mission.
+
+The score is dynamic and continuously recalculated throughout the lifecycle of every trip.
+
+---
+
+## Purpose
+
+The purpose of the SENTRY™ Score is to simplify complex operational intelligence into a meaningful decision-support metric.
+
+It enables travelers to quickly understand:
+
+- Overall trip stability.
+- Probability of disruption.
+- Mission continuity.
+- Operational confidence.
+- Recommendation urgency.
+
+The score is designed to answer one question:
+
+> **"How healthy is my trip right now?"**
+
+---
+
+## Inputs
+
+The SENTRY™ Score is calculated using intelligence generated by SENTINEL™.
+
+Inputs include, but are not limited to:
+
+- Twin Trip Simulation results.
+- Environmental conditions.
+- Flight operations.
+- Ground transportation.
+- Infrastructure reliability.
+- Schedule dependencies.
+- Event density.
+- Safety & Security conditions.
+- Organizational constraints.
+- Traveler-specific priorities.
+
+Each Intelligence Layer contributes to the overall operational assessment.
+
+---
+
+## Scoring Philosophy
+
+The SENTRY™ Score measures **travel continuity**, not simply travel risk.
+
+A severe weather event does not necessarily produce a poor score if the traveler still has a reliable alternate route.
+
+Likewise, a small delay may produce a significant score reduction if it causes a missed executive meeting or breaks a critical dependency.
+
+The score reflects the probability of successfully completing the traveler's mission.
+
+---
+
+## Score Ranges
+
+| Score | Status | Interpretation |
+|--------|--------|----------------|
+| **90–100** | Excellent | Trip is highly stable. No significant operational concerns detected. |
+| **75–89** | Good | Minor disruptions possible. Monitoring continues. |
+| **50–74** | Moderate | Conditions are changing. Traveler should review recommendations. |
+| **25–49** | High Risk | Significant disruption likely. Immediate attention recommended. |
+| **0–24** | Critical | Current itinerary is unlikely to achieve mission objectives without intervention. |
+
+The thresholds above may evolve as the platform matures and additional intelligence becomes available.
+
+---
+
+## Continuous Calculation
+
+The SENTRY™ Score is never static.
+
+It is recalculated whenever:
+
+- New intelligence is received.
+- Flight status changes.
+- Weather conditions evolve.
+- Infrastructure disruptions occur.
+- Provider confirmations change.
+- Calendar dependencies shift.
+- Traveler approvals modify the itinerary.
+- ETAS™ completes new execution actions.
+
+Every update reflects the current operational state of the Canonical Trip Object.
+
+---
+
+## Relationship to Twin Trip Simulation
+
+Twin Trip Simulation generates multiple possible futures.
+
+The SENTRY™ Score summarizes those simulations into a single operational indicator.
+
+Rather than exposing every simulation to the traveler, the score communicates the overall health of the selected itinerary while supporting more detailed explanations through the Executive Briefing.
+
+```text
+Validated Canonical Trip Object
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+Compare Outcomes
+        │
+        ▼
+Calculate SENTRY™ Score
+        │
+        ▼
+Executive Briefing
+        │
+        ▼
+Traveler Decision
+```
+
+---
+
+## Relationship to Executive Briefing
+
+The SENTRY™ Score serves as the headline indicator within every Executive Briefing.
+
+The briefing explains:
+
+- Why the score changed.
+- Which Intelligence Layers contributed.
+- Recommended actions.
+- Expected outcomes.
+- Confidence levels.
+
+The score provides immediate situational awareness.
+
+The briefing provides operational context.
+
+---
+
+## Relationship to ETAS™
+
+ETAS™ does not calculate the SENTRY™ Score.
+
+Instead, ETAS™ consumes it to prioritize orchestration activities.
+
+Examples include:
+
+- Triggering proactive itinerary modifications.
+- Prioritizing notifications.
+- Escalating approval workflows.
+- Adjusting execution timing.
+- Initiating re-orchestration following new intelligence.
+
+The score informs execution priorities but never replaces traveler or organizational approval requirements.
+
+---
+
+## Design Principles
+
+The SENTRY™ Score should always be:
+
+- Explainable.
+- Transparent.
+- Continuously updated.
+- Intelligence-driven.
+- Traveler-centric.
+- Actionable.
+
+A score without an explanation has limited value.
+
+Every score should be traceable to the intelligence that produced it.
+
+---
+
+## Future Evolution
+
+As additional Intelligence Layers are introduced, the SENTRY™ Score should become increasingly comprehensive.
+
+Future versions may incorporate:
+
+- Organizational risk tolerance.
+- Executive protection intelligence.
+- Traveler behavior patterns.
+- Historical disruption models.
+- Predictive machine learning outputs.
+- Enterprise policy weighting.
+
+The scoring framework should remain modular so new intelligence sources can be integrated without redesigning the scoring engine.
+
+---
+
+## AI Coding Guidance
+
+When implementing the SENTRY™ Score:
+
+- Calculate scores from the enriched Canonical Trip Object.
+- Keep scoring logic independent of provider implementations.
+- Record the contributing Intelligence Layers for every score.
+- Maintain versioned scoring rules to support future enhancements.
+- Ensure every score is explainable and reproducible.
+- Never treat the SENTRY™ Score as a booking decision; it is a decision-support metric.
+
+The SENTRY™ Score is the operational heartbeat of every journey.
+
+It transforms thousands of intelligence signals into a single measure of travel continuity, allowing both travelers and GÖ.AI to understand the health of a trip at a glance while preserving the transparency required for confident decision-making.
+
+---
+
+# 10. Executive Briefing
+
+## Overview
+
+The **Executive Briefing** is the primary decision-support product generated by SENTINEL™.
+
+It transforms the intelligence gathered throughout the analysis pipeline into a concise, actionable operational briefing that enables travelers, executives, executive assistants, corporate travel managers, and security personnel to make informed decisions before disruption occurs.
+
+Rather than presenting raw data, alerts, or isolated recommendations, the Executive Briefing delivers a comprehensive operational picture of the traveler's journey.
+
+It represents the final intelligence product produced by SENTINEL™ before ETAS™ begins execution.
+
+---
+
+## Purpose
+
+The purpose of the Executive Briefing is to answer the question:
+
+> **"Given everything currently happening around my trip, what do I need to know, what should I do, and why?"**
+
+The briefing consolidates complex intelligence into a format that supports rapid decision-making while minimizing cognitive load.
+
+---
+
+## Objectives
+
+Every Executive Briefing should:
+
+- Summarize the current operational picture.
+- Present the current SENTRY™ Score.
+- Explain why the score changed.
+- Identify risks and dependencies.
+- Present recommended actions.
+- Compare alternate travel scenarios.
+- Support traveler approval.
+- Prepare ETAS™ for execution.
+
+The Executive Briefing should communicate intelligence—not simply data.
+
+---
+
+## Inputs
+
+The Executive Briefing is generated from the enriched Canonical Trip Object.
+
+Primary inputs include:
+
+- Traveler profile.
+- Itinerary.
+- Intelligence Enrichment.
+- Twin Trip Simulation.
+- SENTRY™ Score.
+- Organizational policies.
+- Traveler preferences.
+- Provider availability.
+- Operational dependencies.
+
+The briefing is generated only after SENTINEL™ completes its analysis.
+
+---
+
+## Executive Briefing Generation Workflow
+
+```text
+Validated Canonical Trip Object
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+SENTRY™ Score
+        │
+        ▼
+Recommendation Engine
+        │
+        ▼
+Executive Briefing
+        │
+        ▼
+Traveler Review
+        │
+        ▼
+Traveler Approval
+        │
+        ▼
+ETAS™ Execution
+```
+
+The Executive Briefing is the final intelligence product generated before orchestration begins.
+
+---
+
+## Core Components
+
+Every Executive Briefing should include:
+
+### Executive Summary
+
+A concise overview of the current operational status.
+
+---
+
+### Current Itinerary
+
+The traveler's planned journey.
+
+---
+
+### Operational Assessment
+
+A summary of the overall health of the trip.
+
+---
+
+### SENTRY™ Score
+
+The current operational continuity score.
+
+---
+
+### Intelligence Summary
+
+Key findings from the Intelligence Layers.
+
+Examples include:
+
+- Weather
+- Flight Operations
+- Ground Transportation
+- Infrastructure
+- Event Intelligence
+- Safety & Security
+
+---
+
+### Twin Trip Comparison
+
+Comparison between:
+
+- Current itinerary
+- Recommended itinerary
+
+Including:
+
+- Operational improvements
+- Trade-offs
+- Confidence levels
+
+---
+
+### Recommended Actions
+
+Prioritized recommendations produced by SENTINEL™.
+
+Each recommendation should include:
+
+- Rationale
+- Expected benefit
+- Urgency
+- Confidence
+
+---
+
+### Execution Preview
+
+A summary of the provider actions ETAS™ will perform if recommendations are approved.
+
+Examples include:
+
+- Rebook flight
+- Reserve hotel
+- Schedule rideshare
+- Update calendar
+- Notify stakeholders
+
+---
+
+## Relationship to Traveler Approval
+
+The Executive Briefing serves as the decision-support interface before execution.
+
+Travelers should understand:
+
+- What is happening.
+- Why it matters.
+- What is recommended.
+- What ETAS™ will execute.
+- What the expected outcome will be.
+
+Approval should be informed—not blind.
+
+---
+
+## Relationship to ETAS™
+
+Once recommendations are approved:
+
+The Executive Briefing becomes the operational handoff to ETAS™.
+
+ETAS™ extracts:
+
+- Approved itinerary
+- Execution priorities
+- Provider actions
+- Traveler preferences
+- Organizational approvals
+
+Execution then begins.
+
+---
+
+## Continuous Regeneration
+
+The Executive Briefing is a living intelligence product.
+
+Whenever significant operational conditions change, SENTINEL™ should regenerate the briefing.
+
+Examples include:
+
+- Flight cancellations.
+- Severe weather.
+- Infrastructure failures.
+- Security events.
+- New provider availability.
+- Calendar modifications.
+- Traveler changes.
+
+Each regenerated briefing reflects the most current operational picture.
+
+```text
+Operational Change
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+Updated SENTRY™ Score
+        │
+        ▼
+Regenerate Executive Briefing
+        │
+        ▼
+Traveler Notification
+```
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP demonstrated deterministic workflows, validation, execution sequencing, and traveler communication.
+
+The Executive Briefing extends those foundations by introducing an intelligence-first decision layer before orchestration.
+
+Rather than simply executing a trip, GÖ.AI now explains the operational environment, compares future outcomes, and provides actionable recommendations before execution begins.
+
+---
+
+## Engineering Principles
+
+Every Executive Briefing should be:
+
+- Concise.
+- Actionable.
+- Explainable.
+- Continuously updated.
+- Intelligence-driven.
+- Executive-friendly.
+- Transparent.
+
+Complex intelligence should be distilled into clear operational guidance.
+
+---
+
+## AI Coding Guidance
+
+When implementing the Executive Briefing:
+
+- Generate the briefing from the enriched Canonical Trip Object.
+- Treat the briefing as a view of current intelligence—not a data store.
+- Explain every recommendation and SENTRY™ Score change.
+- Present recommendations in priority order.
+- Support multiple output formats (Traveler Dashboard, PDF, mobile, enterprise portal, API).
+- Regenerate the briefing whenever material operational changes occur.
+
+The Executive Briefing is the primary intelligence product of SENTINEL™.
+
+It transforms predictive analysis into clear operational guidance, enabling informed decisions before ETAS™ begins execution and preserving the traveler's mission through proactive travel continuity.
+
+---
+
+# 11. Traveler Approval
+
+## Overview
+
+Traveler Approval is the decision point at which intelligence becomes action.
+
+After SENTINEL™ has completed Intelligence Enrichment, Twin Trip Simulation, SENTRY™ Score calculation, and Executive Briefing generation, the traveler (or an authorized representative) reviews the recommended course of action.
+
+Only approved recommendations are passed to ETAS™ for execution.
+
+This ensures that GÖ.AI remains an intelligent decision-support platform while preserving appropriate human oversight.
+
+---
+
+## Purpose
+
+The purpose of Traveler Approval is to:
+
+- Preserve traveler autonomy.
+- Ensure transparency.
+- Build trust in AI recommendations.
+- Support enterprise governance.
+- Authorize ETAS™ execution.
+- Maintain complete auditability.
+
+Traveler Approval represents the transition from **recommendation** to **execution**.
+
+---
+
+## Position Within the Platform
+
+```text
+Traveler Intent
+        │
+        ▼
+AI Concierge
+        │
+        ▼
+Validation
+        │
+        ▼
+SENTINEL™
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+SENTRY™ Score
+        │
+        ▼
+Executive Briefing
+        │
+        ▼
+Traveler Approval
+        │
+        ▼
+Approved?
+   ┌────┴────┐
+   │         │
+   ▼         ▼
+ No         Yes
+  │          │
+  ▼          ▼
+Continue    ETAS™
+Monitoring  Execution
+```
+
+Traveler Approval serves as the operational gateway between intelligence and execution.
+
+---
+
+## Approval Types
+
+The platform supports multiple approval models depending on traveler, organization, and policy.
+
+### Individual Approval
+
+The traveler directly approves or declines recommendations.
+
+---
+
+### Executive Assistant Approval
+
+An authorized executive assistant may approve recommendations on behalf of an executive traveler.
+
+---
+
+### Corporate Approval
+
+Organizations may require travel manager approval for:
+
+- Policy exceptions.
+- Premium travel.
+- Budget thresholds.
+- International travel.
+- Executive travel.
+
+---
+
+### Automatic Approval
+
+Organizations may define policies allowing ETAS™ to execute automatically when:
+
+- Disruption probability exceeds configured thresholds.
+- Changes remain within approved budgets.
+- Traveler preferences are already known.
+- Organization policy permits autonomous execution.
+
+Automatic approval should always remain configurable.
+
+---
+
+## Approval Outcomes
+
+Traveler Approval may produce one of four outcomes.
+
+### APPROVED
+
+Traveler accepts the recommendation.
+
+ETAS™ begins orchestration immediately.
+
+---
+
+### MODIFIED
+
+Traveler accepts the recommendation with adjustments.
+
+Example:
+
+> "Rebook my flight, but keep my original hotel."
+
+The Canonical Trip Object is updated before execution.
+
+---
+
+### DEFERRED
+
+Traveler postpones the decision.
+
+SENTINEL™ continues monitoring while ETAS™ waits for authorization.
+
+---
+
+### REJECTED
+
+Traveler declines the recommendation.
+
+The current itinerary remains active while SENTINEL™ continues monitoring for new intelligence.
+
+---
+
+## AI Concierge Integration
+
+The AI Concierge presents recommendations conversationally.
+
+Rather than displaying technical alerts, it explains:
+
+- What changed.
+- Why it matters.
+- Recommended actions.
+- Expected benefits.
+- Potential consequences.
+
+**Example**
+
+> "Based on developing weather conditions near Chicago, your current connection has an elevated risk of delay. I can rebook you through Minneapolis and increase your probability of arriving before your client meeting from 62% to 94%. Would you like me to make that change?"
+
+Approval should feel like a collaborative decision—not a system prompt.
+
+---
+
+## Canonical Trip Object
+
+Every approval decision updates the Canonical Trip Object.
+
+Examples include:
+
+- Approval status.
+- Approving authority.
+- Approval timestamp.
+- Modified preferences.
+- Rejected recommendations.
+- Execution authorization.
+
+The Canonical Trip Object remains the single operational record.
+
+---
+
+## Relationship to ETAS™
+
+ETAS™ only executes actions that have been properly authorized.
+
+Upon approval, ETAS™ receives:
+
+- Approved itinerary.
+- Execution scope.
+- Provider instructions.
+- Traveler preferences.
+- Organizational constraints.
+
+Execution begins only after authorization requirements have been satisfied.
+
+```text
+Executive Briefing
+        │
+        ▼
+Traveler Approval
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+ETAS™
+        │
+        ▼
+Provider Orchestration
+        │
+        ▼
+Booking Execution
+```
+
+---
+
+## Audit & Governance
+
+Every approval decision must be recorded.
+
+Audit information includes:
+
+- Approving user.
+- Approval method.
+- Timestamp.
+- Recommendation accepted.
+- Recommendation rejected.
+- Modifications requested.
+- Execution authorization.
+
+This ensures complete transparency and supports enterprise compliance.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP introduced deterministic approval states, human review workflows, and administrative intervention through:
+
+- humanreview-Madison
+- rolespermissions-Madison
+- adminSurfaces-Madison
+- statemachine-Madison
+
+The canonical architecture expands these concepts by introducing Traveler Approval as a formal stage between intelligence generation and orchestration.
+
+This preserves the deterministic workflow established by the original engineering effort while supporting a more intelligent and flexible approval model.
+
+---
+
+## Engineering Principles
+
+Traveler Approval should always be:
+
+- Transparent.
+- Explainable.
+- Auditable.
+- Configurable.
+- Human-centered.
+- Policy-aware.
+
+The traveler should always understand what is being approved and why.
+
+---
+
+## AI Coding Guidance
+
+When implementing Traveler Approval:
+
+- Separate approval logic from execution logic.
+- Update the Canonical Trip Object immediately upon approval.
+- Support individual, delegated, organizational, and automatic approval models.
+- Maintain complete audit records.
+- Allow configurable enterprise approval workflows.
+- Never allow ETAS™ to execute actions that require approval unless authorization has been granted.
+
+Traveler Approval is the final human decision point within the GÖ.AI platform.
+
+It transforms predictive intelligence into authorized operational action, ensuring that ETAS™ executes recommendations with the appropriate balance of automation, transparency, and human oversight.
+
+---
+
+# 12. Provider Orchestration
+
+## Overview
+
+Provider Orchestration is the core operational responsibility of ETAS™.
+
+Once traveler approval has been obtained, ETAS™ coordinates the execution of approved actions across multiple commercial providers through a unified orchestration layer.
+
+Rather than communicating directly with airlines, hotels, rideshare services, payment processors, calendars, and notification systems individually, ETAS™ acts as a centralized orchestration engine that manages every provider interaction in a deterministic, observable, and recoverable manner.
+
+Provider Orchestration transforms approved travel decisions into real-world execution.
+
+---
+
+## Purpose
+
+The purpose of Provider Orchestration is to:
+
+- Coordinate multiple provider APIs.
+- Execute approved traveler actions.
+- Maintain provider independence.
+- Synchronize execution across services.
+- Handle failures gracefully.
+- Preserve a single operational state.
+- Return execution results to the Canonical Trip Object.
+
+The orchestration layer ensures that every provider behaves as part of one coordinated travel system.
+
+---
+
+## Position Within the Platform
+
+```text
+Traveler Approval
+        │
+        ▼
+ETAS™
+        │
+        ▼
+Provider Orchestrator
+        │
+        ▼
+Provider Adapters
+        │
+        ▼
+Commercial APIs
+        │
+        ▼
+Execution Results
+        │
+        ▼
+Canonical Trip Object
+```
+
+The Provider Orchestrator never communicates directly with commercial APIs.
+
+All communication occurs through standardized Provider Adapters.
+
+---
+
+## Provider Adapter Architecture
+
+Each provider is isolated behind its own adapter.
+
+Examples include:
+
+- Duffel
+- Lyft
+- Stripe
+- Google Calendar
+- Weather APIs
+- Flight Intelligence APIs
+- Mapping Services
+- Notification Services
+- Future enterprise providers
+
+Each adapter is responsible for:
+
+- Authentication.
+- Request formatting.
+- Response normalization.
+- Error handling.
+- Retry support.
+- Provider version management.
+
+The orchestration engine communicates only with standardized adapter interfaces.
+
+---
+
+## Execution Workflow
+
+Provider execution follows a deterministic workflow.
+
+```text
+Approved Canonical Trip Object
+        │
+        ▼
+Execution Plan
+        │
+        ▼
+Provider Queue
+        │
+        ▼
+Provider Adapter
+        │
+        ▼
+Commercial API
+        │
+        ▼
+Normalized Response
+        │
+        ▼
+Canonical Trip Object Update
+        │
+        ▼
+Traveler Dashboard
+```
+
+Every completed provider action updates the Canonical Trip Object.
+
+---
+
+## Multi-Provider Coordination
+
+Many traveler actions require multiple providers.
+
+Example:
+
+**Recommended Action**
+
+> Rebook Flight
+
+ETAS™ may coordinate:
+
+- Cancel existing flight.
+- Reserve new flight.
+- Modify hotel dates.
+- Reschedule Lyft pickup.
+- Update calendar.
+- Notify traveler.
+- Notify executive assistant.
+
+Although multiple providers participate, the traveler experiences a single coordinated action.
+
+```text
+Approved Recommendation
+        │
+        ▼
+Flight Provider
+        │
+        ▼
+Hotel Provider
+        │
+        ▼
+Ground Transportation
+        │
+        ▼
+Calendar
+        │
+        ▼
+Notifications
+        │
+        ▼
+Canonical Trip Object Updated
+```
+
+---
+
+## Execution State Management
+
+Every provider action maintains an execution state.
+
+Typical states include:
+
+- Pending
+- Queued
+- Executing
+- Completed
+- Partially Completed
+- Failed
+- Retrying
+- Cancelled
+
+Execution state should always be observable.
+
+---
+
+## Failure Recovery
+
+Provider failures should never terminate the orchestration process unnecessarily.
+
+Examples include:
+
+- Temporary API outages.
+- Authentication expiration.
+- Network interruptions.
+- Provider rate limits.
+- Payment failures.
+
+ETAS™ should:
+
+- Retry when appropriate.
+- Escalate when necessary.
+- Record failures.
+- Continue independent operations whenever possible.
+
+Execution should remain resilient.
+
+---
+
+## Canonical Trip Object Integration
+
+Provider Orchestration continuously updates:
+
+- Booking identifiers.
+- Confirmation numbers.
+- Payment status.
+- Reservation status.
+- Execution timestamps.
+- Retry history.
+- Notification history.
+- Current operational state.
+
+The Canonical Trip Object remains synchronized throughout execution.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established deterministic execution workflows through:
+
+- executetrip-Madison
+- processtrip-Madison
+- postmanSetup-Lee
+
+These implementations demonstrated structured provider execution, validation, retry strategies, and API testing.
+
+The canonical Provider Orchestration layer expands these concepts into a modular adapter architecture capable of supporting numerous commercial providers while preserving deterministic execution.
+
+---
+
+## Engineering Principles
+
+Provider Orchestration should always be:
+
+- Provider-independent.
+- Modular.
+- Deterministic.
+- Observable.
+- Recoverable.
+- Scalable.
+- Secure.
+
+No business logic should depend on a specific provider implementation.
+
+Every provider should be replaceable without modifying the orchestration engine.
+
+---
+
+## AI Coding Guidance
+
+When implementing Provider Orchestration:
+
+- Never communicate directly with commercial APIs from ETAS™.
+- Route every request through a Provider Adapter.
+- Normalize all provider responses before updating the Canonical Trip Object.
+- Support asynchronous execution and retry logic.
+- Record every provider interaction for audit purposes.
+- Design adapters to be independently testable and easily replaceable.
+
+Provider Orchestration is the operational execution layer that transforms approved traveler decisions into coordinated actions across the global travel ecosystem while shielding the rest of the platform from provider-specific complexity.
+
+---
+
+# 13. Booking Execution
+
+## Overview
+
+Booking Execution is the operational process through which ETAS™ transforms approved travel decisions into confirmed reservations across the commercial travel ecosystem.
+
+Once Provider Orchestration has coordinated the appropriate Provider Adapters, Booking Execution manages the actual reservation lifecycle, ensuring that every transaction is completed successfully, synchronized with the Canonical Trip Object, and communicated back to the traveler.
+
+Booking Execution represents the point at which digital recommendations become real-world commitments.
+
+---
+
+## Purpose
+
+The purpose of Booking Execution is to:
+
+- Create new reservations.
+- Modify existing reservations.
+- Cancel obsolete reservations.
+- Confirm provider responses.
+- Maintain transaction integrity.
+- Synchronize execution results.
+- Preserve traveler continuity.
+
+Execution should always produce a deterministic operational outcome.
+
+---
+
+## Position Within the Platform
+
+```text
+Traveler Approval
+        │
+        ▼
+ETAS™
+        │
+        ▼
+Provider Orchestration
+        │
+        ▼
+Booking Execution
+        │
+        ▼
+Commercial Providers
+        │
+        ▼
+Reservation Confirmation
+        │
+        ▼
+Canonical Trip Object
+        │
+        ▼
+Traveler Dashboard
+```
+
+Booking Execution is responsible for completing the operational transaction—not determining whether the transaction should occur.
+
+---
+
+## Supported Execution Types
+
+Booking Execution supports multiple transaction types.
+
+### Flight Operations
+
+- Search offers.
+- Reserve itinerary.
+- Confirm booking.
+- Modify reservation.
+- Cancel reservation.
+
+---
+
+### Hotel Operations
+
+- Reserve accommodations.
+- Modify stay.
+- Extend reservations.
+- Cancel bookings.
+
+---
+
+### Ground Transportation
+
+- Schedule rides.
+- Modify pickup times.
+- Cancel rides.
+- Monitor driver status.
+
+---
+
+### Calendar Synchronization
+
+- Update meetings.
+- Modify travel blocks.
+- Notify attendees.
+- Preserve scheduling continuity.
+
+---
+
+### Payment Processing
+
+- Authorize payment.
+- Capture payment.
+- Process refunds.
+- Validate transactions.
+
+---
+
+### Notifications
+
+- Traveler alerts.
+- Executive assistant notifications.
+- Organization updates.
+- Booking confirmations.
+
+---
+
+## Booking Execution Workflow
+
+Every booking follows a deterministic workflow.
+
+```text
+Approved Action
+        │
+        ▼
+Provider Adapter
+        │
+        ▼
+Reservation Request
+        │
+        ▼
+Commercial Provider
+        │
+        ▼
+Reservation Response
+        │
+        ▼
+Confirmation Validation
+        │
+        ▼
+Canonical Trip Object Update
+        │
+        ▼
+Traveler Notification
+```
+
+Each successful transaction updates the Canonical Trip Object before additional execution continues.
+
+---
+
+## Multi-Step Booking Execution
+
+Certain traveler actions require coordinated execution across multiple providers.
+
+Example:
+
+```text
+Flight Rebooking
+        │
+        ▼
+Cancel Existing Flight
+        │
+        ▼
+Reserve New Flight
+        │
+        ▼
+Modify Hotel Reservation
+        │
+        ▼
+Reschedule Ground Transportation
+        │
+        ▼
+Update Calendar
+        │
+        ▼
+Notify Traveler
+        │
+        ▼
+Execution Complete
+```
+
+If one operation fails, ETAS™ should determine whether to:
+
+- Retry.
+- Roll back.
+- Escalate.
+- Continue partial execution.
+
+This decision follows platform policy and provider capabilities.
+
+---
+
+## Confirmation Management
+
+Every completed booking should return:
+
+- Provider confirmation number.
+- Reservation identifier.
+- Booking timestamp.
+- Current execution status.
+- Provider metadata.
+
+This information becomes part of the Canonical Trip Object.
+
+---
+
+## Relationship to Provider Adapters
+
+Booking Execution never communicates directly with commercial APIs.
+
+All provider communication occurs through standardized Provider Adapters.
+
+This abstraction ensures:
+
+- Provider independence.
+- Easier maintenance.
+- Simplified testing.
+- Future provider replacement.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established deterministic execution workflows through:
+
+- executetrip-Madison
+- processtrip-Madison
+- postmanSetup-Lee
+
+These implementations introduced structured booking flows, provider testing, execution sequencing, and transaction validation.
+
+The canonical Booking Execution layer expands these concepts into a scalable orchestration engine supporting multiple providers while preserving deterministic execution.
+
+---
+
+## Engineering Principles
+
+Booking Execution should always be:
+
+- Deterministic.
+- Reliable.
+- Idempotent.
+- Recoverable.
+- Observable.
+- Provider-independent.
+- Fully auditable.
+
+Execution should prioritize continuity over speed whenever traveler outcomes are affected.
+
+---
+
+## AI Coding Guidance
+
+When implementing Booking Execution:
+
+- Route every transaction through the appropriate Provider Adapter.
+- Validate every provider confirmation before updating the Canonical Trip Object.
+- Prevent duplicate execution through idempotent transaction handling.
+- Support retries with configurable backoff strategies.
+- Record every transaction in the Audit Log.
+- Keep booking logic independent of provider-specific implementations.
+
+Booking Execution is the operational commitment layer of ETAS™.
+
+It transforms approved travel decisions into confirmed reservations while maintaining transactional integrity, operational resilience, and continuous synchronization across the GÖ.AI platform.
+
+---
+
+# 14. Continuous Monitoring
+
+## Overview
+
+Continuous Monitoring is the capability that distinguishes GÖ.AI from traditional travel booking platforms.
+
+Rather than ending once reservations have been confirmed, the platform continuously observes the traveler's operational environment throughout the entire lifecycle of the journey.
+
+SENTINEL™ continuously collects intelligence while ETAS™ continuously evaluates execution status. Together they maintain an accurate, real-time understanding of the traveler's operational state.
+
+The journey is not considered complete until the traveler has successfully reached their final destination and all dependent activities have concluded.
+
+---
+
+## Purpose
+
+The purpose of Continuous Monitoring is to:
+
+- Maintain situational awareness.
+- Detect emerging disruptions.
+- Identify changes in operational conditions.
+- Trigger re-analysis when necessary.
+- Protect travel continuity.
+- Preserve mission success.
+- Support autonomous re-orchestration.
+
+Continuous Monitoring enables GÖ.AI to think ahead—not simply react.
+
+---
+
+## Monitoring Lifecycle
+
+Monitoring begins immediately after the Canonical Trip Object has been validated.
+
+It continues throughout:
+
+- Pre-departure.
+- Airport arrival.
+- Check-in.
+- Security.
+- Boarding.
+- Flight operations.
+- Connections.
+- Ground transportation.
+- Hotel stay.
+- Meetings.
+- Return travel.
+- Trip completion.
+
+Monitoring does not stop after the initial booking.
+
+---
+
+## Continuous Intelligence Loop
+
+```text
+Canonical Trip Object
+        │
+        ▼
+Monitor Operational Environment
+        │
+        ▼
+Detect Change
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+SENTRY™ Score
+        │
+        ▼
+Recommendations
+        │
+        ▼
+Approval (If Required)
+        │
+        ▼
+ETAS™ Re-Orchestration
+        │
+        ▼
+Updated Canonical Trip Object
+        │
+        └──────────────┐
+                       │
+                       ▼
+              Continue Monitoring
+```
+
+This loop continues until the trip reaches its terminal state.
+
+---
+
+## Monitoring Events
+
+Continuous Monitoring observes events including, but not limited to:
+
+### Transportation
+
+- Flight delays.
+- Flight cancellations.
+- Gate changes.
+- Aircraft substitutions.
+- Airport congestion.
+- Missed connections.
+
+---
+
+### Environmental
+
+- Severe weather.
+- Storm development.
+- Flooding.
+- Wildfires.
+- Extreme temperatures.
+
+---
+
+### Movement
+
+- Traffic congestion.
+- Road closures.
+- Transit disruptions.
+- Ride availability.
+- Estimated arrival changes.
+
+---
+
+### Infrastructure
+
+- Airport outages.
+- Rail interruptions.
+- Border delays.
+- Communications failures.
+- Utility disruptions.
+
+---
+
+### Safety & Security
+
+- Government advisories.
+- Civil unrest.
+- Crime.
+- Executive protection alerts.
+- Regional instability.
+
+---
+
+### Traveler Activity
+
+- Delayed departure.
+- Missed check-in.
+- Calendar modifications.
+- Approval changes.
+- New itinerary requests.
+
+---
+
+## Event-Driven Architecture
+
+Continuous Monitoring should operate as an event-driven system.
+
+Whenever a meaningful operational change occurs:
+
+```text
+Operational Event Detected
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+Trigger Intelligence Enrichment
+        │
+        ▼
+Recalculate SENTRY™ Score
+        │
+        ▼
+Run Twin Trip Simulation
+        │
+        ▼
+Generate Recommendations
+        │
+        ▼
+Notify Traveler / ETAS™
+```
+
+Monitoring should minimize unnecessary computation while remaining highly responsive.
+
+---
+
+## Re-Orchestration Triggers
+
+Continuous Monitoring may trigger ETAS™ when:
+
+- Disruption probability exceeds policy thresholds.
+- Traveler approval has already been granted.
+- Organizational automation policies permit execution.
+- Previously approved recommendations become actionable.
+- New provider availability improves continuity.
+
+Every execution should originate from current intelligence—not stale assumptions.
+
+---
+
+## Relationship to the Canonical Trip Object
+
+Every monitoring event updates the Canonical Trip Object.
+
+Examples include:
+
+- Current location.
+- Operational status.
+- Provider confirmations.
+- Active disruptions.
+- Recommendation history.
+- Monitoring timestamps.
+
+The Canonical Trip Object remains the authoritative operational record throughout the journey.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original ETAS MVP focused on deterministic execution and trip lifecycle management.
+
+The canonical architecture expands this concept by introducing Continuous Monitoring as a permanent intelligence capability.
+
+Rather than processing a trip once, GÖ.AI continuously reassesses operational conditions until travel has concluded.
+
+This evolution transforms ETAS™ from a booking workflow into a living operational platform.
+
+---
+
+## Engineering Principles
+
+Continuous Monitoring should always be:
+
+- Event-driven.
+- Real-time.
+- Efficient.
+- Explainable.
+- Fault-tolerant.
+- Scalable.
+- Continuously synchronized.
+
+Monitoring should react to meaningful operational changes rather than relying on unnecessary polling whenever event-driven integrations are available.
+
+---
+
+## AI Coding Guidance
+
+When implementing Continuous Monitoring:
+
+- Design monitoring services to operate independently from Provider Adapters.
+- Trigger intelligence workflows through events rather than tightly coupled processes.
+- Update the Canonical Trip Object after every verified operational change.
+- Ensure monitoring services can resume after interruptions without losing state.
+- Maintain complete monitoring history for auditing and future analytics.
+- Keep monitoring extensible so new Intelligence Layers and providers can be added without redesigning the architecture.
+
+Continuous Monitoring is the persistent awareness layer of GÖ.AI.
+
+It ensures that every traveler journey remains continuously observed, continuously evaluated, and continuously optimized from departure to final destination, allowing SENTINEL™ and ETAS™ to preserve travel continuity even as the operational environment evolves.
+
+---
+
+# 15. Failure Recovery
+
+## Overview
+
+Failure Recovery ensures that ETAS™ remains resilient when execution does not proceed as expected.
+
+Because GÖ.AI coordinates multiple external providers, temporary failures are inevitable. APIs become unavailable, networks experience latency, payment processors time out, and reservations occasionally fail.
+
+Failure Recovery ensures these events are managed predictably, transparently, and safely without compromising the integrity of the Canonical Trip Object or the traveler's mission.
+
+The objective is not to eliminate failures.
+
+The objective is to recover from them intelligently.
+
+---
+
+## Purpose
+
+Failure Recovery exists to:
+
+- Detect execution failures.
+- Classify failure severity.
+- Attempt automated recovery.
+- Prevent duplicate execution.
+- Preserve transaction integrity.
+- Escalate when human intervention is required.
+- Maintain traveler continuity.
+
+Every failure should have a deterministic recovery path.
+
+---
+
+## Position Within the Platform
+
+```text
+Provider Execution
+        │
+        ▼
+Execution Result
+        │
+        ▼
+Successful?
+   ┌────┴────┐
+   │         │
+  Yes        No
+   │          │
+   ▼          ▼
+Continue   Failure Detection
+                │
+                ▼
+      Failure Classification
+                │
+                ▼
+        Recovery Strategy
+                │
+                ▼
+ Retry / Rollback / Escalate
+                │
+                ▼
+Update Canonical Trip Object
+                │
+                ▼
+Continuous Monitoring
+```
+
+Recovery is part of normal execution—not an exceptional process.
+
+---
+
+## Failure Categories
+
+Failures should be classified before recovery begins.
+
+### Temporary Failures
+
+Examples include:
+
+- Network interruption.
+- API timeout.
+- Rate limiting.
+- Temporary provider outage.
+
+Typical response:
+
+- Retry automatically.
+
+---
+
+### Recoverable Failures
+
+Examples include:
+
+- Payment authorization failure.
+- Seat no longer available.
+- Hotel inventory change.
+
+Typical response:
+
+- Generate an alternate execution plan.
+- Retry with updated parameters.
+
+---
+
+### Non-Recoverable Failures
+
+Examples include:
+
+- Invalid traveler credentials.
+- Organization policy violation.
+- Unsupported provider request.
+
+Typical response:
+
+- Stop execution.
+- Notify traveler.
+- Escalate when appropriate.
+
+---
+
+### Critical Failures
+
+Examples include:
+
+- Data corruption.
+- Transaction inconsistency.
+- Authentication compromise.
+
+Typical response:
+
+- Halt execution immediately.
+- Preserve system integrity.
+- Generate audit event.
+- Notify administrators.
+
+---
+
+## Recovery Strategies
+
+Depending on failure type, ETAS™ may perform one or more recovery strategies.
+
+### Automatic Retry
+
+Retry using configurable exponential backoff.
+
+---
+
+### Alternate Provider
+
+Attempt execution through another supported provider.
+
+Example:
+
+```text
+Primary Airline
+        │
+     Failed
+        │
+        ▼
+Alternate Airline
+        │
+        ▼
+Continue Execution
+```
+
+The orchestration engine should remain provider-independent whenever possible.
+
+---
+
+### Partial Recovery
+
+Continue independent execution while isolating failed operations.
+
+Example:
+
+```text
+Hotel Confirmed
+        │
+        ▼
+Flight Delayed
+        │
+        ▼
+Ground Transportation Updated
+        │
+        ▼
+Traveler Notified
+```
+
+The failure of one provider should not unnecessarily stop successful operations performed by other providers.
+
+---
+
+### Rollback
+
+Reverse previously completed actions when operationally appropriate.
+
+Rollback decisions should be:
+
+- Policy-driven.
+- Provider-aware.
+- Auditable.
+- Idempotent.
+
+Rollback should occur only when preserving traveler continuity requires reversing previous actions.
+
+---
+
+### Human Escalation
+
+When automated recovery is insufficient, execution may be escalated to:
+
+- Traveler.
+- Executive Assistant.
+- Corporate Travel Manager.
+- Administrator.
+- Operations Team.
+
+Escalation policies should be configurable by organization.
+
+---
+
+## Idempotency
+
+Every execution request must be idempotent.
+
+Repeated retries should never create:
+
+- Duplicate reservations.
+- Duplicate payments.
+- Duplicate notifications.
+- Duplicate provider requests.
+
+Idempotency keys should be maintained throughout the execution lifecycle.
+
+---
+
+## Canonical Trip Object
+
+Every recovery action updates the Canonical Trip Object.
+
+Examples include:
+
+- Failure status.
+- Retry count.
+- Recovery strategy.
+- Execution history.
+- Recovery timestamps.
+- Current operational state.
+
+The Canonical Trip Object remains the authoritative operational record.
+
+---
+
+## Relationship to Continuous Monitoring
+
+Recovery does not end execution.
+
+Once recovery completes:
+
+```text
+Recovery Complete
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+Resume Continuous Monitoring
+        │
+        ▼
+Intelligence Enrichment
+        │
+        ▼
+Twin Trip Simulation
+        │
+        ▼
+New Recommendations (if required)
+```
+
+Recovery becomes another event within the continuous intelligence loop.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established deterministic retry behavior, execution recovery, and state-aware failure handling through:
+
+- failurehandling-Madison
+- executetrip-Madison
+- processtrip-Madison
+- postmanSetup-Lee
+
+The canonical Failure Recovery architecture expands these concepts into a platform-wide resilience framework supporting multiple providers, asynchronous execution, and continuous intelligence.
+
+---
+
+## Engineering Principles
+
+Failure Recovery should always be:
+
+- Deterministic.
+- Observable.
+- Idempotent.
+- Recoverable.
+- Policy-driven.
+- Auditable.
+- Traveler-focused.
+
+Failures should never leave the platform in an unknown operational state.
+
+---
+
+## AI Coding Guidance
+
+When implementing Failure Recovery:
+
+- Classify failures before selecting a recovery strategy.
+- Maintain idempotent execution across retries.
+- Keep recovery logic independent of provider implementations.
+- Record every recovery decision in the Audit Log.
+- Update the Canonical Trip Object after every recovery attempt.
+- Resume Continuous Monitoring immediately after recovery completes.
+
+Failure Recovery is not an exception handler.
+
+It is a core capability of ETAS™ that enables GÖ.AI to preserve traveler continuity despite the inevitable uncertainty of real-world travel operations.
+
+---
+
+# 16. Audit Logging
+
+## Overview
+
+Audit Logging provides the permanent operational record of every significant event that occurs within the GÖ.AI platform.
+
+Every decision, recommendation, approval, execution, state transition, provider interaction, and recovery action should be recorded in a secure, immutable audit trail.
+
+The Audit Log serves three primary purposes:
+
+- Operational transparency.
+- Engineering observability.
+- Enterprise governance.
+
+It enables developers, administrators, enterprise customers, and security teams to understand exactly what occurred, when it occurred, why it occurred, and which system or individual initiated the action.
+
+---
+
+## Purpose
+
+Audit Logging exists to:
+
+- Record every significant system event.
+- Maintain complete execution history.
+- Support troubleshooting.
+- Enable regulatory compliance.
+- Provide enterprise accountability.
+- Preserve operational transparency.
+- Support future analytics and machine learning.
+
+Nothing important should happen without leaving an audit trail.
+
+---
+
+## Position Within the Platform
+
+```text
+Traveler
+    │
+    ▼
+AI Concierge
+    │
+    ▼
+Conversation Engine
+    │
+    ▼
+Validation
+    │
+    ▼
+SENTINEL™
+    │
+    ▼
+Traveler Approval
+    │
+    ▼
+ETAS™
+    │
+    ▼
+Provider Execution
+    │
+    ▼
+Audit Logging
+    │
+    ├──────────────► Analytics
+    ├──────────────► Administration
+    ├──────────────► Compliance
+    └──────────────► Observability
+```
+
+Audit Logging operates continuously alongside every major platform component.
+
+---
+
+## Audit Events
+
+Every major subsystem contributes events to the Audit Log.
+
+### Traveler Events
+
+- Session started.
+- Authentication.
+- Trip created.
+- Preferences updated.
+- Approval granted.
+- Approval denied.
+
+---
+
+### Conversation Events
+
+- Intent detected.
+- Entity extracted.
+- Follow-up generated.
+- Conversation completed.
+
+---
+
+### Validation Events
+
+- Validation started.
+- Validation passed.
+- Validation failed.
+- Validation blocked.
+
+---
+
+### SENTINEL™ Events
+
+- Intelligence Enrichment completed.
+- Twin Trip Simulation generated.
+- SENTRY™ Score calculated.
+- Executive Briefing generated.
+- Recommendation created.
+
+---
+
+### ETAS™ Events
+
+- Execution initiated.
+- Provider queued.
+- Booking completed.
+- Retry initiated.
+- Recovery completed.
+- Notification delivered.
+
+---
+
+### Administrative Events
+
+- Manual approval.
+- Manual rejection.
+- Administrative override.
+- Policy exception.
+- Organization configuration changes.
+
+---
+
+## Audit Record Structure
+
+Each audit entry should contain standardized metadata.
+
+Minimum fields include:
+
+| Field | Description |
+|--------|-------------|
+| Audit ID | Unique identifier for the audit record |
+| Timestamp (UTC) | Time the event occurred |
+| Organization ID | Organization associated with the event |
+| Traveler ID | Traveler associated with the event |
+| Canonical Trip Object ID | Associated trip identifier |
+| Component | System component generating the event |
+| Event Type | Classification of the event |
+| Event Description | Human-readable summary |
+| Initiating Actor | User or system initiating the action |
+| Previous State | Prior operational state |
+| New State | Resulting operational state |
+| Correlation ID | Workflow identifier linking related events |
+| Severity | Informational, Warning, Error, Critical |
+| Additional Metadata | Supplemental structured information |
+
+This standardized schema enables consistent analysis across the platform.
+
+---
+
+## Correlation & Traceability
+
+Every workflow should generate a Correlation ID.
+
+This allows engineers to reconstruct an entire operational sequence from a single identifier.
+
+```text
+Trip Created
+    │
+    ▼
+Validation
+    │
+    ▼
+SENTINEL™
+    │
+    ▼
+Twin Trip Simulation
+    │
+    ▼
+Traveler Approval
+    │
+    ▼
+ETAS™
+    │
+    ▼
+Duffel Booking
+    │
+    ▼
+Stripe Payment
+    │
+    ▼
+Lyft Reservation
+    │
+    ▼
+Trip Complete
+```
+
+Every event generated during this workflow shares the same Correlation ID.
+
+---
+
+## Immutability
+
+Audit records should never be edited or deleted.
+
+Corrections should be represented as new audit events.
+
+The audit trail should remain historically accurate and immutable.
+
+---
+
+## Relationship to the Canonical Trip Object
+
+The Audit Log does not replace the Canonical Trip Object.
+
+Instead:
+
+- The Canonical Trip Object represents the **current operational state**.
+- The Audit Log represents the **historical sequence of events** that produced that state.
+
+Together they provide complete operational visibility.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP introduced audit concepts through:
+
+- AuditLogAdditions-Lee
+- adminSurfaces-Madison
+- failurehandling-Madison
+- executetrip-Madison
+
+The canonical Audit Logging architecture expands these concepts into a platform-wide observability framework covering every component of GÖ.AI.
+
+---
+
+## Engineering Principles
+
+Audit Logging should always be:
+
+- Immutable.
+- Chronological.
+- Complete.
+- Secure.
+- Searchable.
+- Correlated.
+- Organization-aware.
+
+Audit data should describe **what happened**, not interpret **why it happened**.
+
+Interpretation belongs to analytics.
+
+---
+
+## Security Considerations
+
+Audit Logs should:
+
+- Record sensitive events without exposing sensitive data.
+- Support role-based access control.
+- Protect personally identifiable information (PII).
+- Maintain tenant isolation for enterprise organizations.
+- Support retention policies and archival procedures.
+
+Audit records are security assets and should be protected accordingly.
+
+---
+
+## AI Coding Guidance
+
+When implementing Audit Logging:
+
+- Generate audit events from every major platform component.
+- Use standardized event schemas.
+- Attach Correlation IDs to every workflow.
+- Record state transitions rather than only final outcomes.
+- Keep audit generation asynchronous where possible to avoid blocking execution.
+- Never allow business logic to depend on the existence of audit records.
+
+Audit Logging is the institutional memory of GÖ.AI.
+
+It provides the historical foundation for troubleshooting, compliance, analytics, governance, and future intelligence, ensuring that every operational decision made by the platform remains transparent, traceable, and explainable throughout the lifecycle of every journey.
+
+---
+
+# 17. State Machine
+
+## Overview
+
+The ETAS™ State Machine defines the deterministic lifecycle of every Canonical Trip Object within the GÖ.AI platform.
+
+Every trip progresses through a predefined series of operational states from the initial traveler conversation to final trip completion.
+
+At any given moment, a Canonical Trip Object exists in **one and only one authoritative state**.
+
+This guarantees predictable behavior, simplifies debugging, supports auditability, and enables deterministic orchestration across SENTINEL™, ETAS™, and every Provider Adapter.
+
+The State Machine is one of the foundational architectural components of GÖ.AI.
+
+---
+
+## Purpose
+
+The ETAS™ State Machine exists to:
+
+- Define the lifecycle of every trip.
+- Prevent invalid state transitions.
+- Coordinate execution across platform components.
+- Support deterministic workflows.
+- Enable reliable recovery.
+- Simplify observability.
+- Maintain operational consistency.
+
+Every system component references the current state before performing work.
+
+---
+
+## Core Principles
+
+The State Machine follows several architectural principles.
+
+- Every trip has one authoritative state.
+- Every transition is deterministic.
+- Every transition is auditable.
+- Invalid transitions are rejected.
+- State changes occur only through defined workflows.
+- State transitions update the Canonical Trip Object.
+
+No component may bypass the State Machine.
+
+---
+
+## Canonical Trip Lifecycle
+
+The standard lifecycle is:
+
+```text
+DRAFT
+    │
+    ▼
+COLLECTING_INFORMATION
+    │
+    ▼
+VALIDATING
+    │
+    ▼
+VALIDATED
+    │
+    ▼
+INTELLIGENCE_ENRICHMENT
+    │
+    ▼
+TWIN_TRIP_SIMULATION
+    │
+    ▼
+EXECUTIVE_BRIEFING_READY
+    │
+    ▼
+PENDING_APPROVAL
+    │
+    ▼
+APPROVED
+    │
+    ▼
+EXECUTION_PLANNING
+    │
+    ▼
+PROVIDER_EXECUTION
+    │
+    ▼
+MONITORING
+    │
+    ▼
+REORCHESTRATING (if required)
+    │
+    ▼
+COMPLETED
+```
+
+Alternative terminal states include:
+
+- CANCELLED
+- FAILED
+- BLOCKED
+
+---
+
+## State Definitions
+
+### DRAFT
+
+The Canonical Trip Object has been created.
+
+Conversation has not yet begun.
+
+---
+
+### COLLECTING_INFORMATION
+
+The AI Concierge is actively gathering information.
+
+The Canonical Trip Object is continuously updated.
+
+---
+
+### VALIDATING
+
+The Validation Pipeline evaluates the Canonical Trip Object.
+
+No intelligence processing occurs during this state.
+
+---
+
+### VALIDATED
+
+The trip satisfies all validation requirements.
+
+The object is ready for SENTINEL™.
+
+---
+
+### INTELLIGENCE_ENRICHMENT
+
+SENTINEL™ gathers intelligence from all configured Intelligence Layers.
+
+---
+
+### TWIN_TRIP_SIMULATION
+
+Alternative itineraries are generated and evaluated.
+
+---
+
+### EXECUTIVE_BRIEFING_READY
+
+Recommendations, Executive Briefing, and SENTRY™ Score have been generated.
+
+The traveler may now review recommendations.
+
+---
+
+### PENDING_APPROVAL
+
+Awaiting traveler, executive assistant, or organizational approval.
+
+---
+
+### APPROVED
+
+Execution has been authorized.
+
+ETAS™ begins orchestration.
+
+---
+
+### EXECUTION_PLANNING
+
+ETAS™ determines provider sequencing and execution strategy.
+
+---
+
+### PROVIDER_EXECUTION
+
+Provider Adapters perform approved actions.
+
+The Canonical Trip Object is updated continuously.
+
+---
+
+### MONITORING
+
+Execution has completed successfully.
+
+Continuous Monitoring begins.
+
+SENTINEL™ continues evaluating operational conditions.
+
+---
+
+### REORCHESTRATING
+
+New intelligence requires modifications to the existing itinerary.
+
+ETAS™ coordinates approved changes.
+
+---
+
+### COMPLETED
+
+The travel mission has concluded.
+
+Monitoring stops.
+
+The Canonical Trip Object becomes read-only except for audit additions.
+
+---
+
+## Failure States
+
+The State Machine also supports controlled failure paths.
+
+### BLOCKED
+
+Execution cannot continue due to policy, validation, or administrative restrictions.
+
+---
+
+### FAILED
+
+Execution failed despite recovery attempts.
+
+Human intervention may be required.
+
+---
+
+### CANCELLED
+
+Traveler or organization terminated the itinerary.
+
+No further execution occurs.
+
+---
+
+## State Transition Rules
+
+Every transition must satisfy the following conditions:
+
+- The current state is valid.
+- The target state is permitted.
+- Required conditions have been met.
+- The transition is recorded in the Audit Log.
+- The Canonical Trip Object is updated atomically.
+
+Transitions should never occur implicitly.
+
+```text
+Current State
+      │
+      ▼
+Validate Transition
+      │
+      ▼
+Transition Allowed?
+   ┌────┴────┐
+   │         │
+  No        Yes
+   │         │
+   ▼         ▼
+Reject   Update Canonical
+Transition   Trip Object
+                │
+                ▼
+         Record Audit Event
+                │
+                ▼
+        Enter New State
+```
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established deterministic workflow sequencing through:
+
+- statemachine-Madison
+- processtrip-Madison
+- executetrip-Madison
+- humanreview-Madison
+- failurehandling-Madison
+
+The canonical State Machine extends those concepts to encompass the full SENTINEL™ → ETAS™ lifecycle while preserving deterministic behavior.
+
+---
+
+## Relationship to the Canonical Trip Object
+
+The current operational state is stored within the Canonical Trip Object.
+
+Every platform component references this state before:
+
+- Reading data.
+- Modifying data.
+- Executing providers.
+- Generating recommendations.
+- Approving execution.
+- Initiating recovery.
+
+The Canonical Trip Object and State Machine remain synchronized at all times.
+
+---
+
+## Engineering Principles
+
+The State Machine should always be:
+
+- Deterministic.
+- Explicit.
+- Observable.
+- Auditable.
+- Recoverable.
+- Extensible.
+
+State transitions should represent meaningful operational milestones—not implementation details.
+
+---
+
+## AI Coding Guidance
+
+When implementing the ETAS™ State Machine:
+
+- Implement every state as an explicit, enumerable value.
+- Validate all transitions before execution.
+- Prevent illegal state changes.
+- Record every transition in the Audit Log.
+- Update the Canonical Trip Object atomically with each successful transition.
+- Design the State Machine to support future workflow expansion without breaking existing transitions.
+
+The ETAS™ State Machine is the operational backbone of GÖ.AI.
+
+It ensures that every journey progresses through a predictable, observable, and recoverable lifecycle, enabling SENTINEL™, ETAS™, and every Provider Adapter to operate as a single coordinated system.
+
+---
+
+# 18. Sequence Diagram
+
+## Overview
+
+The ETAS™ Sequence Diagram describes the end-to-end operational flow of information through the GÖ.AI platform.
+
+Unlike the State Machine, which describes **the lifecycle of a Canonical Trip Object**, the Sequence Diagram illustrates **how the major platform components communicate with one another** to transform traveler intent into coordinated execution.
+
+It defines the operational choreography between:
+
+- Traveler
+- AI Concierge
+- Conversation Engine
+- Validation Pipeline
+- SENTINEL™
+- ETAS™
+- Provider Adapters
+- Commercial Providers
+- Continuous Monitoring
+
+The Sequence Diagram represents the primary execution pathway for every journey.
+
+---
+
+## Purpose
+
+The Sequence Diagram exists to:
+
+- Define component interactions.
+- Standardize execution flow.
+- Eliminate ambiguity between services.
+- Support backend implementation.
+- Improve engineering communication.
+- Guide API development.
+- Provide a common reference for future platform expansion.
+
+Unlike implementation code, the Sequence Diagram describes **how the platform behaves**, not **how it is programmed**.
+
+---
+
+## Primary Operational Sequence
+
+```text
+Traveler
+    │
+    ▼
+AI Concierge
+    │
+    ▼
+Conversation Engine
+    │
+    ▼
+Intent Detection
+    │
+    ▼
+Entity Extraction
+    │
+    ▼
+Canonical Trip Object
+    │
+    ▼
+Validation Pipeline
+    │
+    ▼
+Validation Successful?
+ ┌──┴──────────┐
+ │             │
+No            Yes
+ │             │
+ ▼             ▼
+AI Concierge  SENTINEL™
+Follow-up        │
+Questions        ▼
+        Intelligence Enrichment
+                 │
+                 ▼
+        Twin Trip Simulation
+                 │
+                 ▼
+           SENTRY™ Score
+                 │
+                 ▼
+        Executive Briefing
+                 │
+                 ▼
+         Traveler Approval
+                 │
+        Approved?
+        ┌──┴────────┐
+        │           │
+       No          Yes
+        │           │
+        ▼           ▼
+ Continue      ETAS™
+ Monitoring        │
+                   ▼
+      Provider Orchestrator
+                   │
+                   ▼
+          Provider Adapters
+        ┌──────┼────────┬─────────┐
+        ▼      ▼        ▼         ▼
+     Duffel   Lyft    Stripe   Calendar
+        │      │        │         │
+        └──────┴────────┴─────────┘
+                   │
+                   ▼
+        Commercial Providers
+                   │
+                   ▼
+         Reservation Results
+                   │
+                   ▼
+     Update Canonical Trip Object
+                   │
+                   ▼
+       Continuous Monitoring
+                   │
+                   ▼
+   Operational Change Detected?
+        ┌────┴─────────┐
+        │              │
+       No             Yes
+        │              │
+        ▼              ▼
+ Trip Complete   Re-enter SENTINEL™
+                      │
+                      ▼
+            Intelligence Enrichment
+                      │
+                      ▼
+              Re-Orchestrate ETAS™
+```
+
+---
+
+## Component Responsibilities
+
+### Traveler
+
+Defines travel intent, reviews recommendations, and authorizes execution.
+
+---
+
+### AI Concierge
+
+Provides the conversational interface between the traveler and GÖ.AI.
+
+---
+
+### Conversation Engine
+
+Transforms natural language into structured operational information.
+
+Responsibilities include:
+
+- Intent detection.
+- Entity extraction.
+- Context management.
+- Follow-up question generation.
+
+---
+
+### Canonical Trip Object
+
+Serves as the shared operational contract across every platform component.
+
+It remains the single source of truth throughout the travel lifecycle.
+
+---
+
+### Validation Pipeline
+
+Ensures the Canonical Trip Object is complete, internally consistent, and operationally valid before intelligence processing begins.
+
+---
+
+### SENTINEL™
+
+Responsible for:
+
+- Intelligence Enrichment.
+- Twin Trip Simulation.
+- SENTRY™ Score calculation.
+- Executive Briefing generation.
+- Recommendation creation.
+
+SENTINEL™ determines **what should happen**.
+
+---
+
+### Traveler Approval
+
+Determines whether recommended actions may proceed to execution.
+
+Supports:
+
+- Individual approval.
+- Executive Assistant approval.
+- Enterprise approval.
+- Automated approval policies.
+
+---
+
+### ETAS™
+
+Coordinates execution across the travel ecosystem.
+
+Responsibilities include:
+
+- Provider orchestration.
+- Booking execution.
+- Continuous monitoring.
+- Failure recovery.
+- Synchronization.
+
+ETAS™ determines **how approved actions happen**.
+
+---
+
+### Provider Adapters
+
+Abstract provider-specific implementations.
+
+Examples include:
+
+- Duffel.
+- Lyft.
+- Stripe.
+- Google Calendar.
+- Weather APIs.
+- Flight APIs.
+- Notification services.
+
+Adapters isolate provider complexity from ETAS™.
+
+---
+
+### Commercial Providers
+
+Perform real-world travel operations.
+
+Examples include:
+
+- Airlines.
+- Hotels.
+- Rideshare providers.
+- Payment processors.
+- Calendar providers.
+
+---
+
+### Continuous Monitoring
+
+Maintains continuous situational awareness after execution.
+
+When operational conditions change:
+
+- The Canonical Trip Object is updated.
+- SENTINEL™ re-evaluates the trip.
+- Recommendations may be regenerated.
+- ETAS™ may perform re-orchestration if approved.
+
+---
+
+## Alternate Execution Paths
+
+The Sequence Diagram also supports:
+
+- Validation failure.
+- Traveler rejection.
+- Administrative approval.
+- Provider retry.
+- Failure recovery.
+- Re-orchestration.
+- Continuous monitoring events.
+- Emergency recovery workflows.
+
+Every alternate path ultimately returns to the Canonical Trip Object, preserving a single operational state.
+
+---
+
+## Relationship to the State Machine
+
+The Sequence Diagram and State Machine are complementary.
+
+The **State Machine** defines:
+
+> *What state the trip is currently in.*
+
+The **Sequence Diagram** defines:
+
+> *How information moves between components while transitioning through those states.*
+
+Together they describe both platform behavior and operational flow.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP established deterministic execution flows through:
+
+- conversationflow-Madison
+- processtrip-Madison
+- executetrip-Madison
+- demotrip-Madison
+
+The canonical Sequence Diagram extends those workflows by incorporating:
+
+- SENTINEL™
+- Intelligence Enrichment
+- Twin Trip Simulation
+- Executive Briefings
+- Provider Adapters
+- Continuous Monitoring
+- Autonomous re-orchestration
+
+---
+
+## Engineering Principles
+
+The Sequence Diagram should always remain:
+
+- Deterministic.
+- Component-driven.
+- Provider-independent.
+- Event-oriented.
+- Observable.
+- Extensible.
+
+Every major platform interaction should be representable within this sequence.
+
+---
+
+## AI Coding Guidance
+
+When implementing backend services:
+
+- Preserve the execution sequence described in this document.
+- Avoid bypassing intermediate components.
+- Communicate through well-defined interfaces.
+- Maintain the Canonical Trip Object as the shared contract.
+- Design services to be independently testable while adhering to the overall sequence.
+- Ensure every interaction can be traced through the Audit Log.
+
+The Sequence Diagram is the operational blueprint of GÖ.AI.
+
+It illustrates how **The Face**, **The Brain**, and **The Nervous System** cooperate to transform traveler intent into intelligent, coordinated, and continuously monitored travel execution.
+
+---
+
+# 19. Backend Functions
+
+## Overview
+
+Backend Functions are the operational services that implement the business logic of the GÖ.AI platform.
+
+While the architecture documents define **what the platform should do**, Backend Functions define **how each architectural responsibility is executed**.
+
+Every Backend Function should have a single, well-defined responsibility and communicate with other services through the Canonical Trip Object and standardized interfaces.
+
+Backend Functions collectively implement the operational behavior of SENTINEL™, ETAS™, Provider Adapters, and supporting platform services.
+
+---
+
+## Purpose
+
+The Backend Functions layer exists to:
+
+- Implement business logic.
+- Execute platform workflows.
+- Coordinate platform services.
+- Isolate responsibilities.
+- Improve maintainability.
+- Support independent testing.
+- Enable modular platform growth.
+
+Every architectural component should be implemented through small, composable backend functions rather than monolithic services.
+
+---
+
+## Design Philosophy
+
+Backend Functions follow a modular architecture.
+
+Each function should:
+
+- Perform one responsibility.
+- Receive clearly defined inputs.
+- Produce deterministic outputs.
+- Be independently testable.
+- Be reusable.
+- Avoid unnecessary dependencies.
+
+Business logic should never be duplicated across functions.
+
+---
+
+## Relationship to the Architecture
+
+Each Backend Function implements a specific architectural capability.
+
+```text
+AI Concierge
+│
+├── processConversation.js
+├── extractIntent.js
+├── generateFollowUp.js
+└── updateTripObject.js
+
+Validation Pipeline
+│
+├── validateTrip.js
+├── validateTraveler.js
+├── validateSchedule.js
+└── validateProviders.js
+
+SENTINEL™
+│
+├── intelligenceEngine.js
+├── enrichmentEngine.js
+├── twinTripSimulation.js
+├── calculateSentryScore.js
+└── generateExecutiveBriefing.js
+
+ETAS™
+│
+├── orchestrateProviders.js
+├── executeBookings.js
+├── monitorExecution.js
+├── retryExecution.js
+└── synchronizeTrip.js
+```
+
+Each function should correspond directly to a documented architectural responsibility.
+
+---
+
+## Function Categories
+
+Backend Functions should generally fall into the following categories.
+
+### Conversation Functions
+
+Responsible for:
+
+- Intent detection.
+- Entity extraction.
+- Follow-up generation.
+- Conversation memory.
+- Canonical Trip Object updates.
+
+---
+
+### Validation Functions
+
+Responsible for:
+
+- Field validation.
+- Trip validation.
+- Policy validation.
+- State validation.
+- Permission validation.
+
+---
+
+### Intelligence Functions
+
+Responsible for:
+
+- Intelligence Enrichment.
+- Twin Trip Simulation.
+- SENTRY™ Score calculation.
+- Executive Briefing generation.
+- Recommendation generation.
+
+---
+
+### Orchestration Functions
+
+Responsible for:
+
+- Provider coordination.
+- Execution planning.
+- Booking execution.
+- Continuous Monitoring.
+- Failure Recovery.
+
+---
+
+### Provider Functions
+
+Responsible for:
+
+- Authentication.
+- Request generation.
+- Response normalization.
+- Provider communication.
+- Retry handling.
+
+---
+
+### Utility Functions
+
+Responsible for:
+
+- Logging.
+- Notifications.
+- Formatting.
+- Configuration.
+- Shared helpers.
+- Common validation utilities.
+
+---
+
+## Backend Execution Flow
+
+The backend should execute functions in a predictable sequence.
+
+```text
+Traveler Request
+        │
+        ▼
+Conversation Functions
+        │
+        ▼
+Validation Functions
+        │
+        ▼
+Intelligence Functions
+        │
+        ▼
+Traveler Approval
+        │
+        ▼
+Orchestration Functions
+        │
+        ▼
+Provider Functions
+        │
+        ▼
+Commercial APIs
+        │
+        ▼
+Update Canonical Trip Object
+        │
+        ▼
+Continuous Monitoring
+```
+
+Each stage has one clearly defined responsibility.
+
+---
+
+## Communication Principles
+
+Backend Functions should communicate through:
+
+- The Canonical Trip Object.
+- Standardized interfaces.
+- Structured return objects.
+- Event-driven messaging where appropriate.
+
+Avoid direct dependencies between unrelated modules.
+
+Loose coupling improves maintainability and long-term scalability.
+
+---
+
+## Error Handling
+
+Every Backend Function should:
+
+- Return structured errors.
+- Support deterministic recovery.
+- Preserve execution context.
+- Record failures in the Audit Log.
+- Never fail silently.
+
+Failure handling should remain consistent across the platform.
+
+---
+
+## Relationship to Legacy Engineering
+
+The original MVP introduced modular backend concepts through:
+
+- processtrip-Madison
+- executetrip-Madison
+- validatetrip-Madison
+- statemachine-Madison
+- failurehandling-Madison
+- postmanSetup-Lee
+
+These implementations demonstrated separation of responsibilities, modular execution, deterministic workflows, and provider abstraction.
+
+The canonical Backend Functions architecture modernizes these concepts while preserving the engineering patterns that proved successful during the original MVP.
+
+---
+
+## Engineering Principles
+
+Backend Functions should always be:
+
+- Modular.
+- Deterministic.
+- Reusable.
+- Testable.
+- Observable.
+- Provider-independent.
+- Single-purpose.
+
+Every function should have one clearly defined responsibility.
+
+---
+
+## Repository Organization
+
+Backend Functions are organized within the `/functions` directory.
+
+Each function should include:
+
+- Source code.
+- Associated documentation.
+- Unit tests.
+- Clearly defined inputs and outputs.
+- Minimal dependencies.
+
+Function names should clearly describe their purpose.
+
+Examples include:
+
+- `validateTrip.js`
+- `generateExecutiveBriefing.js`
+- `calculateSentryScore.js`
+- `orchestrateProviders.js`
+- `executeBookings.js`
+- `monitorTrip.js`
+
+Folder organization should prioritize discoverability over depth.
+
+---
+
+## AI Coding Guidance
+
+When implementing Backend Functions:
+
+- Read the corresponding architecture document before writing code.
+- Implement one architectural responsibility per function.
+- Preserve deterministic behavior.
+- Avoid duplicated business logic.
+- Keep provider-specific code inside Provider Adapters.
+- Update the Canonical Trip Object rather than maintaining local state.
+- Ensure every function is independently testable.
+- Review legacy implementations before introducing new logic.
+
+Backend Functions are the executable realization of the GÖ.AI architecture.
+
+Together they transform the platform's architectural vision into secure, modular, production-ready software while preserving the separation of concerns established throughout the SENTINEL™ and ETAS™ ecosystems.
+
+---
+
+# 20. Engineering Notes
+
+## Overview
+
+This document concludes the canonical architecture for **ETAS™ (Enhanced Travel Automation Suite)**.
+
+It captures the engineering principles, implementation philosophy, and architectural constraints that should guide every future contributor to the GÖ.AI platform.
+
+Unlike the preceding sections, which describe specific system capabilities, these Engineering Notes describe **how the platform should continue to evolve**.
+
+They serve as the institutional engineering guidance for both human developers and AI coding assistants.
+
+---
+
+## Architecture First
+
+GÖ.AI follows an **Architecture First** development methodology.
+
+Every implementation should follow this sequence:
+
+```text
+Architecture
+      │
+      ▼
+Specifications
+      │
+      ▼
+Engineering Documentation
+      │
+      ▼
+Legacy Engineering Review
+      │
+      ▼
+Backend Functions
+      │
+      ▼
+Testing
+      │
+      ▼
+Deployment
+      │
+      ▼
+Continuous Improvement
+```
+
+Code should implement the architecture.
+
+Architecture should never be reverse-engineered from code.
+
+---
+
+## Separation of Responsibilities
+
+The platform is intentionally divided into three major operational layers.
+
+### The Face
+
+Responsible for:
+
+- Conversational AI.
+- User Experience.
+- Progressive Web Application.
+- Traveler Dashboard.
+- Traveler interaction.
+
+The Face collects information.
+
+---
+
+### The Brain
+
+Responsible for:
+
+- SENTINEL™.
+- Intelligence Enrichment.
+- Twin Trip Simulation.
+- SENTRY™ Score.
+- Executive Briefings.
+- Recommendation generation.
+
+The Brain thinks.
+
+---
+
+### The Nervous System
+
+Responsible for:
+
+- ETAS™.
+- Provider Orchestration.
+- Booking Execution.
+- Continuous Monitoring.
+- Failure Recovery.
+
+The Nervous System acts.
+
+No layer should assume responsibilities belonging to another.
+
+---
+
+## The Canonical Trip Object
+
+Every platform component communicates through the Canonical Trip Object.
+
+Avoid:
+
+- Duplicate trip models.
+- Competing state representations.
+- Provider-specific objects.
+- Isolated workflow data.
+
+There should always be **one authoritative operational representation** of every journey.
+
+---
+
+## Provider Independence
+
+Commercial providers will change over time.
+
+The platform architecture should not.
+
+Every provider should remain isolated behind standardized Provider Adapters.
+
+Replacing a provider should never require changes to:
+
+- SENTINEL™.
+- ETAS™.
+- Business Logic.
+- Intelligence Layer.
+- Conversation Engine.
+- Traveler Dashboard.
+
+Provider integrations should always be replaceable.
+
+---
+
+## Legacy Engineering
+
+The `/legacy/demo-site` repository preserves valuable institutional engineering knowledge.
+
+It contains:
+
+- Madison Duran's engineering workflows.
+- Lee Kosek's provider integrations.
+- ClickUp engineering history.
+- Postman API collections.
+- Conversation prototypes.
+- Validation logic.
+- Demo trips.
+- Execution workflows.
+- API integration experiments.
+
+These artifacts should always be reviewed before introducing new implementations.
+
+Reuse proven engineering concepts.
+
+Do not reproduce obsolete technology.
+
+Modernize the implementation while preserving the engineering intent.
+
+---
+
+## AI Coding Philosophy
+
+AI coding assistants (Codex, Copilot, Cursor, Claude Code, etc.) should function as engineering collaborators—not autonomous architects.
+
+Every implementation should follow this workflow:
+
+```text
+Read Architecture
+      │
+      ▼
+Read System Requirements
+      │
+      ▼
+Read Engineering Documentation
+      │
+      ▼
+Search Legacy Repository
+      │
+      ▼
+Reuse Proven Logic
+      │
+      ▼
+Modernize Implementation
+      │
+      ▼
+Explain Design Decisions
+      │
+      ▼
+Generate Production Code
+```
+
+AI should:
+
+- Read architecture first.
+- Read specifications second.
+- Review engineering history.
+- Search legacy implementations.
+- Preserve repository organization.
+- Reuse proven engineering patterns.
+- Modernize outdated implementations.
+- Explain architectural decisions.
+
+AI should **not** invent competing architectures.
+
+---
+
+## Repository Standards
+
+Every new module should include:
+
+- Documentation.
+- Source code.
+- Unit tests.
+- Integration tests (where applicable).
+- Clear naming conventions.
+- README.md documentation.
+
+Documentation should be completed before implementation whenever practical.
+
+Every engineering artifact should be discoverable by both humans and AI.
+
+---
+
+## Engineering Decision Records
+
+Significant architectural decisions should always be documented.
+
+Each Engineering Decision Record (EDR) should include:
+
+- Problem Statement.
+- Decision.
+- Alternatives Considered.
+- Architectural Impact.
+- Dependencies.
+- Future Considerations.
+
+Engineering decisions should remain traceable throughout the life of the platform.
+
+---
+
+## Scalability
+
+The platform should be designed for future expansion.
+
+Examples include:
+
+- Additional Provider Adapters.
+- Enterprise deployments.
+- Executive Protection integrations.
+- Government deployments.
+- Additional Intelligence Layers.
+- Internationalization.
+- Native mobile applications.
+- Machine learning enhancements.
+
+Future growth should extend the architecture—not replace it.
+
+---
+
+## Security
+
+Security should be considered at every architectural layer.
+
+Core principles include:
+
+- Least privilege.
+- Secure API authentication.
+- Role-based access control.
+- Encryption in transit.
+- Encryption at rest.
+- Tenant isolation.
+- Complete auditability.
+- Secure secret management.
+
+Security should never be treated as an afterthought.
+
+---
+
+## Testing Philosophy
+
+Every major capability should support:
+
+- Unit Testing.
+- Integration Testing.
+- End-to-End Testing.
+- Provider Mock Testing.
+- Failure Recovery Testing.
+- State Transition Testing.
+
+Testing should mirror the architecture.
+
+Platform reliability is a product feature.
+
+---
+
+## Codex Engineering Rules
+
+Before implementing any module, Codex should:
+
+1. Read the relevant architecture document.
+2. Read the corresponding system requirements.
+3. Search `/legacy/demo-site` for prior implementations.
+4. Reuse proven engineering patterns where appropriate.
+5. Ignore obsolete technologies, including:
+   - Wix
+   - Calendly
+   - Legacy UI-specific implementations that no longer fit the canonical architecture
+6. Build according to the canonical architecture rather than duplicating legacy code.
+7. Explain which legacy concepts were reused and which were intentionally discarded.
+
+The legacy repository exists to preserve institutional engineering knowledge—not to constrain future development.
+
+---
+
+## Project Vision
+
+GÖ.AI is not intended to become another travel booking platform.
+
+Its purpose is to create an **Autonomous Travel Continuity Platform** capable of:
+
+- Understanding traveler intent.
+- Predicting disruption.
+- Preserving mission continuity.
+- Coordinating execution.
+- Continuously adapting as operational conditions evolve.
+
+The traveler should experience one seamless conversation.
+
+Behind that conversation, SENTINEL™ and ETAS™ continuously think, coordinate, execute, monitor, and adapt.
+
+---
+
+## Final Engineering Principle
+
+Every line of code should support a single objective:
+
+> **Preserve traveler continuity through predictive intelligence, coordinated automation, and human-centered design.**
+
+If a proposed implementation does not strengthen that objective, it should be reconsidered.
+
+```text
+Architecture First
+        │
+        ▼
+Intelligence Second
+        │
+        ▼
+Execution Third
+        │
+        ▼
+Continuous Improvement
+```
+
+This principle defines the engineering culture of GÖ.AI.
+
+Every architectural decision, engineering document, backend function, provider integration, and user experience should reinforce this philosophy.
+
+Build systems that think ahead.
+
+Build systems that adapt.
+
+Build systems that preserve continuity.
+
