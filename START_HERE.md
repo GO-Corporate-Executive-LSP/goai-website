@@ -250,6 +250,9 @@ Your responsibility is to build it faithfully.
 
 «Mission before reservations.
 
+Repository Documentation Standard
+All documentation must be written in GitHub Flavored Markdown (GFM). Diagrams must use fenced text code blocks. Code examples must use language-specific fenced code blocks (e.g., js, json, bash). Documentation should require no formatting changes before being committed to the repository.
+
 Intelligence before execution.
 
 Architecture before implementation.
