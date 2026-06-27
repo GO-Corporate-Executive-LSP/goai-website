@@ -1,1 +1,57 @@
-
+[
+  {
+    "id": "bag_000001",
+    "service_id": "svc_bag_001",
+    "passenger_id": "pas_000001",
+    "quantity": 1,
+    "weight": 23,
+    "weight_unit": "kg",
+    "included": true,
+    "total_amount": "0.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "bag_000002",
+    "service_id": "svc_bag_002",
+    "passenger_id": "pas_000002",
+    "quantity": 2,
+    "weight": 32,
+    "weight_unit": "kg",
+    "included": false,
+    "total_amount": "75.00",
+    "total_currency": "USD"
+  },
+  {
+    "id": "bag_000003",
+    "service_id": "svc_bag_003",
+    "passenger_id": "pas_000003",
+    "quantity": 1,
+    "weight": 15,
+    "weight_unit": "kg",
+    "included": false,
+    "total_amount": "35.00",
+    "total_currency": "EUR"
+  },
+  {
+    "id": "bag_000004",
+    "service_id": "svc_bag_004",
+    "passenger_id": "pas_000004",
+    "quantity": 3,
+    "weight": 23,
+    "weight_unit": "kg",
+    "included": false,
+    "total_amount": "120.00",
+    "total_currency": "GBP"
+  },
+  {
+    "id": "bag_000005",
+    "service_id": "svc_bag_005",
+    "passenger_id": "pas_000005",
+    "quantity": 1,
+    "weight": 20,
+    "weight_unit": "kg",
+    "included": true,
+    "total_amount": "0.00",
+    "total_currency": "USD"
+  }
+]
