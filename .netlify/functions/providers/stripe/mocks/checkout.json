@@ -1,1 +1,122 @@
-
+[
+  {
+    "id": "cs_test_000001",
+    "object": "checkout.session",
+    "mode": "subscription",
+    "status": "open",
+    "payment_status": "unpaid",
+    "customer": "cus_000001",
+    "subscription": null,
+    "payment_intent": null,
+    "currency": "usd",
+    "amount_subtotal": 34900,
+    "amount_total": 34900,
+    "customer_email": "founding100@goaihq.com",
+    "success_url": "https://goaihq.com/success",
+    "cancel_url": "https://goaihq.com/cancel",
+    "expires_at": 1782604800,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "tier": "founding",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cs_test_000002",
+    "object": "checkout.session",
+    "mode": "subscription",
+    "status": "complete",
+    "payment_status": "paid",
+    "customer": "cus_000002",
+    "subscription": "sub_000001",
+    "payment_intent": "pi_000001",
+    "currency": "usd",
+    "amount_subtotal": 34900,
+    "amount_total": 34900,
+    "customer_email": "beta@goaihq.com",
+    "success_url": "https://goaihq.com/success",
+    "cancel_url": "https://goaihq.com/cancel",
+    "expires_at": 1782604800,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "tier": "beta",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cs_test_000003",
+    "object": "checkout.session",
+    "mode": "subscription",
+    "status": "complete",
+    "payment_status": "paid",
+    "customer": "cus_000003",
+    "subscription": "sub_000002",
+    "payment_intent": "pi_000002",
+    "currency": "usd",
+    "amount_subtotal": 99900,
+    "amount_total": 99900,
+    "customer_email": "executive@goaihq.com",
+    "success_url": "https://goaihq.com/success",
+    "cancel_url": "https://goaihq.com/cancel",
+    "expires_at": 1782604800,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "tier": "executive",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cs_test_000004",
+    "object": "checkout.session",
+    "mode": "subscription",
+    "status": "expired",
+    "payment_status": "unpaid",
+    "customer": "cus_000004",
+    "subscription": null,
+    "payment_intent": null,
+    "currency": "usd",
+    "amount_subtotal": 499900,
+    "amount_total": 499900,
+    "customer_email": "enterprise@goaihq.com",
+    "success_url": "https://goaihq.com/success",
+    "cancel_url": "https://goaihq.com/cancel",
+    "expires_at": 1782604800,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "tier": "enterprise",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cs_test_000005",
+    "object": "checkout.session",
+    "mode": "payment",
+    "status": "complete",
+    "payment_status": "paid",
+    "customer": "cus_000005",
+    "subscription": null,
+    "payment_intent": "pi_000003",
+    "currency": "usd",
+    "amount_subtotal": 19900,
+    "amount_total": 19900,
+    "customer_email": "traveler@goaihq.com",
+    "success_url": "https://goaihq.com/success",
+    "cancel_url": "https://goaihq.com/cancel",
+    "expires_at": 1782604800,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "tier": "individual",
+      "environment": "test"
+    }
+  }
+]
