@@ -5,32 +5,27 @@
  * File: products.js
  * -----------------------------------------------------------------------------
  * Purpose:
- * Manage Stripe Products and Prices for the GÖ.AI platform.
+ * Enterprise product and pricing management for the Stripe Provider Adapter.
  *
  * Responsibilities:
- * - Create products
- * - List products
- * - Retrieve products
- * - Update products
- * - Archive products
- * - Create prices
- * - List prices
- * - Retrieve prices
- * - Update prices
+ * - Create Products
+ * - List Products
+ * - Retrieve Products
+ * - Update Products
+ * - Archive Products
+ * - Create Prices
+ * - List Prices
+ * - Retrieve Prices
+ * - Update Prices
  *
  * NOTE:
  * Stripe separates Products from Prices.
- * A single Product may have multiple Prices attached to it.
- * This allows GÖ.AI to support:
- *
- * • Founding 100 Pricing
- * • Standard Membership Pricing
- * • Enterprise Pricing
- * • Promotional Pricing
- * • Kickstarter Rewards
+ * GÖ.AI intentionally manages both within this module because
+ * every membership, enterprise plan, promotion, Kickstarter reward,
+ * and Founding 100 offer begins with a Product.
  *
  * @author GÖ.AI
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 "use strict";
@@ -54,7 +49,9 @@ const {
 
 const {
 
-    normalizeProduct
+    normalizeProduct,
+
+    normalizePrice
 
 } = require("./normalize");
 
@@ -68,7 +65,7 @@ const {
 
 /*
 |--------------------------------------------------------------------------
-| Product Helpers
+| Product Payload Builder
 |--------------------------------------------------------------------------
 */
 
@@ -86,7 +83,9 @@ function buildProductPayload(
     if (!product) {
 
         throw new StripeValidationError(
+
             "Product information is required."
+
         );
 
     }
@@ -95,7 +94,7 @@ function buildProductPayload(
 
         name,
 
-        description,
+        description = "",
 
         active = true,
 
@@ -103,10 +102,18 @@ function buildProductPayload(
 
     } = product;
 
-    if (!name) {
+    if (
+
+        typeof name !== "string" ||
+
+        name.trim() === ""
+
+    ) {
 
         throw new StripeValidationError(
+
             "Product name is required."
+
         );
 
     }
@@ -125,6 +132,12 @@ function buildProductPayload(
 
 }
 
+/*
+|--------------------------------------------------------------------------
+| Price Payload Builder
+|--------------------------------------------------------------------------
+*/
+
 /**
  * Build a Stripe Price payload.
  *
@@ -139,7 +152,9 @@ function buildPricePayload(
     if (!price) {
 
         throw new StripeValidationError(
+
             "Price information is required."
+
         );
 
     }
@@ -174,11 +189,29 @@ function buildPricePayload(
 
     );
 
+    if (
+
+        typeof unitAmount !== "number" ||
+
+        unitAmount <= 0
+
+    ) {
+
+        throw new StripeValidationError(
+
+            "A valid unit amount is required."
+
+        );
+
+    }
+
     return {
 
         product,
 
-        unit_amount: unitAmount,
+        unit_amount:
+
+            unitAmount,
 
         currency:
 
@@ -250,7 +283,7 @@ async function createProduct(
 }
 
 /**
- * Retrieve all active Stripe Products.
+ * Retrieve all Stripe Products.
  *
  * @param {Object} options
  * @returns {Promise<Object>}
@@ -431,8 +464,8 @@ async function updateProduct(
 /**
  * Archive a Stripe Product.
  *
- * Stripe archives products by setting
- * active = false.
+ * Stripe archives Products by
+ * setting active = false.
  *
  * @param {String} productId
  * @returns {Promise<Object>}
@@ -526,7 +559,13 @@ async function createPrice(
 
             provider: "Stripe",
 
-            price: response
+            price:
+
+                normalizePrice(
+
+                    response
+
+                )
 
         };
 
@@ -544,7 +583,7 @@ async function createPrice(
 
 }
 /**
- * Retrieve all Prices for a Product.
+ * Retrieve all Prices associated with a Product.
  *
  * @param {String} productId
  * @returns {Promise<Object>}
@@ -583,7 +622,11 @@ async function listPrices(
 
             prices:
 
-                response.data
+                response.data.map(
+
+                    normalizePrice
+
+                )
 
         };
 
@@ -635,7 +678,11 @@ async function getPrice(
 
             price:
 
-                response
+                normalizePrice(
+
+                    response
+
+                )
 
         };
 
@@ -657,9 +704,10 @@ async function getPrice(
  * Update a Stripe Price.
  *
  * NOTE:
- * Stripe only allows certain fields such as
- * metadata, nickname, and active status
- * to be updated.
+ * Stripe only allows metadata,
+ * nickname, lookup_key,
+ * active status, and transfer lookup
+ * fields to be updated.
  *
  * @param {String} priceId
  * @param {Object} updates
@@ -699,7 +747,11 @@ async function updatePrice(
 
             price:
 
-                response
+                normalizePrice(
+
+                    response
+
+                )
 
         };
 
@@ -744,11 +796,6 @@ function normalizeProducts(
 /**
  * Normalize a collection of Stripe Prices.
  *
- * Prices are intentionally returned with their
- * native Stripe structure since ETAS™ frequently
- * needs access to recurring billing details,
- * billing schemes, and tiers.
- *
  * @param {Array} prices
  * @returns {Array}
  */
@@ -759,54 +806,21 @@ function normalizePrices(
 
     return prices.map(
 
-        (price) => ({
-
-            id: price.id,
-
-            provider: "Stripe",
-
-            product: price.product,
-
-            currency: price.currency,
-
-            unitAmount:
-
-                price.unit_amount,
-
-            recurring:
-
-                price.recurring,
-
-            nickname:
-
-                price.nickname,
-
-            active:
-
-                price.active,
-
-            metadata:
-
-                price.metadata || {}
-
-        })
+        normalizePrice
 
     );
 
 }
 
 /**
- * Build a standardized Stripe response.
+ * Build a standardized provider response.
  *
- * @param {String} provider
  * @param {String} resource
  * @param {*} data
  * @returns {Object}
  */
 
 function buildResponse(
-
-    provider,
 
     resource,
 
@@ -816,7 +830,7 @@ function buildResponse(
 
     return {
 
-        provider,
+        provider: "Stripe",
 
         resource,
 
@@ -827,7 +841,8 @@ function buildResponse(
 }
 
 /**
- * Wrap unexpected provider errors.
+ * Convert unexpected provider errors into
+ * standardized Stripe API errors.
  *
  * @param {Error} error
  * @throws {StripeAPIError}
@@ -839,9 +854,9 @@ function handleStripeError(
 
     if (
 
-        error instanceof StripeAPIError ||
+        error instanceof StripeValidationError ||
 
-        error instanceof StripeValidationError
+        error instanceof StripeAPIError
 
     ) {
 
@@ -865,7 +880,7 @@ function handleStripeError(
 */
 
 /**
- * Verify whether a Product exists.
+ * Determine whether a Product exists.
  *
  * @param {String} productId
  * @returns {Promise<Boolean>}
@@ -896,7 +911,7 @@ async function productExists(
 }
 
 /**
- * Verify whether a Price exists.
+ * Determine whether a Price exists.
  *
  * @param {String} priceId
  * @returns {Promise<Boolean>}
@@ -947,8 +962,6 @@ async function getDefaultPrice(
 
     if (
 
-        !response.prices ||
-
         response.prices.length === 0
 
     ) {
@@ -962,8 +975,8 @@ async function getDefaultPrice(
 }
 
 /**
- * Retrieve all active recurring Prices
- * for a Product.
+ * Retrieve all recurring Prices
+ * associated with a Product.
  *
  * @param {String} productId
  * @returns {Promise<Array>}
@@ -985,6 +998,35 @@ async function getRecurringPrices(
         (price) =>
 
             price.recurring
+
+    );
+
+}
+
+/**
+ * Retrieve all active one-time Prices
+ * associated with a Product.
+ *
+ * @param {String} productId
+ * @returns {Promise<Array>}
+ */
+
+async function getOneTimePrices(
+    productId
+) {
+
+    const response =
+        await listPrices(
+
+            productId
+
+        );
+
+    return response.prices.filter(
+
+        (price) =>
+
+            !price.recurring
 
     );
 
@@ -1029,7 +1071,7 @@ module.exports = {
 
     /*
     --------------------------------------------------------------------------
-    Utilities
+    Provider Utilities
     --------------------------------------------------------------------------
     */
 
@@ -1040,6 +1082,8 @@ module.exports = {
     getDefaultPrice,
 
     getRecurringPrices,
+
+    getOneTimePrices,
 
     /*
     --------------------------------------------------------------------------
