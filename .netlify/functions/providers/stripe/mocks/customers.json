@@ -1,1 +1,88 @@
-
+[
+  {
+    "id": "cus_000001",
+    "object": "customer",
+    "email": "founding100@goaihq.com",
+    "name": "Founding Member",
+    "phone": "+1-704-555-0101",
+    "currency": "usd",
+    "created": 1782518400,
+    "delinquent": false,
+    "livemode": false,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "tier": "founding",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cus_000002",
+    "object": "customer",
+    "email": "beta@goaihq.com",
+    "name": "Beta Waitlist Member",
+    "phone": "+1-704-555-0102",
+    "currency": "usd",
+    "created": 1782518401,
+    "delinquent": false,
+    "livemode": false,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "tier": "beta",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cus_000003",
+    "object": "customer",
+    "email": "executive@goaihq.com",
+    "name": "Executive Member",
+    "phone": "+1-704-555-0103",
+    "currency": "usd",
+    "created": 1782518402,
+    "delinquent": false,
+    "livemode": false,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "tier": "executive",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cus_000004",
+    "object": "customer",
+    "email": "enterprise@goaihq.com",
+    "name": "Enterprise Administrator",
+    "phone": "+1-704-555-0104",
+    "currency": "usd",
+    "created": 1782518403,
+    "delinquent": false,
+    "livemode": false,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "tier": "enterprise",
+      "company": "GÖ.AI Enterprise",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "cus_000005",
+    "object": "customer",
+    "email": "traveler@goaihq.com",
+    "name": "Traveler Member",
+    "phone": "+1-704-555-0105",
+    "currency": "usd",
+    "created": 1782518404,
+    "delinquent": false,
+    "livemode": false,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "tier": "individual",
+      "environment": "test"
+    }
+  }
+]
