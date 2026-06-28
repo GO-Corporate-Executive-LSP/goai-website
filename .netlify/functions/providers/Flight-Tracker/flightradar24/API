@@ -1,3 +1,7 @@
+E:developer@goaihq.com
+P:InternalTechTeam26!
+
+
 get /api/static/airports/{code}/full
 
 const axios = require('axios');
