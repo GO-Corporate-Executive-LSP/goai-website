@@ -1,1 +1,87 @@
-
+[
+  {
+    "id": "pi_000001",
+    "object": "payment_intent",
+    "amount": 34900,
+    "currency": "usd",
+    "status": "succeeded",
+    "customer": "cus_000001",
+    "invoice": "in_000001",
+    "description": "Founding 100 Membership",
+    "receipt_email": "founding100@goaihq.com",
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "pi_000002",
+    "object": "payment_intent",
+    "amount": 34900,
+    "currency": "usd",
+    "status": "succeeded",
+    "customer": "cus_000002",
+    "invoice": "in_000002",
+    "description": "Beta Waitlist Membership",
+    "receipt_email": "beta@goaihq.com",
+    "created": 1782518500,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "pi_000003",
+    "object": "payment_intent",
+    "amount": 99900,
+    "currency": "usd",
+    "status": "succeeded",
+    "customer": "cus_000003",
+    "invoice": "in_000003",
+    "description": "Executive Membership",
+    "receipt_email": "executive@goaihq.com",
+    "created": 1782518600,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "pi_000004",
+    "object": "payment_intent",
+    "amount": 499900,
+    "currency": "usd",
+    "status": "requires_payment_method",
+    "customer": "cus_000004",
+    "invoice": "in_000004",
+    "description": "Enterprise Membership",
+    "receipt_email": "enterprise@goaihq.com",
+    "created": 1782518700,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "pi_000005",
+    "object": "payment_intent",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "canceled",
+    "customer": "cus_000005",
+    "invoice": "in_000005",
+    "description": "Traveler Membership",
+    "receipt_email": "traveler@goaihq.com",
+    "created": 1782518800,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "environment": "test"
+    }
+  }
+]
