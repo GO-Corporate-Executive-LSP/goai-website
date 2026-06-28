@@ -1,1 +1,130 @@
-
+[
+  {
+    "id": "re_000001",
+    "object": "refund",
+    "payment_intent": "pi_000001",
+    "charge": "ch_000001",
+    "amount": 34900,
+    "currency": "usd",
+    "status": "succeeded",
+    "reason": "requested_by_customer",
+    "receipt_number": "RFD-100001",
+    "created": 1782522000,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "customer": "cus_000001",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000002",
+    "object": "refund",
+    "payment_intent": "pi_000002",
+    "charge": "ch_000002",
+    "amount": 34900,
+    "currency": "usd",
+    "status": "succeeded",
+    "reason": "duplicate",
+    "receipt_number": "RFD-100002",
+    "created": 1782522100,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "customer": "cus_000002",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000003",
+    "object": "refund",
+    "payment_intent": "pi_000003",
+    "charge": "ch_000003",
+    "amount": 99900,
+    "currency": "usd",
+    "status": "pending",
+    "reason": "requested_by_customer",
+    "receipt_number": "RFD-100003",
+    "created": 1782522200,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "customer": "cus_000003",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000004",
+    "object": "refund",
+    "payment_intent": "pi_000004",
+    "charge": "ch_000004",
+    "amount": 499900,
+    "currency": "usd",
+    "status": "failed",
+    "reason": "fraudulent",
+    "receipt_number": "RFD-100004",
+    "created": 1782522300,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "customer": "cus_000004",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000005",
+    "object": "refund",
+    "payment_intent": "pi_000005",
+    "charge": "ch_000005",
+    "amount": 19900,
+    "currency": "usd",
+    "status": "canceled",
+    "reason": "requested_by_customer",
+    "receipt_number": "RFD-100005",
+    "created": 1782522400,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "customer": "cus_000005",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000006",
+    "object": "refund",
+    "payment_intent": "pi_000003",
+    "charge": "ch_000006",
+    "amount": 25000,
+    "currency": "usd",
+    "status": "succeeded",
+    "reason": "partial_refund",
+    "receipt_number": "RFD-100006",
+    "created": 1782522500,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "type": "partial",
+      "customer": "cus_000003",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "re_000007",
+    "object": "refund",
+    "payment_intent": "pi_000001",
+    "charge": "ch_000007",
+    "amount": 34900,
+    "currency": "usd",
+    "status": "pending",
+    "reason": "requested_by_customer",
+    "receipt_number": "RFD-100007",
+    "created": 1782522600,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "customer": "cus_000001",
+      "review": "manual",
+      "environment": "test"
+    }
+  }
+]
