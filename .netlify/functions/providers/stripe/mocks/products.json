@@ -1,1 +1,119 @@
-
+[
+  {
+    "id": "prod_000001",
+    "object": "product",
+    "active": true,
+    "name": "Founding 100 Membership",
+    "description": "Annual Founding Member subscription for early GÖ.AI adopters.",
+    "default_price": "price_000001",
+    "livemode": false,
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "tier": "founding",
+      "billing": "annual",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000002",
+    "object": "product",
+    "active": true,
+    "name": "Beta Membership",
+    "description": "Beta Waitlist annual membership.",
+    "default_price": "price_000002",
+    "livemode": false,
+    "created": 1782518500,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "tier": "beta",
+      "billing": "annual",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000003",
+    "object": "product",
+    "active": true,
+    "name": "Executive Membership",
+    "description": "Premium membership for executive travelers.",
+    "default_price": "price_000003",
+    "livemode": false,
+    "created": 1782518600,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "tier": "executive",
+      "billing": "annual",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000004",
+    "object": "product",
+    "active": true,
+    "name": "Enterprise Membership",
+    "description": "Enterprise subscription for organizations and corporate travel teams.",
+    "default_price": "price_000004",
+    "livemode": false,
+    "created": 1782518700,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "tier": "enterprise",
+      "billing": "annual",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000005",
+    "object": "product",
+    "active": true,
+    "name": "Traveler Membership",
+    "description": "Individual traveler subscription and one-time commerce purchases.",
+    "default_price": "price_000005",
+    "livemode": false,
+    "created": 1782518800,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "tier": "individual",
+      "billing": "one_time",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000006",
+    "object": "product",
+    "active": true,
+    "name": "Executive Briefing",
+    "description": "AI-generated Executive Travel Briefing powered by SENTINEL™.",
+    "default_price": "price_000006",
+    "livemode": false,
+    "created": 1782518900,
+    "metadata": {
+      "service": "Executive Briefing",
+      "platform": "SENTINEL",
+      "billing": "one_time",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "prod_000007",
+    "object": "product",
+    "active": true,
+    "name": "Priority Booking",
+    "description": "Priority booking and itinerary coordination through ETAS™.",
+    "default_price": "price_000007",
+    "livemode": false,
+    "created": 1782519000,
+    "metadata": {
+      "service": "Priority Booking",
+      "platform": "ETAS",
+      "billing": "one_time",
+      "environment": "test"
+    }
+  }
+]
