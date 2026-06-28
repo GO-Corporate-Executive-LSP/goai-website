@@ -1,1 +1,193 @@
-
+[
+  {
+    "id": "sub_000001",
+    "object": "subscription",
+    "customer": "cus_000001",
+    "status": "active",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518400,
+    "current_period_end": 1814054400,
+    "cancel_at_period_end": false,
+    "created": 1782518400,
+    "default_payment_method": "pm_000001",
+    "latest_invoice": "in_000001",
+    "items": [
+      {
+        "id": "si_000001",
+        "price": "price_000001",
+        "product": "prod_000001",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000002",
+    "object": "subscription",
+    "customer": "cus_000002",
+    "status": "active",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518500,
+    "current_period_end": 1814054500,
+    "cancel_at_period_end": false,
+    "created": 1782518500,
+    "default_payment_method": "pm_000002",
+    "latest_invoice": "in_000002",
+    "items": [
+      {
+        "id": "si_000002",
+        "price": "price_000002",
+        "product": "prod_000002",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000003",
+    "object": "subscription",
+    "customer": "cus_000003",
+    "status": "active",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518600,
+    "current_period_end": 1814054600,
+    "cancel_at_period_end": false,
+    "created": 1782518600,
+    "default_payment_method": "pm_000003",
+    "latest_invoice": "in_000003",
+    "items": [
+      {
+        "id": "si_000003",
+        "price": "price_000003",
+        "product": "prod_000003",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000004",
+    "object": "subscription",
+    "customer": "cus_000004",
+    "status": "past_due",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518700,
+    "current_period_end": 1814054700,
+    "cancel_at_period_end": false,
+    "created": 1782518700,
+    "default_payment_method": "pm_000004",
+    "latest_invoice": "in_000004",
+    "items": [
+      {
+        "id": "si_000004",
+        "price": "price_000004",
+        "product": "prod_000004",
+        "quantity": 25
+      }
+    ],
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000005",
+    "object": "subscription",
+    "customer": "cus_000005",
+    "status": "canceled",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518800,
+    "current_period_end": 1814054800,
+    "cancel_at_period_end": true,
+    "created": 1782518800,
+    "canceled_at": 1785110400,
+    "default_payment_method": "pm_000005",
+    "latest_invoice": "in_000005",
+    "items": [
+      {
+        "id": "si_000005",
+        "price": "price_000005",
+        "product": "prod_000005",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000006",
+    "object": "subscription",
+    "customer": "cus_000003",
+    "status": "trialing",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782518900,
+    "current_period_end": 1814054900,
+    "trial_end": 1785110400,
+    "cancel_at_period_end": false,
+    "created": 1782518900,
+    "default_payment_method": "pm_000006",
+    "latest_invoice": null,
+    "items": [
+      {
+        "id": "si_000006",
+        "price": "price_000003",
+        "product": "prod_000003",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Executive Trial",
+      "campaign": "Executive Trial",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "sub_000007",
+    "object": "subscription",
+    "customer": "cus_000001",
+    "status": "unpaid",
+    "currency": "usd",
+    "collection_method": "charge_automatically",
+    "current_period_start": 1782519000,
+    "current_period_end": 1814055000,
+    "cancel_at_period_end": false,
+    "created": 1782519000,
+    "default_payment_method": "pm_000007",
+    "latest_invoice": "in_000001",
+    "items": [
+      {
+        "id": "si_000007",
+        "price": "price_000001",
+        "product": "prod_000001",
+        "quantity": 1
+      }
+    ],
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Billing Retry",
+      "environment": "test"
+    }
+  }
+]
