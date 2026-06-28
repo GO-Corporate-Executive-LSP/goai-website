@@ -1,0 +1,18 @@
+Email: developer@goaihq.com
+Password: InternalTechTeam26!
+
+Team URL: app.duffel.com/4d68c262f7907e3436047ac
+
+GET https://api.duffel.com/air/offer_requests
+
+import { Duffel } from '@duffel/api'
+
+const duffel = new Duffel({
+  token: YOUR_ACCESS_TOKEN
+})
+
+duffel.offerRequests.list({
+  "after": "g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=",
+  "before": "g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=",
+  "limit": 1
+})
