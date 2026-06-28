@@ -1,14 +1,12 @@
-README.md
+# Stripe Provider Adapter
 
-Stripe Provider Adapter
+Enterprise Stripe integration for the **GÖ.AI Backend**.
 
-Enterprise Stripe integration for the GÖ.AI Backend.
-
-The Stripe Provider Adapter provides a modular abstraction over the Stripe API and serves as the payment engine for ETAS™ and SENTINEL™.
+The Stripe Provider Adapter provides a modular abstraction over the Stripe API and serves as the payment engine for **ETAS™** and **SENTINEL™**.
 
 ---
 
-Overview
+# Overview
 
 The adapter standardizes Stripe operations behind a provider interface so the remainder of the GÖ.AI platform never communicates directly with Stripe.
 
@@ -27,22 +25,27 @@ Supported capabilities include:
 
 ---
 
-Architecture
+# Architecture
 
-                 GÖ.AI Platform
-                        │
-                        ▼
-               Stripe Provider Adapter
-                        │
-        ┌───────────────┼────────────────┐
-        │               │                │
-        ▼               ▼                ▼
- Infrastructure      Commerce        Webhooks
+```mermaid
+flowchart TD
+
+    A[GÖ.AI Platform]
+
+    A --> B[Stripe Provider Adapter]
+
+    B --> C[Infrastructure]
+
+    B --> D[Commerce]
+
+    B --> E[Webhooks]
+```
 
 ---
 
-Provider Layout
+# Provider Layout
 
+```text
 stripe/
 │
 ├── config.js
@@ -65,7 +68,6 @@ stripe/
 ├── webhooks.js
 │
 ├── __mocks__/
-│
 ├── tests/
 │
 ├── jest.config.js
@@ -73,230 +75,148 @@ stripe/
 │
 ├── README.md
 └── CHANGELOG.md
+```
 
 ---
 
-Module Architecture
+# Module Architecture
 
-Every commerce module follows the exact same enterprise structure.
+```mermaid
+flowchart TD
 
-Header
-    │
-Dependencies
-    │
-Payload Builder
-    │
-Core Operations
-    │
-Search / Lookup
-    │
-Private Helpers
-    │
-GÖ.AI Utilities
-    │
-Module Exports
+    A[Header]
 
-This standardized design allows every provider to behave consistently throughout the GÖ.AI backend.
+    A --> B[Dependencies]
 
----
+    B --> C[Payload Builder]
 
-Commerce Flow
+    C --> D[Core Operations]
 
-Customer
-    │
-    ▼
-Product
-    │
-    ▼
-Price
-    │
-    ▼
-Promotion Code
-    │
-    ▼
-Checkout Session
-    │
-    ▼
-Payment Intent
-    │
-    ▼
-Subscription
-    │
-    ▼
-Invoice
-    │
-    ▼
-Refund
+    D --> E[Search / Lookup]
+
+    E --> F[Private Helpers]
+
+    F --> G[GÖ.AI Utilities]
+
+    G --> H[Module Exports]
+```
 
 ---
 
-Webhook Flow
+# Commerce Flow
 
-Stripe
-   │
-   ▼
-Webhook Received
-   │
-   ▼
-Signature Verification
-   │
-   ▼
-Normalization
-   │
-   ▼
-Dispatcher
-   │
-   ▼
-Registered Handler
-   │
-   ▼
-ETAS™
-   │
-   ▼
-SENTINEL™
+```mermaid
+flowchart LR
 
----
+    Customer
 
-Membership Lifecycle
+    --> Product
 
-Beta Waitlist
-      │
-      ▼
-Magic Link
-      │
-      ▼
-Promotion Code
-      │
-      ▼
-Checkout
-      │
-      ▼
-Payment
-      │
-      ▼
-Subscription
-      │
-      ▼
-Invoice
-      │
-      ▼
-Member Active
+    --> Price
+
+    --> PromotionCode
+
+    --> Checkout
+
+    --> PaymentIntent
+
+    --> Subscription
+
+    --> Invoice
+
+    --> Refund
+```
 
 ---
 
-Supported Memberships
+# Webhook Flow
 
-- Founding 100
-- Beta Waitlist
-- Executive Membership
-- Enterprise Membership
-- Future Premium Memberships
+```mermaid
+flowchart TD
 
----
+    Stripe
 
-Testing
+    --> Webhook
 
-Jest is configured for complete provider coverage.
+    --> VerifySignature
 
-tests/
-│
-├── checkout.test.js
-├── customers.test.js
-├── invoices.test.js
-├── paymentintents.test.js
-├── products.test.js
-├── promotioncodes.test.js
-├── refunds.test.js
-├── subscriptions.test.js
-└── webhooks.test.js
+    --> Normalize
 
-Coverage includes:
+    --> Dispatch
 
-- Infrastructure
-- Validation
-- Error Handling
-- CRUD Operations
-- Search Utilities
-- Membership Helpers
-- Webhook Processing
+    --> Handler
+
+    --> ETAS
+
+    --> SENTINEL
+```
 
 ---
 
-Design Principles
+# Membership Lifecycle
 
-The Stripe Provider Adapter is built around the following principles:
+```mermaid
+flowchart LR
 
-- Provider abstraction
-- Enterprise modularity
-- Shared normalization
-- Shared validation
-- Centralized error handling
-- Reusable helper utilities
-- Provider independence
-- Testability
-- Maintainability
-- Scalability
+    BetaWaitlist
 
----
+    --> MagicLink
 
-Integration with ETAS™
+    --> PromotionCode
 
-                ETAS™
-                  │
-                  ▼
-        Stripe Provider Adapter
-                  │
-    ┌─────────────┼─────────────┐
-    ▼             ▼             ▼
- Commerce     Billing      Webhooks
-                  │
-                  ▼
-             Stripe API
+    --> Checkout
+
+    --> Payment
+
+    --> Subscription
+
+    --> Invoice
+
+    --> ActiveMember
+```
 
 ---
 
-Integration with SENTINEL™
+# Integration with ETAS™
 
-      SENTINEL™ Intelligence
-               │
-               ▼
-      Membership Decisions
-               │
-               ▼
-      Stripe Provider Adapter
-               │
-               ▼
-     Subscription Management
+```mermaid
+flowchart TD
 
----
+    ETAS
 
-Future Enhancements
+    --> StripeProvider
 
-Planned additions include:
+    StripeProvider
 
-- Stripe Connect
-- Stripe Tax
-- Usage-Based Billing
-- Metered Billing
-- Revenue Intelligence
-- Billing Analytics
-- Fraud Detection
-- Multi-Currency Expansion
-- Enterprise Invoice Automation
-- Commerce Intelligence Layer
+    --> Commerce
+
+    StripeProvider
+
+    --> Billing
+
+    StripeProvider
+
+    --> Webhooks
+
+    Commerce --> StripeAPI
+
+    Billing --> StripeAPI
+
+    Webhooks --> StripeAPI
+```
 
 ---
 
-Version
+# Integration with SENTINEL™
 
-Current Version
+```mermaid
+flowchart TD
 
-1.1.0
+    SENTINEL
 
----
+    --> MembershipDecision
 
-License
+    --> StripeProvider
 
-© 2026 GÖ.AI
-
-All Rights Reserved.
+    --> SubscriptionManagement
+```
