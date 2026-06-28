@@ -1,1 +1,112 @@
-
+[
+  {
+    "id": "in_000001",
+    "object": "invoice",
+    "customer": "cus_000001",
+    "subscription": "sub_000001",
+    "payment_intent": "pi_000001",
+    "status": "paid",
+    "currency": "usd",
+    "amount_due": 34900,
+    "amount_paid": 34900,
+    "amount_remaining": 0,
+    "billing_reason": "subscription_create",
+    "collection_method": "charge_automatically",
+    "invoice_pdf": "https://pay.stripe.com/invoice/in_000001/pdf",
+    "hosted_invoice_url": "https://pay.stripe.com/invoice/in_000001",
+    "created": 1782518400,
+    "metadata": {
+      "membership": "Founding 100",
+      "campaign": "Founding 100",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "in_000002",
+    "object": "invoice",
+    "customer": "cus_000002",
+    "subscription": "sub_000002",
+    "payment_intent": "pi_000002",
+    "status": "paid",
+    "currency": "usd",
+    "amount_due": 34900,
+    "amount_paid": 34900,
+    "amount_remaining": 0,
+    "billing_reason": "subscription_create",
+    "collection_method": "charge_automatically",
+    "invoice_pdf": "https://pay.stripe.com/invoice/in_000002/pdf",
+    "hosted_invoice_url": "https://pay.stripe.com/invoice/in_000002",
+    "created": 1782518500,
+    "metadata": {
+      "membership": "Beta Waitlist",
+      "campaign": "Beta Waitlist",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "in_000003",
+    "object": "invoice",
+    "customer": "cus_000003",
+    "subscription": "sub_000003",
+    "payment_intent": "pi_000003",
+    "status": "paid",
+    "currency": "usd",
+    "amount_due": 99900,
+    "amount_paid": 99900,
+    "amount_remaining": 0,
+    "billing_reason": "subscription_cycle",
+    "collection_method": "charge_automatically",
+    "invoice_pdf": "https://pay.stripe.com/invoice/in_000003/pdf",
+    "hosted_invoice_url": "https://pay.stripe.com/invoice/in_000003",
+    "created": 1782518600,
+    "metadata": {
+      "membership": "Executive",
+      "campaign": "Executive",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "in_000004",
+    "object": "invoice",
+    "customer": "cus_000004",
+    "subscription": "sub_000004",
+    "payment_intent": "pi_000004",
+    "status": "open",
+    "currency": "usd",
+    "amount_due": 499900,
+    "amount_paid": 0,
+    "amount_remaining": 499900,
+    "billing_reason": "subscription_cycle",
+    "collection_method": "charge_automatically",
+    "invoice_pdf": "https://pay.stripe.com/invoice/in_000004/pdf",
+    "hosted_invoice_url": "https://pay.stripe.com/invoice/in_000004",
+    "created": 1782518700,
+    "metadata": {
+      "membership": "Enterprise",
+      "campaign": "Enterprise",
+      "environment": "test"
+    }
+  },
+  {
+    "id": "in_000005",
+    "object": "invoice",
+    "customer": "cus_000005",
+    "subscription": null,
+    "payment_intent": "pi_000005",
+    "status": "void",
+    "currency": "usd",
+    "amount_due": 19900,
+    "amount_paid": 0,
+    "amount_remaining": 19900,
+    "billing_reason": "manual",
+    "collection_method": "send_invoice",
+    "invoice_pdf": "https://pay.stripe.com/invoice/in_000005/pdf",
+    "hosted_invoice_url": "https://pay.stripe.com/invoice/in_000005",
+    "created": 1782518800,
+    "metadata": {
+      "membership": "Traveler",
+      "campaign": "One-Time Purchase",
+      "environment": "test"
+    }
+  }
+]
