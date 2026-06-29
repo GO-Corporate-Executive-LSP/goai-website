@@ -1,0 +1,3 @@
+# NOAA Provider Adapter
+
+Scaffold.
