@@ -76,7 +76,7 @@ const config = {
     apiVersion:
 
         STRIPE_API_VERSION ||
-        "2025-06-30.basil",
+        "2026-06-24.dahlia",
 
     secretKey:
 
