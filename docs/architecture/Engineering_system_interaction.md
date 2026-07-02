@@ -7,50 +7,54 @@ This document provides a high-level understanding of how the GÖ.AI platform is 
 
 For detailed technical specifications of the intelligence engine, refer to the documents located in:
 
-goai-website/docs/architecture/
+```text
+goai-website/docs/architecture/ETAS_Orchestration.md
+goai-website/docs/architecture/SENTINEL_Architecture.md
+
+```
 
 These documents provide a deeper explanation of the Movement Graph™, Twin Trip Simulator™, Travel Continuity Index™, SENTINEL™ Architecture, and the underlying intelligence framework.
 
---------------------------------------------------------------------------------
+---
 
-CORE PHILOSOPHY
+# Core Philosophy
 
-GÖ.AI is not a travel booking platform.
+GÖ.AI is **not** a travel booking platform.
 
-It is a Travel Continuity Intelligence Platform.
+It is a **Travel Continuity Intelligence Platform**.
 
 Traditional travel platforms manage reservations independently. GÖ.AI manages the relationships between those reservations, continuously evaluating how changes in one part of a journey affect every other part.
 
-The objective is not simply to book travel—it is to maximize Travel Continuity before, during, and after every journey.
+The objective is not simply to book travel—it is to maximize **Travel Continuity** before, during, and after every journey.
 
---------------------------------------------------------------------------------
+---
 
-THE DIGITAL TRIP TWIN
+# The Digital Trip Twin
 
-When a user creates a trip, GÖ.AI creates a Digital Trip Twin.
+When a user creates a trip, GÖ.AI creates a **Digital Trip Twin**.
 
 The Digital Trip Twin becomes the authoritative representation of the journey and contains every object that may influence travel continuity, including:
 
-• Flights
-• Hotels
-• Ground Transportation
-• Calendar Events
-• Dining Reservations
-• Event Attendance
-• Traveler Preferences
-• Executive Briefings
-• Security Intelligence
-• Weather
-• SENTRY™ Score
-• Timeline Dependencies
+- Flights
+- Hotels
+- Ground Transportation
+- Calendar Events
+- Dining Reservations
+- Event Attendance
+- Traveler Preferences
+- Executive Briefings
+- Security Intelligence
+- Weather
+- SENTRY™ Score
+- Timeline Dependencies
 
 Rather than storing disconnected reservations, the platform maintains a living representation of the entire journey.
 
 Every provider continuously enriches and updates this Digital Trip Twin as new intelligence becomes available.
 
---------------------------------------------------------------------------------
+---
 
-THE PROVIDER ECOSYSTEM
+# The Provider Ecosystem
 
 External providers are organized into capability families.
 
@@ -58,106 +62,108 @@ Each provider family contributes a different dimension of intelligence or execut
 
 Examples include:
 
-• Commerce
-• Weather
-• Flight Tracking
-• Telemetry
-• Spatial Intelligence
-• Event Density
-• Safety & Security
-• Government & Public Intelligence
-• Coordination & Productivity
-• AI & Orchestration
+- Commerce
+- Weather
+- Flight Tracking
+- Telemetry
+- Spatial Intelligence
+- Event Density
+- Safety & Security
+- Government & Public Intelligence
+- Coordination & Productivity
+- AI & Orchestration
 
 Providers do not make decisions.
 
 Their responsibility is to:
 
-• Authenticate
-• Retrieve information
-• Validate responses
-• Normalize data into the common SENTINEL™ model
-• Execute actions when instructed by ETAS™
+- Authenticate
+- Retrieve information
+- Validate responses
+- Normalize data into the common SENTINEL™ model
+- Execute actions when instructed by ETAS™
 
 Every provider remains provider-agnostic, allowing providers to be replaced without changing the rest of the platform.
 
---------------------------------------------------------------------------------
+---
 
-INTELLIGENCE FLOW
+# Intelligence Flow
 
 The platform continuously processes information through the following architecture:
 
+```text
 External World
 
-↓
+        ↓
 
 Provider Families
 
-↓
+        ↓
 
 Provider Managers
 
-↓
+        ↓
 
 Normalization
 
-↓
+        ↓
 
 Digital Trip Twin
 
-↓
+        ↓
 
 Movement Graph™
 
-↓
+        ↓
 
 Twin Trip Simulator™
 
-↓
+        ↓
 
 Travel Continuity Index™
 
-↓
+        ↓
 
 SENTRY™ Score
 
-↓
+        ↓
 
 Recommendation Engine
 
-↓
+        ↓
 
 Executive Briefings
 
-↓
+        ↓
 
 Traveler Dashboard
 
-↓
+        ↓
 
 User Approval (where required)
 
-↓
+        ↓
 
 ETAS™
 
-↓
+        ↓
 
 Commercial Execution Providers
 
-↓
+        ↓
 
 Digital Trip Twin Updated
 
-↓
+        ↓
 
 Repeat
+```
 
 This cycle continues throughout the lifetime of every journey.
 
---------------------------------------------------------------------------------
+---
 
-MOVEMENT GRAPH™
+# Movement Graph™
 
 The Movement Graph™ is the platform's relationship engine.
 
@@ -165,17 +171,17 @@ Every object inside the Digital Trip Twin becomes a connected node.
 
 Examples include:
 
-• Flight
-• Airport
-• TSA
-• Weather System
-• Hotel
-• Calendar Meeting
-• Rideshare
-• Dinner Reservation
-• Sporting Event
-• Construction Zone
-• Security Advisory
+- Flight
+- Airport
+- TSA
+- Weather System
+- Hotel
+- Calendar Meeting
+- Rideshare
+- Dinner Reservation
+- Sporting Event
+- Construction Zone
+- Security Advisory
 
 Rather than evaluating each object independently, SENTINEL™ continuously evaluates how these nodes influence one another.
 
@@ -183,9 +189,9 @@ A weather event may affect a flight, which delays a rideshare, which impacts a m
 
 This relationship graph is where travel intelligence begins to emerge.
 
---------------------------------------------------------------------------------
+---
 
-TWIN TRIP SIMULATOR™
+# Twin Trip Simulator™
 
 The Twin Trip Simulator™ is the platform's predictive planning engine.
 
@@ -195,24 +201,24 @@ As new information enters the Movement Graph™, the simulator evaluates how tha
 
 Examples include:
 
-• Missing a connection due to weather delays.
-• Increased airport congestion causing a missed boarding window.
-• A road closure making the planned rideshare route unreliable.
-• A security incident impacting access to the destination.
-• A calendar conflict created by a delayed arrival.
+- Missing a connection due to weather delays.
+- Increased airport congestion causing a missed boarding window.
+- A road closure making the planned rideshare route unreliable.
+- A security incident impacting access to the destination.
+- A calendar conflict created by a delayed arrival.
 
 For every scenario, the simulator begins constructing alternative paths through the journey before disruption actually occurs.
 
 Examples include:
 
-• Rebooking through a secondary airport.
-• Selecting an earlier or later flight.
-• Changing airlines.
-• Recommending a different rideshare provider.
-• Suggesting rail instead of air.
-• Adjusting hotel check-in times.
-• Moving meetings based on arrival probability.
-• Recommending alternative dining or event reservations.
+- Rebooking through a secondary airport.
+- Selecting an earlier or later flight.
+- Changing airlines.
+- Recommending a different rideshare provider.
+- Suggesting rail instead of air.
+- Adjusting hotel check-in times.
+- Moving meetings based on arrival probability.
+- Recommending alternative dining or event reservations.
 
 These simulated future journeys are continuously evaluated against the current itinerary.
 
@@ -222,9 +228,9 @@ When disruption eventually occurs—or when the probability of disruption exceed
 
 The Twin Trip Simulator™ feeds these future-state analyses directly into the Travel Continuity Index™, allowing the platform to measure not only the health of the current journey, but also the resilience of every viable alternative.
 
---------------------------------------------------------------------------------
+---
 
-TRAVEL CONTINUITY INDEX™
+# Travel Continuity Index™
 
 The Travel Continuity Index™ measures the overall health and resilience of the journey.
 
@@ -234,31 +240,31 @@ It considers both the current itinerary and the alternative scenarios generated 
 
 The SENTRY™ Score is derived from this broader continuity analysis and provides a simplified, user-facing representation of overall journey health.
 
---------------------------------------------------------------------------------
+---
 
-SENTINEL™
+# SENTINEL™
 
 SENTINEL™ is the platform's intelligence engine.
 
 Its responsibility is to:
 
-• Fuse intelligence across provider families.
-• Maintain the Digital Trip Twin.
-• Evaluate the Movement Graph™.
-• Execute the Twin Trip Simulator™.
-• Calculate the Travel Continuity Index™.
-• Generate the SENTRY™ Score.
-• Produce recommendations.
-• Generate Executive Briefings.
-• Continuously update the Traveler Dashboard.
+- Fuse intelligence across provider families.
+- Maintain the Digital Trip Twin.
+- Evaluate the Movement Graph™.
+- Execute the Twin Trip Simulator™.
+- Calculate the Travel Continuity Index™.
+- Generate the SENTRY™ Score.
+- Produce recommendations.
+- Generate Executive Briefings.
+- Continuously update the Traveler Dashboard.
 
 SENTINEL™ determines what should happen.
 
 It does not execute bookings.
 
---------------------------------------------------------------------------------
+---
 
-ETAS™
+# ETAS™
 
 ETAS™ (Enhanced Travel Automation Suite) is the platform's execution engine.
 
@@ -266,20 +272,20 @@ Once recommendations are approved (or automatically authorized), ETAS™ coordin
 
 Examples include:
 
-• Book or rebook flights.
-• Reserve rideshare.
-• Modify hotel reservations.
-• Update calendar events.
-• Reserve restaurants.
-• Notify stakeholders.
-• Deliver Executive Briefings.
-• Update the Digital Trip Twin.
+- Book or rebook flights.
+- Reserve rideshare.
+- Modify hotel reservations.
+- Update calendar events.
+- Reserve restaurants.
+- Notify stakeholders.
+- Deliver Executive Briefings.
+- Update the Digital Trip Twin.
 
 ETAS™ transforms intelligence into coordinated action.
 
---------------------------------------------------------------------------------
+---
 
-EXECUTIVE BRIEFINGS & USER DASHBOARD
+# Executive Briefings & User Dashboard
 
 The Executive Briefing and Traveler Dashboard are the primary interfaces for communicating platform intelligence.
 
@@ -287,54 +293,54 @@ They are generated from the Digital Trip Twin—not from any individual provider
 
 They present:
 
-• Current journey status.
-• Identified disruptions.
-• Predicted downstream impacts.
-• Travel Continuity Index™.
-• SENTRY™ Score.
-• Recommended actions.
-• Automated actions already completed.
+- Current journey status.
+- Identified disruptions.
+- Predicted downstream impacts.
+- Travel Continuity Index™.
+- SENTRY™ Score.
+- Recommended actions.
+- Automated actions already completed.
 
 The traveler experiences one unified intelligence platform rather than a collection of independent APIs.
 
---------------------------------------------------------------------------------
+---
 
-SECURITY ARCHITECTURE
+# Security Architecture
 
 Security is a foundational layer spanning the entire platform.
 
 Every interaction should be designed around:
 
-• Identity & Access Management
-• Authentication & Authorization
-• Encryption in Transit
-• Encryption at Rest
-• Secure Key Management
-• Provider Authentication
-• Digital Trip Twin Protection
-• AI Interaction Security
-• Audit Logging
-• Enterprise Data Isolation
-• API Gateway Security
-• Continuous Monitoring
+- Identity & Access Management
+- Authentication & Authorization
+- Encryption in Transit
+- Encryption at Rest
+- Secure Key Management
+- Provider Authentication
+- Digital Trip Twin Protection
+- AI Interaction Security
+- Audit Logging
+- Enterprise Data Isolation
+- API Gateway Security
+- Continuous Monitoring
 
 Security is not implemented around individual providers—it protects every layer of the intelligence and execution ecosystem.
 
---------------------------------------------------------------------------------
+---
 
-ENGINEERING PRINCIPLE
+# Engineering Principle
 
 Every engineering decision should reinforce the following philosophy:
 
-• Providers contribute intelligence and execution capabilities.
-• Provider Managers coordinate external integrations.
-• The Digital Trip Twin organizes journey state.
-• The Movement Graph™ connects journey dependencies.
-• The Twin Trip Simulator™ predicts future outcomes and continuously develops resilient alternative journeys.
-• The Travel Continuity Index™ measures mission success across both current and simulated itineraries.
-• The SENTRY™ Score communicates overall journey health.
-• SENTINEL™ creates intelligence.
-• ETAS™ executes approved actions.
-• Executive Briefings and the Traveler Dashboard communicate the platform's understanding to the user.
+- Providers contribute intelligence and execution capabilities.
+- Provider Managers coordinate external integrations.
+- The Digital Trip Twin organizes journey state.
+- The Movement Graph™ connects journey dependencies.
+- The Twin Trip Simulator™ predicts future outcomes and continuously develops resilient alternative journeys.
+- The Travel Continuity Index™ measures mission success across both current and simulated itineraries.
+- The SENTRY™ Score communicates overall journey health.
+- SENTINEL™ creates intelligence.
+- ETAS™ executes approved actions.
+- Executive Briefings and the Traveler Dashboard communicate the platform's understanding to the user.
 
 This separation of responsibilities forms the architectural foundation of GÖ.AI and should guide all future engineering decisions.
